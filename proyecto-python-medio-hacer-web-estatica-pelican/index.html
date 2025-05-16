@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<!-- Manifest added by SuperPWA - Progressive Web Apps Plugin For WordPress -->
+<link rel="manifest" href="./superpwa-manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- / SuperPWA.com -->
+<title>Proyecto Python medio: ¿Cómo hacer una web estática con Pelican? &#8211; fcoterroba</title>
+<meta name="robots" content="max-image-preview:large">
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Feed" href="./feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Feed de los comentarios" href="./comments/feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Comentario Proyecto Python medio: ¿Cómo hacer una web estática con Pelican? del feed" href="./feed/index.html">
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":".\/\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🐦‍🔥","🐦​🔥")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id="wp-emoji-styles-inline-css" type="text/css">img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}</style>
+<link rel="stylesheet" id="wp-block-library-css" href="./wp-includes/css/dist/block-library/style.min.css?ver=6.8.1" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css" type="text/css">/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}</style>
+<style id="global-styles-inline-css" type="text/css">:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.7" type="text/css" media="all">
+<link rel="stylesheet" id="rp-public-styles-css" href="./wp-content/plugins/reading-progress-bar/public/css/rp-public.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="uaf_client_css-css" href="./wp-content/uploads/useanyfont/uaf.css?ver=1586012546" type="text/css" media="all">
+<link rel="stylesheet" id="codemirror-blocks--css" href="./wp-content/plugins/wp-codemirror-block/assets/blocks/blocks.style.build.min.css?ver=1586993207" type="text/css" media="all">
+<link rel="stylesheet" id="trp-floater-language-switcher-style-css" href="./wp-content/plugins/translatepress-multilingual/assets/css/trp-floater-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="trp-language-switcher-style-css" href="./wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="ez-toc-css" href="./wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.63" type="text/css" media="all">
+<style id="ez-toc-inline-css" type="text/css">div#ez-toc-container .ez-toc-title {font-size: 120%;}div#ez-toc-container .ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container ul li {font-weight: 500;}div#ez-toc-container nav ul ul li {font-size: 90%;}div#ez-toc-container {width: 100%;}
+.ez-toc-container-direction {direction: ltr;}.ez-toc-counter ul{counter-reset: item ;}.ez-toc-counter nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }.ez-toc-widget-direction {direction: ltr;}.ez-toc-widget-container ul{counter-reset: item ;}.ez-toc-widget-container nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }</style>
+<link rel="stylesheet" id="wxacs_front_style-css" href="./wp-content/plugins/scrollbar-by-webxapp/assets/css/style.css?ver=1.2.0" type="text/css" media="all">
+<style id="wxacs_front_style-inline-css" type="text/css">::-webkit-scrollbar {
+                                width: 12px;
+                         }::-webkit-scrollbar-thumb {
+                            background: rgb(132, 132, 130) ;
+                            border-radius:20px;
+                            height:12px;
+                            
+                       }::-webkit-scrollbar-thumb:hover {
+                            background: rgb(132, 132, 130); 
+                             
+                            }::-webkit-scrollbar-track {
+                                background: rgba(132, 132, 130, 0); 
+                           }</style>
+<link rel="stylesheet" id="yosemite-fonts-css" href="https://fonts.googleapis.com/css?family=Lora%3A400%2C400i%2C700%2C700i%7CJosefin+Slab%3A400%7CLibre+Baskerville%3A400%2C400i%2C700&#038;subset=latin%2Clatin-ext&#038;ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./wp-content/themes/yosemite-lite/css/font-awesome.css?ver=4.5.0" type="text/css" media="all">
+<link rel="stylesheet" id="yosemite-style-css" href="./wp-content/themes/yosemite-lite/style.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-lazyloadxt-spinner-css-css" href="./wp-content/plugins/a3-lazy-load/assets/css/jquery.lazyloadxt.spinner.css?ver=6.8.1" type="text/css" media="all">
+<script type="text/javascript" src="./wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="./wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="./wp-content/plugins/1and1-wordpress-assistant/js/cookies.js?ver=6.8.1" id="1and1-wp-cookies-js"></script>
+<script type="text/javascript" src="./wp-content/plugins/reading-progress-bar/public/js/rp-public.js?ver=6.8.1" id="rp-public-scripts-js"></script>
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-181925895-1" id="google_gtagjs-js" async></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-181925895-1', {"anonymize_ip":true} );
+/* ]]> */
+</script>
+<link rel="https://api.w.org/" href="./wp-json/index.html">
+<link rel="alternate" title="JSON" type="application/json" href="./wp-json/wp/v2/posts/1343/index.html">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.8.1">
+<link rel="canonical" href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html">
+<link rel="shortlink" href="./index.html?p=1343">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fproyecto-python-medio-hacer-web-estatica-pelican">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fproyecto-python-medio-hacer-web-estatica-pelican#038;format=xml">
+<meta name="generator" content="Site Kit by Google 1.8.1">
+<script data-ad-client="ca-pub-5464949551743719" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script><link rel="alternate" hreflang="es-ES" href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html">
+<link rel="alternate" hreflang="en-US" href="./en/proyecto-python-medio-hacer-web-estatica-pelican/index.html">
+<link rel="pingback" href="./xmlrpc.php">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-5464949551743719",
+enable_page_level_ads: true,
+tag_partner: "site_kit"
+});</script>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<link rel="icon" href="./wp-content/uploads/2020/03/cropped-Logo-512x512-1-32x32.png" sizes="32x32">
+<link rel="icon" href="./wp-content/uploads/2020/03/cropped-Logo-512x512-1-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./wp-content/uploads/2020/03/cropped-Logo-512x512-1-180x180.png">
+<meta name="msapplication-TileImage" content="./wp-content/uploads/2020/03/cropped-Logo-512x512-1-270x270.png">
+		<style type="text/css" id="wp-custom-css">.site-title{
+	font-family: LogoGrayScale;
+	text-transform: lowercase;
+	margin-bottom: 20px;
+}
+.by-author{
+	color: white;
+}</style>
+		<style id="wpforms-css-vars-root">:root {
+					--wpforms-field-border-radius: 3px;
+--wpforms-field-background-color: #ffffff;
+--wpforms-field-border-color: rgba( 0, 0, 0, 0.25 );
+--wpforms-field-text-color: rgba( 0, 0, 0, 0.7 );
+--wpforms-label-color: rgba( 0, 0, 0, 0.85 );
+--wpforms-label-sublabel-color: rgba( 0, 0, 0, 0.55 );
+--wpforms-label-error-color: #d63637;
+--wpforms-button-border-radius: 3px;
+--wpforms-button-background-color: #066aab;
+--wpforms-button-text-color: #ffffff;
+--wpforms-field-size-input-height: 43px;
+--wpforms-field-size-input-spacing: 15px;
+--wpforms-field-size-font-size: 16px;
+--wpforms-field-size-line-height: 19px;
+--wpforms-field-size-padding-h: 14px;
+--wpforms-field-size-checkbox-size: 16px;
+--wpforms-field-size-sublabel-spacing: 5px;
+--wpforms-field-size-icon-size: 1;
+--wpforms-label-size-font-size: 16px;
+--wpforms-label-size-line-height: 19px;
+--wpforms-label-size-sublabel-font-size: 14px;
+--wpforms-label-size-sublabel-line-height: 17px;
+--wpforms-button-size-font-size: 17px;
+--wpforms-button-size-height: 41px;
+--wpforms-button-size-padding-h: 15px;
+--wpforms-button-size-margin-top: 10px;
+
+				}</style>
+</head>
+
+<body data-rsssl="1" class="wp-singular post-template-default single single-post postid-1343 single-format-standard wp-theme-yosemite-lite translatepress-es_ES">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding container">
+										<p class="site-title"><a href="./index.html" rel="home">fcoterroba</a></p>
+								<p class="site-description">¡Informática, Programación, Tecnología y mucho más!</p>
+						</div>
+<!-- .logo -->
+
+		<div class="header-content">
+			<div class="header-content__container container">
+				<nav id="site-navigation" class="main-navigation" role="navigation">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">Menú</button>
+					<div class="menu-menu-1-container"><ul id="primary-menu" class="menu">
+<li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-30"><a href="./index.html">Inicio</a></li>
+<li id="menu-item-154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Agradecimientos</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contacto</a></li>
+</ul></div>				</nav><!-- #site-navigation -->
+
+				
+				<!-- .header-search -->
+				
+<form role="search" method="get" class="search-form" action=".//">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Buscar" value="" name="s">
+	</label>
+	<button type="submit" class="search-submit">
+		<i class="fa fa-search"></i>
+		<span class="screen-reader-text">Search</span>
+	</button>
+</form>
+
+			</div>
+		</div>
+<!-- .header-content -->
+
+	</header><!-- #masthead -->
+	
+	<div id="content" class="site-content container">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-1343" class="post-1343 post type-post status-publish format-standard has-post-thumbnail hentry category-programacion category-python category-tutorial yosemite-has-thumbnail">
+
+	<header class="entry-header">
+
+		<div class="entry-meta">
+			<span class="cat-links"><span class="screen-reader-text">Categories </span><a href="./category/programacion/index.html" rel="category tag">Programación</a>, <a href="./category/python/index.html" rel="category tag">Python</a>, <a href="./category/tutorial/index.html" rel="category tag">Tutorial</a></span>		</div>
+<!-- .entry-meta -->
+		<h1 class="entry-title">Proyecto Python medio: ¿Cómo hacer una web estática con Pelican?</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="fa fa-clock-o"></i><a href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html" rel="bookmark"><time class="entry-date published" datetime="2022-02-22T11:03:09+02:00">22 febrero 2022</time><time class="updated" datetime="2022-02-22T11:03:11+02:00">22 febrero 2022</time></a></span><span class="comments-link"><i class="fa fa-comments-o"></i><a href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html#comments">2 comentarios<span class="screen-reader-text"> en Proyecto Python medio: ¿Cómo hacer una web estática con Pelican?</span></a></span>
+		</div>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		
+<p>Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post sobre programación ya que es uno de los apartados principales de la web y, probablemete, uno de los que más gusta a mis lectores. </p>
+
+
+
+<p>En este caso, vamos a realizar una web estática (no te preocupes si ahora mismo no sabes lo que es, posteriormente lo explicaré) haciendo uso de Pelican, una importante librería de Python.</p>
+
+
+
+<p>Antes de comenzar con este proyecto, te aviso que la dificultad del mismo es media, tanto si te consideras un experto en Python como si acabas de empezar, este proyecto es de tu agrado. Aún así, probablemente no te vendría mal repasar antes la categoría <a href="./category/python/index.html">Python</a> de la web, donde se recogen todos los proyectos hechos previamente con este lenguaje.</p>
+
+
+
+<p>Antes de comenzar, aunque posteriormente te voy a explicar qué es, te
+    recomiendo visitar un post que subí hace más de un mes, en el que   
+ explico muchos de los términos informáticos más usados en nuestro día a
+    día. Ya que, en este post, verás palabras que probablemente no te   
+suenen  mucho. 🤯&nbsp;<strong><a rel="noreferrer noopener" href="./diccionario-tecnologico-informatico/index.html" target="_blank">Puedes leer el post aquí</a></strong>. </p>
+
+
+
+<p>También quiero recordarte que hace unos meses subí un vídeo a mi  canal de YouTube, muy interesante, enfocado en la domótica del hogar.  Concretamente, conectamos, configuramos e instalamos una bombilla  inteligente 💡 con la que puedes cambiar el color de la misma, apagarla,  encenderla y muchísimo más simplemente haciendo uso de tu teléfono  móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻 </p>
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-5464949551743719" data-ad-slot="4080389895"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+
+<iframe class="lazy lazy-hidden" data-lazy-type="iframe" data-src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe><noscript><iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe></noscript>
+
+
+
+<p><strong>Antes de empezar</strong>, <strong>¿qué es una web estática?</strong></p>
+
+
+
+<p>Una página web estática es una página web/sitio en internet que muestra el mismo contenido para todos los usuarios en vez de editar dicho contenido personalizado.<br>Para que te hagas una idea, <strong>CUALQUIER</strong> red social es una página web dinámica ya que, según tus interes, cookies y demás, te muestra un contenido totalmente distinto al de otro usuario.</p>
+
+
+
+<p>En cambio, las páginas estáticas suelen ser vistas frecuentemente como landing pages y/o blogs.</p>
+
+
+
+<p>Ahora sí que sí, comencemos!</p>
+
+
+
+<p>1️⃣ <strong>PRIMER PASO </strong>1️⃣</p>
+
+
+
+<p>Lo primero que tenemos que hacer es instalar el lenguaje de programación Python.</p>
+
+
+
+<p>En Linux, casi por norma general, viene Python preinstalado pero si no es así, debemos recurrir a la página web oficial de <a rel="noreferrer noopener" aria-label="Python (opens in a new tab)" href="https://www.python.org/downloads/" target="_blank">Python</a> con la que podremos, de manera sencilla, instalar el lenguaje de programación en nuestro ordenador.</p>
+
+
+
+<p>Cuando esté instalado, simplemente lo verificaremos usando <code>python --version</code> en la terminal</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img fetchpriority="high" decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen.png" alt="" class="lazy lazy-hidden wp-image-1345" width="401" height="272" data-srcset="./wp-content/uploads/2022/02/imagen.png 786w, ./wp-content/uploads/2022/02/imagen-300x203.png 300w, ./wp-content/uploads/2022/02/imagen-768x521.png 768w" sizes="(max-width: 401px) 100vw, 401px"><noscript><img fetchpriority="high" decoding="async" src="./wp-content/uploads/2022/02/imagen.png" alt="" class="wp-image-1345" width="401" height="272" srcset="./wp-content/uploads/2022/02/imagen.png 786w, ./wp-content/uploads/2022/02/imagen-300x203.png 300w, ./wp-content/uploads/2022/02/imagen-768x521.png 768w" sizes="(max-width: 401px) 100vw, 401px"></noscript></figure></div>
+
+
+
+<p>2️⃣ <strong>SEGUNDO PASO</strong>2️⃣</p>
+
+
+
+<p>Debemos instalar el gestor de librerías de Python. Personalmente prefiero el típico <a rel="noreferrer noopener" aria-label="pip3 (opens in a new tab)" href="https://pypi.org/project/pip/" target="_blank">pip3</a> aunque podéis usar cualquier otro como <a href="https://www.anaconda.com/" target="_blank" rel="noreferrer noopener" aria-label="Anaconda (opens in a new tab)">Anaconda</a></p>
+
+
+
+<p>3️⃣ <strong>TERCER PASO </strong>3️⃣</p>
+
+
+
+<p>Una vez que tengamos nuestro gestor instalado, vamos a instalar la librería que nos ayudará a crear nuestra web estática. </p>
+
+
+
+<p class="has-text-align-center"><code>pip3 install pelican</code></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen-1.png" alt="" class="lazy lazy-hidden wp-image-1346" width="391" height="290" data-srcset="./wp-content/uploads/2022/02/imagen-1.png 813w, ./wp-content/uploads/2022/02/imagen-1-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-1-768x572.png 768w" sizes="(max-width: 391px) 100vw, 391px"><noscript><img decoding="async" src="./wp-content/uploads/2022/02/imagen-1.png" alt="" class="wp-image-1346" width="391" height="290" srcset="./wp-content/uploads/2022/02/imagen-1.png 813w, ./wp-content/uploads/2022/02/imagen-1-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-1-768x572.png 768w" sizes="(max-width: 391px) 100vw, 391px"></noscript></figure></div>
+
+
+
+<p>4️⃣ <strong>CUARTO PASO </strong>4️⃣</p>
+
+
+
+<p>Vamos a crear un directorio donde, temporalmente, vayamos a alojar nuestra página web. Entramos en ésta y <strong>dentro</strong>, vamos a lanzar el comando:</p>
+
+
+
+<p class="has-text-align-center"><code>pelican-quickstart</code></p>
+
+
+
+<p>Luego tendremos que responder a una serie de preguntas que nos lanzará el instalador y ya tendríamos todo lo necesario para empezar.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen-2.png" alt="" class="lazy lazy-hidden wp-image-1347" width="422" height="313" data-srcset="./wp-content/uploads/2022/02/imagen-2.png 813w, ./wp-content/uploads/2022/02/imagen-2-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-2-768x572.png 768w" sizes="auto, (max-width: 422px) 100vw, 422px"><noscript><img loading="lazy" decoding="async" src="./wp-content/uploads/2022/02/imagen-2.png" alt="" class="wp-image-1347" width="422" height="313" srcset="./wp-content/uploads/2022/02/imagen-2.png 813w, ./wp-content/uploads/2022/02/imagen-2-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-2-768x572.png 768w" sizes="auto, (max-width: 422px) 100vw, 422px"></noscript></figure></div>
+
+
+
+<p>5️⃣ <strong>QUINTO PASO</strong>5️⃣</p>
+
+
+
+<p>¿Qué sería de las páginas web estáticas sin contenido? Pues eso mismo, sin haber creado ningún artículo previamente, no podemos observar la página web creada con Pelican, es por eso que vamos a crear nuestro primer artículo de pruebas.</p>
+
+
+
+<p>Pelican usa Markdown, un lenguaje de etiquetas similar a HTML pero con una sintaxis mucho más sencilla.</p>
+
+
+
+<p>Dentro de la carpeta <em>content</em> vamos a crear un archivo markdown. No es relevante si usas algún editor de código que si usas la terminal que si usas lo que sea, pero en Markdown y que siga este estilo:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen-3.png" alt="" class="lazy lazy-hidden wp-image-1348" width="456" height="339" data-srcset="./wp-content/uploads/2022/02/imagen-3.png 813w, ./wp-content/uploads/2022/02/imagen-3-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-3-768x572.png 768w" sizes="auto, (max-width: 456px) 100vw, 456px"><noscript><img loading="lazy" decoding="async" src="./wp-content/uploads/2022/02/imagen-3.png" alt="" class="wp-image-1348" width="456" height="339" srcset="./wp-content/uploads/2022/02/imagen-3.png 813w, ./wp-content/uploads/2022/02/imagen-3-300x223.png 300w, ./wp-content/uploads/2022/02/imagen-3-768x572.png 768w" sizes="auto, (max-width: 456px) 100vw, 456px"></noscript></figure></div>
+
+
+
+<p>Una vez creado y guardado procedemos a la generación de la web. Primero tenemos que generarla usando: (en la raíz del proyecto)</p>
+
+
+
+<p class="has-text-align-center"><code>pelican content</code></p>
+
+
+
+<p>Y posteriormente, para pruebas <strong>NOT FINAL DEPLOY,</strong> usamos el comando:</p>
+
+
+
+<p class="has-text-align-center"><code>pelican -l</code></p>
+
+
+
+<p>Por pantalla nos mostrará el enlace con el puerto al que apunta nuestra web mientras no cancelemos o cerremos esa ventana. Por defecto suele ser <strong>localhost:8000</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" decoding="async" width="1024" height="367" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen-4-1024x367.png" alt="" class="lazy lazy-hidden wp-image-1349" data-srcset="./wp-content/uploads/2022/02/imagen-4-1024x367.png 1024w, ./wp-content/uploads/2022/02/imagen-4-300x108.png 300w, ./wp-content/uploads/2022/02/imagen-4-768x275.png 768w, ./wp-content/uploads/2022/02/imagen-4-1536x551.png 1536w, ./wp-content/uploads/2022/02/imagen-4.png 1921w" sizes="auto, (max-width: 1024px) 100vw, 1024px"><noscript><img loading="lazy" decoding="async" width="1024" height="367" src="./wp-content/uploads/2022/02/imagen-4-1024x367.png" alt="" class="wp-image-1349" srcset="./wp-content/uploads/2022/02/imagen-4-1024x367.png 1024w, ./wp-content/uploads/2022/02/imagen-4-300x108.png 300w, ./wp-content/uploads/2022/02/imagen-4-768x275.png 768w, ./wp-content/uploads/2022/02/imagen-4-1536x551.png 1536w, ./wp-content/uploads/2022/02/imagen-4.png 1921w" sizes="auto, (max-width: 1024px) 100vw, 1024px"></noscript></figure></div>
+
+
+
+<p>Con esto ya tendríamos nuestra web estática creada aunque, como último tip vamos a proceder a explicar cómo se sustituye este tema default de Pelican por uno que nosotros decidamos.</p>
+
+
+
+<p>6️⃣<strong>SEXTO PASO</strong>6️⃣️</p>
+
+
+
+<p>Lo primero que deberemos hacer es buscar en el <a rel="noreferrer noopener" aria-label="listado de temas de Pelican (opens in a new tab)" href="http://www.pelicanthemes.com/" target="_blank">listado de temas de Pelican</a> el tema que más nos guste.</p>
+
+
+
+<p>En mi caso voy a usar el de Attila, típico theme ghost tan popular últimamente debido al uso de Notion. Este es el <a rel="noreferrer noopener" aria-label="link (opens in a new tab)" href="https://github.com/arulrajnet/attila" target="_blank">link</a></p>
+
+
+
+<p>Para instalar nuestro tema vamos a clonar o descargar el zip de la última release, posteriormente vamos a descomrpimir dicho theme y usaremos el siguiente comando:</p>
+
+
+
+<p class="has-text-align-center"><code>sudo pelican-themes -U &lt;nombre_theme&gt;</code></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/imagen-5.png" alt="" class="lazy lazy-hidden wp-image-1351" width="399" height="274" data-srcset="./wp-content/uploads/2022/02/imagen-5.png 786w, ./wp-content/uploads/2022/02/imagen-5-300x206.png 300w, ./wp-content/uploads/2022/02/imagen-5-768x528.png 768w" sizes="auto, (max-width: 399px) 100vw, 399px"><noscript><img loading="lazy" decoding="async" src="./wp-content/uploads/2022/02/imagen-5.png" alt="" class="wp-image-1351" width="399" height="274" srcset="./wp-content/uploads/2022/02/imagen-5.png 786w, ./wp-content/uploads/2022/02/imagen-5-300x206.png 300w, ./wp-content/uploads/2022/02/imagen-5-768x528.png 768w" sizes="auto, (max-width: 399px) 100vw, 399px"></noscript></figure></div>
+
+
+
+<p>Podemos confirmar que se ha instalado correctamente el tema con el comando:</p>
+
+
+
+<p class="has-text-align-center"><code>sudo pelican-themes -l</code></p>
+
+
+
+<p>Posteriormente vamos a editar el archivo <em>pelicanconf.py</em> y <strong>AL FINAL</strong> del archivo vamos a añadir la <strong>RUTA COMPLETA</strong> del theme.</p>
+
+
+
+<p class="has-text-align-center"><code>THEME = ".local/lib/python3.9/site-packages/pelican/themes/attila-1.3"</code></p>
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio final post -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5464949551743719" data-ad-slot="2590310291" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+
+<p>🏁 <strong>Fin del post </strong>🏁</p>
+
+
+
+<p>El resultado final es una web estática subida a GH Pages (<a rel="noreferrer noopener" aria-label="puedes ver cómo hacerlo aquí (opens in a new tab)" href="./proyecto-javascript-medio-letra-dni-deploy-github-pages/index.html" target="_blank">puedes ver cómo hacerlo aquí</a>) en la que voy a dar mi punto de vista y color en un <strong>RANKING</strong> mis canciones favoritas para este Eurovisión 2022.</p>
+
+
+
+<p>Si quieres verlo haz click en la imagen!</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><a href="https://fcoterroba.github.io/Eurovision_2022/" target="_blank" rel="noreferrer noopener"><img loading="lazy" decoding="async" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-473x1024.png" alt="" class="lazy lazy-hidden wp-image-1356" width="280" height="606" data-srcset="./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-473x1024.png 473w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-139x300.png 139w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-768x1662.png 768w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-710x1536.png 710w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-946x2048.png 946w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57.png 1242w" sizes="auto, (max-width: 280px) 100vw, 280px"><noscript><img loading="lazy" decoding="async" src="./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-473x1024.png" alt="" class="wp-image-1356" width="280" height="606" srcset="./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-473x1024.png 473w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-139x300.png 139w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-768x1662.png 768w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-710x1536.png 710w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57-946x2048.png 946w, ./wp-content/uploads/2022/02/Captura-de-pantalla-2022-02-22-a-las-09.35.57.png 1242w" sizes="auto, (max-width: 280px) 100vw, 280px"></noscript></a></figure></div>
+
+
+
+<p>Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!</p>
+
+
+
+<p>Podéis contribuir económicamente mediante <a rel="noreferrer noopener" href="https://www.paypal.com/paypalme/fcoterroba" target="_blank">Paypal</a>. Toda cantidad es bien recibida! 🙂 </p>
+
+
+
+<p>Espero también que tengáis una genial semana y  nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en  las redes como <a href="https://twitter.com/fcoterroba">Twitter</a>,&nbsp;<a href="https://www.facebook.com/fcoterroba">Facebook</a>,&nbsp;<a href="https://www.instagram.com/fcoterroba/">Instagram</a>, <a rel="noreferrer noopener" href="https://www.github.com/fcoterroba" target="_blank">GitHub</a> y <a href="https://www.linkedin.com/in/fcoterroba/">LinkedIn</a>. 🤟🏻  </p>
+
+
+
+<p>fuentes: <a rel="noreferrer noopener" aria-label="Techlandia.com (opens in a new tab)" href="https://techlandia.com/pagina-web-estatica-info_314661/" target="_blank">techlandia.com</a>, <a rel="noreferrer noopener" aria-label="python.org (opens in a new tab)" href="https://www.python.org/downloads/" target="_blank">python.org</a>, <a rel="noreferrer noopener" aria-label="pypi.org (opens in a new tab)" href="https://pypi.org/project/pip/" target="_blank">pypi.org</a>, <a rel="noreferrer noopener" aria-label="anaconda.com (opens in a new tab)" href="https://www.anaconda.com/" target="_blank">anaconda.com</a>, <a rel="noreferrer noopener" aria-label="pelican.com (opens in a new tab)" href="https://docs.getpelican.com/en/3.6.3/index.html" target="_blank">pelican.com</a>, <a rel="noreferrer noopener" aria-label="pelicanthemes.com (opens in a new tab)" href="http://www.pelicanthemes.com/" target="_blank">pelicanthemes.com</a>, <a rel="noreferrer noopener" aria-label="github.com (opens in a new tab)" href="https://github.com/arulrajnet/attila" target="_blank">github.com</a>, <a rel="noreferrer noopener" aria-label="geekyshacklebolt.wordpress.com (opens in a new tab)" href="https://geekyshacklebolt.wordpress.com/2020/08/18/how-to-use-a-custom-pelican-blog-theme/" target="_blank">geekyshacklebolt.wordpress.com</a></p>
+	</div>
+<!-- .entry-content -->
+
+	<div class="entry-footer">
+			</div>
+<!-- entry-footer -->
+
+	</article><!-- #post-## -->
+
+	<nav class="navigation post-navigation" aria-label="Entradas">
+		<h2 class="screen-reader-text">Navegación de entradas</h2>
+		<div class="nav-links">
+<div class="nav-previous"><a href="./como-fue-2021-como-sera-2022/index.html" rel="prev"><span class="meta-nav">POST ANTERIOR »</span> <span class="post-title">¿Cómo fue 2021 y cómo será 2022?</span></a></div>
+<div class="nav-next"><a href="./como-hacer-web-multilanguage-wordpress/index.html" rel="next"><span class="meta-nav">« Siguiente Post</span> <span class="post-title">¿Cómo hacer una web multi-language en WordPress?</span></a></div>
+</div>
+	</nav>
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			2 Comentarios		</h2>
+<!-- .comments-title -->
+
+		
+		<ol class="comment-list">
+					<li id="comment-5202" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-5202" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="https://secure.gravatar.com/avatar/f5c7a83d057b1fed2a238096aae0aefcac691ba16b6d172173fad7965e431d0d?s=80&#038;d=retro&#038;r=g" data-srcset="https://secure.gravatar.com/avatar/f5c7a83d057b1fed2a238096aae0aefcac691ba16b6d172173fad7965e431d0d?s=160&#038;d=retro&#038;r=g 2x" class="lazy lazy-hidden avatar avatar-80 photo" height="80" width="80" loading="lazy" decoding="async"><noscript><img alt="" src="https://secure.gravatar.com/avatar/f5c7a83d057b1fed2a238096aae0aefcac691ba16b6d172173fad7965e431d0d?s=80&#038;d=retro&#038;r=g" srcset="https://secure.gravatar.com/avatar/f5c7a83d057b1fed2a238096aae0aefcac691ba16b6d172173fad7965e431d0d?s=160&#038;d=retro&#038;r=g 2x" class="avatar avatar-80 photo" height="80" width="80" loading="lazy" decoding="async"></noscript>						<b class="fn">Edgard</b> <span class="says">dice:</span>					</div>
+<!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html#comment-5202"><time datetime="2023-04-13T11:02:31+02:00">13 abril 2023 a las 11:02</time></a>					</div>
+<!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Una basura este post.</p>
+				</div>
+<!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html?replytocom=5202#respond" data-commentid="5202" data-postid="1343" data-belowelement="div-comment-5202" data-respondelement="respond" data-replyto="Responder a Edgard" aria-label="Responder a Edgard">Responder</a></div>			</article><!-- .comment-body -->
+		<ol class="children">
+		<li id="comment-10524" class="comment byuser comment-author-fcoterroba_24_max bypostauthor odd alt depth-2">
+			<article id="div-comment-10524" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="https://secure.gravatar.com/avatar/0261294233b52b3cf602fd414008bb7f41716299981bd53851b56b08a41b636b?s=80&#038;d=retro&#038;r=g" data-srcset="https://secure.gravatar.com/avatar/0261294233b52b3cf602fd414008bb7f41716299981bd53851b56b08a41b636b?s=160&#038;d=retro&#038;r=g 2x" class="lazy lazy-hidden avatar avatar-80 photo" height="80" width="80" loading="lazy" decoding="async"><noscript><img alt="" src="https://secure.gravatar.com/avatar/0261294233b52b3cf602fd414008bb7f41716299981bd53851b56b08a41b636b?s=80&#038;d=retro&#038;r=g" srcset="https://secure.gravatar.com/avatar/0261294233b52b3cf602fd414008bb7f41716299981bd53851b56b08a41b636b?s=160&#038;d=retro&#038;r=g 2x" class="avatar avatar-80 photo" height="80" width="80" loading="lazy" decoding="async"></noscript>						<b class="fn">fcoterroba</b> <span class="says">dice:</span>					</div>
+<!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html#comment-10524"><time datetime="2024-03-07T14:26:14+02:00">7 marzo 2024 a las 14:26</time></a>					</div>
+<!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>¡Buenas Edgard, espero que estés bien!</p>
+<p>¡Me gustaría mejorar y para eso necesito tu opinión!</p>
+<p>Gracias, un saludo.</p>
+				</div>
+<!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html?replytocom=10524#respond" data-commentid="10524" data-postid="1343" data-belowelement="div-comment-10524" data-respondelement="respond" data-replyto="Responder a fcoterroba" aria-label="Responder a fcoterroba">Responder</a></div>			</article><!-- .comment-body -->
+		</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+		</ol>
+<!-- .comment-list -->
+
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Deja un comentario <small><a rel="nofollow" id="cancel-comment-reply-link" href="./proyecto-python-medio-hacer-web-estatica-pelican/index.html#respond" style="display:none;">Cancelar la respuesta</a></small>
+</h3>
+<form action=".//wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+<p class="comment-notes"><span id="email-notes">Tu dirección de correo electrónico no será publicada.</span> <span class="required-field-message">Los campos obligatorios están marcados con <span class="required">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comentario <span class="required">*</span></label> <textarea autocomplete="nope" id="ec4619e15d" name="ec4619e15d" cols="45" rows="8" maxlength="65525" required></textarea><textarea id="comment" aria-hidden="true" name="comment" autocomplete="nope" style="padding:0;clip:rect(1px, 1px, 1px, 1px);position:absolute !important;white-space:nowrap;height:1px;width:1px;overflow:hidden;" tabindex="-1"></textarea><script type="text/javascript">document.getElementById("comment").setAttribute( "id", "a440c4c42fabe69ebfbe8c4539f1eef4" );document.getElementById("ec4619e15d").setAttribute( "id", "comment" );</script></p>
+<p class="comment-form-author"><label for="author">Nombre <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required></p>
+<p class="comment-form-email"><label for="email">Correo electrónico <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required></p>
+<p class="comment-form-url"><label for="url">Web</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que haga un comentario.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Publicar el comentario"> <input type="hidden" name="comment_post_ID" value="1343" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+</form>	</div>
+<!-- #respond -->
+	
+</div>
+<!-- #comments -->
+		</main><!-- #main -->
+	</div>
+<!-- #primary -->
+
+<aside id="secondary" class="widget-area add_sticky_sidebar" role="complementary">
+	
+		<section id="recent-posts-2" class="widget widget_recent_entries">
+		<h2 class="widget-title">Entradas recientes</h2>
+		<ul>
+											<li>
+					<a href="./mi-libro-ia-inteligencia-inmoralidad-artificial/index.html">Mi primer libro, &#8220;IA: ¿Inteligencia Artificial o Inmoralidad Artificial?&#8221;</a>
+									</li>
+											<li>
+					<a href="./mi-primer-proyecto-vivifind/index.html">Mi primer proyecto: ViviFind</a>
+									</li>
+											<li>
+					<a href="./proyecto-go-medio-web-estatica-hugo/index.html">Proyecto Go medio: ¿Cómo hacer una web estática con HuGo?</a>
+									</li>
+											<li>
+					<a href="./proyecto-python-medio-crear-api-usando-fastapi/index.html">Proyecto Python medio: ¿Cómo crear una API usando FastAPI?</a>
+									</li>
+											<li>
+					<a href="./pyscript-que-es-javascript-todo-mundo-hablando/index.html">PyScript: ¿Qué es este Framework JavaScript del que todo el mundo está hablando?</a>
+									</li>
+					</ul>
+
+		</section><section id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">Comentarios recientes</h2>
+<ul id="recentcomments">
+<li class="recentcomments">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> en <a href="./contacto/index.html#comment-36148">Contacto</a>
+</li>
+<li class="recentcomments">
+<span class="comment-author-link">Apple Inc. 2025. All rights reserved. Apple Inc. 2025. All rights reserved. 3713140 https://t.me/ grandbooksommer !</span> en <a href="./contacto/index.html#comment-34012">Contacto</a>
+</li>
+<li class="recentcomments">
+<span class="comment-author-link">Unlock $19123 Bitcoin Payments. Click Here To Claim: &gt;&gt;&gt; https://t.me/+d7pd2x5 #Lolllukazzzur333</span> en <a href="./contacto/index.html#comment-31790">Contacto</a>
+</li>
+<li class="recentcomments">
+<span class="comment-author-link">https://nmssad7340875.com</span> en <a href="./contacto/index.html#comment-30921">Contacto</a>
+</li>
+<li class="recentcomments">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> en <a href="./contacto/index.html#comment-28988">Contacto</a>
+</li>
+</ul></section><section id="custom_html-18" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5464949551743719" data-ad-slot="3604897115" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></section></aside><!-- #secondary -->
+
+	</div>
+<!-- #content -->
+	<aside id="secondary" class="sidebar-footer widget-area" role="complementary">
+		<div class="container">
+			<section id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categorías</h2>
+<form action="./" method="get">
+<label class="screen-reader-text" for="cat">Categorías</label><select name="cat" id="cat" class="postform">
+	<option value="-1">Elegir la categoría</option>
+	<option class="level-0" value="17">Big Data</option>
+	<option class="level-0" value="8">Burocracia</option>
+	<option class="level-0" value="6">Criptomonedas</option>
+	<option class="level-0" value="19">CSS</option>
+	<option class="level-0" value="23">Formación</option>
+	<option class="level-0" value="26">Golang</option>
+	<option class="level-0" value="18">HTML</option>
+	<option class="level-0" value="16">Informática</option>
+	<option class="level-0" value="27">JavaScript</option>
+	<option class="level-0" value="13">Linux</option>
+	<option class="level-0" value="3">Música</option>
+	<option class="level-0" value="29">Offtopic</option>
+	<option class="level-0" value="4">Opinión</option>
+	<option class="level-0" value="25">PHP</option>
+	<option class="level-0" value="5">Presentación</option>
+	<option class="level-0" value="20">Programación</option>
+	<option class="level-0" value="21">Python</option>
+	<option class="level-0" value="14">Raspberry</option>
+	<option class="level-0" value="28">Rust</option>
+	<option class="level-0" value="11">Servidor</option>
+	<option class="level-0" value="15">Tecnología</option>
+	<option class="level-0" value="9">Telegram</option>
+	<option class="level-0" value="7">Tutorial</option>
+	<option class="level-0" value="12">Windows</option>
+	<option class="level-0" value="24">WordPress</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+
+/* ]]> */
+</script>
+</section>		</div>
+	</aside><!-- .sidebar-footer  -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="container">
+						<h1 class="site-title"><a href="./index.html" rel="home">fcoterroba</a></h1>
+			<div class="site-info">
+				Copyright fcoterroba © 2020 Todos los derechos reservados			</div>
+<!-- .site-info -->
+		</div>
+	</footer><!-- #colophon -->
+</div>
+<!-- #page -->
+
+<nav class="mobile-navigation" role="navigation">
+	<div class="mobile-menu"><ul>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-30"><a href="./index.html">Inicio</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Agradecimientos</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contacto</a></li>
+</ul></div></nav>
+<a href="#" class="scroll-to-top hidden"><i class="fa fa-angle-up"></i></a>
+
+<script type="speculationrules">{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/yosemite-lite\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}</script>
+        <div id="trp-floater-ls" onclick="" data-no-translation class="trp-language-switcher-container trp-floater-ls-names trp-top-left">
+            <div id="trp-floater-ls-current-language" class="trp-with-flags">
+                <a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language" onclick="void(0)">
+					<img class="trp-flag-image" src="./wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Spanish">Spanish				</a>
+            </div>
+            <div id="trp-floater-ls-language-list" class="trp-with-flags">
+                                    <a href="./en/proyecto-python-medio-hacer-web-estatica-pelican/index.html" title="English">
+						<img class="trp-flag-image" src="./wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png" width="18" height="12" alt="en_US" title="English">English					</a>
+                				<a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language">
+					<img class="trp-flag-image" src="./wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Spanish">Spanish				</a>
+            </div>
+        </div>
+
+    <script type="text/javascript" src="./wp-content/plugins/scrollbar-by-webxapp/assets/js/jquery.easeScroll.js?ver=1.2.0" id="wxacs_easeScroll_js-js"></script>
+<script type="text/javascript" id="wxacs_front_script-js-extra">
+/* <![CDATA[ */
+var wxacs_ease_scroll_params = {"wxacs_frameRate":"60","wxacs_animationTime":"1000","wxacs_stepSize":"120","wxacs_pulseScale":"8","wxacs_pulseNormalize":"1","wxacs_accelerationDelta":"20","wxacs_accelerationMax":"1","wxacs_arrowScroll":"50"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/scrollbar-by-webxapp/assets/js/script.js?ver=1.2.0" id="wxacs_front_script-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":".\/\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.7" id="contact-form-7-js"></script>
+<script type="text/javascript" id="superpwa-register-sw-js-extra">
+/* <![CDATA[ */
+var superpwa_sw = {"url":"\/superpwa-sw.js"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/super-progressive-web-apps/public/js/register-sw.js" id="superpwa-register-sw-js"></script>
+<script type="text/javascript" id="ez-toc-scroll-scriptjs-js-extra">
+/* <![CDATA[ */
+var eztoc_smooth_local = {"scroll_offset":"30","add_request_uri":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/easy-table-of-contents/assets/js/smooth_scroll.min.js?ver=2.0.63" id="ez-toc-scroll-scriptjs-js"></script>
+<script type="text/javascript" src="./wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1" id="ez-toc-js-cookie-js"></script>
+<script type="text/javascript" src="./wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2" id="ez-toc-jquery-sticky-kit-js"></script>
+<script type="text/javascript" id="ez-toc-js-js-extra">
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"30","fallbackIcon":"<span class=\"\"><span class=\"eztoc-hide\" style=\"display:none;\">Toggle<\/span><span class=\"ez-toc-icon-toggle-span\"><svg style=\"fill: #999;color:#999\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" class=\"list-377408\" width=\"20px\" height=\"20px\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z\" fill=\"currentColor\"><\/path><\/svg><svg style=\"fill: #999;color:#999\" class=\"arrow-unsorted-368013\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"10px\" height=\"10px\" viewBox=\"0 0 24 24\" version=\"1.2\" baseProfile=\"tiny\"><path d=\"M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z\"\/><\/svg><\/span><\/span>"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.63-1709813067" id="ez-toc-js-js"></script>
+<script type="text/javascript" src="./wp-content/themes/yosemite-lite/js/navigation.js?ver=20151215" id="yosemite-navigation-js"></script>
+<script type="text/javascript" src="./wp-content/themes/yosemite-lite/js/skip-link-focus-fix.js?ver=20151215" id="yosemite-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="./wp-content/themes/yosemite-lite/js/slick.js?ver=1.0" id="slick-js-js"></script>
+<script type="text/javascript" src="./wp-content/themes/yosemite-lite/js/theia-sticky-sidebar.js?ver=1.5.0" id="theia-sticky-sidebar-js"></script>
+<script type="text/javascript" src="./wp-content/themes/yosemite-lite/js/script.js?ver=1.0" id="yosemite-script-js"></script>
+<script type="text/javascript" src="./wp-includes/js/comment-reply.min.js?ver=6.8.1" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_params = {"apply_images":"1","apply_videos":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extra.min.js?ver=2.0.0" id="jquery-lazyloadxt-js"></script>
+<script type="text/javascript" src="./wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.srcset.min.js?ver=2.0.0" id="jquery-lazyloadxt-srcset-js"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-extend-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_extend_params = {"edgeY":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extend.js?ver=2.0.0" id="jquery-lazyloadxt-extend-js"></script>
+<progress class="readingProgressbar" data-height="10" data-position="top" data-custom-position="" data-foreground="#0a0a0a" data-background="#ffffff" value="0"></progress>
+</body>
+</html>

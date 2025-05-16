@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<!-- Manifest added by SuperPWA - Progressive Web Apps Plugin For WordPress -->
+<link rel="manifest" href="./superpwa-manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- / SuperPWA.com -->
+<title>Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? &#8211; fcoterroba</title>
+<meta name="robots" content="max-image-preview:large">
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Feed" href="./feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Comments Feed" href="./comments/feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? Comments Feed" href="./feed/index.html">
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":".\/\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🐦‍🔥","🐦​🔥")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id="wp-emoji-styles-inline-css" type="text/css">img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}</style>
+<link rel="stylesheet" id="wp-block-library-css" href="./../wp-includes/css/dist/block-library/style.min.css?ver=6.8.1" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css" type="text/css">/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}</style>
+<style id="global-styles-inline-css" type="text/css">:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./../wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.7" type="text/css" media="all">
+<link rel="stylesheet" id="rp-public-styles-css" href="./../wp-content/plugins/reading-progress-bar/public/css/rp-public.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="uaf_client_css-css" href="./../wp-content/uploads/useanyfont/uaf.css?ver=1586012546" type="text/css" media="all">
+<link rel="stylesheet" id="codemirror-css" href="./../wp-content/plugins/wp-codemirror-block/vendor/codemirror/lib/codemirror.min.css?ver=5.40.5" type="text/css" media="all">
+<link rel="stylesheet" id="codemirror-blocks--css" href="./../wp-content/plugins/wp-codemirror-block/assets/blocks/blocks.style.build.min.css?ver=1586993207" type="text/css" media="all">
+<link rel="stylesheet" id="trp-floater-language-switcher-style-css" href="./../wp-content/plugins/translatepress-multilingual/assets/css/trp-floater-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="trp-language-switcher-style-css" href="./../wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="ez-toc-css" href="./../wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.63" type="text/css" media="all">
+<style id="ez-toc-inline-css" type="text/css">div#ez-toc-container .ez-toc-title {font-size: 120%;}div#ez-toc-container .ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container ul li {font-weight: 500;}div#ez-toc-container nav ul ul li {font-size: 90%;}div#ez-toc-container {width: 100%;}
+.ez-toc-container-direction {direction: ltr;}.ez-toc-counter ul{counter-reset: item ;}.ez-toc-counter nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }.ez-toc-widget-direction {direction: ltr;}.ez-toc-widget-container ul{counter-reset: item ;}.ez-toc-widget-container nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }</style>
+<link rel="stylesheet" id="wxacs_front_style-css" href="./../wp-content/plugins/scrollbar-by-webxapp/assets/css/style.css?ver=1.2.0" type="text/css" media="all">
+<style id="wxacs_front_style-inline-css" type="text/css">::-webkit-scrollbar {
+                                width: 12px;
+                         }::-webkit-scrollbar-thumb {
+                            background: rgb(132, 132, 130) ;
+                            border-radius:20px;
+                            height:12px;
+                            
+                       }::-webkit-scrollbar-thumb:hover {
+                            background: rgb(132, 132, 130); 
+                             
+                            }::-webkit-scrollbar-track {
+                                background: rgba(132, 132, 130, 0); 
+                           }</style>
+<link rel="stylesheet" id="yosemite-fonts-css" href="https://fonts.googleapis.com/css?family=Lora%3A400%2C400i%2C700%2C700i%7CJosefin+Slab%3A400%7CLibre+Baskerville%3A400%2C400i%2C700&#038;subset=latin%2Clatin-ext&#038;ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./../wp-content/themes/yosemite-lite/css/font-awesome.css?ver=4.5.0" type="text/css" media="all">
+<link rel="stylesheet" id="yosemite-style-css" href="./../wp-content/themes/yosemite-lite/style.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-lazyloadxt-spinner-css-css" href="./../wp-content/plugins/a3-lazy-load/assets/css/jquery.lazyloadxt.spinner.css?ver=6.8.1" type="text/css" media="all">
+<script type="text/javascript" src="./../wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="./../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/1and1-wordpress-assistant/js/cookies.js?ver=6.8.1" id="1and1-wp-cookies-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/reading-progress-bar/public/js/rp-public.js?ver=6.8.1" id="rp-public-scripts-js"></script>
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-181925895-1" id="google_gtagjs-js" async></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-181925895-1', {"anonymize_ip":true} );
+/* ]]> */
+</script>
+<link rel="https://api.w.org/" href="./wp-json/index.html">
+<link rel="alternate" title="JSON" type="application/json" href="./wp-json/wp/v2/posts/1255/index.html">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./../xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.8.1">
+<link rel="canonical" href="./proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html">
+<link rel="shortlink" href="./index.html?p=1255">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fen%2Fproyecto-php-basico-como-hacer-crud-mejor-manera-posible">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fen%2Fproyecto-php-basico-como-hacer-crud-mejor-manera-posible#038;format=xml">
+<meta name="generator" content="Site Kit by Google 1.8.1">
+<script data-ad-client="ca-pub-5464949551743719" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script><link rel="alternate" hreflang="es-ES" href="./../proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html">
+<link rel="alternate" hreflang="en-US" href="./proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html">
+<link rel="pingback" href="./../xmlrpc.php">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-5464949551743719",
+enable_page_level_ads: true,
+tag_partner: "site_kit"
+});</script>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<link rel="icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-32x32.png" sizes="32x32">
+<link rel="icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-180x180.png">
+<meta name="msapplication-TileImage" content="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-270x270.png">
+		<style type="text/css" id="wp-custom-css">.site-title{
+	font-family: LogoGrayScale;
+	text-transform: lowercase;
+	margin-bottom: 20px;
+}
+.by-author{
+	color: white;
+}</style>
+		<style id="wpforms-css-vars-root">:root {
+					--wpforms-field-border-radius: 3px;
+--wpforms-field-background-color: #ffffff;
+--wpforms-field-border-color: rgba( 0, 0, 0, 0.25 );
+--wpforms-field-text-color: rgba( 0, 0, 0, 0.7 );
+--wpforms-label-color: rgba( 0, 0, 0, 0.85 );
+--wpforms-label-sublabel-color: rgba( 0, 0, 0, 0.55 );
+--wpforms-label-error-color: #d63637;
+--wpforms-button-border-radius: 3px;
+--wpforms-button-background-color: #066aab;
+--wpforms-button-text-color: #ffffff;
+--wpforms-field-size-input-height: 43px;
+--wpforms-field-size-input-spacing: 15px;
+--wpforms-field-size-font-size: 16px;
+--wpforms-field-size-line-height: 19px;
+--wpforms-field-size-padding-h: 14px;
+--wpforms-field-size-checkbox-size: 16px;
+--wpforms-field-size-sublabel-spacing: 5px;
+--wpforms-field-size-icon-size: 1;
+--wpforms-label-size-font-size: 16px;
+--wpforms-label-size-line-height: 19px;
+--wpforms-label-size-sublabel-font-size: 14px;
+--wpforms-label-size-sublabel-line-height: 17px;
+--wpforms-button-size-font-size: 17px;
+--wpforms-button-size-height: 41px;
+--wpforms-button-size-padding-h: 15px;
+--wpforms-button-size-margin-top: 10px;
+
+				}</style>
+</head>
+
+<body data-rsssl="1" class="wp-singular post-template-default single single-post postid-1255 single-format-standard wp-theme-yosemite-lite translatepress-en_US">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content" data-no-translation="">Skip to content</a>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding container">
+										<p class="site-title"><a href="./index.html" rel="home">fcoterroba</a></p>
+								<p class="site-description">IT, Programming, Technology and much more!</p>
+						</div>
+<!-- .logo -->
+
+		<div class="header-content">
+			<div class="header-content__container container">
+				<nav id="site-navigation" class="main-navigation" role="navigation">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-no-translation="">Menu</button>
+					<div class="menu-menu-1-container"><ul id="primary-menu" class="menu">
+<li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="./index.html">Home</a></li>
+<li id="menu-item-154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Gratitude</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contact</a></li>
+</ul></div>				</nav><!-- #site-navigation -->
+
+				
+				<!-- .header-search -->
+				
+<form role="search" method="get" class="search-form" action=".//en/" data-trp-original-action=".//en/">
+	<label>
+		<span class="screen-reader-text" data-no-translation="">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search..." value="" name="s" data-no-translation-placeholder="">
+	</label>
+	<button type="submit" class="search-submit">
+		<i class="fa fa-search"></i>
+		<span class="screen-reader-text" data-no-translation="">Search</span>
+	</button>
+<input type="hidden" name="trp-form-language" value="en">
+</form>
+
+			</div>
+		</div>
+<!-- .header-content -->
+
+	</header><!-- #masthead -->
+	
+	<div id="content" class="site-content container">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-1255" class="post-1255 post type-post status-publish format-standard has-post-thumbnail hentry category-php category-programacion category-tutorial yosemite-has-thumbnail">
+
+	<header class="entry-header">
+
+		<div class="entry-meta">
+			<span class="cat-links"><span class="screen-reader-text">Categories </span><a href="./category/php/index.html" rel="category tag">PHP</a>, <a href="./category/programacion/index.html" rel="category tag">Programming</a>, <a href="./category/tutorial/index.html" rel="category tag">Tutorial</a></span>		</div>
+<!-- .entry-meta -->
+		<h1 class="entry-title">Basic PHP project: How develop a CRUD with best practices?</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="fa fa-clock-o"></i><a href="./proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html" rel="bookmark"><time class="entry-date published" datetime="2021-08-04T11:46:48+02:00">4 August 2021</time><time class="updated" datetime="2021-08-04T11:46:50+02:00">4 August 2021</time></a></span><span class="comments-link"><i class="fa fa-comments-o"></i><a href="./proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html#respond" data-no-translation="">Leave a Comment<span class="screen-reader-text"> on Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible?</span></a></span>
+		</div>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		
+<p>Hello World! My name is Francisco, fcoterroba on the Internet and today I bring you a post in which we are going to talk, theoretically and practically, what a CRUD is and how to carry out a CRUD in the most used web back-end language today, PHP.</p>
+
+
+
+<p>Performing a CRUD, regardless of the programming language used, is one of the most basic points that we must know how to do to start considering ourselves developers. If right now you don't know what a CRUD is, don't worry, I'll explain what it is shortly.</p>
+
+
+
+<p>Before we start with this, maybe you should start playing around with PHP by following the tutorial I uploaded a few months ago in which we learned how to capture forms using PHP in addition to using Google's Captcha service. You can read the full post <a rel="noreferrer noopener" aria-label="aquí (opens in a new tab)" href="./php-que-como-hacer-formularios-bonitos-con-y-sin-captcha/index.html" target="_blank">here</a>.</p>
+
+
+
+<p>Of course, before starting to develop in PHP, we will need a web server enabled with PHP and MySQL, for this you can install XAMPP on any operating system or follow <a rel="noreferrer noopener" aria-label="mi tutorial (opens in a new tab)" href="./como-crear-un-servidor-web-local-en-windows/index.html" target="_blank">mi tutorial</a> if you prefer the Window's native option.</p>
+
+
+
+<p>Before starting, although later I will explain what it is, I will
+     I recommend visiting a post that I uploaded more than a month ago, in which
+  I explain many of the most used computer terms in our day to
+     day. Since, in this post, you will see words that you probably do not
+sound a lot. 🤯&nbsp;<strong><a rel="noreferrer noopener" href="./diccionario-tecnologico-informatico/index.html" target="_blank">You can reed the post here</a></strong>. </p>
+
+
+
+<p>I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connect, configure and install a smart light bulb 💡 with which you can change its color, turn it off, turn it on and much more simply by using your mobile phone and/or voice assistants such as Google, Alexa, etc. 👇🏻 </p>
+
+
+
+<iframe class="lazy lazy-hidden" data-lazy-type="iframe" data-src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe><noscript><iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe></noscript>
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-5464949551743719" data-ad-slot="4080389895"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+
+<p>Now yes, let's start!</p>
+
+
+
+<p><strong>What is a CRUD?</strong></p>
+
+
+
+<p>According to Wikipedia, in Computer Science, CRUD is an acronym that refers to the basic functions in databases.</p>
+
+
+
+<p>This acronym was first popularized by James Martin in 1980 in his book <em>Managing the Data-base Enviroment</em>.</p>
+
+
+
+<p>CRUD -&gt; Create, Read, Update and Delete. Crear, Leer, Actualizar y Borrar.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img fetchpriority="high" decoding="async" src="data:image/png;base64,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" alt="" width="571" height="229"></figure></div>
+
+
+
+<p>In a nutshell, CRUD summarizes the functions required by a user to create and manage data. Any web application that works, to a greater or lesser extent, with data, will use this acronym.</p>
+
+
+
+<p>And that is why it is so important to know what it is and how to do it.</p>
+
+
+
+<p>1️⃣ <strong>FIRST STEP</strong></p>
+
+
+
+<p>The first thing we will have to do is open our web server by turning on both the PHP module and the MySQL module or the database manager we use. In my case it will be MySQL. All this is set up in a LAMP with php 7.4.18 with MySQL 8.0.23 on Linux Mint 20.1 Cinnamon.</p>
+
+
+
+<p>Later we are going to create a folder within the web server called, for example, <strong>crud_php</strong></p>
+
+
+
+<p>Once this is done, we can create the four files needed initially: <strong>create.php, read.php, update.php, delete.php</strong> empty at the moment </p>
+
+
+
+<p>Also, as a bonus of good practices, we are going to create a file called <strong>conn.php</strong>. I will explain its use later.</p>
+
+
+
+<p>We should have something more or less like this:</p>
+
+
+
+<p>2️⃣ <strong>SECOND STEP </strong>2️⃣</p>
+
+
+
+<p>Let's start editing the conn file since, as I said before, it is good practice to isolate as much code as possible into functions, objects and so on. So, we are going to use this script to make a connection to the database.</p>
+
+
+
+<p>This script has only 10 lines of code including the try/catch and message outputs.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;php&quot;,&quot;mime&quot;:&quot;text/x-php&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;showPanel&quot;:true,&quot;languageLabel&quot;:&quot;language&quot;,&quot;language&quot;:&quot;PHP&quot;,&quot;modeName&quot;:&quot;php&quot;}">&lt;?php
+try {
+  ## Creamos la variable $dbh que es la conexión completa a la base de datos, pasándole
+  # los parámetros de conexión del host, la base de datos, el usuario y la contraseña
+    $dbh = new PDO(&quot;mysql:host=127.0.0.1;dbname=crud_example_php&quot;, &quot;fcoterroba&quot;, &quot;Password123#@!&quot;);
+} catch (PDOException $e){
+    $dbh = $e-&gt;getMessage();
+}
+?&gt;</pre></div>
+
+
+
+<p>Once we have made this connection and have verified that it works (we can put echoes in the try and catch), we go to the next step.</p>
+
+
+
+<p class=" translation-block">3️⃣ <strong>THIRD STEP 3️⃣</strong></p>
+
+
+
+<p>For the third step we are going to need data, so we are going to create a simple table with an autoincremental ID, first name and last name. The most basic.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;sql&quot;,&quot;mime&quot;:&quot;text/x-sql&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;SQL&quot;,&quot;modeName&quot;:&quot;sql&quot;}">-- Poner el nombre de la tabla
+CREATE TABLE main_data(
+  -- Añadir un campo ID para controlar, que no pueda ser NULL y que se autoincremente en cada registro
+  ID int NOT NULL AUTO_INCREMENT,
+  -- Nombre y apellidos de tipo texto y máximo 255
+  nombre VARCHAR(255),
+  apellidos VARCHAR(255),
+  -- Indicamoss que la clave primaria de la tabla es el ID
+  PRIMARY KEY (ID)
+);</pre></div>
+
+
+
+<p>Once created, let's add some information.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;sql&quot;,&quot;mime&quot;:&quot;text/x-sql&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;SQL&quot;,&quot;modeName&quot;:&quot;sql&quot;}">INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Nuria del Mar&quot;, &quot;Lara Molina&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Adolfo&quot;, &quot;Borras&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Cayetano&quot;, &quot;Montero&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Susi&quot;, &quot;Pote&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Susana&quot;, &quot;Oria&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Javier&quot;, &quot;Arnau&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Leonardo&quot;, &quot;Messi&quot;);
+INSERT INTO main_data (nombre, apellidos) VALUES (&quot;Cristiano&quot;, &quot;Ronaldo&quot;);</pre></div>
+
+
+
+<p>4️⃣ <strong>FOURTH STEP </strong>4️⃣</p>
+
+
+
+<p>Now yes, we are going to start with the CRUD, specifically with the R, the reading.</p>
+
+
+
+<p>Let's open our file <strong>read.php</strong> and later we will include the file with the connection, <strong>conn.php.</strong></p>
+
+
+
+<p>Next, we are going to create a table with html tags that reach only the header.</p>
+
+
+
+<p>Subsequently, we will generate the rest of the rows in the table as we perform the query.</p>
+
+
+
+<p>For this we use the function <strong>prepare</strong> of our connection and we pass in parentheses the SQL query we want to make.</p>
+
+
+
+<p>Subsequently, we must execute this query and we will use a loop to extract all the information using the arrows -> as if it were an object.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;php&quot;,&quot;mime&quot;:&quot;text/x-php&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;showPanel&quot;:true,&quot;languageLabel&quot;:&quot;language&quot;,&quot;language&quot;:&quot;PHP&quot;,&quot;modeName&quot;:&quot;php&quot;}">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;cRud - @fcoterroba.com&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;cRud - Read - Lectura&lt;/h1&gt;
+	&lt;?php
+	include 'conn.php';
+	
+	?&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Nombre&lt;/th&gt;
+			&lt;th&gt;Apellidos&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;?php
+		$get_all = $dbh-&gt;prepare(&quot;SELECT * FROM main_data&quot;);
+		$get_all-&gt;execute();
+		while($fila = $get_all-&gt;fetch(PDO::FETCH_OBJ)){
+			echo &quot;&lt;tr&gt;&lt;td&gt;$fila-&gt;ID&lt;/td&gt;&lt;td&gt;$fila-&gt;nombre&lt;/td&gt;&lt;td&gt;$fila-&gt;apellidos&lt;/td&gt;&lt;/tr&gt;&quot;;
+		}
+	?&gt;
+	&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+
+
+
+<p>If we add a little bit of styles we will have something like this:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" width="1024" height="189" src="./../wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./../wp-content/uploads/2021/07/imagen-1024x189.png" alt="" class="lazy lazy-hidden wp-image-1260" data-srcset="./../wp-content/uploads/2021/07/imagen-1024x189.png 1024w, ./../wp-content/uploads/2021/07/imagen-300x55.png 300w, ./../wp-content/uploads/2021/07/imagen-768x142.png 768w, ./../wp-content/uploads/2021/07/imagen-1536x284.png 1536w, ./../wp-content/uploads/2021/07/imagen.png 1906w" sizes="(max-width: 1024px) 100vw, 1024px"><noscript><img decoding="async" width="1024" height="189" src="./../wp-content/uploads/2021/07/imagen-1024x189.png" alt="" class="wp-image-1260" srcset="./../wp-content/uploads/2021/07/imagen-1024x189.png 1024w, ./../wp-content/uploads/2021/07/imagen-300x55.png 300w, ./../wp-content/uploads/2021/07/imagen-768x142.png 768w, ./../wp-content/uploads/2021/07/imagen-1536x284.png 1536w, ./../wp-content/uploads/2021/07/imagen.png 1906w" sizes="(max-width: 1024px) 100vw, 1024px"></noscript></figure></div>
+
+
+
+<p>5️⃣ <strong>FIFTH STEP </strong>5️⃣</p>
+
+
+
+<p>Let's now do the part of creating and adding data. The C in create.</p>
+
+
+
+<p>For this part, we will open the file <strong>create.php</strong> and we add a form with empty action and POST method as well as two text entries, one for the first name and one for the last name. The ID is not added because it is something that would have to be executed automatically.</p>
+
+
+
+<p>Once done, we are going to go below the header and in the event that we have received data by POST (both the first name and the last name), we add the connection file and carry out the query with its respective execution.</p>
+
+
+
+<p>This will look more or less like this:</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;php&quot;,&quot;mime&quot;:&quot;text/x-php&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;showPanel&quot;:true,&quot;languageLabel&quot;:&quot;language&quot;,&quot;language&quot;:&quot;PHP&quot;,&quot;modeName&quot;:&quot;php&quot;}">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Crud - @fcoterroba.com&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Crud - Create - Crear&lt;/h1&gt;
+	&lt;?php
+	if (!empty($_POST['name']) &amp;&amp; !empty($_POST['apellidos'])) {
+		include 'conn.php';
+		$nombre = $_POST['name'];
+		$apellidos = $_POST['apellidos'];
+		$insert_data = $dbh-&gt;prepare(&quot;INSERT INTO main_data (nombre, apellidos) VALUES ('$nombre', '$apellidos')&quot;);
+		$insert_data-&gt;execute();
+	}
+	?&gt;
+	&lt;form action=&quot;&quot; method=&quot;POST&quot;&gt;
+		Escriba su nombre:
+		&lt;br&gt;
+		&lt;input type=&quot;text&quot; name=&quot;name&quot; placeholder=&quot;Escriba su nombre&quot; required&gt;
+		&lt;br&gt;
+		Escriba sus apellidos:
+		&lt;br&gt;
+		&lt;input type=&quot;text&quot; name=&quot;apellidos&quot; placeholder=&quot;Escriba sus apellidos&quot; required&gt;
+		&lt;br&gt;
+		&lt;input type=&quot;submit&quot; value=&quot;Crear usuario&quot;&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+
+
+
+<p>Adding a little styles, a library of alerts and so on, we would be left with something like this:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img class="lazy lazy-hidden" decoding="async" src="./../wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="https://i.imgur.com/lIu0dmV.gif" alt=""><noscript><img decoding="async" src="https://i.imgur.com/lIu0dmV.gif" alt=""></noscript></figure></div>
+
+
+
+<p>6️⃣ <strong>SIXTH STEP </strong>6️⃣</p>
+
+
+
+<p>Penultimate step before finishing our CRUD. The U for update, update.</p>
+
+
+
+<p>The first thing we are going to do is open the file <strong>update.php</strong> and show, in a similar way to read.php, all the values of the table by adding one more field that is a button for each record where we will then proceed to edit the values.</p>
+
+
+
+<p>Once the table is made, we are going to make each button redirect to that same page but adding a GET with the ID of the record to modify.</p>
+
+
+
+<p>When the page has been reloaded, we show the current values in name and surname, allowing the user to modify it to their liking and then a send button, sending data by POST to that same page and then we will do the query.</p>
+
+
+
+<p>The code is something more or less like this:</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;php&quot;,&quot;mime&quot;:&quot;text/x-php&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;showPanel&quot;:true,&quot;languageLabel&quot;:&quot;language&quot;,&quot;language&quot;:&quot;PHP&quot;,&quot;modeName&quot;:&quot;php&quot;}">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;crUd - @fcoterroba.com&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;crUd - Update - Actualizar&lt;/h1&gt;
+	&lt;?php
+	include 'conn.php';
+	if(!empty($_POST['nombre']) &amp;&amp; !empty($_POST['apellidos'])){
+
+		$id = $_GET['id'];
+		$name = $_POST['nombre'];
+		$apellidos = $_POST['apellidos'];
+
+		$get_all = $dbh-&gt;prepare(&quot;UPDATE main_data SET nombre = '$name', apellidos = '$apellidos' WHERE ID = '$id'&quot;);
+		$get_all-&gt;execute();
+
+		header('Location: http://localhost/prueba_CRUD/update.php');
+
+	}else if (!empty($_GET['id'])) {
+		$id = $_GET['id'];
+		echo &quot;&lt;form action='' method='POST'&gt;&quot;;
+		$get_all = $dbh-&gt;prepare(&quot;SELECT * FROM main_data WHERE ID = '$id'&quot;);
+		$get_all-&gt;execute();
+		while($fila = $get_all-&gt;fetch(PDO::FETCH_OBJ)){
+			echo &quot;Nombre a modificar: &lt;input type='text' value='$fila-&gt;nombre' name='nombre'&gt;&lt;br&gt;Apellidos a modificar: &lt;input type='text' value='$fila-&gt;apellidos' name='apellidos'&gt;&quot;;
+		}
+		echo &quot;&lt;br&gt;&lt;input type='submit' value='Actualizar datos'&gt;&lt;/form&gt;&quot;;
+	}else{
+		echo &quot;&lt;table&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Nombre&lt;/th&gt;
+			&lt;th&gt;Apellidos&lt;/th&gt;
+			&lt;th&gt;Actualizar&lt;/th&gt;
+		&lt;/tr&gt;&quot;;
+	
+		$get_all = $dbh-&gt;prepare(&quot;SELECT * FROM main_data&quot;);
+		$get_all-&gt;execute();
+		while($fila = $get_all-&gt;fetch(PDO::FETCH_OBJ)){
+			echo &quot;&lt;tr&gt;&lt;td&gt;$fila-&gt;ID&lt;/td&gt;&lt;td&gt;$fila-&gt;nombre&lt;/td&gt;&lt;td&gt;$fila-&gt;apellidos&lt;/td&gt;&lt;td&gt;&lt;button id='boton' onclick='prueba($fila-&gt;ID);'&gt;Actualizar&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&quot;;
+		}
+		echo &quot;&lt;/table&gt;&quot;;
+		}
+		?&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		function prueba(id){
+			window.location.replace(&quot;http://localhost/prueba_CRUD/update.php?id=&quot;+id);
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+
+
+
+<p>Adding a little bit of styles, the complete process would be as follows:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img class="lazy lazy-hidden" decoding="async" src="./../wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="https://i.imgur.com/vkaHiC8.gif" alt=""><noscript><img decoding="async" src="https://i.imgur.com/vkaHiC8.gif" alt=""></noscript></figure></div>
+
+
+
+<p>7️⃣ <strong>SÉPTIMO PASO </strong>7️⃣</p>
+
+
+
+<p>For the last step and we are done with the post and our basic CRUD carried out with good practices, we are going to do the delete option, the Delete.</p>
+
+
+
+<p>The first thing we are going to do is open the file <strong>delete.php</strong>  and show, in a similar way to read.php, all the values of the table by adding one more field that is a button with an X to indicates the user that he'll delete this record.</p>
+
+
+
+<p>It can be posed in many different ways but I am going to pose it similar to the previous step. The button will change the location to this same one but adding the ID via GET and the script will execute the query as soon as it receives it. </p>
+
+
+
+<p>We would need to add a bit of confirmation in case the user accidentally gave it. I'll let you add it yourself!</p>
+
+
+
+<p>The code would look more or less like this:</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;php&quot;,&quot;mime&quot;:&quot;text/x-php&quot;,&quot;theme&quot;:&quot;default&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;showPanel&quot;:true,&quot;languageLabel&quot;:&quot;language&quot;,&quot;language&quot;:&quot;PHP&quot;,&quot;modeName&quot;:&quot;php&quot;}">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;cruD - @fcoterroba.com&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;?php
+	include 'conn.php';
+	
+
+	if(!empty($_GET['id'])){
+		$id = $_GET['id'];
+
+		$get_all = $dbh-&gt;prepare(&quot;DELETE FROM main_data WHERE ID = '$id'&quot;);
+		$get_all-&gt;execute();
+
+		header('Location: http://localhost/prueba_CRUD/delete.php');
+
+
+
+	}
+
+	?&gt;
+	&lt;h1&gt;cruD - Delete - Borrar&lt;/h1&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Nombre&lt;/th&gt;
+			&lt;th&gt;Apellidos&lt;/th&gt;
+			&lt;th&gt;Borrar&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;?php
+			$get_all = $dbh-&gt;prepare(&quot;SELECT * FROM main_data&quot;);
+		$get_all-&gt;execute();
+		while($fila = $get_all-&gt;fetch(PDO::FETCH_OBJ)){
+			echo &quot;&lt;tr&gt;&lt;td&gt;$fila-&gt;ID&lt;/td&gt;&lt;td&gt;$fila-&gt;nombre&lt;/td&gt;&lt;td&gt;$fila-&gt;apellidos&lt;/td&gt;&lt;td&gt;&lt;button onclick='borra($fila-&gt;ID);'&gt;❌&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&quot;;
+		}
+	?&gt;
+	&lt;/table&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		function borra(id){
+			window.location.replace(&quot;http://localhost/prueba_CRUD/delete.php?id=&quot;+id);
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+
+
+
+<p>Adding styles would look like this:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img class="lazy lazy-hidden" decoding="async" src="./../wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="https://i.imgur.com/YMn5B1p.gif" alt=""><noscript><img decoding="async" src="https://i.imgur.com/YMn5B1p.gif" alt=""></noscript></figure></div>
+
+
+
+<p>And little more to add guys, I hope you have learned a lot from this post! Knowing what it is and how to do a CRUD correctly is the foundation of any programmer, especially the backend.</p>
+
+
+
+<p>Finally, remind you that if you like my content and want to contribute financially (since I don't earn anything from Adsense), you can send me the amount you want for <a rel="noreferrer noopener" href="https://www.paypal.com/paypalme/fcoterroba" target="_blank">Paypal</a>. Any amount is well received! 🙂</p>
+
+
+
+<p>I also hope you have a great week and see you here soon! A greeting and remember to follow me on the networks as <a href="https://twitter.com/fcoterroba">Twitter</a>,&nbsp;<a href="https://www.facebook.com/fcoterroba">Facebook</a>,&nbsp;<a href="https://www.instagram.com/fcoterroba/">Instagram</a>, <a rel="noreferrer noopener" href="https://www.github.com/fcoterroba" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/fcoterroba/">LinkedIn</a>. 🤟🏻 </p>
+
+
+
+<p>sources: <a rel="noreferrer noopener" aria-label="IONOS.ES (opens in a new tab)" href="https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/crud-las-principales-operaciones-de-bases-de-datos/" target="_blank">IONOS.ES</a>, <a rel="noreferrer noopener" aria-label="Wikipedia (opens in a new tab)" href="https://es.wikipedia.org/wiki/CRUD" target="_blank">Wikipedia</a>, <a rel="noreferrer noopener" aria-label="diego.com.es (opens in a new tab)" href="https://diego.com.es/tutorial-de-pdo" target="_blank">diego.com.es</a></p>
+	</div>
+<!-- .entry-content -->
+
+	<div class="entry-footer">
+			</div>
+<!-- entry-footer -->
+
+	</article><!-- #post-## -->
+
+	<nav class="navigation post-navigation" aria-label="Posts" data-no-translation-aria-label="">
+		<h2 class="screen-reader-text" data-no-translation="">Post navigation</h2>
+		<div class="nav-links">
+<div class="nav-previous"><a href="./rust-que-lenguaje-es-por-que-todo-hablando/index.html" rel="prev"><span class="meta-nav" data-no-translation="">Previous Post &raquo;</span> <span class="post-title">Rust: What is that language and why everybody is talking about him?</span></a></div>
+<div class="nav-next"><a href="./proyecto-javascript-medio-letra-dni-deploy-github-pages/index.html" rel="next"><span class="meta-nav" data-no-translation="">&laquo; Next Post</span> <span class="post-title">Medium JavaScript project: Calculate DNI letter and deploy on GitHub Pages</span></a></div>
+</div>
+	</nav>
+<div id="comments" class="comments-area">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="./proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html#respond" style="display:none;" data-no-translation="">Cancel reply</a></small>
+</h3>
+<form action=".//wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate data-trp-original-action=".//wp-comments-post.php">
+<p class="comment-notes"><span id="email-notes" data-no-translation="">Your email address will not be published.</span> <span class="required-field-message" data-no-translation="">Required fields are marked <span class="required">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea autocomplete="nope" id="j3a4204956" name="j3a4204956" cols="45" rows="8" maxlength="65525" required></textarea><textarea id="comment" aria-hidden="true" name="comment" autocomplete="nope" style="padding:0;clip:rect(1px, 1px, 1px, 1px);position:absolute !important;white-space:nowrap;height:1px;width:1px;overflow:hidden;" tabindex="-1"></textarea><script type="text/javascript">document.getElementById("comment").setAttribute( "id", "a1e8a8af0f1574e27981b5cd737a628f" );document.getElementById("j3a4204956").setAttribute( "id", "comment" );</script></p>
+<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required></p>
+<p class="comment-form-url"><label for="url" data-no-translation="">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent" data-no-translation="">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" data-no-translation-value=""> <input type="hidden" name="comment_post_ID" value="1255" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<input type="hidden" name="trp-form-language" value="en">
+</form>	</div>
+<!-- #respond -->
+	
+</div>
+<!-- #comments -->
+		</main><!-- #main -->
+	</div>
+<!-- #primary -->
+
+<aside id="secondary" class="widget-area add_sticky_sidebar" role="complementary">
+	
+		<section id="recent-posts-2" class="widget widget_recent_entries">
+		<h2 class="widget-title" data-no-translation="">Recent Posts</h2>
+		<ul>
+											<li>
+					<a href="./mi-libro-ia-inteligencia-inmoralidad-artificial/index.html">Mi primer libro, «IA: ¿Inteligencia Artificial o Inmoralidad Artificial?»</a>
+									</li>
+											<li>
+					<a href="./mi-primer-proyecto-vivifind/index.html">Mi primer proyecto: ViviFind</a>
+									</li>
+											<li>
+					<a href="./proyecto-go-medio-web-estatica-hugo/index.html">Medium Go Project: How make an static website using HuGo?</a>
+									</li>
+											<li>
+					<a href="./proyecto-python-medio-crear-api-usando-fastapi/index.html">Medium Python Project: How to create an API using FastAPI?</a>
+									</li>
+											<li>
+					<a href="./pyscript-que-es-javascript-todo-mundo-hablando/index.html">PyScript: What is this JavaScript Framework that everyone is talking about?</a>
+									</li>
+					</ul>
+
+		</section><section id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title" data-no-translation="">Recent Comments</h2>
+<ul id="recentcomments">
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> on <a href="./contacto/index.html#comment-36148">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">Apple Inc. 2025. All rights reserved. Apple Inc. 2025. All rights reserved. 3713140 https://t.me/ grandbooksommer !</span> on <a href="./contacto/index.html#comment-34012">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">Unlock $19123 Bitcoin Payments. Click Here To Claim: &gt;&gt;&gt; https://t.me/+d7pd2x5 #Lolllukazzzur333</span> on <a href="./contacto/index.html#comment-31790">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">https://nmssad7340875.com</span> on <a href="./contacto/index.html#comment-30921">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> on <a href="./contacto/index.html#comment-28988">Contacto</a>
+</li>
+</ul></section><section id="custom_html-18" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5464949551743719" data-ad-slot="3604897115" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></section></aside><!-- #secondary -->
+
+	</div>
+<!-- #content -->
+	<aside id="secondary" class="sidebar-footer widget-area" role="complementary">
+		<div class="container">
+			<section id="categories-2" class="widget widget_categories"><h2 class="widget-title" data-no-translation="">Categories</h2>
+<form action=".//en/" method="get" data-trp-original-action=".//en/">
+<label class="screen-reader-text" for="cat" data-no-translation="">Categories</label><select name="cat" id="cat" class="postform">
+	<option value="-1" data-no-translation="">Select Category</option>
+	<option class="level-0" value="17">Big Data</option>
+	<option class="level-0" value="8">bureaucracy</option>
+	<option class="level-0" value="6">Criptomonedas</option>
+	<option class="level-0" value="19">CSS</option>
+	<option class="level-0" value="23">Learning</option>
+	<option class="level-0" value="26">Golang</option>
+	<option class="level-0" value="18">HTML</option>
+	<option class="level-0" value="16">IT</option>
+	<option class="level-0" value="27">JavaScript</option>
+	<option class="level-0" value="13">Linux</option>
+	<option class="level-0" value="3">Music</option>
+	<option class="level-0" value="29">Offtopic</option>
+	<option class="level-0" value="4">Opinion</option>
+	<option class="level-0" value="25">PHP</option>
+	<option class="level-0" value="5">Presentation</option>
+	<option class="level-0" value="20">Programming</option>
+	<option class="level-0" value="21">Python</option>
+	<option class="level-0" value="14">Raspberry</option>
+	<option class="level-0" value="28">Rust</option>
+	<option class="level-0" value="11">SERVER</option>
+	<option class="level-0" value="15">Technology</option>
+	<option class="level-0" value="9">Telegram</option>
+	<option class="level-0" value="7">Tutorial</option>
+	<option class="level-0" value="12">Windows</option>
+	<option class="level-0" value="24">WordPress</option>
+</select>
+<input type="hidden" name="trp-form-language" value="en">
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+
+/* ]]> */
+</script>
+</section>		</div>
+	</aside><!-- .sidebar-footer  -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="container">
+						<h1 class="site-title"><a href="./index.html" rel="home">fcoterroba</a></h1>
+			<div class="site-info">
+				Copyright fcoterroba © 2023 All rights reserved			</div>
+<!-- .site-info -->
+		</div>
+	</footer><!-- #colophon -->
+</div>
+<!-- #page -->
+
+<nav class="mobile-navigation" role="navigation">
+	<div class="mobile-menu"><ul>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="./index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Gratitude</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contact</a></li>
+</ul></div></nav>
+<a href="#" class="scroll-to-top hidden"><i class="fa fa-angle-up"></i></a>
+
+<script type="speculationrules">{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/en\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/yosemite-lite\/*","\/en\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}</script>
+        <div id="trp-floater-ls" onclick="" data-no-translation class="trp-language-switcher-container trp-floater-ls-names trp-top-left">
+            <div id="trp-floater-ls-current-language" class="trp-with-flags">
+                <a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language" onclick="void(0)">
+					<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png" width="18" height="12" alt="en_US" title="English">English				</a>
+            </div>
+            <div id="trp-floater-ls-language-list" class="trp-with-flags">
+                                    <a href="./../proyecto-php-basico-como-hacer-crud-mejor-manera-posible/index.html" title="Spanish">
+						<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Spanish">Spanish					</a>
+                				<a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language">
+					<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png" width="18" height="12" alt="en_US" title="English">English				</a>
+            </div>
+        </div>
+
+    <script type="text/javascript" id="trp-dynamic-translator-js-extra">
+/* <![CDATA[ */
+var trp_data = {"trp_custom_ajax_url":".\/\/wp-content\/plugins\/translatepress-multilingual\/includes\/trp-ajax.php","trp_wp_ajax_url":".\/\/wp-admin\/admin-ajax.php","trp_language_to_query":"en_US","trp_original_language":"es_ES","trp_current_language":"en_US","trp_skip_selectors":["[data-no-translation]","[data-no-dynamic-translation]","[data-trp-translate-id-innertext]","script","style","head","trp-span","translate-press","#select2-billing_country-results","#select2-shipping_country-results","[data-trp-translate-id]","[data-trpgettextoriginal]","[data-trp-post-slug]"],"trp_base_selectors":["data-trp-translate-id","data-trpgettextoriginal","data-trp-post-slug"],"trp_attributes_selectors":{"text":{"accessor":"outertext","attribute":false},"block":{"accessor":"innertext","attribute":false},"image_src":{"selector":"img[src]","accessor":"src","attribute":true},"submit":{"selector":"input[type='submit'],input[type='button']","accessor":"value","attribute":true},"placeholder":{"selector":"input[placeholder],textarea[placeholder]","accessor":"placeholder","attribute":true},"title":{"selector":"[title]","accessor":"title","attribute":true},"a_href":{"selector":"a[href]","accessor":"href","attribute":true},"button":{"accessor":"outertext","attribute":false},"option":{"accessor":"innertext","attribute":false}},"trp_attributes_accessors":["outertext","innertext","src","value","placeholder","title","href"],"gettranslationsnonceregular":"634fd79a18","showdynamiccontentbeforetranslation":"","skip_strings_from_dynamic_translation":[],"skip_strings_from_dynamic_translation_for_substrings":{"href":["amazon-adsystem","googleads","g.doubleclick"]},"duplicate_detections_allowed":"100"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/translatepress-multilingual/assets/js/trp-translate-dom-changes.js?ver=1.6.9" id="trp-dynamic-translator-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/scrollbar-by-webxapp/assets/js/jquery.easeScroll.js?ver=1.2.0" id="wxacs_easeScroll_js-js"></script>
+<script type="text/javascript" id="wxacs_front_script-js-extra">
+/* <![CDATA[ */
+var wxacs_ease_scroll_params = {"wxacs_frameRate":"60","wxacs_animationTime":"1000","wxacs_stepSize":"120","wxacs_pulseScale":"8","wxacs_pulseNormalize":"1","wxacs_accelerationDelta":"20","wxacs_accelerationMax":"1","wxacs_arrowScroll":"50"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/scrollbar-by-webxapp/assets/js/script.js?ver=1.2.0" id="wxacs_front_script-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":".\/\/en\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.7" id="contact-form-7-js"></script>
+<script type="text/javascript" id="superpwa-register-sw-js-extra">
+/* <![CDATA[ */
+var superpwa_sw = {"url":"\/en\/superpwa-sw.js"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/super-progressive-web-apps/public/js/register-sw.js" id="superpwa-register-sw-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/wp-codemirror-block/vendor/codemirror/lib/codemirror.min.js?ver=5.40.5" id="codemirror-js"></script>
+<script type="text/javascript" id="codemirror-autoload-assets-js-before">
+/* <![CDATA[ */
+var wpcm = {"plugin_url":".//wp-content/plugins/wp-codemirror-block","assets":[],"panelOptions":{"showPanel":false,"languageLabel":false,"runButton":false,"fullScreenButton":false,"copyButton":false},"view":"public"}
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/wp-codemirror-block/assets/js/autoLoadAssets.min.js?ver=1586993207" id="codemirror-autoload-assets-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/wp-codemirror-block/assets/js/init.min.js?ver=1586993207" id="codemirror-init-js"></script>
+<script type="text/javascript" id="ez-toc-scroll-scriptjs-js-extra">
+/* <![CDATA[ */
+var eztoc_smooth_local = {"scroll_offset":"30","add_request_uri":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/assets/js/smooth_scroll.min.js?ver=2.0.63" id="ez-toc-scroll-scriptjs-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1" id="ez-toc-js-cookie-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2" id="ez-toc-jquery-sticky-kit-js"></script>
+<script type="text/javascript" id="ez-toc-js-js-extra">
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"30","fallbackIcon":"<span class=\"\"><span class=\"eztoc-hide\" style=\"display:none;\">Toggle<\/span><span class=\"ez-toc-icon-toggle-span\"><svg style=\"fill: #999;color:#999\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" class=\"list-377408\" width=\"20px\" height=\"20px\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z\" fill=\"currentColor\"><\/path><\/svg><svg style=\"fill: #999;color:#999\" class=\"arrow-unsorted-368013\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"10px\" height=\"10px\" viewBox=\"0 0 24 24\" version=\"1.2\" baseProfile=\"tiny\"><path d=\"M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z\"\/><\/svg><\/span><\/span>"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.63-1709813067" id="ez-toc-js-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/navigation.js?ver=20151215" id="yosemite-navigation-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/skip-link-focus-fix.js?ver=20151215" id="yosemite-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/slick.js?ver=1.0" id="slick-js-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/theia-sticky-sidebar.js?ver=1.5.0" id="theia-sticky-sidebar-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/script.js?ver=1.0" id="yosemite-script-js"></script>
+<script type="text/javascript" src="./../wp-includes/js/comment-reply.min.js?ver=6.8.1" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_params = {"apply_images":"1","apply_videos":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extra.min.js?ver=2.0.0" id="jquery-lazyloadxt-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.srcset.min.js?ver=2.0.0" id="jquery-lazyloadxt-srcset-js"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-extend-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_extend_params = {"edgeY":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extend.js?ver=2.0.0" id="jquery-lazyloadxt-extend-js"></script>
+<progress class="readingProgressbar" data-height="10" data-position="top" data-custom-position="" data-foreground="#0a0a0a" data-background="#ffffff" value="0"></progress>
+</body>
+</html>

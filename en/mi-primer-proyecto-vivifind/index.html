@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<!-- Manifest added by SuperPWA - Progressive Web Apps Plugin For WordPress -->
+<link rel="manifest" href="./superpwa-manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- / SuperPWA.com -->
+<title>Mi primer proyecto: ViviFind &#8211; fcoterroba</title>
+<meta name="robots" content="max-image-preview:large">
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Feed" href="./feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Comments Feed" href="./comments/feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="fcoterroba &raquo; Mi primer proyecto: ViviFind Comments Feed" href="./feed/index.html">
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":".\/\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🐦‍🔥","🐦​🔥")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id="wp-emoji-styles-inline-css" type="text/css">img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}</style>
+<link rel="stylesheet" id="wp-block-library-css" href="./../wp-includes/css/dist/block-library/style.min.css?ver=6.8.1" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css" type="text/css">/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}</style>
+<style id="global-styles-inline-css" type="text/css">:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./../wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.7" type="text/css" media="all">
+<link rel="stylesheet" id="rp-public-styles-css" href="./../wp-content/plugins/reading-progress-bar/public/css/rp-public.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="uaf_client_css-css" href="./../wp-content/uploads/useanyfont/uaf.css?ver=1586012546" type="text/css" media="all">
+<link rel="stylesheet" id="codemirror-blocks--css" href="./../wp-content/plugins/wp-codemirror-block/assets/blocks/blocks.style.build.min.css?ver=1586993207" type="text/css" media="all">
+<link rel="stylesheet" id="trp-floater-language-switcher-style-css" href="./../wp-content/plugins/translatepress-multilingual/assets/css/trp-floater-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="trp-language-switcher-style-css" href="./../wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=1.6.9" type="text/css" media="all">
+<link rel="stylesheet" id="ez-toc-css" href="./../wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.63" type="text/css" media="all">
+<style id="ez-toc-inline-css" type="text/css">div#ez-toc-container .ez-toc-title {font-size: 120%;}div#ez-toc-container .ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container ul li {font-weight: 500;}div#ez-toc-container nav ul ul li {font-size: 90%;}div#ez-toc-container {width: 100%;}
+.ez-toc-container-direction {direction: ltr;}.ez-toc-counter ul{counter-reset: item ;}.ez-toc-counter nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }.ez-toc-widget-direction {direction: ltr;}.ez-toc-widget-container ul{counter-reset: item ;}.ez-toc-widget-container nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }</style>
+<link rel="stylesheet" id="wxacs_front_style-css" href="./../wp-content/plugins/scrollbar-by-webxapp/assets/css/style.css?ver=1.2.0" type="text/css" media="all">
+<style id="wxacs_front_style-inline-css" type="text/css">::-webkit-scrollbar {
+                                width: 12px;
+                         }::-webkit-scrollbar-thumb {
+                            background: rgb(132, 132, 130) ;
+                            border-radius:20px;
+                            height:12px;
+                            
+                       }::-webkit-scrollbar-thumb:hover {
+                            background: rgb(132, 132, 130); 
+                             
+                            }::-webkit-scrollbar-track {
+                                background: rgba(132, 132, 130, 0); 
+                           }</style>
+<link rel="stylesheet" id="yosemite-fonts-css" href="https://fonts.googleapis.com/css?family=Lora%3A400%2C400i%2C700%2C700i%7CJosefin+Slab%3A400%7CLibre+Baskerville%3A400%2C400i%2C700&#038;subset=latin%2Clatin-ext&#038;ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./../wp-content/themes/yosemite-lite/css/font-awesome.css?ver=4.5.0" type="text/css" media="all">
+<link rel="stylesheet" id="yosemite-style-css" href="./../wp-content/themes/yosemite-lite/style.css?ver=6.8.1" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-lazyloadxt-spinner-css-css" href="./../wp-content/plugins/a3-lazy-load/assets/css/jquery.lazyloadxt.spinner.css?ver=6.8.1" type="text/css" media="all">
+<script type="text/javascript" src="./../wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="./../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/1and1-wordpress-assistant/js/cookies.js?ver=6.8.1" id="1and1-wp-cookies-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/reading-progress-bar/public/js/rp-public.js?ver=6.8.1" id="rp-public-scripts-js"></script>
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-181925895-1" id="google_gtagjs-js" async></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-181925895-1', {"anonymize_ip":true} );
+/* ]]> */
+</script>
+<link rel="https://api.w.org/" href="./wp-json/index.html">
+<link rel="alternate" title="JSON" type="application/json" href="./wp-json/wp/v2/posts/1578/index.html">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./../xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.8.1">
+<link rel="canonical" href="./mi-primer-proyecto-vivifind/index.html">
+<link rel="shortlink" href="./index.html?p=1578">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fen%2Fmi-primer-proyecto-vivifind">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="./wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2Fen%2Fmi-primer-proyecto-vivifind#038;format=xml">
+<meta name="generator" content="Site Kit by Google 1.8.1">
+<script data-ad-client="ca-pub-5464949551743719" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script><link rel="alternate" hreflang="es-ES" href="./../mi-primer-proyecto-vivifind/index.html">
+<link rel="alternate" hreflang="en-US" href="./mi-primer-proyecto-vivifind/index.html">
+<link rel="pingback" href="./../xmlrpc.php">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-5464949551743719",
+enable_page_level_ads: true,
+tag_partner: "site_kit"
+});</script>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<link rel="icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-32x32.png" sizes="32x32">
+<link rel="icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-180x180.png">
+<meta name="msapplication-TileImage" content="./../wp-content/uploads/2020/03/cropped-Logo-512x512-1-270x270.png">
+		<style type="text/css" id="wp-custom-css">.site-title{
+	font-family: LogoGrayScale;
+	text-transform: lowercase;
+	margin-bottom: 20px;
+}
+.by-author{
+	color: white;
+}</style>
+		<style id="wpforms-css-vars-root">:root {
+					--wpforms-field-border-radius: 3px;
+--wpforms-field-background-color: #ffffff;
+--wpforms-field-border-color: rgba( 0, 0, 0, 0.25 );
+--wpforms-field-text-color: rgba( 0, 0, 0, 0.7 );
+--wpforms-label-color: rgba( 0, 0, 0, 0.85 );
+--wpforms-label-sublabel-color: rgba( 0, 0, 0, 0.55 );
+--wpforms-label-error-color: #d63637;
+--wpforms-button-border-radius: 3px;
+--wpforms-button-background-color: #066aab;
+--wpforms-button-text-color: #ffffff;
+--wpforms-field-size-input-height: 43px;
+--wpforms-field-size-input-spacing: 15px;
+--wpforms-field-size-font-size: 16px;
+--wpforms-field-size-line-height: 19px;
+--wpforms-field-size-padding-h: 14px;
+--wpforms-field-size-checkbox-size: 16px;
+--wpforms-field-size-sublabel-spacing: 5px;
+--wpforms-field-size-icon-size: 1;
+--wpforms-label-size-font-size: 16px;
+--wpforms-label-size-line-height: 19px;
+--wpforms-label-size-sublabel-font-size: 14px;
+--wpforms-label-size-sublabel-line-height: 17px;
+--wpforms-button-size-font-size: 17px;
+--wpforms-button-size-height: 41px;
+--wpforms-button-size-padding-h: 15px;
+--wpforms-button-size-margin-top: 10px;
+
+				}</style>
+</head>
+
+<body data-rsssl="1" class="wp-singular post-template-default single single-post postid-1578 single-format-standard wp-theme-yosemite-lite translatepress-en_US">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content" data-no-translation="">Skip to content</a>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding container">
+										<p class="site-title"><a href="./index.html" rel="home">fcoterroba</a></p>
+								<p class="site-description">IT, Programming, Technology and much more!</p>
+						</div>
+<!-- .logo -->
+
+		<div class="header-content">
+			<div class="header-content__container container">
+				<nav id="site-navigation" class="main-navigation" role="navigation">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-no-translation="">Menu</button>
+					<div class="menu-menu-1-container"><ul id="primary-menu" class="menu">
+<li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="./index.html">Home</a></li>
+<li id="menu-item-154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Gratitude</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contact</a></li>
+</ul></div>				</nav><!-- #site-navigation -->
+
+				
+				<!-- .header-search -->
+				
+<form role="search" method="get" class="search-form" action=".//en/" data-trp-original-action=".//en/">
+	<label>
+		<span class="screen-reader-text" data-no-translation="">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search..." value="" name="s" data-no-translation-placeholder="">
+	</label>
+	<button type="submit" class="search-submit">
+		<i class="fa fa-search"></i>
+		<span class="screen-reader-text" data-no-translation="">Search</span>
+	</button>
+<input type="hidden" name="trp-form-language" value="en">
+</form>
+
+			</div>
+		</div>
+<!-- .header-content -->
+
+	</header><!-- #masthead -->
+	
+	<div id="content" class="site-content container">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-1578" class="post-1578 post type-post status-publish format-standard has-post-thumbnail hentry category-presentacion yosemite-has-thumbnail">
+
+	<header class="entry-header">
+
+		<div class="entry-meta">
+			<span class="cat-links"><span class="screen-reader-text">Categories </span><a href="./category/presentacion/index.html" rel="category tag">Presentation</a></span>		</div>
+<!-- .entry-meta -->
+		<h1 class="entry-title">Mi primer proyecto: ViviFind</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="fa fa-clock-o"></i><a href="./mi-primer-proyecto-vivifind/index.html" rel="bookmark"><time class="entry-date published" datetime="2025-01-31T21:37:08+02:00">31 January 2025</time><time class="updated" datetime="2025-01-31T21:37:09+02:00">31 January 2025</time></a></span><span class="comments-link"><i class="fa fa-comments-o"></i><a href="./mi-primer-proyecto-vivifind/index.html#respond" data-no-translation="">Leave a Comment<span class="screen-reader-text"> on Mi primer proyecto: ViviFind</span></a></span>
+		</div>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<div class="wp-block-image">
+<figure class="aligncenter size-large"><img fetchpriority="high" decoding="async" width="1024" height="576" src="./../wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif" data-lazy-type="image" data-src="./../wp-content/uploads/2025/01/Proyecto-nuevo2-1024x576.jpg" alt="" class="lazy lazy-hidden wp-image-1583" data-srcset="./../wp-content/uploads/2025/01/Proyecto-nuevo2-1024x576.jpg 1024w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-300x169.jpg 300w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-768x432.jpg 768w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-1536x864.jpg 1536w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2.jpg 1920w" sizes="(max-width: 1024px) 100vw, 1024px"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="./../wp-content/uploads/2025/01/Proyecto-nuevo2-1024x576.jpg" alt="" class="wp-image-1583" srcset="./../wp-content/uploads/2025/01/Proyecto-nuevo2-1024x576.jpg 1024w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-300x169.jpg 300w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-768x432.jpg 768w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2-1536x864.jpg 1536w, ./../wp-content/uploads/2025/01/Proyecto-nuevo2.jpg 1920w" sizes="(max-width: 1024px) 100vw, 1024px"></noscript></figure>
+</div>
+
+
+<p>Hola mundo 👋, mi nombre es Francisco, fcoterroba en internet y hoy, casi 2 años después desde el último post, os vengo a traer mi primer proyecto real. <strong><a href="https://vivifind.com/">ViviFind</a>.</strong></p>
+
+
+
+<p>Lamento comunicaros, por adelantado de que no, este post no será uno de los posts que os gustan. Aquellos en los que recreamos un proyecto real desde 0 en alguna tecnología y lo detallo paso a paso, explicando cómo mejorarlo para que podáis aumentar vuestro currículum y/o portafolio.</p>
+
+
+
+<p>Pero como ya sabéis, esta web, además de buscar que aprendáis programación, es mi pequeño rincón en Internet y es por eso que también me gusta compartiros mis proyectos personales.</p>
+
+
+
+<p>Hoy, lanzo uno de ellos, uno de mis sueños. <a href="https://vivifind.com/">ViviFind</a>.</p>
+
+
+
+<p>Antes de comenzar, te recuerdo que hace un tiempo subí a mi canal de YouTube un vídeo en el cual muestro la instalación de unas bombillas inteligentes capaces de ser controladas mediante el asistente de Google o el móvil. Te dejo por aquí el vídeo por si aún no lo has visto:</p>
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-5464949551743719" data-ad-slot="4080389895"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+
+<iframe class="lazy lazy-hidden" data-lazy-type="iframe" data-src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe><noscript><iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="315" frameborder="0"></iframe></noscript>
+
+
+
+<p><strong>Now yes, let's start!</strong></p>
+
+
+
+<div id="ez-toc-container" class="ez-toc-v2_0_63 counter-hierarchy ez-toc-counter ez-toc-white ez-toc-container-direction">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title" data-no-translation="">Tabla de contenidos</p>
+<span class="ez-toc-title-toggle"></span>
+</div>
+<nav><ul class="ez-toc-list ez-toc-list-level-1">
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-1" href="#%C2%BFComo_comienza_ViviFind" title="¿Cómo comienza ViviFind?">¿Cómo comienza ViviFind?</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-2" href="#%C2%BFComo_mejorar_la_busqueda_de_pisos_Facil_sin_buscar" title="¿Cómo mejorar la búsqueda de pisos? Fácil, sin buscar">¿Cómo mejorar la búsqueda de pisos? Fácil, sin buscar</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-3" href="#De_un_script_a_una_plataforma_real" title="De un script a una plataforma real">De un script a una plataforma real</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-4" href="#%C2%BFComo_funciona_exactamente_ViviFind" title="¿Cómo funciona exactamente ViviFind?">¿Cómo funciona exactamente ViviFind?</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-5" href="#Retos_y_aprendizajes" title="Retos y aprendizajes">Retos y aprendizajes</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-6" href="#%C2%BFQue_sigue_para_ViviFind" title="¿Qué sigue para ViviFind?">¿Qué sigue para ViviFind?</a></li>
+<li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-7" href="#Prueba_ViviFind_hoy_mismo" title="Prueba ViviFind hoy mismo">Prueba ViviFind hoy mismo</a></li>
+</ul></nav>
+</div>
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="%C2%BFComo_comienza_ViviFind"></span>¿Cómo comienza ViviFind?<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>En Junio de 2024, meses después de dejar de trabajar en Avature y recién independizado con mi pareja, vimos la necesidad de cambiar de piso pero sin tener mucha prisa. Queríamos algo mejor, pero sin la presión de revisar anuncios cada día, concertar visitas innecesarias o recibir llamadas de agentes insistentes. Nos dimos cuenta de que el proceso de buscar vivienda podía ser más eficiente y menos estresante si existiera una herramienta que hiciera el trabajo por nosotros. <strong>Y así nació la idea de <a href="http://vivifind.com/">ViviFind</a></strong>: un proyecto que comenzó como una necesidad personal y terminó convirtiéndose en una plataforma real para ayudar a otros en la misma situación.</p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="%C2%BFComo_mejorar_la_busqueda_de_pisos_Facil_sin_buscar"></span>¿Cómo mejorar la búsqueda de pisos? Fácil, sin buscar<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>Empecé a darle vueltas a la idea y, como programador, mi primer instinto fue pensar en cómo automatizar todo el proceso. No quería pasarme semanas navegando por portales inmobiliarios o registrándome en mil sitios solo para recibir correos genéricos. Quería que la vivienda ideal llegara a mí, sin esfuerzo.</p>
+
+
+
+<p>Así que una noche, con un café en la mano y el portátil abierto, empecé a escribir las primeras líneas de código de lo que luego sería <strong>ViviFind</strong>. Al principio era solo un script sencillo que recopilaba anuncios y filtraba los que coincidían con nuestros requisitos, pero cuanto más lo desarrollaba, más claro tenía que esto podía ayudar a mucha más gente, no solo a nosotros.</p>
+
+
+
+<p>Lo convertí en un proyecto real, con una web funcional, un sistema de búsqueda pasiva y una interfaz sencilla. Lo diseñé para que cualquier persona pudiera encontrar la casa que realmente quiere sin la frustración de estar horas pegado a la pantalla buscando y comparando anuncios.</p>
+
+
+
+<p>ViviFind no nació de una idea millonaria ni de un plan de negocios ambicioso. <strong>Nació de una necesidad real</strong>, de la frustración de buscar piso y del deseo de hacer el proceso más fácil para todos.</p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="De_un_script_a_una_plataforma_real"></span>De un script a una plataforma real<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>Al principio, ViviFind no era más que un pequeño proyecto personal, un experimento para facilitar nuestra propia búsqueda. Pero cuanto más lo usábamos, más nos dábamos cuenta de su potencial. Si nos estaba ahorrando tiempo y esfuerzo a nosotros, ¿por qué no hacerlo accesible para más personas?</p>
+
+
+
+<p>Así que me puse manos a la obra para convertirlo en algo más grande. Diseñé una interfaz simple y funcional, optimicé el sistema de búsqueda y monté un backend sólido para que todo funcionara sin problemas. <strong>No quería un portal inmobiliario más</strong>, sino una herramienta que realmente facilitara el proceso a los usuarios.</p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="%C2%BFComo_funciona_exactamente_ViviFind"></span>¿Cómo funciona exactamente ViviFind?<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>A diferencia de otras plataformas, donde tienes que pasarte horas buscando y filtrando anuncios, con ViviFind el proceso es mucho más pasivo:<br>1️⃣ <strong>Defines lo que buscas</strong> (zona, precio, tipo de vivienda, características, etc.).<br>2️⃣ <strong>ViviFind hace el trabajo por ti</strong> y te notifica cuando encuentra opciones que encajan.<br>3️⃣ <strong>Tomas decisiones con información clara y sin perder tiempo navegando por miles de anuncios irrelevantes.</strong></p>
+
+
+
+<p>Del otro lado, los vendedores pueden subir sus inmuebles y recibir notificaciones cuando hay interesados, evitando la saturación de mensajes y llamadas innecesarias. <strong>Es un win-win para todos.</strong></p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="Retos_y_aprendizajes"></span>Retos y aprendizajes<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>Desarrollar ViviFind ha sido una experiencia increíble, pero también llena de desafíos. Desde optimizar las búsquedas hasta gestionar la base de datos. Teniendo como lema siempre: <strong>«Código limpio, simple y eficiente».</strong></p>
+
+
+
+<p>Además, la parte más gratificante ha sido ver cómo algo que surgió de una necesidad personal ahora puede ayudar a más gente a encontrar su hogar sin estrés ni complicaciones.</p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="%C2%BFQue_sigue_para_ViviFind"></span>¿Qué sigue para ViviFind?<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>El lanzamiento es solo el primer paso. Tengo muchas ideas para seguir mejorándolo:</p>
+
+
+
+<p>🚀 Integraciones con APIs de portales inmobiliarios para ampliar las búsquedas<br>📊 Análisis de mercado en tiempo real para ayudar a tomar mejores decisiones.<br>📌 Herramientas avanzadas de comparación de precios y zonas.</p>
+
+
+
+<p>Pero sobre todo, quiero que ViviFind siga creciendo con el feedback de los usuarios. <strong>Si estás buscando vivienda o tienes alguna idea para mejorar la plataforma, estaré encantado de escucharla.</strong></p>
+
+
+
+<h2 class="wp-block-heading">
+<span class="ez-toc-section" id="Prueba_ViviFind_hoy_mismo"></span>Prueba ViviFind hoy mismo<span class="ez-toc-section-end"></span>
+</h2>
+
+
+
+<p>Si te ha picado la curiosidad, entra en <strong><a href="https://vivifind.com/">ViviFind.com</a></strong> y dale una oportunidad. Si buscas una vivienda o tienes una en venta, este puede ser el lugar donde encuentres exactamente lo que necesitas.</p>
+
+
+
+<p>Gracias por leer hasta aquí, por apoyar este proyecto y por formar parte de esta aventura. <strong>Nos vemos pronto con más novedades.</strong></p>
+	</div>
+<!-- .entry-content -->
+
+	<div class="entry-footer">
+			</div>
+<!-- entry-footer -->
+
+	</article><!-- #post-## -->
+
+	<nav class="navigation post-navigation" aria-label="Posts" data-no-translation-aria-label="">
+		<h2 class="screen-reader-text" data-no-translation="">Post navigation</h2>
+		<div class="nav-links">
+<div class="nav-previous"><a href="./proyecto-go-medio-web-estatica-hugo/index.html" rel="prev"><span class="meta-nav" data-no-translation="">Previous Post &raquo;</span> <span class="post-title">Medium Go Project: How make an static website using HuGo?</span></a></div>
+<div class="nav-next"><a href="./mi-libro-ia-inteligencia-inmoralidad-artificial/index.html" rel="next"><span class="meta-nav" data-no-translation="">&laquo; Next Post</span> <span class="post-title">Mi primer libro, «IA: ¿Inteligencia Artificial o Inmoralidad Artificial?»</span></a></div>
+</div>
+	</nav>
+<div id="comments" class="comments-area">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="./mi-primer-proyecto-vivifind/index.html#respond" style="display:none;" data-no-translation="">Cancel reply</a></small>
+</h3>
+<form action=".//wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate data-trp-original-action=".//wp-comments-post.php">
+<p class="comment-notes"><span id="email-notes" data-no-translation="">Your email address will not be published.</span> <span class="required-field-message" data-no-translation="">Required fields are marked <span class="required">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea autocomplete="nope" id="da75802d0e" name="da75802d0e" cols="45" rows="8" maxlength="65525" required></textarea><textarea id="comment" aria-hidden="true" name="comment" autocomplete="nope" style="padding:0;clip:rect(1px, 1px, 1px, 1px);position:absolute !important;white-space:nowrap;height:1px;width:1px;overflow:hidden;" tabindex="-1"></textarea><script type="text/javascript">document.getElementById("comment").setAttribute( "id", "a0bf6ff01de29db906c11fbd2a39d06f" );document.getElementById("da75802d0e").setAttribute( "id", "comment" );</script></p>
+<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required></p>
+<p class="comment-form-url"><label for="url" data-no-translation="">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent" data-no-translation="">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" data-no-translation-value=""> <input type="hidden" name="comment_post_ID" value="1578" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<input type="hidden" name="trp-form-language" value="en">
+</form>	</div>
+<!-- #respond -->
+	
+</div>
+<!-- #comments -->
+		</main><!-- #main -->
+	</div>
+<!-- #primary -->
+
+<aside id="secondary" class="widget-area add_sticky_sidebar" role="complementary">
+	
+		<section id="recent-posts-2" class="widget widget_recent_entries">
+		<h2 class="widget-title" data-no-translation="">Recent Posts</h2>
+		<ul>
+											<li>
+					<a href="./mi-libro-ia-inteligencia-inmoralidad-artificial/index.html">Mi primer libro, «IA: ¿Inteligencia Artificial o Inmoralidad Artificial?»</a>
+									</li>
+											<li>
+					<a href="./mi-primer-proyecto-vivifind/index.html" aria-current="page">Mi primer proyecto: ViviFind</a>
+									</li>
+											<li>
+					<a href="./proyecto-go-medio-web-estatica-hugo/index.html">Medium Go Project: How make an static website using HuGo?</a>
+									</li>
+											<li>
+					<a href="./proyecto-python-medio-crear-api-usando-fastapi/index.html">Medium Python Project: How to create an API using FastAPI?</a>
+									</li>
+											<li>
+					<a href="./pyscript-que-es-javascript-todo-mundo-hablando/index.html">PyScript: What is this JavaScript Framework that everyone is talking about?</a>
+									</li>
+					</ul>
+
+		</section><section id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title" data-no-translation="">Recent Comments</h2>
+<ul id="recentcomments">
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> on <a href="./contacto/index.html#comment-36148">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">Apple Inc. 2025. All rights reserved. Apple Inc. 2025. All rights reserved. 3713140 https://t.me/ grandbooksommer !</span> on <a href="./contacto/index.html#comment-34012">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">Unlock $19123 Bitcoin Payments. Click Here To Claim: &gt;&gt;&gt; https://t.me/+d7pd2x5 #Lolllukazzzur333</span> on <a href="./contacto/index.html#comment-31790">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link">https://nmssad7340875.com</span> on <a href="./contacto/index.html#comment-30921">Contacto</a>
+</li>
+<li class="recentcomments" data-no-translation="">
+<span class="comment-author-link"><a href="https://www.dominatingkeywords.com/" class="url" rel="ugc external nofollow">Gary</a></span> on <a href="./contacto/index.html#comment-28988">Contacto</a>
+</li>
+</ul></section><section id="custom_html-18" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5464949551743719" data-ad-slot="3604897115" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></section></aside><!-- #secondary -->
+
+	</div>
+<!-- #content -->
+	<aside id="secondary" class="sidebar-footer widget-area" role="complementary">
+		<div class="container">
+			<section id="categories-2" class="widget widget_categories"><h2 class="widget-title" data-no-translation="">Categories</h2>
+<form action=".//en/" method="get" data-trp-original-action=".//en/">
+<label class="screen-reader-text" for="cat" data-no-translation="">Categories</label><select name="cat" id="cat" class="postform">
+	<option value="-1" data-no-translation="">Select Category</option>
+	<option class="level-0" value="17">Big Data</option>
+	<option class="level-0" value="8">bureaucracy</option>
+	<option class="level-0" value="6">Criptomonedas</option>
+	<option class="level-0" value="19">CSS</option>
+	<option class="level-0" value="23">Learning</option>
+	<option class="level-0" value="26">Golang</option>
+	<option class="level-0" value="18">HTML</option>
+	<option class="level-0" value="16">IT</option>
+	<option class="level-0" value="27">JavaScript</option>
+	<option class="level-0" value="13">Linux</option>
+	<option class="level-0" value="3">Music</option>
+	<option class="level-0" value="29">Offtopic</option>
+	<option class="level-0" value="4">Opinion</option>
+	<option class="level-0" value="25">PHP</option>
+	<option class="level-0" value="5">Presentation</option>
+	<option class="level-0" value="20">Programming</option>
+	<option class="level-0" value="21">Python</option>
+	<option class="level-0" value="14">Raspberry</option>
+	<option class="level-0" value="28">Rust</option>
+	<option class="level-0" value="11">SERVER</option>
+	<option class="level-0" value="15">Technology</option>
+	<option class="level-0" value="9">Telegram</option>
+	<option class="level-0" value="7">Tutorial</option>
+	<option class="level-0" value="12">Windows</option>
+	<option class="level-0" value="24">WordPress</option>
+</select>
+<input type="hidden" name="trp-form-language" value="en">
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+
+/* ]]> */
+</script>
+</section>		</div>
+	</aside><!-- .sidebar-footer  -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="container">
+						<h1 class="site-title"><a href="./index.html" rel="home">fcoterroba</a></h1>
+			<div class="site-info">
+				Copyright fcoterroba © 2023 All rights reserved			</div>
+<!-- .site-info -->
+		</div>
+	</footer><!-- #colophon -->
+</div>
+<!-- #page -->
+
+<nav class="mobile-navigation" role="navigation">
+	<div class="mobile-menu"><ul>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="./index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="./portafolio/index.html">Portafolio</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="./agradecimientos/index.html">Gratitude</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="./contacto/index.html">Contact</a></li>
+</ul></div></nav>
+<a href="#" class="scroll-to-top hidden"><i class="fa fa-angle-up"></i></a>
+
+<script type="speculationrules">{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/en\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/yosemite-lite\/*","\/en\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}</script>
+        <div id="trp-floater-ls" onclick="" data-no-translation class="trp-language-switcher-container trp-floater-ls-names trp-top-left">
+            <div id="trp-floater-ls-current-language" class="trp-with-flags">
+                <a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language" onclick="void(0)">
+					<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png" width="18" height="12" alt="en_US" title="English">English				</a>
+            </div>
+            <div id="trp-floater-ls-language-list" class="trp-with-flags">
+                                    <a href="./../mi-primer-proyecto-vivifind/index.html" title="Spanish">
+						<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Spanish">Spanish					</a>
+                				<a href="javascript:void(0)" class="trp-floater-ls-disabled-language trp-ls-disabled-language">
+					<img class="trp-flag-image" src="./../wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png" width="18" height="12" alt="en_US" title="English">English				</a>
+            </div>
+        </div>
+
+    <script type="text/javascript" id="trp-dynamic-translator-js-extra">
+/* <![CDATA[ */
+var trp_data = {"trp_custom_ajax_url":".\/\/wp-content\/plugins\/translatepress-multilingual\/includes\/trp-ajax.php","trp_wp_ajax_url":".\/\/wp-admin\/admin-ajax.php","trp_language_to_query":"en_US","trp_original_language":"es_ES","trp_current_language":"en_US","trp_skip_selectors":["[data-no-translation]","[data-no-dynamic-translation]","[data-trp-translate-id-innertext]","script","style","head","trp-span","translate-press","#select2-billing_country-results","#select2-shipping_country-results","[data-trp-translate-id]","[data-trpgettextoriginal]","[data-trp-post-slug]"],"trp_base_selectors":["data-trp-translate-id","data-trpgettextoriginal","data-trp-post-slug"],"trp_attributes_selectors":{"text":{"accessor":"outertext","attribute":false},"block":{"accessor":"innertext","attribute":false},"image_src":{"selector":"img[src]","accessor":"src","attribute":true},"submit":{"selector":"input[type='submit'],input[type='button']","accessor":"value","attribute":true},"placeholder":{"selector":"input[placeholder],textarea[placeholder]","accessor":"placeholder","attribute":true},"title":{"selector":"[title]","accessor":"title","attribute":true},"a_href":{"selector":"a[href]","accessor":"href","attribute":true},"button":{"accessor":"outertext","attribute":false},"option":{"accessor":"innertext","attribute":false}},"trp_attributes_accessors":["outertext","innertext","src","value","placeholder","title","href"],"gettranslationsnonceregular":"634fd79a18","showdynamiccontentbeforetranslation":"","skip_strings_from_dynamic_translation":[],"skip_strings_from_dynamic_translation_for_substrings":{"href":["amazon-adsystem","googleads","g.doubleclick"]},"duplicate_detections_allowed":"100"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/translatepress-multilingual/assets/js/trp-translate-dom-changes.js?ver=1.6.9" id="trp-dynamic-translator-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/scrollbar-by-webxapp/assets/js/jquery.easeScroll.js?ver=1.2.0" id="wxacs_easeScroll_js-js"></script>
+<script type="text/javascript" id="wxacs_front_script-js-extra">
+/* <![CDATA[ */
+var wxacs_ease_scroll_params = {"wxacs_frameRate":"60","wxacs_animationTime":"1000","wxacs_stepSize":"120","wxacs_pulseScale":"8","wxacs_pulseNormalize":"1","wxacs_accelerationDelta":"20","wxacs_accelerationMax":"1","wxacs_arrowScroll":"50"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/scrollbar-by-webxapp/assets/js/script.js?ver=1.2.0" id="wxacs_front_script-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":".\/\/en\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.7" id="contact-form-7-js"></script>
+<script type="text/javascript" id="superpwa-register-sw-js-extra">
+/* <![CDATA[ */
+var superpwa_sw = {"url":"\/en\/superpwa-sw.js"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/super-progressive-web-apps/public/js/register-sw.js" id="superpwa-register-sw-js"></script>
+<script type="text/javascript" id="ez-toc-scroll-scriptjs-js-extra">
+/* <![CDATA[ */
+var eztoc_smooth_local = {"scroll_offset":"30","add_request_uri":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/assets/js/smooth_scroll.min.js?ver=2.0.63" id="ez-toc-scroll-scriptjs-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1" id="ez-toc-js-cookie-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2" id="ez-toc-jquery-sticky-kit-js"></script>
+<script type="text/javascript" id="ez-toc-js-js-extra">
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"30","fallbackIcon":"<span class=\"\"><span class=\"eztoc-hide\" style=\"display:none;\">Toggle<\/span><span class=\"ez-toc-icon-toggle-span\"><svg style=\"fill: #999;color:#999\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" class=\"list-377408\" width=\"20px\" height=\"20px\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z\" fill=\"currentColor\"><\/path><\/svg><svg style=\"fill: #999;color:#999\" class=\"arrow-unsorted-368013\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"10px\" height=\"10px\" viewBox=\"0 0 24 24\" version=\"1.2\" baseProfile=\"tiny\"><path d=\"M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z\"\/><\/svg><\/span><\/span>"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.63-1709813067" id="ez-toc-js-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/navigation.js?ver=20151215" id="yosemite-navigation-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/skip-link-focus-fix.js?ver=20151215" id="yosemite-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/slick.js?ver=1.0" id="slick-js-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/theia-sticky-sidebar.js?ver=1.5.0" id="theia-sticky-sidebar-js"></script>
+<script type="text/javascript" src="./../wp-content/themes/yosemite-lite/js/script.js?ver=1.0" id="yosemite-script-js"></script>
+<script type="text/javascript" src="./../wp-includes/js/comment-reply.min.js?ver=6.8.1" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_params = {"apply_images":"1","apply_videos":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extra.min.js?ver=2.0.0" id="jquery-lazyloadxt-js"></script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.srcset.min.js?ver=2.0.0" id="jquery-lazyloadxt-srcset-js"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-extend-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_extend_params = {"edgeY":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../wp-content/plugins/a3-lazy-load/assets/js/jquery.lazyloadxt.extend.js?ver=2.0.0" id="jquery-lazyloadxt-extend-js"></script>
+<progress class="readingProgressbar" data-height="10" data-position="top" data-custom-position="" data-foreground="#0a0a0a" data-background="#ffffff" value="0"></progress>
+</body>
+</html>

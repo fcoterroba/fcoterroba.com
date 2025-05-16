@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'logograyscale';
+					src: url('./200404030224LogoGrayScale.woff2') format('woff2'),
+						url('./200404030224LogoGrayScale.woff') format('woff');
+					font-display: auto;
+				}
+
+				.logograyscale{font-family: 'logograyscale' !important;}
+
+		
