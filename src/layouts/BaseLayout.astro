@@ -52,7 +52,17 @@ const siteName = 'fcoterroba';
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+      @font-face {
+        font-family: 'Titillium Web';
+        src: url('/TitilliumWeb-SemiBold.ttf') format('truetype');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script is:inline>
@@ -63,15 +73,38 @@ const siteName = 'fcoterroba';
     </script>
   </head>
   <body class="bg-white dark:bg-dark-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white dark:bg-dark-900">
+      <div class="max-w-6xl mx-auto px-8 lg:px-12">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center space-x-4">
+            <img 
+              src="/isologo.svg" 
+              alt="Fco Terroba Logo" 
+              class="h-8 w-auto"
+            />
+            <span class="text-brand-gray dark:text-white text-xl font-logo font-semibold">fcoterroba</span>
+          </div>
+          
+          <ul class="flex items-center space-x-8">
+            <li><a href="/" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">Inicio</a></li>
+            <li><a href="#portfolio" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">Portfolio</a></li>
+            <li><a href="/blog" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">Blog</a></li>
+            <li><a href="#agradecimientos" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">Agradecimientos</a></li>
+            <li><a href="#contacto" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <!-- Language Switcher -->
-    <div class="fixed top-4 right-4 z-50">
-      <div class="flex items-center space-x-2 bg-white/90 dark:bg-dark-800/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200 dark:border-gray-700">
+    <div class="fixed bottom-8 right-8 z-40">
+      <div class="flex items-center space-x-2 bg-white/95 dark:bg-dark-800/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200 dark:border-gray-700">
         <a 
           href="/" 
           class={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
             lang === 'es' 
-              ? 'bg-primary-500 text-white' 
-              : 'text-gray-600 dark:text-gray-300 hover:text-primary-500'
+              ? 'bg-brand-green text-white' 
+              : 'text-brand-gray dark:text-gray-300 hover:text-brand-green'
           }`}
         >
           ES
@@ -80,8 +113,8 @@ const siteName = 'fcoterroba';
           href="/en" 
           class={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
             lang === 'en' 
-              ? 'bg-primary-500 text-white' 
-              : 'text-gray-600 dark:text-gray-300 hover:text-primary-500'
+              ? 'bg-brand-green text-white' 
+              : 'text-brand-gray dark:text-gray-300 hover:text-brand-green'
           }`}
         >
           EN
@@ -98,7 +131,7 @@ const siteName = 'fcoterroba';
     </a>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" class="pt-20">
       <slot />
     </main>
 

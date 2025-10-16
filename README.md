@@ -14,10 +14,6 @@ my website's repository
    npm run dev
    ```
 
-3. **open browser**
-   ```
-   http://localhost:4321
-   ```
 ## how to add a new post
 
 1. create a new `.mdx` file in `src/content/blog`
