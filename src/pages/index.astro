@@ -8,21 +8,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   lang="es"
 >
   <section class="min-h-screen relative overflow-hidden bg-white">
-    <div id="fullscreen-image" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
-      <img 
-        src="/index_fcoterroba.png" 
-        alt="Francisco Terroba" 
-        class="w-full h-full object-contain"
-      />
-    </div>
-    
-    <div id="main-layout" class="absolute inset-0 z-20 opacity-0">
+    <div id="main-layout" class="relative z-20">
       <div class="h-[calc(100vh-128px)] flex items-center justify-center">
         <div class="max-w-7xl mx-auto px-8 lg:px-12 w-full">
           <div class="flex items-center gap-20 h-[100vh]">
             <div class="flex-1 flex flex-col justify-center">
               <h1 class="text-5xl lg:text-7xl font-bold text-brand-gray mb-8 leading-tight">
-                hola mundo. mi nombre es<br>
+                hola mundo, mi nombre es<br>
                 francisco, <span class="text-brand-green">fcoterroba</span> en internet
               </h1>
               
@@ -239,65 +231,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* Hide scrollbar during animation */
-  body {
-    overflow: hidden;
-  }
-  
-  /* Show scrollbar after animation */
-  body.animation-complete {
-    overflow: auto;
-  }
-  
   /* Smooth transitions */
   * {
     transition: all 0.3s ease;
   }
 </style>
 
-<script>
-  import { gsap } from 'gsap';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const fullscreenImage = document.getElementById('fullscreen-image');
-    const mainLayout = document.getElementById('main-layout');
-    const navbar = document.getElementById('navbar');
-    const languageToggle = document.getElementById('language-toggle');
-    
-    if (!fullscreenImage || !mainLayout) return;
-    
-    // Hide navbar and toggle during animation
-    if (navbar) navbar.style.display = 'none';
-    if (languageToggle) languageToggle.style.display = 'none';
-    
-    // Elegant fade-out and fade-in animation
-    const timeline = gsap.timeline({ ease: "power2.inOut" });
-    
-    // Step 1: Hold fullscreen image for 1 second
-    timeline.to({}, { duration: 1 });
-    
-    // Step 2: Fade out fullscreen image and fade in main layout simultaneously
-    timeline.to(fullscreenImage, {
-      opacity: 0,
-      duration: 1.2,
-      ease: "power2.inOut"
-    });
-    
-    timeline.to(mainLayout, {
-      opacity: 1,
-      duration: 1.2,
-      ease: "power2.inOut"
-    }, "-=1.2"); // Start at the same time as fade out
-    
-    // Step 3: Show navbar and toggle, enable scrolling
-    timeline.call(() => {
-      if (navbar) navbar.style.display = 'block';
-      if (languageToggle) languageToggle.style.display = 'block';
-      document.body.classList.add('animation-complete');
-    });
-    
-    // Start animation
-    timeline.play();
-  });
-</script>
 
