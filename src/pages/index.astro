@@ -7,37 +7,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Desarrollador web apasionado por crear experiencias digitales excepcionales. Especializado en tecnologías modernas y diseño centrado en el usuario."
   lang="es"
 >
-  <section class="min-h-screen relative overflow-hidden bg-white -mt-20 pt-20">
-    <div id="fullscreen-image" class="absolute inset-0 z-50">
+  <section class="min-h-screen relative overflow-hidden bg-white">
+    <div id="fullscreen-image" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
       <img 
         src="/index_fcoterroba.png" 
         alt="Francisco Terroba" 
-        class="w-full h-full object-cover"
+        class="w-full h-full object-contain"
       />
     </div>
     
     <div id="main-layout" class="absolute inset-0 z-20 opacity-0">
-      <div class="h-full flex items-center justify-center">
-        <div class="max-w-6xl mx-auto px-8 lg:px-12 w-full">
-          <div class="flex items-center gap-16">
+      <div class="h-screen flex items-center justify-center">
+        <div class="max-w-7xl mx-auto px-8 lg:px-12 w-full">
+          <div class="flex items-center gap-20 h-[100vh]">
             <div class="flex-1 flex flex-col justify-center">
-              <h1 class="text-6xl lg:text-8xl font-bold text-brand-gray mb-8 leading-tight">
-                Hola soy<br>
-                Francisco Terroba.
+              <h1 class="text-5xl lg:text-7xl font-bold text-brand-gray mb-8 leading-tight">
+                hola mundo. mi nombre es<br>
+                francisco, <span class="text-brand-green">fcoterroba</span> en internet
               </h1>
               
-              <div class="mb-12">
-                <p class="text-2xl lg:text-3xl text-brand-gray mb-4 font-normal">
+              <div class="mb-12 space-y-3">
+                <p class="text-xl lg:text-2xl text-brand-gray font-normal">
                   Backend developer & product builder.
                 </p>
-                <p class="text-xl lg:text-2xl text-brand-gray font-bold">
+                <p class="text-lg lg:text-xl text-brand-gray font-medium">
                   Ayudo a startups a crecer con productos rápidos y escalables.
                 </p>
               </div>
               
               <a 
                 href="#servicios" 
-                class="inline-block bg-brand-gray text-white px-8 py-4 rounded-lg text-lg font-normal hover:bg-brand-dark transition-colors duration-300 w-fit"
+                class="inline-block bg-brand-green text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-brand-dark transition-colors duration-300 w-fit shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Ver mis servicios
               </a>
@@ -48,7 +48,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <img 
                   src="/index_fcoterroba.png" 
                   alt="Francisco Terroba" 
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover object-center"
+                  style="object-position: center 20%;"
                 />
               </div>
             </div>
@@ -59,7 +60,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section id="sobre-mi" class="py-20 bg-white dark:bg-dark-800">
-    <div class="max-w-6xl mx-auto px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto px-8 lg:px-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div data-animate="left" data-delay="0.2">
           <h2 class="text-4xl font-bold text-brand-gray dark:text-white mb-6">
@@ -111,7 +112,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section id="proyectos" class="py-20 bg-gray-50 dark:bg-dark-900">
-    <div class="max-w-6xl mx-auto px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto px-8 lg:px-12">
       <div class="text-center mb-16" data-animate="up" data-delay="0.2">
         <h2 class="text-4xl font-bold text-brand-gray dark:text-white mb-4">
           Proyectos Destacados
@@ -216,7 +217,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section id="contacto" class="py-20 bg-white dark:bg-dark-800">
-    <div class="max-w-6xl mx-auto px-8 lg:px-12 text-center">
+    <div class="max-w-7xl mx-auto px-8 lg:px-12 text-center">
       <div data-animate="up" data-delay="0.2">
         <h2 class="text-4xl font-bold text-brand-gray dark:text-white mb-6">
           ¿Trabajamos Juntos?
@@ -254,44 +255,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 </style>
 
-<script is:inline>
-  // Load GSAP from CDN
-  const script = document.createElement('script');
-  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=' + Date.now();
-  script.onload = () => {
-    // Start animation once GSAP is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      const fullscreenImage = document.getElementById('fullscreen-image');
-      const mainLayout = document.getElementById('main-layout');
-      
-      // Elegant fade-out and fade-in animation
-      const timeline = gsap.timeline({ ease: "power2.inOut" });
-      
-              // Step 1: Hold fullscreen image for 1 second
-              timeline.to({}, { duration: 1 });
-      
-      // Step 2: Fade out fullscreen image and fade in main layout simultaneously
-      timeline.to(fullscreenImage, {
-        opacity: 0,
-        duration: 1.2,
-        ease: "power2.inOut"
-      });
-      
-      timeline.to(mainLayout, {
-        opacity: 1,
-        duration: 1.2,
-        ease: "power2.inOut"
-      }, "-=1.2"); // Start at the same time as fade out
-      
-      // Step 3: Enable scrolling
-      timeline.call(() => {
-        document.body.classList.add('animation-complete');
-      });
-      
-      // Start animation
-      timeline.play();
+<script>
+  import { gsap } from 'gsap';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const fullscreenImage = document.getElementById('fullscreen-image');
+    const mainLayout = document.getElementById('main-layout');
+    const navbar = document.getElementById('navbar');
+    const languageToggle = document.getElementById('language-toggle');
+    
+    if (!fullscreenImage || !mainLayout) return;
+    
+    // Hide navbar and toggle during animation
+    if (navbar) navbar.style.display = 'none';
+    if (languageToggle) languageToggle.style.display = 'none';
+    
+    // Elegant fade-out and fade-in animation
+    const timeline = gsap.timeline({ ease: "power2.inOut" });
+    
+    // Step 1: Hold fullscreen image for 1 second
+    timeline.to({}, { duration: 1 });
+    
+    // Step 2: Fade out fullscreen image and fade in main layout simultaneously
+    timeline.to(fullscreenImage, {
+      opacity: 0,
+      duration: 1.2,
+      ease: "power2.inOut"
     });
-  };
-  document.head.appendChild(script);
+    
+    timeline.to(mainLayout, {
+      opacity: 1,
+      duration: 1.2,
+      ease: "power2.inOut"
+    }, "-=1.2"); // Start at the same time as fade out
+    
+    // Step 3: Show navbar and toggle, enable scrolling
+    timeline.call(() => {
+      if (navbar) navbar.style.display = 'block';
+      if (languageToggle) languageToggle.style.display = 'block';
+      document.body.classList.add('animation-complete');
+    });
+    
+    // Start animation
+    timeline.play();
+  });
 </script>
 
