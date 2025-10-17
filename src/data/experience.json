@@ -1,0 +1,139 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "company": "tu trámite fácil (TTF)",
+      "position": "full-stack developer",
+      "period": "february 2025 - present",
+      "description": {
+        "en": "we've built Spain's leading platform for obtaining public aid from scratch. the stack is based on vue and laravel in their latest versions. we've managed to reach the 'Lanzadera' incubator and have integrated processes into agile and SCRUM methodologies using Notion as a problem-solving hub. additionally, we created a discord bot that alerts us to outages and new vulnerabilities.",
+        "es": "hemos creado desde 0 la plataforma líder en España para obtener ayudas públicas. el stack es vue y laravel en sus últimas versiones. hemos conseguido llegar a la incubadora 'Lanzadera' y hemos integrado procesos en metodologías ágiles y SCRUM usando Notion como centro neurárgico de problemas. además, creamos un bot en discord que nos avisa de caídas y nuevas vulnerabilidades."
+      },
+      "icon": "🏢",
+      "gradient": "from-gray-500 to-gray-600",
+      "darkGradient": "from-gray-800 to-gray-900",
+      "technologies": [
+        {
+          "name": "React",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+        },
+        {
+          "name": "Node.js",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+        },
+        {
+          "name": "Python",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "company": "innovate labs",
+      "position": "full-stack developer",
+      "period": "2022 - 2024",
+      "description": {
+        "en": "i developed complete web applications from frontend to backend, working closely with designers and product managers.",
+        "es": "desarrollé aplicaciones web completas desde el frontend hasta el backend, trabajando en estrecha colaboración con diseñadores y product managers."
+      },
+      "icon": "🚀",
+      "gradient": "from-green-50 to-green-100",
+      "darkGradient": "from-green-900/30 to-green-800/30",
+      "technologies": [
+        {
+          "name": "Vue.js",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
+        },
+        {
+          "name": "Laravel",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
+        },
+        {
+          "name": "MySQL",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "company": "startup tech",
+      "position": "junior developer",
+      "period": "2021 - 2022",
+      "description": {
+        "en": "my first professional experience where i learned the fundamentals of web development and the importance of communication in technical teams.",
+        "es": "mi primera experiencia profesional donde aprendí los fundamentos del desarrollo web y la importancia de la comunicación en equipos técnicos."
+      },
+      "icon": "💡",
+      "gradient": "from-purple-50 to-purple-100",
+      "darkGradient": "from-purple-900/30 to-purple-800/30",
+      "technologies": [
+        {
+          "name": "JavaScript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+        },
+        {
+          "name": "PHP",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+        },
+        {
+          "name": "HTML5",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "company": "digital agency",
+      "position": "freelance developer",
+      "period": "2020 - 2021",
+      "description": {
+        "en": "i developed websites and applications for small businesses, learning to communicate directly with clients and understand their needs.",
+        "es": "desarrollé sitios web y aplicaciones para pequeñas empresas, aprendiendo a comunicarme directamente con clientes y entender sus necesidades."
+      },
+      "icon": "🎯",
+      "gradient": "from-orange-50 to-orange-100",
+      "darkGradient": "from-orange-900/30 to-orange-800/30",
+      "technologies": [
+        {
+          "name": "WordPress",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg"
+        },
+        {
+          "name": "CSS3",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+        },
+        {
+          "name": "Git",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "company": "tech consulting",
+      "position": "technical consultant",
+      "period": "2023 - present",
+      "description": {
+        "en": "i help companies digitize their processes and optimize their technological systems, combining technical knowledge with communication skills.",
+        "es": "ayudo a empresas a digitalizar sus procesos y optimizar sus sistemas tecnológicos, combinando conocimientos técnicos con habilidades de comunicación."
+      },
+      "icon": "🔧",
+      "gradient": "from-teal-50 to-teal-100",
+      "darkGradient": "from-teal-900/30 to-teal-800/30",
+      "technologies": [
+        {
+          "name": "AWS",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg"
+        },
+        {
+          "name": "Docker",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+        },
+        {
+          "name": "Kubernetes",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-original.svg"
+        }
+      ]
+    }
+  ]
+}

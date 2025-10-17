@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import experienceData from '../data/experience.json';
 ---
 
 <BaseLayout 
@@ -88,11 +89,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="text-lg">‹</span>
               </button>
               <div id="slide-indicators" class="flex space-x-2">
-                <button class="w-3 h-3 bg-brand-green rounded-full slide-indicator active" data-slide="0"></button>
-                <button class="w-3 h-3 bg-gray-300 rounded-full slide-indicator" data-slide="1"></button>
-                <button class="w-3 h-3 bg-gray-300 rounded-full slide-indicator" data-slide="2"></button>
-                <button class="w-3 h-3 bg-gray-300 rounded-full slide-indicator" data-slide="3"></button>
-                <button class="w-3 h-3 bg-gray-300 rounded-full slide-indicator" data-slide="4"></button>
+                {experienceData.experiences.map((_, index) => (
+                  <button 
+                    class={`w-3 h-3 rounded-full slide-indicator ${index === 0 ? 'bg-brand-green active' : 'bg-gray-300'}`} 
+                    data-slide={index}
+                  ></button>
+                ))}
               </div>
               <button id="next-btn" class="w-10 h-10 bg-brand-green text-white rounded-full flex items-center justify-center hover:bg-brand-green/90 transition-colors">
                 <span class="text-lg">›</span>
@@ -100,145 +102,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
           </div>
 
-          <div id="experience-slider" class="flex transition-transform duration-1000 ease-in-out">
-            <div class="w-full flex-shrink-0 px-4">
-              <div class="bg-gray-500 dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto">
-                <div class="text-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                    <span class="text-2xl">🏢</span>
+          <div id="experience-slider" class="experience-slider flex transition-transform duration-1000 ease-in-out">
+            {experienceData.experiences.map((experience) => (
+              <div class="w-full flex-shrink-0 px-4">
+                <div class={`bg-gradient-to-br ${experience.gradient} dark:${experience.darkGradient} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto`}>
+                  <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
+                      <span class="text-2xl">{experience.icon}</span>
+                    </div>
+                    <h3 class="text-xl font-bold theme-text mb-2" data-es={experience.company} data-en={experience.company}>
+                      {experience.company}
+                    </h3>
+                    <p class="text-sm theme-text-70" data-es={experience.position} data-en={experience.position}>
+                      {experience.position}
+                    </p>
+                    <p class="text-xs theme-text-60" data-es={experience.period} data-en={experience.period}>
+                      {experience.period}
+                    </p>
                   </div>
-                  <h3 class="text-xl font-bold theme-text mb-2" data-es="techcorp solutions" data-en="techcorp solutions">
-                    techcorp solutions
-                  </h3>
-                  <p class="text-sm theme-text-70" data-es="senior software engineer" data-en="senior software engineer">
-                    senior software engineer
+                  <p class="text-sm theme-text-80 mb-6" data-es={experience.description.es} data-en={experience.description.en}>
+                    {experience.description.en}
                   </p>
-                  <p class="text-xs theme-text-60" data-es="2024 - presente" data-en="2024 - present">
-                    2024 - present
-                  </p>
-                </div>
-                <p class="text-sm theme-text-80 mb-6" data-es="lidero el desarrollo de aplicaciones web escalables y arquitecturas de microservicios. trabajo directamente con stakeholders para entender necesidades del negocio." data-en="i lead the development of scalable web applications and microservices architectures. i work directly with stakeholders to understand business needs.">
-                  i lead the development of scalable web applications and microservices architectures. i work directly with stakeholders to understand business needs.
-                </p>
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" class="w-8 h-8" />
+                  <div class="flex flex-wrap gap-2 justify-center">
+                    {experience.technologies.map((tech) => (
+                      <img src={tech.icon} alt={tech.name} class="w-8 h-8" />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Company 2 -->
-            <div class="w-full flex-shrink-0 px-4">
-              <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto">
-                <div class="text-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                    <span class="text-2xl">🚀</span>
-                  </div>
-                  <h3 class="text-xl font-bold theme-text mb-2" data-es="innovate labs" data-en="innovate labs">
-                    innovate labs
-                  </h3>
-                  <p class="text-sm theme-text-70" data-es="full-stack developer" data-en="full-stack developer">
-                    full-stack developer
-                  </p>
-                  <p class="text-xs theme-text-60" data-es="2022 - 2024" data-en="2022 - 2024">
-                    2022 - 2024
-                  </p>
-                </div>
-                <p class="text-sm theme-text-80 mb-6" data-es="desarrollé aplicaciones web completas desde el frontend hasta el backend, trabajando en estrecha colaboración con diseñadores y product managers." data-en="i developed complete web applications from frontend to backend, working closely with designers and product managers.">
-                  i developed complete web applications from frontend to backend, working closely with designers and product managers.
-                </p>
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Company 3 -->
-            <div class="w-full flex-shrink-0 px-4">
-              <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto">
-                <div class="text-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                    <span class="text-2xl">💡</span>
-                  </div>
-                  <h3 class="text-xl font-bold theme-text mb-2" data-es="startup tech" data-en="startup tech">
-                    startup tech
-                  </h3>
-                  <p class="text-sm theme-text-70" data-es="junior developer" data-en="junior developer">
-                    junior developer
-                  </p>
-                  <p class="text-xs theme-text-60" data-es="2021 - 2022" data-en="2021 - 2022">
-                    2021 - 2022
-                  </p>
-                </div>
-                <p class="text-sm theme-text-80 mb-6" data-es="mi primera experiencia profesional donde aprendí los fundamentos del desarrollo web y la importancia de la comunicación en equipos técnicos." data-en="my first professional experience where i learned the fundamentals of web development and the importance of communication in technical teams.">
-                  my first professional experience where i learned the fundamentals of web development and the importance of communication in technical teams.
-                </p>
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="w-8 h-8" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Company 4 -->
-            <div class="w-full flex-shrink-0 px-4">
-              <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto">
-                <div class="text-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                    <span class="text-2xl">🎯</span>
-                  </div>
-                  <h3 class="text-xl font-bold theme-text mb-2" data-es="digital agency" data-en="digital agency">
-                    digital agency
-                  </h3>
-                  <p class="text-sm theme-text-70" data-es="freelance developer" data-en="freelance developer">
-                    freelance developer
-                  </p>
-                  <p class="text-xs theme-text-60" data-es="2020 - 2021" data-en="2020 - 2021">
-                    2020 - 2021
-                  </p>
-                </div>
-                <p class="text-sm theme-text-80 mb-6" data-es="desarrollé sitios web y aplicaciones para pequeñas empresas, aprendiendo a comunicarme directamente con clientes y entender sus necesidades." data-en="i developed websites and applications for small businesses, learning to communicate directly with clients and understand their needs.">
-                  i developed websites and applications for small businesses, learning to communicate directly with clients and understand their needs.
-                </p>
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg" alt="WordPress" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="w-8 h-8" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Company 5 -->
-            <div class="w-full flex-shrink-0 px-4">
-              <div class="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto">
-                <div class="text-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                    <span class="text-2xl">🔧</span>
-                  </div>
-                  <h3 class="text-xl font-bold theme-text mb-2" data-es="tech consulting" data-en="tech consulting">
-                    tech consulting
-                  </h3>
-                  <p class="text-sm theme-text-70" data-es="consultor técnico" data-en="technical consultant">
-                    technical consultant
-                  </p>
-                  <p class="text-xs theme-text-60" data-es="2023 - presente" data-en="2023 - present">
-                    2023 - present
-                  </p>
-                </div>
-                <p class="text-sm theme-text-80 mb-6" data-es="ayudo a empresas a digitalizar sus procesos y optimizar sus sistemas tecnológicos, combinando conocimientos técnicos con habilidades de comunicación." data-en="i help companies digitize their processes and optimize their technological systems, combining technical knowledge with communication skills.">
-                  i help companies digitize their processes and optimize their technological systems, combining technical knowledge with communication skills.
-                </p>
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes" class="w-8 h-8" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -279,21 +171,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     
     /* Technology icons should be visible in dark mode */
-    [data-theme="dark"] img[alt*="React"],
-    [data-theme="dark"] img[alt*="Node"],
-    [data-theme="dark"] img[alt*="Python"],
-    [data-theme="dark"] img[alt*="Vue"],
-    [data-theme="dark"] img[alt*="Laravel"],
-    [data-theme="dark"] img[alt*="MySQL"],
-    [data-theme="dark"] img[alt*="JavaScript"],
-    [data-theme="dark"] img[alt*="PHP"],
-    [data-theme="dark"] img[alt*="HTML"],
-    [data-theme="dark"] img[alt*="WordPress"],
-    [data-theme="dark"] img[alt*="CSS"],
-    [data-theme="dark"] img[alt*="Git"],
-    [data-theme="dark"] img[alt*="AWS"],
-    [data-theme="dark"] img[alt*="Docker"],
-    [data-theme="dark"] img[alt*="Kubernetes"] {
+    [data-theme="dark"] .experience-slider img {
       filter: brightness(0) invert(1);
     }
   </style>
@@ -301,15 +179,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const slider = document.getElementById('experience-slider');
-      const slides = slider.children;
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
       const indicators = document.querySelectorAll('.slide-indicator');
+      
+      if (!slider || !prevBtn || !nextBtn) return;
+      
+      const slides = slider.children;
       let currentSlide = 0;
       const totalSlides = slides.length;
-      let autoSlideInterval;
+      let autoSlideInterval: ReturnType<typeof setInterval> | undefined;
 
       function updateSlider() {
+        if (!slider) return;
         slider.style.transform = `translateX(-${currentSlide * 100}%)`;
         
         // Update indicators
@@ -334,7 +216,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         updateSlider();
       }
 
-      function goToSlide(slideIndex) {
+      function goToSlide(slideIndex: number) {
         currentSlide = slideIndex;
         updateSlider();
       }
@@ -344,7 +226,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
 
       function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
+        if (autoSlideInterval) {
+          clearInterval(autoSlideInterval);
+        }
       }
 
       // Event listeners
