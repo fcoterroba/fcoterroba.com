@@ -13,7 +13,7 @@ export interface Props {
 const {
   title,
   description,
-  lang = 'en', // Default to English
+  lang = 'en',
   image = '/og-image.jpg',
   type = 'website',
   canonical = Astro.url.href,
@@ -97,11 +97,9 @@ const siteName = 'fcoterroba';
       </div>
     </nav>
 
-    <!-- Language & Theme Toggle -->
     <div class="fixed bottom-8 right-8 z-30" id="preferences-toggle">
       <div class="preferences-bg backdrop-blur-sm rounded-full px-4 py-2 shadow-lg preferences-border">
         <div class="flex items-center space-x-3">
-          <!-- Language Toggle -->
           <div class="flex items-center space-x-1">
             <button 
               id="lang-es" 
@@ -119,10 +117,8 @@ const siteName = 'fcoterroba';
             </button>
           </div>
           
-          <!-- Separator -->
           <div class="w-px h-6 preferences-separator"></div>
           
-          <!-- Theme Toggle -->
           <div class="flex items-center space-x-1">
             <button 
               id="theme-light" 
@@ -143,7 +139,6 @@ const siteName = 'fcoterroba';
       </div>
     </div>
 
-    <!-- Skip to main content -->
     <a 
       href="#main-content" 
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-500 text-white px-4 py-2 rounded-md z-50"
@@ -151,12 +146,10 @@ const siteName = 'fcoterroba';
       Saltar al contenido principal
     </a>
 
-    <!-- Main Content -->
     <main id="main-content" class="pt-8">
       <slot />
     </main>
 
-    <!-- Footer -->
     <footer class="footer-bg py-16">
       <div class="max-w-7xl mx-auto px-8 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -193,7 +186,6 @@ const siteName = 'fcoterroba';
               follow me
             </h4>
             <div class="grid grid-cols-4 gap-4">
-              <!-- GitHub -->
               <a href="https://github.com/fcoterroba" target="_blank" class="footer-social">
                 <span class="sr-only">GitHub</span>
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -201,7 +193,6 @@ const siteName = 'fcoterroba';
                 </svg>
               </a>
               
-              <!-- LinkedIn -->
               <a href="https://linkedin.com/in/fcoterroba" target="_blank" class="footer-social">
                 <span class="sr-only">LinkedIn</span>
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -209,7 +200,6 @@ const siteName = 'fcoterroba';
                 </svg>
               </a>
               
-              <!-- Instagram -->
               <a href="https://instagram.com/fcoterroba" target="_blank" class="footer-social">
                 <span class="sr-only">Instagram</span>
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -217,7 +207,6 @@ const siteName = 'fcoterroba';
                 </svg>
               </a>
               
-              <!-- TikTok -->
               <a href="https://tiktok.com/@fcoterroba" target="_blank" class="footer-social">
                 <span class="sr-only">TikTok</span>
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -229,16 +218,14 @@ const siteName = 'fcoterroba';
         </div>
         
         <div class="footer-border mt-12 pt-8 text-center">
-          <p class="footer-copyright" data-es="© 2025 fcoterroba. Todos los derechos reservados." data-en="© 2025 fcoterroba. All rights reserved.">
+          <p class="footer-copyright" data-es="© 2025 fcoterroba. all rights reserved." data-en="© 2025 fcoterroba. all rights reserved.">
             © 2025 fcoterroba. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
 
-    <!-- Theme & Language Styles -->
     <style>
-      /* Light Theme (Default) */
       :root {
         --bg-primary: #ffffff;
         --bg-secondary: #f8f9fa;
@@ -262,7 +249,6 @@ const siteName = 'fcoterroba';
         --btn-inactive: #6b7280;
       }
 
-      /* Dark Theme */
       [data-theme="dark"] {
         --bg-primary: #1a1a1a;
         --bg-secondary: #2d2d2d;
@@ -286,13 +272,11 @@ const siteName = 'fcoterroba';
         --btn-inactive: #a1a1aa;
       }
 
-      /* Apply theme variables */
       body {
         background-color: var(--bg-primary);
         color: var(--text-primary);
       }
 
-      /* Dark theme overrides for all sections */
       [data-theme="dark"] {
         --section-bg-white: #1a1a1a;
         --section-bg-light: #2d2d2d;
@@ -302,7 +286,6 @@ const siteName = 'fcoterroba';
         --text-brand-gray-60: rgba(255, 255, 255, 0.8);
       }
 
-      /* Light theme overrides */
       [data-theme="light"] {
         --section-bg-white: #ffffff;
         --section-bg-light: #f8f9fa;
@@ -319,7 +302,6 @@ const siteName = 'fcoterroba';
         -webkit-backdrop-filter: blur(12px);
       }
 
-      /* Dark mode navbar enhancement */
       [data-theme="dark"] .navbar-bg {
         background-color: rgba(0, 0, 0, 0.9) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -347,7 +329,6 @@ const siteName = 'fcoterroba';
         color: var(--footer-text);
       }
 
-      /* Force footer to always be dark */
       .footer-bg {
         background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
         color: #ffffff !important;
@@ -390,7 +371,6 @@ const siteName = 'fcoterroba';
         color: var(--footer-copyright);
       }
 
-      /* Force all footer elements to be white */
       .footer-bg * {
         color: #ffffff !important;
       }
@@ -418,7 +398,6 @@ const siteName = 'fcoterroba';
         -webkit-backdrop-filter: blur(12px);
       }
 
-      /* Dark mode preferences enhancement */
       [data-theme="dark"] .preferences-bg {
         background-color: rgba(0, 0, 0, 0.9) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -450,7 +429,6 @@ const siteName = 'fcoterroba';
         color: white;
       }
 
-      /* Section theme overrides */
       .theme-bg {
         background-color: var(--section-bg-white) !important;
         transition: background-color 0.3s ease;
@@ -484,31 +462,26 @@ const siteName = 'fcoterroba';
         color: var(--text-brand-gray-60) !important;
       }
 
-      /* Force white text in dark mode - more specific selectors */
       [data-theme="dark"] * {
         color: #ffffff !important;
       }
 
-      /* Keep green accent color */
       [data-theme="dark"] .text-brand-green,
       [data-theme="dark"] span.text-brand-green {
         color: #10b981 !important;
       }
 
-      /* Keep button colors */
       [data-theme="dark"] .bg-brand-green {
         background-color: #10b981 !important;
         color: #ffffff !important;
       }
 
-      /* Ensure line breaks work properly */
       [data-theme="dark"] br {
         display: block !important;
         content: "" !important;
         margin-top: 0.5em !important;
       }
 
-      /* Force white color on all text elements */
       [data-theme="dark"] h1 *,
       [data-theme="dark"] h2 *,
       [data-theme="dark"] h3 *,
@@ -521,7 +494,6 @@ const siteName = 'fcoterroba';
         color: #ffffff !important;
       }
 
-      /* Specific overrides for theme classes */
       [data-theme="dark"] .theme-text {
         color: #ffffff !important;
       }
@@ -538,12 +510,10 @@ const siteName = 'fcoterroba';
         color: rgba(255, 255, 255, 0.8) !important;
       }
 
-      /* Keep green accent color */
       [data-theme="dark"] .text-brand-green {
         color: #10b981 !important;
       }
 
-      /* Override any Tailwind text color classes in dark mode */
       [data-theme="dark"] .text-brand-gray {
         color: #ffffff !important;
       }
@@ -560,7 +530,6 @@ const siteName = 'fcoterroba';
         color: rgba(255, 255, 255, 0.8) !important;
       }
 
-      /* Text theme overrides */
       .theme-text {
         color: var(--text-brand-gray);
         transition: color 0.3s ease;
@@ -581,31 +550,25 @@ const siteName = 'fcoterroba';
         transition: color 0.3s ease;
       }
 
-      /* Smooth transitions */
       * {
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       }
     </style>
 
-    <!-- GSAP Script -->
     <script>
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
       
       gsap.registerPlugin(ScrollTrigger);
       
-      // Initialize animations and preferences when DOM is loaded
       document.addEventListener('DOMContentLoaded', () => {
-        // Initialize preferences
         initializePreferences();
         
-        // Fade in animation for main content
         gsap.fromTo('main', 
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
         );
         
-        // Animate elements with data-animate attribute
         gsap.utils.toArray('[data-animate]').forEach((element: any) => {
           const delay = element.dataset.delay || 0;
           const direction = element.dataset.direction || 'up';
@@ -634,35 +597,25 @@ const siteName = 'fcoterroba';
         });
       });
 
-      // Initialize preferences system
       function initializePreferences() {
-        // Detect browser language
         const browserLang = navigator.language.startsWith('es') ? 'es' : 'en';
         
-        // Detect system theme preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
-        // Get stored preferences or use defaults
         const storedLang = localStorage.getItem('fcoterroba-lang') || browserLang;
         const storedTheme = localStorage.getItem('fcoterroba-theme') || (prefersDark ? 'dark' : 'light');
         
-        // Apply preferences
         applyLanguage(storedLang);
         applyTheme(storedTheme);
-        
-        // Set up event listeners
         setupPreferenceListeners();
       }
 
-      // Apply language
       function applyLanguage(lang) {
         document.documentElement.lang = lang;
         
-        // Update all elements with data attributes
         document.querySelectorAll('[data-es][data-en]').forEach(element => {
           const text = element.dataset[lang];
           if (text) {
-            // Handle HTML content for complex elements
             if (text.includes('<span') || text.includes('<br')) {
               element.innerHTML = text;
             } else {
@@ -671,31 +624,24 @@ const siteName = 'fcoterroba';
           }
         });
         
-        // Update active language button
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
         
-        // Store preference
         localStorage.setItem('fcoterroba-lang', lang);
       }
 
-      // Apply theme
       function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         
-        // Update active theme button
         document.querySelectorAll('.theme-btn').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.theme === theme);
         });
         
-        // Store preference
         localStorage.setItem('fcoterroba-theme', theme);
       }
 
-      // Setup preference listeners
       function setupPreferenceListeners() {
-        // Language buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const lang = btn.dataset.lang;
@@ -703,7 +649,6 @@ const siteName = 'fcoterroba';
           });
         });
         
-        // Theme buttons
         document.querySelectorAll('.theme-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const theme = btn.dataset.theme;
@@ -711,7 +656,6 @@ const siteName = 'fcoterroba';
           });
         });
         
-        // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
           const storedTheme = localStorage.getItem('fcoterroba-theme');
           if (!storedTheme) {
