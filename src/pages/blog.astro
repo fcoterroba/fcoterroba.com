@@ -7,7 +7,9 @@ const allPosts = await getCollection('blog');
 
 const finalPosts = allPosts;
 
-const categories = [...new Set(finalPosts.map(post => post.data.category))];
+const currentLang = getLanguageFromURL(Astro.url);
+const postsInCurrentLang = finalPosts.filter(post => post.data.lang === currentLang);
+const categories = [...new Set(postsInCurrentLang.map(post => post.data.category))];
 
 const featuredPosts = finalPosts.filter(post => post.data.featured);
 const regularPosts = finalPosts.filter(post => !post.data.featured);
@@ -171,7 +173,7 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const searchInput = document.getElementById('search-input') as HTMLInputElement;
-      const categoryFilters = document.querySelectorAll('.category-filter') as NodeListOf<HTMLButtonElement>;
+      let categoryFilters = document.querySelectorAll('.category-filter') as NodeListOf<HTMLButtonElement>;
       const allPosts = Array.from(document.querySelectorAll('article[data-category]') as NodeListOf<HTMLElement>);
 
       let currentCategory = 'all';
@@ -204,7 +206,49 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
 
       function updateLanguage() {
         currentLang = document.documentElement.lang || 'es';
+        updateCategories();
         filterPosts();
+      }
+
+      function updateCategories() {
+        const categoryContainer = document.querySelector('.flex.flex-wrap.gap-3');
+        if (!categoryContainer) return;
+
+        const postsInLang = Array.from(document.querySelectorAll('article[data-lang]'))
+          .filter(post => post.getAttribute('data-lang') === currentLang);
+
+        const categories = [...new Set(postsInLang.map(post => post.getAttribute('data-category')))];
+        
+        const todosButton = categoryContainer.querySelector('[data-category="all"]');
+        const existingCategoryButtons = categoryContainer.querySelectorAll('.category-filter:not([data-category="all"])');
+        
+        existingCategoryButtons.forEach(btn => btn.remove());
+        
+        categories.forEach(category => {
+          if (category) {
+            const button = document.createElement('button');
+            button.className = 'category-filter px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:bg-brand-green hover:text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm';
+            button.setAttribute('data-category', category);
+            button.textContent = category;
+            
+            button.addEventListener('click', function() {
+              categoryFilters.forEach(f => {
+                f.classList.remove('bg-brand-green', 'text-white', 'shadow-xl');
+                f.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'text-gray-700', 'dark:text-gray-300');
+              });
+              
+              this.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'text-gray-700', 'dark:text-gray-300');
+              this.classList.add('bg-brand-green', 'text-white', 'shadow-xl');
+
+              currentCategory = this.dataset.category || 'all';
+              filterPosts();
+            });
+            
+            categoryContainer.appendChild(button);
+          }
+        });
+        
+        categoryFilters = document.querySelectorAll('.category-filter') as NodeListOf<HTMLButtonElement>;
       }
 
       document.addEventListener('languageChanged', updateLanguage);
@@ -229,6 +273,7 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
         });
       });
 
+      updateCategories();
       filterPosts();
     });
   </script>
