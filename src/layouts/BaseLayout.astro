@@ -88,7 +88,7 @@ const siteName = 'fcoterroba';
           
           <ul class="flex items-center space-x-8">
             <li><a href="/" class="navbar-link" data-es="inicio" data-en="home">inicio</a></li>
-            <li><a href="#portfolio" class="navbar-link" data-es="portfolio" data-en="portfolio">portfolio</a></li>
+            <li><a href="/portfolio" class="navbar-link" data-es="portfolio" data-en="portfolio">portfolio</a></li>
             <li><a href="/blog" class="navbar-link" data-es="blog" data-en="blog">blog</a></li>
             <li><a href="#agradecimientos" class="navbar-link" data-es="agradecimientos" data-en="acknowledgments">agradecimientos</a></li>
             <li><a href="#contacto" class="navbar-link" data-es="contacto" data-en="contact">contacto</a></li>
@@ -275,6 +275,8 @@ const siteName = 'fcoterroba';
       body {
         background-color: var(--bg-primary);
         color: var(--text-primary);
+        overflow-x: hidden;
+        overflow-y: auto;
       }
 
       [data-theme="dark"] {
