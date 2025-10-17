@@ -9,16 +9,16 @@ import experienceData from '../data/experience.json';
   lang="en"
 >
   <div>
-    <section class="py-32 theme-bg">
-      <div class="max-w-7xl mx-auto px-8 lg:px-12">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-6xl font-bold theme-text mb-8" data-es="formación académica" data-en="academic background">
+    <section class="py-20 sm:py-32 theme-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div class="text-center mb-12 sm:mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold theme-text mb-6 sm:mb-8" data-es="formación académica" data-en="academic background">
             academic background
           </h2>
         </div>
 
         <div class="w-full">
-          <div class="bg-gray-500 rounded-3xl p-8 lg:p-12 shadow-xl">
+          <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 education-card" id="education-box">
             <div class="text-center mb-8">
               <div class="w-20 h-20 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-2xl mb-6 flex items-center justify-center mx-auto">
                 <span class="text-3xl">🎓</span>
@@ -33,7 +33,7 @@ import experienceData from '../data/experience.json';
                 i fell in love with computer science at the age of 5. at 16 i studied the fpb of computer science, then the intermediate degree and finally the higher degree in web development. today, slowly, while juggling the dozens of projects i have, i'm getting my computer engineering degree.
               </p>
               
-              <div class="grid md:grid-cols-3 gap-6 mt-8">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div class="text-center p-4 bg-gradient-to-br from-brand-green/5 to-brand-light/10 rounded-xl">
                   <h4 class="font-semibold theme-text mb-2" data-es="fp básica" data-en="basic fp">
                     basic fp
@@ -104,15 +104,15 @@ import experienceData from '../data/experience.json';
 
           <div id="experience-slider" class="experience-slider flex transition-transform duration-1000 ease-in-out">
             {experienceData.experiences.map((experience) => (
-              <div class="w-full flex-shrink-0 px-4">
+            <div class="w-full flex-shrink-0 px-4">
                 <div class={`bg-gradient-to-br ${experience.gradient} dark:${experience.darkGradient} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto`}>
-                  <div class="text-center mb-6">
-                    <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
                       <span class="text-2xl">{experience.icon}</span>
-                    </div>
+                  </div>
                     <h3 class="text-xl font-bold theme-text mb-2" data-es={experience.company} data-en={experience.company}>
                       {experience.company}
-                    </h3>
+                  </h3>
                     <p class="text-sm theme-text-70" data-es={experience.position} data-en={experience.position}>
                       {experience.position}
                     </p>
@@ -122,10 +122,10 @@ import experienceData from '../data/experience.json';
                   </div>
                   <p class="text-sm theme-text-80 mb-6" data-es={experience.description.es} data-en={experience.description.en}>
                     {experience.description.en}
-                  </p>
-                  <div class="flex flex-wrap gap-2 justify-center">
+                </p>
+                <div class="flex flex-wrap gap-2 justify-center">
                     {experience.technologies.map((tech) => (
-                      <img src={tech.icon} alt={tech.name} class="w-8 h-8" />
+                      <img src={tech.icon} alt={tech.name} class="w-8 h-8 tech-icon" />
                     ))}
                   </div>
                 </div>
@@ -137,47 +137,40 @@ import experienceData from '../data/experience.json';
     </section>
   </div>
 
-  <style>
-    /* Force dark mode for all text */
-    [data-theme="dark"] * {
-      color: #ffffff !important;
-    }
-    
-    /* Force black background for education card in dark mode */
-    [data-theme="dark"] .bg-gradient-to-br {
-      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%) !important;
-    }
-    
-    /* Keep green accent color */
-    [data-theme="dark"] .text-brand-green {
-      color: #10b981 !important;
-    }
-    
-    /* Override theme classes */
-    [data-theme="dark"] .theme-text {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-80 {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-70 {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-60 {
-      color: rgba(255, 255, 255, 0.8) !important;
-    }
-    
-    /* Technology icons should be visible in dark mode */
-    [data-theme="dark"] .experience-slider img {
-      filter: brightness(0) invert(1);
-    }
-  </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Debug theme detection
+      console.log('Portfolio page loaded');
+      console.log('Current theme:', document.documentElement.getAttribute('data-theme'));
+      console.log('Education box element:', document.getElementById('education-box'));
+      
+      // Check if dark mode CSS is being applied
+      const educationBox = document.getElementById('education-box');
+      if (educationBox) {
+        const computedStyle = window.getComputedStyle(educationBox);
+        console.log('Education box background color:', computedStyle.backgroundColor);
+        console.log('Education box classes:', educationBox.className);
+      }
+      
+      // Listen for theme changes
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            console.log('Theme changed to:', document.documentElement.getAttribute('data-theme'));
+            const educationBox = document.getElementById('education-box');
+            if (educationBox) {
+              const computedStyle = window.getComputedStyle(educationBox);
+              console.log('Education box background after theme change:', computedStyle.backgroundColor);
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
       const slider = document.getElementById('experience-slider');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
@@ -227,7 +220,7 @@ import experienceData from '../data/experience.json';
 
       function stopAutoSlide() {
         if (autoSlideInterval) {
-          clearInterval(autoSlideInterval);
+        clearInterval(autoSlideInterval);
         }
       }
 
