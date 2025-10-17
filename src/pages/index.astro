@@ -44,28 +44,28 @@ const latestPosts = allPosts
   lang="en"
 >
   <section class="min-h-screen relative overflow-hidden theme-bg">
-    <div id="main-layout" class="relative z-20">
-      <div class="h-[calc(100vh-128px)] flex items-center justify-center">
-        <div class="max-w-7xl mx-auto px-8 lg:px-12 w-full">
-          <div class="flex items-center gap-32 h-[100vh]">
-            <div class="flex-1 flex flex-col justify-center">
-              <h1 class="text-5xl lg:text-7xl font-bold theme-text mb-8 leading-tight" data-es="hola mundo, mi nombre es<br>francisco, <span class='text-brand-green'>fcoterroba</span> en internet" data-en="hello world, my name is<br>francisco, <span class='text-brand-green'>fcoterroba</span> on the internet">
+    <div id="main-layout" class="relative z-10">
+      <div class="h-[calc(100vh-128px)] flex items-center justify-center pt-32 sm:pt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
+          <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-32 min-h-[100vh] py-32 sm:py-24 lg:py-0">
+            <div class="flex-1 flex flex-col justify-center text-center lg:text-left order-2 lg:order-1">
+              <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold theme-text mb-6 lg:mb-8 leading-tight" data-es="hola mundo, mi nombre es<br>francisco, <span class='text-brand-green'>fcoterroba</span> en internet" data-en="hello world, my name is<br>francisco, <span class='text-brand-green'>fcoterroba</span> on the internet">
                 hello world, my name is<br>
                 francisco, <span class="text-brand-green">fcoterroba</span> on the internet
               </h1>
               
-              <div class="mb-12 space-y-3">
-                <p class="text-xl lg:text-2xl theme-text font-bold" data-es="software engineer, escritor y product builder" data-en="software engineer, writer and product builder">
+              <div class="mb-8 lg:mb-12 space-y-3">
+                <p class="text-lg sm:text-xl lg:text-2xl theme-text font-bold" data-es="software engineer, escritor y product builder" data-en="software engineer, writer and product builder">
                   software engineer, writer and product builder
                 </p>
-                <p class="text-lg lg:text-xl theme-text font-medium" data-es="amo programar, escribir y <br>entender el producto detrás del código" data-en="i love programming, writing and <br>understanding the product behind the code">
+                <p class="text-base sm:text-lg lg:text-xl theme-text font-medium" data-es="amo programar, escribir y <br>entender el producto detrás del código" data-en="i love programming, writing and <br>understanding the product behind the code">
                   i love programming, writing and <br>understanding the product behind the code
                 </p>
               </div>
             </div>
             
-            <div class="flex-1 flex items-center justify-end">
-              <div class="relative w-80 aspect-[9/16] rounded-3xl overflow-hidden">
+            <div class="flex-1 flex items-center justify-center lg:justify-end order-1 lg:order-2">
+              <div class="relative w-64 sm:w-80 aspect-[9/16] rounded-3xl overflow-hidden">
                 <img 
                   src="/index_fcoterroba.png" 
                   alt="Francisco Terroba" 
@@ -80,13 +80,13 @@ const latestPosts = allPosts
     </div>
   </section>
 
-  <section class="py-20 bg-gradient-to-br from-brand-light to-brand-green/20">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold theme-text mb-4" data-es="stack tecnológico" data-en="tech stack">
+  <section class="py-16 sm:py-20 bg-gradient-to-br from-brand-light to-brand-green/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div class="text-center mb-12 sm:mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold theme-text mb-4" data-es="stack tecnológico" data-en="tech stack">
           tech stack
         </h2>
-        <p class="text-xl theme-text" data-es="herramientas y tecnologías que uso para crear productos increíbles" data-en="tools and technologies i use to create amazing products">
+        <p class="text-lg sm:text-xl theme-text max-w-3xl mx-auto" data-es="herramientas y tecnologías que uso para crear productos increíbles" data-en="tools and technologies i use to create amazing products">
           tools and technologies i use to create amazing products
         </p>
       </div>
@@ -95,32 +95,32 @@ const latestPosts = allPosts
         <div class="slider-track">
           {technologies.map((tech) => (
             <div class="slider-item">
-              <div class="w-48 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div class="w-40 sm:w-48 bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <div class="text-center">
-                  <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <div class="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <img 
                       src={tech.logo} 
                       alt={tech.name}
-                      class={`w-12 h-12 object-contain ${tech.name === 'MCP' ? 'invert' : ''}`}
+                      class={`w-8 h-8 sm:w-12 sm:h-12 object-contain ${tech.name === 'MCP' ? 'invert' : ''}`}
                     />
                   </div>
-                  <h3 class="text-lg font-bold text-brand-gray">{tech.name}</h3>
+                  <h3 class="text-sm sm:text-lg font-bold text-brand-gray">{tech.name}</h3>
                 </div>
               </div>
             </div>
           ))}
           {technologies.map((tech) => (
             <div class="slider-item">
-              <div class="w-48 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div class="w-40 sm:w-48 bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <div class="text-center">
-                  <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <div class="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <img 
                       src={tech.logo} 
                       alt={tech.name}
-                      class={`w-12 h-12 object-contain ${tech.name === 'MCP' ? 'invert' : ''}`}
+                      class={`w-8 h-8 sm:w-12 sm:h-12 object-contain ${tech.name === 'MCP' ? 'invert' : ''}`}
                     />
                   </div>
-                  <h3 class="text-lg font-bold text-brand-gray">{tech.name}</h3>
+                  <h3 class="text-sm sm:text-lg font-bold text-brand-gray">{tech.name}</h3>
                 </div>
               </div>
             </div>
@@ -130,27 +130,27 @@ const latestPosts = allPosts
     </div>
   </section>
 
-  <section class="py-32 theme-bg">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
+  <section class="py-20 sm:py-32 theme-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
       <div class="text-center">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl lg:text-6xl font-bold theme-text mb-8" data-es="más que un programador" data-en="more than a programmer">
+          <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold theme-text mb-6 sm:mb-8" data-es="más que un programador" data-en="more than a programmer">
             more than a programmer
           </h2>
-          <p class="text-xl lg:text-2xl theme-text-80 leading-relaxed mb-12" data-es="no soy el típico desarrollador que programa en silencio. soy aquel que entiende tu negocio, se comunica contigo en cada paso y construye soluciones que realmente funcionan. además de código, escribo sobre el futuro de la inteligencia artificial." data-en="i'm not the typical developer who codes in silence. i'm the one who understands your business, communicates with you at every step and builds solutions that actually work. beyond code, i write about the future of artificial intelligence.">
+          <p class="text-lg sm:text-xl lg:text-2xl theme-text-80 leading-relaxed mb-8 sm:mb-12" data-es="no soy el típico desarrollador que programa en silencio. soy aquel que entiende tu negocio, se comunica contigo en cada paso y construye soluciones que realmente funcionan. además de código, escribo sobre el futuro de la inteligencia artificial." data-en="i'm not the typical developer who codes in silence. i'm the one who understands your business, communicates with you at every step and builds solutions that actually work. beyond code, i write about the future of artificial intelligence.">
             i'm not the typical developer who codes in silence. i'm the one who understands your business, communicates with you at every step and builds solutions that actually work. beyond code, i write about the future of artificial intelligence.
           </p>
-          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <a 
               href="/portfolio" 
-              class="bg-brand-green text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              class="w-full sm:w-auto bg-brand-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <span data-es="ver mi portfolio" data-en="view my portfolio">view my portfolio</span>
             </a>
             <a 
               href="https://amzn.to/48A8qbj" 
               target="_blank"
-              class="bg-transparent border-2 border-brand-green text-brand-green px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-green hover:text-white transition-all duration-300 transform hover:scale-105"
+              class="w-full sm:w-auto bg-transparent border-2 border-brand-green text-brand-green px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green hover:text-white transition-all duration-300 transform hover:scale-105"
             >
               <span data-es="comprar mi libro" data-en="buy my book">buy my book</span>
             </a>
@@ -160,22 +160,22 @@ const latestPosts = allPosts
     </div>
   </section>
 
-  <section class="py-32 bg-gradient-to-br from-brand-light to-brand-green/20">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-6xl font-bold theme-text mb-8" data-es="mi blog" data-en="my blog">
+  <section class="py-20 sm:py-32 bg-gradient-to-br from-brand-light to-brand-green/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div class="text-center mb-12 sm:mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold theme-text mb-6 sm:mb-8" data-es="mi blog" data-en="my blog">
           my blog
         </h2>
-        <p class="text-xl theme-text-70 max-w-2xl mx-auto" data-es="pensamientos sobre tecnología, desarrollo y el futuro de la programación" data-en="thoughts on technology, development and the future of programming">
+        <p class="text-lg sm:text-xl theme-text-70 max-w-2xl mx-auto" data-es="pensamientos sobre tecnología, desarrollo y el futuro de la programación" data-en="thoughts on technology, development and the future of programming">
           thoughts on technology, development and the future of programming
         </p>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-8 mb-12" id="blog-posts-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12" id="blog-posts-container">
         {latestPosts.map((post) => (
-          <article class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 blog-post" data-lang={post.data.lang} data-base-slug={post.slug.replace(/-es$|-en$/, '')}>
+          <article class="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 blog-post" data-lang={post.data.lang} data-base-slug={post.slug.replace(/-es$|-en$/, '')}>
             <a href={`/blog/${post.slug}`} class="block">
-              <div class="w-full h-48 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+              <div class="w-full h-40 sm:h-48 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-3 sm:mb-4 flex items-center justify-center overflow-hidden">
                 {post.data.coverImage ? (
                   <img 
                     src={post.data.coverImage} 
@@ -183,22 +183,22 @@ const latestPosts = allPosts
                     class="w-full h-full object-cover"
                   />
                 ) : (
-                  <span class="text-4xl">
+                  <span class="text-3xl sm:text-4xl">
                     {post.data.category === 'desarrollo personal' || post.data.category === 'personal development' ? '💡' :
                      post.data.category === 'tecnología' || post.data.category === 'technology' ? '🤖' :
                      post.data.category === 'productividad' || post.data.category === 'productivity' ? '🚀' : '📝'}
                   </span>
                 )}
               </div>
-              <h3 class="text-xl font-bold text-brand-gray mb-2">{post.data.title}</h3>
-              <p class="text-brand-gray/70 text-sm mb-4">
+              <h3 class="text-lg sm:text-xl font-bold text-brand-gray mb-2 line-clamp-2">{post.data.title}</h3>
+              <p class="text-brand-gray/70 text-xs sm:text-sm mb-3 sm:mb-4">
                 {new Date(post.data.date).toLocaleDateString('es-ES', { 
                   day: '2-digit', 
                   month: '2-digit', 
                   year: 'numeric' 
                 })}
               </p>
-              <p class="text-brand-gray/80">{post.data.excerpt}</p>
+              <p class="text-brand-gray/80 text-sm sm:text-base line-clamp-3">{post.data.excerpt}</p>
             </a>
           </article>
         ))}
@@ -207,30 +207,30 @@ const latestPosts = allPosts
       <div class="text-center">
         <a 
           href="/blog" 
-          class="inline-block bg-brand-green text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-6"
+          class="inline-block bg-brand-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4 sm:mb-6"
         >
           <span data-es="ver todos los posts" data-en="view all posts">view all posts</span>
         </a>
-        <p class="theme-text-60 text-sm" data-es="¿buscas el resto de posts que había en la web? los iré subiendo poco a poco" data-en="looking for the rest of the posts that were on the website? i'll be uploading them little by little">
+        <p class="theme-text-60 text-xs sm:text-sm max-w-2xl mx-auto" data-es="¿buscas el resto de posts que había en la web? los iré subiendo poco a poco" data-en="looking for the rest of the posts that were on the website? i'll be uploading them little by little">
           looking for the rest of the posts that were on the website? i'll be uploading them little by little
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-32 theme-bg">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
+  <section class="py-20 sm:py-32 theme-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
       <div class="text-center">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl lg:text-6xl font-bold theme-text mb-8" data-es="agradecimientos" data-en="acknowledgments">
+          <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold theme-text mb-6 sm:mb-8" data-es="agradecimientos" data-en="acknowledgments">
             acknowledgments
           </h2>
-          <p class="text-xl lg:text-2xl theme-text-80 leading-relaxed mb-12" data-es="detrás de cada línea de código hay una red de personas que me han inspirado, enseñado y apoyado. a mis mentores, compañeros, clientes y a todos aquellos que creyeron en mis ideas cuando yo mismo dudaba. este éxito es también vuestro." data-en="behind every line of code there's a network of people who have inspired, taught and supported me. to my mentors, colleagues, clients and all those who believed in my ideas when i myself doubted. this success is also yours.">
+          <p class="text-lg sm:text-xl lg:text-2xl theme-text-80 leading-relaxed mb-8 sm:mb-12" data-es="detrás de cada línea de código hay una red de personas que me han inspirado, enseñado y apoyado. a mis mentores, compañeros, clientes y a todos aquellos que creyeron en mis ideas cuando yo mismo dudaba. este éxito es también vuestro." data-en="behind every line of code there's a network of people who have inspired, taught and supported me. to my mentors, colleagues, clients and all those who believed in my ideas when i myself doubted. this success is also yours.">
             behind every line of code there's a network of people who have inspired, taught and supported me. to my mentors, colleagues, clients and all those who believed in my ideas when i myself doubted. this success is also yours.
           </p>
           <a 
             href="/agradecimientos" 
-            class="inline-block bg-brand-green text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            class="inline-block bg-brand-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <span data-es="ver agradecimientos completos" data-en="view full acknowledgments">view full acknowledgments</span>
           </a>
@@ -239,19 +239,19 @@ const latestPosts = allPosts
     </div>
   </section>
 
-  <section class="py-32 bg-gradient-to-br from-brand-light to-brand-green/20">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
+  <section class="py-20 sm:py-32 bg-gradient-to-br from-brand-light to-brand-green/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
       <div class="text-center">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl lg:text-6xl font-bold theme-text mb-8" data-es="contacto" data-en="contact">
+          <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold theme-text mb-6 sm:mb-8" data-es="contacto" data-en="contact">
             contact
           </h2>
-          <p class="text-xl lg:text-2xl theme-text-80 leading-relaxed mb-12" data-es="si tienes alguna pregunta, sugerencia o simplemente quieres charlar sobre tecnología, no dudes en contactarme." data-en="if you have any questions, suggestions or simply want to chat about technology, don't hesitate to contact me.">
+          <p class="text-lg sm:text-xl lg:text-2xl theme-text-80 leading-relaxed mb-8 sm:mb-12" data-es="si tienes alguna pregunta, sugerencia o simplemente quieres charlar sobre tecnología, no dudes en contactarme." data-en="if you have any questions, suggestions or simply want to chat about technology, don't hesitate to contact me.">
             if you have any questions, suggestions or simply want to chat about technology, don't hesitate to contact me.
           </p>
           <a 
             href="/contacto" 
-            class="inline-block bg-brand-green text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            class="inline-block bg-brand-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <span data-es="empezar conversación" data-en="start conversation">start conversation</span>
           </a>
@@ -306,6 +306,20 @@ const latestPosts = allPosts
 
   .blog-post.visible {
     display: block;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
 
