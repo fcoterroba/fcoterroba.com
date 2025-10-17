@@ -16,6 +16,10 @@
   body.animation-complete {
     overflow: auto;
   }
+  
+  .font-logo {
+    font-family: 'Titillium Web', sans-serif;
+  }
 }
 
 @layer components {
@@ -48,4 +52,18 @@
 
 [data-theme="dark"] #education-box {
   background-color: #111827 !important;
+}
+
+[data-theme="dark"] article[data-category] {
+  background-color: #111827 !important;
+}
+
+[data-theme="dark"] .category-filter {
+  background-color: #111827 !important;
+  color: #d1d5db !important;
+}
+
+[data-theme="dark"] #search-input {
+  background-color: #111827 !important;
+  color: #ffffff !important;
 }
