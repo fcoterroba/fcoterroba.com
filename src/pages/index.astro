@@ -2,31 +2,31 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const technologies = [
-  { name: 'PHP', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-  { name: 'Laravel', logo: 'https://raw.githubusercontent.com/devicons/devicon/refs/tags/v2.17.0/icons/laravel/laravel-original.svg' },
-  { name: 'Symfony', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg' },
-  { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'FastAPI', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
-  { name: 'Django', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg' },
-  { name: 'Flask', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' },
-  { name: 'Web Scraping', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Web_Scraper_logo.svg' },
-  { name: 'Playwright', logo: 'https://playwright.dev/img/playwright-logo.svg' },
-  { name: 'BeautifulSoup', logo: 'https://app.matatika.com/assets/images/datasource/tap-beautifulsoup.png' },
-  { name: 'Vue.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
-  { name: 'HTML', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-  { name: 'CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Swift', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg' },
-  { name: 'React Native', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-  { name: 'MySQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  { name: 'NoSQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-  { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
-  { name: 'Notion', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png' },
-  { name: 'MCP', logo: 'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/mcp.png' },
-  { name: 'IA', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
-  { name: 'Copywriting', logo: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png' }
+  { name: 'php', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+  { name: 'laravel', logo: 'https://raw.githubusercontent.com/devicons/devicon/refs/tags/v2.17.0/icons/laravel/laravel-original.svg' },
+  { name: 'symfony', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg' },
+  { name: 'python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'fastapi', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
+  { name: 'django', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg' },
+  { name: 'flask', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' },
+  { name: 'web scraping', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Web_Scraper_logo.svg' },
+  { name: 'playwright', logo: 'https://playwright.dev/img/playwright-logo.svg' },
+  { name: 'beautifulsoup', logo: 'https://app.matatika.com/assets/images/datasource/tap-beautifulsoup.png' },
+  { name: 'vue.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
+  { name: 'html', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { name: 'css', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { name: 'javascript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'react', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'swift', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg' },
+  { name: 'react native', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'mysql', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'nosql', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+  { name: 'notion', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png' },
+  { name: 'mcp', logo: 'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/mcp.png' },
+  { name: 'ia', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
+  { name: 'copywriting', logo: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png' }
 ];
 ---
 
@@ -48,10 +48,10 @@ const technologies = [
               
               <div class="mb-12 space-y-3">
                 <p class="text-xl lg:text-2xl text-brand-gray font-bold">
-                  software engineer, escritor y product builder.
+                  software engineer, escritor y product builder
                 </p>
                 <p class="text-lg lg:text-xl text-brand-gray font-medium">
-                  amo programar, escribir y entender el producto detrás del código.
+                  amo programar, escribir y <br>entender el producto detrás del código
                 </p>
               </div>
             </div>
