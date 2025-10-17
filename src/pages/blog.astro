@@ -219,7 +219,33 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
 
         const categories = [...new Set(postsInLang.map(post => post.getAttribute('data-category')))];
         
-        const todosButton = categoryContainer.querySelector('[data-category="all"]');
+        const selectedCategory = currentCategory;
+        
+        const categoryMap: Record<string, string> = {
+          'desarrollo personal': 'personal development',
+          'personal development': 'desarrollo personal',
+          'tecnología': 'technology',
+          'technology': 'tecnología',
+          'productividad': 'productivity',
+          'productivity': 'productividad'
+        };
+        
+        let equivalentCategory = selectedCategory;
+        if (selectedCategory !== 'all' && categoryMap[selectedCategory]) {
+          equivalentCategory = categoryMap[selectedCategory];
+        }
+
+        const todosButton = categoryContainer.querySelector('[data-category="all"]') as HTMLButtonElement;
+        if (todosButton) {
+          if (equivalentCategory === 'all') {
+            todosButton.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'text-gray-700', 'dark:text-gray-300');
+            todosButton.classList.add('bg-brand-green', 'text-white', 'shadow-xl');
+          } else {
+            todosButton.classList.remove('bg-brand-green', 'text-white', 'shadow-xl');
+            todosButton.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'text-gray-700', 'dark:text-gray-300');
+          }
+        }
+        
         const existingCategoryButtons = categoryContainer.querySelectorAll('.category-filter:not([data-category="all"])');
         
         existingCategoryButtons.forEach(btn => btn.remove());
@@ -227,7 +253,12 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
         categories.forEach(category => {
           if (category) {
             const button = document.createElement('button');
-            button.className = 'category-filter px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:bg-brand-green hover:text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm';
+            const isSelected = equivalentCategory === category;
+            button.className = `category-filter px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
+              isSelected 
+                ? 'bg-brand-green text-white shadow-xl' 
+                : 'bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:bg-brand-green hover:text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm'
+            }`;
             button.setAttribute('data-category', category);
             button.textContent = category;
             
@@ -247,6 +278,12 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
             categoryContainer.appendChild(button);
           }
         });
+
+        currentCategory = equivalentCategory;
+
+        if (equivalentCategory !== 'all' && !categories.includes(equivalentCategory)) {
+          currentCategory = 'all';
+        }
         
         categoryFilters = document.querySelectorAll('.category-filter') as NodeListOf<HTMLButtonElement>;
       }
