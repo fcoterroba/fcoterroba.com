@@ -1,8 +1,14 @@
 export function getLanguageFromURL(url: URL): string {
-  const pathname = url.pathname;
+  const langParam = url.searchParams.get('lang');
+  if (langParam === 'en' || langParam === 'es') {
+    return langParam;
+  }
 
-  if (pathname.startsWith('/es/')) return 'es';
-  if (pathname.startsWith('/en/')) return 'en';
+  if (url.pathname.startsWith('/en/')) return 'en';
+  if (url.pathname.startsWith('/es/')) return 'es';
+  
+  if (url.pathname.startsWith('/en')) return 'en';
+  if (url.pathname.startsWith('/es')) return 'es';
 
   return 'en';
 }

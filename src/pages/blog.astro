@@ -4,30 +4,29 @@ import { getCollection } from 'astro:content';
 import { getLanguageFromURL } from '../utils/i18n';
 
 const allPosts = await getCollection('blog');
-const currentLang = getLanguageFromURL(Astro.url);
 
-const posts = allPosts.filter(post => post.data.lang === currentLang);
+const finalPosts = allPosts;
 
-const categories = [...new Set(posts.map(post => post.data.category))];
+const categories = [...new Set(finalPosts.map(post => post.data.category))];
 
-const featuredPosts = posts.filter(post => post.data.featured);
-const regularPosts = posts.filter(post => !post.data.featured);
+const featuredPosts = finalPosts.filter(post => post.data.featured);
+const regularPosts = finalPosts.filter(post => !post.data.featured);
 ---
 
 <BaseLayout 
   title="blog - fcoterroba"
   description="stay updated with my latest projects, ideas, and writings on the internet."
-  lang={currentLang}
+  lang="es"
 >
   <div>
     <section class="pt-32 pb-16 theme-bg">
       <div class="max-w-6xl mx-auto px-8 lg:px-12">
         <div class="text-center mb-16">
           <h1 class="text-6xl lg:text-8xl font-bold theme-text mb-8" data-es="blog" data-en="blog">
-            {currentLang === 'es' ? 'blog' : 'blog'}
+            blog
           </h1>
           <p class="text-2xl lg:text-3xl theme-text-70 max-w-4xl mx-auto leading-relaxed" data-es="pensamientos, ideas y experiencias sobre tecnología y desarrollo" data-en="thoughts, ideas and experiences about technology and development">
-            {currentLang === 'es' ? 'pensamientos, ideas y experiencias sobre tecnología y desarrollo' : 'thoughts, ideas and experiences about technology and development'}
+            pensamientos, ideas y experiencias sobre tecnología y desarrollo
           </p>
         </div>
       </div>
@@ -41,7 +40,9 @@ const regularPosts = posts.filter(post => !post.data.featured);
               <input 
                 type="text" 
                 id="search-input"
-                placeholder={currentLang === 'es' ? 'buscar posts...' : 'search posts...'}
+                placeholder="buscar posts..."
+                data-es-placeholder="buscar posts..."
+                data-en-placeholder="search posts..."
                 class="w-full px-6 py-4 pl-14 pr-6 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-3xl focus:outline-none focus:ring-4 focus:ring-brand-green/20 focus:border-brand-green transition-all duration-300 text-lg backdrop-blur-sm"
               />
               <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
@@ -57,7 +58,7 @@ const regularPosts = posts.filter(post => !post.data.featured);
               class="category-filter px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-green text-white shadow-lg hover:shadow-xl hover:scale-105"
               data-category="all"
             >
-              {currentLang === 'es' ? 'todos' : 'all'}
+              todos
             </button>
             {categories.map((category) => (
               <button 
@@ -79,37 +80,48 @@ const regularPosts = posts.filter(post => !post.data.featured);
             <span class="text-2xl">📝</span>
           </div>
           <h2 class="text-3xl font-bold theme-text" data-es="todos los posts" data-en="all posts">
-            {currentLang === 'es' ? 'todos los posts' : 'all posts'}
+            todos los posts
           </h2>
         </div>
         <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <article class="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 backdrop-blur-sm" data-category={post.data.category}>
-              <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 bg-brand-green/20 text-brand-green text-xs font-semibold rounded-full">
-                  {post.data.category}
-                </span>
-                <span class="text-sm theme-text-60 font-medium">{post.data.readTime}</span>
-              </div>
-              <h3 class="text-xl font-bold theme-text mb-3 group-hover:text-brand-green transition-colors leading-tight">
-                {post.data.title}
-              </h3>
-              <p class="text-sm theme-text-70 mb-4 leading-relaxed">
-                {post.data.excerpt}
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-sm theme-text-60 font-medium">{new Date(post.data.date).toLocaleDateString()}</span>
-                <a 
-                  href={`/blog/${post.slug}`}
-                  class="text-brand-green font-semibold hover:underline transition-colors flex items-center gap-1"
-                >
-                  <span data-es="leer más" data-en="read more">
-                    {currentLang === 'es' ? 'leer más' : 'read more'}
+          {finalPosts.map((post) => (
+            <article class="group bg-white/90 dark:bg-gray-900/90 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 backdrop-blur-sm" data-category={post.data.category} data-lang={post.data.lang}>
+              {/* Post Image */}
+              {post.data.coverImage && (
+                <div class="aspect-video overflow-hidden">
+                  <img 
+                    src={post.data.coverImage} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              )}
+              
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="px-3 py-1 bg-brand-green/20 text-brand-green text-xs font-semibold rounded-full">
+                    {post.data.category}
                   </span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+                  <span class="text-sm theme-text-60 font-medium">{post.data.readTime}</span>
+                </div>
+                <h3 class="text-xl font-bold theme-text mb-3 group-hover:text-brand-green transition-colors leading-tight">
+                  {post.data.title}
+                </h3>
+                <p class="text-sm theme-text-70 mb-4 leading-relaxed">
+                  {post.data.excerpt}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm theme-text-60 font-medium">{new Date(post.data.date).toLocaleDateString()}</span>
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="text-brand-green font-semibold hover:underline transition-colors flex items-center gap-1"
+                  >
+                    <span data-es="leer más" data-en="read more">leer más</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </article>
           ))}
@@ -164,6 +176,7 @@ const regularPosts = posts.filter(post => !post.data.featured);
 
       let currentCategory = 'all';
       let currentSearch = '';
+      let currentLang = document.documentElement.lang || 'es';
 
       function filterPosts() {
         allPosts.forEach(post => {
@@ -172,12 +185,15 @@ const regularPosts = posts.filter(post => !post.data.featured);
           const postExcerpt = post.querySelector('p')?.textContent?.toLowerCase() || '';
           const searchTerm = currentSearch.toLowerCase();
 
+          const postLang = post.dataset.lang || 'es';
+          const matchesLanguage = postLang === currentLang;
+
           const matchesCategory = currentCategory === 'all' || postCategory === currentCategory;
           const matchesSearch = searchTerm === '' || 
             postTitle.includes(searchTerm) || 
             postExcerpt.includes(searchTerm);
 
-          if (matchesCategory && matchesSearch) {
+          if (matchesLanguage && matchesCategory && matchesSearch) {
             post.style.display = 'block';
             post.style.animation = 'fadeIn 0.3s ease-in-out';
           } else {
@@ -185,6 +201,13 @@ const regularPosts = posts.filter(post => !post.data.featured);
           }
         });
       }
+
+      function updateLanguage() {
+        currentLang = document.documentElement.lang || 'es';
+        filterPosts();
+      }
+
+      document.addEventListener('languageChanged', updateLanguage);
 
       searchInput?.addEventListener('input', function() {
         currentSearch = this.value;
@@ -205,6 +228,8 @@ const regularPosts = posts.filter(post => !post.data.featured);
           filterPosts();
         });
       });
+
+      filterPosts();
     });
   </script>
 

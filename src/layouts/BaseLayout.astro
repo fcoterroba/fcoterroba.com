@@ -612,32 +612,37 @@ const siteName = 'fcoterroba';
         setupPreferenceListeners();
       }
 
-      function applyLanguage(lang) {
+      function applyLanguage(lang: string) {
         document.documentElement.lang = lang;
         
         document.querySelectorAll('[data-es][data-en]').forEach(element => {
-          const text = element.dataset[lang];
+          const htmlElement = element as HTMLElement;
+          const text = htmlElement.dataset[lang];
           if (text) {
             if (text.includes('<span') || text.includes('<br')) {
-              element.innerHTML = text;
+              htmlElement.innerHTML = text;
             } else {
-              element.textContent = text;
+              htmlElement.textContent = text;
             }
           }
         });
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.dataset.lang === lang);
+          const button = btn as HTMLElement;
+          button.classList.toggle('active', button.dataset.lang === lang);
         });
         
         localStorage.setItem('fcoterroba-lang', lang);
+
+        document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
       }
 
-      function applyTheme(theme) {
+      function applyTheme(theme: string) {
         document.documentElement.setAttribute('data-theme', theme);
         
         document.querySelectorAll('.theme-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.dataset.theme === theme);
+          const button = btn as HTMLElement;
+          button.classList.toggle('active', button.dataset.theme === theme);
         });
         
         localStorage.setItem('fcoterroba-theme', theme);
@@ -646,15 +651,17 @@ const siteName = 'fcoterroba';
       function setupPreferenceListeners() {
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.addEventListener('click', () => {
-            const lang = btn.dataset.lang;
-            applyLanguage(lang);
+            const button = btn as HTMLElement;
+            const lang = button.dataset.lang;
+            if (lang) applyLanguage(lang);
           });
         });
         
         document.querySelectorAll('.theme-btn').forEach(btn => {
           btn.addEventListener('click', () => {
-            const theme = btn.dataset.theme;
-            applyTheme(theme);
+            const button = btn as HTMLElement;
+            const theme = button.dataset.theme;
+            if (theme) applyTheme(theme);
           });
         });
         
