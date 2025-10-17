@@ -73,24 +73,24 @@ const siteName = 'fcoterroba';
     </script>
   </head>
   <body class="bg-white dark:bg-dark-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
-    <nav class="fixed top-0 left-0 right-0 z-30 bg-white dark:bg-dark-900" id="navbar">
-      <div class="max-w-7xl mx-auto px-8 lg:px-12">
-        <div class="flex items-center justify-between h-20">
-          <div class="flex items-center space-x-4">
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-7xl px-8 lg:px-12" id="navbar">
+      <div class="bg-white/95 dark:bg-dark-900/95 backdrop-blur-md rounded-full px-8 py-4 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
             <img 
               src="/isologo.svg" 
               alt="fcoterroba Logo" 
-              class="h-8 w-auto"
+              class="h-6 w-auto"
             />
-            <span class="text-brand-gray dark:text-white text-xl font-logo font-semibold">fcoterroba</span>
+            <span class="text-brand-gray dark:text-white text-lg font-logo font-semibold">fcoterroba</span>
           </div>
           
           <ul class="flex items-center space-x-8">
-            <li><a href="/" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">inicio</a></li>
-            <li><a href="#portfolio" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">portfolio</a></li>
-            <li><a href="/blog" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">blog</a></li>
-            <li><a href="#agradecimientos" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">agradecimientos</a></li>
-            <li><a href="#contacto" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors">contacto</a></li>
+            <li><a href="/" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors text-sm">inicio</a></li>
+            <li><a href="#portfolio" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors text-sm">portfolio</a></li>
+            <li><a href="/blog" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors text-sm">blog</a></li>
+            <li><a href="#agradecimientos" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors text-sm">agradecimientos</a></li>
+            <li><a href="#contacto" class="text-brand-gray dark:text-white font-normal hover:text-brand-green transition-colors text-sm">contacto</a></li>
           </ul>
         </div>
       </div>
@@ -131,7 +131,7 @@ const siteName = 'fcoterroba';
     </a>
 
     <!-- Main Content -->
-    <main id="main-content" class="pt-20">
+    <main id="main-content" class="pt-8">
       <slot />
     </main>
 
