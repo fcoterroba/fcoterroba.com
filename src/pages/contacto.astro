@@ -114,40 +114,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <style>
-    [data-theme="dark"] * {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-80 {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-70 {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .theme-text-60 {
-      color: rgba(255, 255, 255, 0.8) !important;
-    }
 
     .transition-all {
       transition: all 0.3s ease;
     }
-
-    .hover\:scale-105:hover {
-      transform: scale(1.05);
-    }
-
-    .duration-300 {
-      transition-duration: 300ms;
-    }
-
-    .duration-500 {
-      transition-duration: 500ms;
-    }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactCards = document.querySelectorAll('.bg-gradient-to-br');
+      if (contactCards.length > 0) {
+        contactCards.forEach((card) => {
+          const description = card.querySelector('p');
+          if (description) {
+          }
+        });
+      }
+      
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            const contactCards = document.querySelectorAll('.bg-gradient-to-br');
+            if (contactCards.length > 0) {
+              contactCards.forEach((card) => {
+                const description = card.querySelector('p');
+                if (description) {
+                  description.style.color = document.documentElement.getAttribute('data-theme') === 'dark' ? '#d1d5db' : '#000000';
+                }
+              });
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+    });
+  </script>
 </BaseLayout>
