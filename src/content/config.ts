@@ -5,11 +5,18 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.coerce.date(),
-    author: z.string(),
+    excerpt: z.string(),
+    category: z.string(),
     tags: z.array(z.string()),
-    lang: z.enum(['es', 'en']),
+    author: z.string(),
+    date: z.string(),
+    readTime: z.string(),
+    featured: z.boolean().optional(),
+    coverImage: z.string().optional(),
+    lang: z.string(),
   }),
 });
 
-export const collections = { blog };
+export const collections = {
+  blog,
+};
