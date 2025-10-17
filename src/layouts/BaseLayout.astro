@@ -81,7 +81,7 @@ const siteName = 'fcoterroba';
             <img 
               src="/isologo.svg" 
               alt="fcoterroba Logo" 
-              class="h-6 w-auto"
+              class="h-6 w-auto navbar-logo"
             />
             <span class="navbar-text text-lg font-logo font-semibold">fcoterroba</span>
           </div>
@@ -498,6 +498,10 @@ const siteName = 'fcoterroba';
 
       [data-theme="dark"] .text-brand-gray\/60 {
         color: var(--text-brand-gray-60) !important;
+      }
+
+      [data-theme="dark"] .navbar-logo {
+        filter: invert(1);
       }
 
       [data-theme="dark"] * {
