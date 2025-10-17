@@ -158,7 +158,7 @@ const siteName = 'fcoterroba';
               <img 
                 src="/isologo.svg" 
                 alt="fcoterroba Logo" 
-                class="h-8 w-auto"
+                class="h-8 w-auto invert"
               />
               <span class="footer-title text-2xl font-logo font-bold">fcoterroba</span>
             </div>
@@ -603,17 +603,59 @@ const siteName = 'fcoterroba';
         const browserLang = navigator.language.startsWith('es') ? 'es' : 'en';
         
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const currentPath = window.location.pathname;
+        const isBlogPost = currentPath.startsWith('/blog/') && currentPath !== '/blog';
         
-        const storedLang = localStorage.getItem('fcoterroba-lang') || browserLang;
+        if (!isBlogPost) {
+          const storedLang = localStorage.getItem('fcoterroba-lang') || browserLang;
+          applyLanguage(storedLang);
+        } else {
+          const currentSlug = currentPath.replace('/blog/', '');
+          const postLang = currentSlug.endsWith('-es') ? 'es' : 'en';
+          updateLanguageUI(postLang);
+        }
+        
         const storedTheme = localStorage.getItem('fcoterroba-theme') || (prefersDark ? 'dark' : 'light');
-        
-        applyLanguage(storedLang);
         applyTheme(storedTheme);
         setupPreferenceListeners();
       }
 
+      function updateLanguageUI(lang: string) {
+        document.documentElement.lang = lang;
+        
+        document.querySelectorAll('[data-es][data-en]').forEach(element => {
+          const htmlElement = element as HTMLElement;
+          const text = htmlElement.dataset[lang];
+          if (text) {
+            if (text.includes('<span') || text.includes('<br')) {
+              htmlElement.innerHTML = text;
+            } else {
+              htmlElement.textContent = text;
+            }
+          }
+        });
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          const button = btn as HTMLElement;
+          button.classList.toggle('active', button.dataset.lang === lang);
+        });
+      }
+
       function applyLanguage(lang: string) {
         document.documentElement.lang = lang;
+
+        const currentPath = window.location.pathname;
+        if (currentPath.startsWith('/blog/') && currentPath !== '/blog') {
+          const currentSlug = currentPath.replace('/blog/', '');
+          const baseSlug = currentSlug.replace(/-es$|-en$/, '');
+          const newSlug = `${baseSlug}-${lang}`;
+
+          if (currentSlug !== newSlug) {
+            window.location.href = `/blog/${newSlug}`;
+            return;
+          }
+        }
         
         document.querySelectorAll('[data-es][data-en]').forEach(element => {
           const htmlElement = element as HTMLElement;

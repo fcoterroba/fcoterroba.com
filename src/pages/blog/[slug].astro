@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getLanguageFromURL } from '../../utils/i18n';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const currentLang = getLanguageFromURL(Astro.url);
+const { Content } = await post.render();
+
+const allPosts = await getCollection('blog');
+const baseSlug = post.slug.replace(/-es$|-en$/, '');
+const equivalentPost = allPosts.find(p => {
+  const otherBaseSlug = (p as any).slug.replace(/-es$|-en$/, '');
+  return otherBaseSlug === baseSlug && p.data.lang !== post.data.lang;
+});
+---
+
+<BaseLayout 
+  title={`${post.data.title} - fcoterroba blog`}
+  description={post.data.description}
+  lang={post.data.lang}
+>
+  <div>
+    <section class="pt-32 pb-16 theme-bg">
+      <div class="max-w-5xl mx-auto px-8 lg:px-12">
+        <div class="text-center mb-16">
+          <div class="flex items-center justify-center gap-4 mb-8">
+            <span class="text-sm theme-text-60 font-medium">{post.data.readTime}</span>
+            <span class="text-sm theme-text-60">•</span>
+            <span class="px-6 py-3 bg-brand-green text-white text-sm font-semibold rounded-full shadow-lg">
+              {post.data.category}
+            </span>
+            <span class="text-sm theme-text-60">•</span>
+            <span class="text-sm theme-text-60">{new Date(post.data.date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+            {equivalentPost && (
+              <>
+                <span class="text-sm theme-text-60">•</span>
+                <a 
+                  href={`/blog/${equivalentPost.slug}`}
+                  class="px-4 py-2 bg-white/10 dark:bg-gray-800/10 rounded-xl font-semibold transition-all duration-300 hover:bg-brand-green hover:text-white text-sm"
+                >
+                  {post.data.lang === 'es' ? 'EN' : 'ES'}
+                </a>
+              </>
+            )}
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-bold theme-text mb-8 leading-tight">
+            {post.data.title}
+          </h1>
+          <p class="text-2xl theme-text-70 leading-relaxed max-w-4xl mx-auto">
+            {post.data.description}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <article class="py-16 bg-gradient-to-br from-brand-light/5 to-brand-green/5">
+      <div class="max-w-4xl mx-auto px-8 lg:px-12">
+        <div class="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 lg:p-12 shadow-2xl backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <div class="prose prose-lg max-w-none theme-text leading-relaxed">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="py-8 theme-bg">
+      <div class="max-w-4xl mx-auto px-8 lg:px-12">
+        <div class="flex flex-wrap gap-3 justify-center">
+          {post.data.tags.map((tag: string) => (
+            <span class="px-4 py-2 bg-brand-green/10 text-brand-green text-sm font-medium rounded-full border border-brand-green/20">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 theme-bg">
+      <div class="max-w-4xl mx-auto px-8 lg:px-12 text-center">
+        <a 
+          href="/blog"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-brand-green text-white rounded-3xl font-semibold hover:bg-brand-green/90 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>{post.data.lang === 'es' ? 'volver al blog' : 'back to blog'}</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    [data-theme="dark"] * {
+      color: #ffffff !important;
+    }
+    
+    [data-theme="dark"] .theme-text {
+      color: #ffffff !important;
+    }
+    
+    [data-theme="dark"] .theme-text-70 {
+      color: #ffffff !important;
+    }
+    
+    [data-theme="dark"] .theme-text-60 {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .prose {
+      color: var(--theme-text);
+    }
+
+    .prose h1 {
+      @apply text-4xl font-bold text-gray-900 dark:text-white mt-8 mb-6 leading-tight;
+    }
+
+    .prose h2 {
+      @apply text-3xl font-bold text-brand-green mt-8 mb-4 leading-tight border-b-2 border-brand-green pb-2;
+    }
+
+    .prose h3 {
+      @apply text-2xl font-semibold text-brand-green mt-6 mb-3 leading-tight;
+    }
+
+    .prose h4 {
+      @apply text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3 leading-tight;
+    }
+
+    .prose p {
+      @apply text-lg leading-relaxed mb-6 text-gray-800 dark:text-gray-200;
+    }
+
+    .prose ul, .prose ol {
+      @apply mb-6 pl-8;
+    }
+
+    .prose li {
+      @apply text-lg leading-relaxed mb-2 text-gray-800 dark:text-gray-200;
+    }
+
+    .prose strong {
+      @apply font-bold text-brand-green;
+    }
+
+    .prose em {
+      @apply italic text-gray-800 dark:text-gray-200;
+    }
+
+    .prose blockquote {
+      @apply border-l-4 border-brand-green pl-6 py-4 my-8 italic bg-gradient-to-r from-brand-green/10 to-transparent rounded-r-xl text-lg leading-relaxed;
+    }
+
+    .prose code {
+      @apply bg-brand-green/15 text-brand-green px-2 py-1 rounded font-mono text-sm font-medium;
+    }
+
+    .prose pre {
+      @apply bg-gradient-to-r from-brand-green/10 to-brand-green/5 p-8 rounded-2xl overflow-x-auto my-8 border border-brand-green/20;
+    }
+
+    .prose pre code {
+      @apply bg-transparent p-0 text-gray-800 dark:text-gray-200 text-sm;
+    }
+
+    .prose a {
+      @apply text-brand-green underline font-medium transition-colors hover:text-brand-green/80;
+    }
+
+    .prose img {
+      @apply rounded-2xl my-8 shadow-xl;
+    }
+
+    .transition-all {
+      transition: all 0.3s ease;
+    }
+
+    .duration-300 {
+      transition-duration: 300ms;
+    }
+  </style>
+</BaseLayout>
