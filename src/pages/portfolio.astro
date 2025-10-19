@@ -108,7 +108,7 @@ import experienceData from '../data/experience.json';
                 <div class={`bg-gradient-to-br ${experience.gradient} dark:${experience.darkGradient} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 max-w-4xl mx-auto`}>
                 <div class="text-center mb-6">
                   <div class="w-16 h-16 bg-gradient-to-br from-brand-green/20 to-brand-light/30 rounded-xl mb-4 flex items-center justify-center mx-auto">
-                      <span class="text-2xl">{experience.icon}</span>
+                      <img src={experience.logo} alt={experience.company} class="w-12 h-12 object-contain" />
                   </div>
                     <h3 class="text-xl font-bold theme-text mb-2" data-es={experience.company} data-en={experience.company}>
                       {experience.company}
@@ -116,8 +116,8 @@ import experienceData from '../data/experience.json';
                     <p class="text-sm theme-text-70" data-es={experience.position} data-en={experience.position}>
                       {experience.position}
                     </p>
-                    <p class="text-xs theme-text-60" data-es={experience.period} data-en={experience.period}>
-                      {experience.period}
+                    <p class="text-xs theme-text-60" data-es={experience.period.es} data-en={experience.period.en}>
+                      {experience.period.en}
                     </p>
                   </div>
                   <p class="text-sm theme-text-80 mb-6" data-es={experience.description.es} data-en={experience.description.en}>

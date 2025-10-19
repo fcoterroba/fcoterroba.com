@@ -2,136 +2,211 @@
   "experiences": [
     {
       "id": 1,
-      "company": "tu trámite fácil (TTF)",
-      "position": "full-stack developer",
-      "period": "february 2025 - present",
-      "description": {
-        "en": "we've built Spain's leading platform for obtaining public aid from scratch. the stack is based on vue and laravel in their latest versions. we've managed to reach the 'Lanzadera' incubator and have integrated processes into agile and SCRUM methodologies using Notion as a problem-solving hub. additionally, we created a discord bot that alerts us to outages and new vulnerabilities.",
-        "es": "hemos creado desde 0 la plataforma líder en España para obtener ayudas públicas. el stack es vue y laravel en sus últimas versiones. hemos conseguido llegar a la incubadora 'Lanzadera' y hemos integrado procesos en metodologías ágiles y SCRUM usando Notion como centro neurárgico de problemas. además, creamos un bot en discord que nos avisa de caídas y nuevas vulnerabilidades."
+      "company": "vivifind",
+      "position": "ceo",
+      "period": {
+        "en": "january 2025 - present",
+        "es": "enero 2025 - presente"
       },
-      "icon": "🏢",
+      "description": {
+        "en": "i'm the founder and ceo of vivifind. vivifind is the next startup that will help you in your search for a new home. instead of let the user find the house, is the house, with AI and webscrape, which get close to the user.",
+        "es": "soy el fundador y ceo de vivifind. vivifind es la siguiente startup que ayudará a las personas en su búsqueda de un nuevo hogar. en lugar de dejar que el usuario encuentre la casa, es la casa, con IA y webscrape, que se acerca al usuario."
+      },
+      "logo": "https://vivifind.com/assets/og-image.jpg",
       "gradient": "from-gray-500 to-gray-600",
       "darkGradient": "from-gray-800 to-gray-900",
       "technologies": [
         {
-          "name": "React",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
-        },
-        {
-          "name": "Node.js",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
-        },
-        {
-          "name": "Python",
+          "name": "python",
           "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        },
+        {
+          "name": "vue.js",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
+        },
+        {
+          "name": "laravel",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
         }
       ]
     },
     {
       "id": 2,
-      "company": "innovate labs",
+      "company": "tu trámite fácil",
       "position": "full-stack developer",
-      "period": "2022 - 2024",
-      "description": {
-        "en": "i developed complete web applications from frontend to backend, working closely with designers and product managers.",
-        "es": "desarrollé aplicaciones web completas desde el frontend hasta el backend, trabajando en estrecha colaboración con diseñadores y product managers."
+      "period": {
+        "en": "february 2025 - present",
+        "es": "febrero 2025 - presente"
       },
-      "icon": "🚀",
-      "gradient": "from-green-50 to-green-100",
-      "darkGradient": "from-green-900/30 to-green-800/30",
+      "description": {
+        "en": "we've built Spain's leading platform for obtaining public aid from scratch. the stack is based on vue and laravel in their latest versions. we've managed to reach the 'Lanzadera' incubator and have integrated processes into agile and SCRUM methodologies using Notion as a problem-solving hub. additionally, we created a discord bot that alerts us to outages and new vulnerabilities.",
+        "es": "hemos creado desde 0 la plataforma líder en España para obtener ayudas públicas. el stack es vue y laravel en sus últimas versiones. hemos conseguido llegar a la incubadora 'Lanzadera' y hemos integrado procesos en metodologías ágiles y SCRUM usando Notion como centro neurárgico de problemas. además, creamos un bot en discord que nos avisa de caídas y nuevas vulnerabilidades."
+      },
+      "logo": "https://alhambraventure.com/wp-content/uploads/2025/05/Tu-Tramite-Facil-copia.png",
+      "gradient": "from-gray-500 to-gray-600",
+      "darkGradient": "from-gray-800 to-gray-900",
       "technologies": [
         {
-          "name": "Vue.js",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
-        },
-        {
-          "name": "Laravel",
+          "name": "laravel",
           "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
         },
         {
-          "name": "MySQL",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+          "name": "vue.js",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
+        },
+        {
+          "name": "python",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
         }
       ]
     },
     {
       "id": 3,
-      "company": "startup tech",
-      "position": "junior developer",
-      "period": "2021 - 2022",
-      "description": {
-        "en": "my first professional experience where i learned the fundamentals of web development and the importance of communication in technical teams.",
-        "es": "mi primera experiencia profesional donde aprendí los fundamentos del desarrollo web y la importancia de la comunicación en equipos técnicos."
+      "company": "freelance",
+      "position": "python and tech teeacher",
+      "period": {
+        "en": "march 2021 - present",
+        "es": "marzo 2021 - presente"
       },
-      "icon": "💡",
-      "gradient": "from-purple-50 to-purple-100",
-      "darkGradient": "from-purple-900/30 to-purple-800/30",
+      "description": {
+        "en": "i'm a freelance python and tech teacher. one of the things i love after development is teaching so, time to time i impart presencial and online classes to help students learn. i've taught classes to students between 16 and 40 years old.",
+        "es": "soy un profesor freelance de python y tecnología. una de las cosas que me encanta después del desarrollo es enseñar, por lo que de vez en cuando imparto clases presenciales y online para ayudar a los estudiantes a aprender. he impartido clases a estudiantes entre 16 y 40 años."
+      },
+      "logo": "https://cdn.dribbble.com/userupload/22808646/file/original-cd940b45bbed325d172547e4181e59b2.jpg",
+      "gradient": "from-gray-500 to-gray-600",
+      "darkGradient": "from-gray-800 to-gray-900",
       "technologies": [
         {
-          "name": "JavaScript",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+          "name": "laravel",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
         },
         {
-          "name": "PHP",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+          "name": "vue.js",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
         },
         {
-          "name": "HTML5",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+          "name": "python",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
         }
       ]
     },
     {
       "id": 4,
-      "company": "digital agency",
-      "position": "freelance developer",
-      "period": "2020 - 2021",
-      "description": {
-        "en": "i developed websites and applications for small businesses, learning to communicate directly with clients and understand their needs.",
-        "es": "desarrollé sitios web y aplicaciones para pequeñas empresas, aprendiendo a comunicarme directamente con clientes y entender sus necesidades."
+      "company": "betterfly",
+      "position": "full-stack developer",
+      "period": {
+        "en": "august 2024 - february 2025",
+        "es": "agosto 2024 - febrero 2025"
       },
-      "icon": "🎯",
-      "gradient": "from-orange-50 to-orange-100",
-      "darkGradient": "from-orange-900/30 to-orange-800/30",
+      "description": {
+        "en": "in betterfly we developed the backoffice of a brand-new way to get benefits in your payroll. a lot of legacy code which has been updated time to time.",
+        "es": "en betterfly desarrollamos el backoffice de una nueva manera de obtener beneficios en tu nómina. mucho código heredado que ha sido actualizado a lo largo del tiempo."
+      },
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Betterfly_Earth_sin_sello_sin_fondo_SVG.svg/1024px-Betterfly_Earth_sin_sello_sin_fondo_SVG.svg.png",
+      "gradient": "from-green-50 to-green-100",
+      "darkGradient": "from-green-900/30 to-green-800/30",
       "technologies": [
         {
-          "name": "WordPress",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg"
+          "name": "react",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
         },
         {
-          "name": "CSS3",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+          "name": "laravel",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
         },
         {
-          "name": "Git",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+          "name": "mysql",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
         }
       ]
     },
     {
       "id": 5,
-      "company": "tech consulting",
-      "position": "technical consultant",
-      "period": "2023 - present",
-      "description": {
-        "en": "i help companies digitize their processes and optimize their technological systems, combining technical knowledge with communication skills.",
-        "es": "ayudo a empresas a digitalizar sus procesos y optimizar sus sistemas tecnológicos, combinando conocimientos técnicos con habilidades de comunicación."
+      "company": "avature",
+      "position": "full-stack developer",
+      "period": {
+        "en": "september 2021 - february 2024",
+        "es": "septiembre 2021 - febrero 2024"
       },
-      "icon": "🔧",
+      "description": {
+        "en": "in avature we worked with some of the best companies worldwide. providing a full managed system for hr departments. i worked and managed some teams between 2 and 10 people. implementing SCRUM and agile since day 1. i also created some python tools to improve the developer experience.",
+        "es": "en avature trabajamos con algunas de las mejores empresas del mundo. proporcionando un sistema gestionado completamente para departamentos de recursos humanos. trabajé y gestioné equipos entre 2 y 10 personas. implementando SCRUM y ágile desde el día 1. también creé algunas herramientas en python para mejorar la experiencia de developers."
+      },
+      "logo": "https://www.hrdconnect.com/wp-content/uploads/2020/04/Avature-Logo-Positive-Transparent-Screen.png",
+      "gradient": "from-green-50 to-green-100",
+      "darkGradient": "from-green-900/30 to-green-800/30",
+      "technologies": [
+        {
+          "name": "twig",
+          "icon": "https://icons.veryicon.com/png/o/business/vscode-program-item-icon/twig-1.png"
+        },
+        {
+          "name": "php",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+        },
+        {
+          "name": "python",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "company": "newe",
+      "position": "backend developer",
+      "period": {
+        "en": "march 2021 - september 2021",
+        "es": "marzo 2021 - septiembre 2021"
+      },
+      "description": {
+        "en": "in newe i worked as a backend developer. i developed the backend to a brand-new startup which allows bussiness to offer renting plans.",
+        "es": "en newe trabajé como backend developer. desarrollé el backend de una nueva startup que permite a las empresas ofrecer planes de alquiler."
+      },
+      "logo": "https://www.turylogisticsecommerce.com/wp-content/uploads/2022/07/NEWE-LOGO-PNG-2.png",
+      "gradient": "from-green-50 to-green-100",
+      "darkGradient": "from-green-900/30 to-green-800/30",
+      "technologies": [
+        {
+          "name": "wordPress",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg"
+        },
+        {
+          "name": "php",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+        },
+        {
+          "name": "mysql",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "company": "ideanto",
+      "position": "backend and wordpress developer",
+      "period": {
+        "en": "february 2021 - may 2021",
+        "es": "febrero 2021 - mayo 2021"
+      },
+      "description": {
+        "en": "in ideanto i worked as a backend and wordpress developer. we created and mantain some wordpress and php websites from scratch. some of clients' requests was very custom so we did a lot of plugins and customizations.",
+        "es": "en ideanto trabajé como backend y desarrollador de wordpress. creamos y mantenemos algunos sitios web de wordpress y php desde cero. algunos de los requisitos de los clientes eran muy personalizados, por lo que hicimos muchos plugins y personalizaciones."
+      },
+      "logo": "https://ideanto.com/wp-content/uploads/2023/03/mainlogo.png",
       "gradient": "from-teal-50 to-teal-100",
       "darkGradient": "from-teal-900/30 to-teal-800/30",
       "technologies": [
         {
-          "name": "AWS",
+          "name": "php",
           "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg"
         },
         {
-          "name": "Docker",
+          "name": "wordpress",
           "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
         },
         {
-          "name": "Kubernetes",
-          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-original.svg"
+          "name": "javascript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
         }
       ]
     }
