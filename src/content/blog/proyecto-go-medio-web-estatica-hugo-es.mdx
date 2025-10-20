@@ -1,0 +1,95 @@
+---
+title: "proyecto Go medio: ¿cómo hacer una web estática con HuGo?"
+description: "tutorial práctico para crear una web estática con Go y Hugo, desde la instalación hasta el despliegue."
+excerpt: "aprende a crear una web estática completa con Go y Hugo paso a paso, incluyendo configuración, contenido y despliegue."
+category: "desarrollo web"
+tags: ["go", "hugo", "web estática", "tutorial", "proyecto"]
+author: "fcoterroba"
+date: "2023-05-15"
+readTime: "8 min read"
+featured: false
+coverImage: "/blog/covers/proyecto-go-hugo.jpg"
+lang: "es"
+---
+
+Hola mundo 👋, mi nombre es Francisco, fcoterroba en internet y hoy os vengo a traer un proyecto de los que tanto os gusta porque dejamos de lado toda la teoría que ya conocemos (o deberíamos conocer) y ponemos en marcha dicha teoría para hacer un proyecto práctico.
+
+Con esto, sabemos, que engrosamos nuestro currículum vitae **NO** solo con conocimientos y títulos (reglados y no reglados) sino que también tenemos proyectos que podrían ser perfectamente reales y válidos en cualquier empresa del sector.
+
+Hoy vamos a realizar un proyecto de nivel medio en Go (GoLang), el famoso lenguaje de programación desarrollado por Google en 2009. No vamos a entrar mucho más en detalle sobre el lenguaje porque, si quieres aprender más sobre cómo surgió y los primeros pasos con éste, te recomiendo [este otro post que realicé hace algún tiempo](https://fcoterroba.com/go-que-lenguaje-donde-primer-contacto).
+
+El proyecto que vamos a realizar es un proyecto en el que vamos a realizar una web estática con HuGo, una famosa librería del lenguaje que nos permite realizar web estáticas de manera muy sencilla.
+
+Te recuerdo que hace un tiempo subí a mi canal de YouTube un vídeo en el cual muestro la instalación de unas bombillas inteligentes capaces de ser controladas mediante el asistente de Google o el móvil. Te dejo por aquí el vídeo por si aún no lo has visto:
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Por último, antes de comenzar, te muestro uno de mis últimos vídeos que realicé para TikTok. Es la 3ª parte de una serie de vídeos en la que muestro mis canciones favoritas de este Eurovisión 2023.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7230585400044096795" data-video-id="7230585400044096795" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    Mis canciones favoritas de Eurovisión 2023 PARTE 3
+    <a title="eurovision" target="_blank" href="https://www.tiktok.com/tag/eurovision?refer=embed" rel="noopener noreferrer">#eurovision</a>
+    <a title="eurovision2023" target="_blank" href="https://www.tiktok.com/tag/eurovision2023?refer=embed" rel="noopener noreferrer">#eurovision2023</a>
+    <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a>
+    <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a>
+    @Eurovision @Eurovisión TVE @Piqued Jacks @TVORCHI
+    <a target="_blank" title="♬ original sound - fcoterroba" href="https://www.tiktok.com/music/original-sound-7230585436404534043?refer=embed" rel="noopener noreferrer">♬ original sound - fcoterroba</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+**Ahora sí que sí, comencemos 👇**
+
+## Primer paso: Instalación del entorno
+
+Como para casi cualquier proyecto de programación que suelo hacer, lo primero y más importante es instalar el entorno adecuado. Para ello, deberemos instalar Go siguiendo las instrucciones que dan en su propia [página web](https://go.dev/dl/) así como un editor de código. En mi caso, siempre uso [VSCodium](https://vscodium.com/).
+
+Una vez que hayamos hecho estas dos cosas, tendremos todo nuestro equipo configurado correctamente para poder empezar a programar. Simplemente, para cerciorarnos de la correcta instalación del lenguaje, abriremos una terminal y escribiremos:
+
+```bash
+go version
+```
+
+![Verificación de Go](/blog/go-hugo/imagen.png)
+
+## Segundo paso: Inicialización del proyecto
+
+A continuación, como HuGo ya viene como una de las partes "básicas" del lenguaje, simplemente tendremos que realizar un quickstart, entrar en el directorio que nos crea e inicializarlo en git ya que posteriormente añadiremos algunos submódulos
+
+```bash
+hugo new site quickstart
++cd quickstart
++git init
+```
+
+A continuación, elegimos alguno de los cientos de temas que tenemos disponibles en la página de [Hugo](https://themes.gohugo.io/). En mi caso cogeré "bilberry" clonándolo en el directorio themes y añadiendo esa configuración al archivo config.toml.
+
+Por último, con **hugo server** podemos levantar de manera local nuestra página web
+
+![Servidor Hugo local](/blog/go-hugo/image-1.png)
+
+## Tercer paso: Llenar nuestra web de contenidos
+
+¿Qué sería de las páginas webs en general si no tuvieran contenido?
+
+Pues eso mismo, la parte que conllevaba más "programación" ya la hemos realizado, por lo que ahora, solo queda poner algunos posts en la página web.
+
+Para ello, debemos crear un nuevo archivo usando el comando **hugo new posts/nombrepágina.md**, editar el contenido del interior y luego levantar el servidor de hugo con la marca **buildDrafts**
+
+![Creación de posts](/blog/go-hugo/image-2.png)
+
+## Último paso: Ultimando configuraciones
+
+Para finalizar, guardamos todos los cambios que hayamos hecho, y ya está.
+
+Si, por ejemplo, queremos subir esto para que se pueda ver más allá del localhost, simplemente subimos el directorio completo a un alojamiento como GitHub pages.
+
+Fíjate en los últimos pasos que hicimos en nuestro post de la [web estática en Python](https://fcoterroba.com/proyecto-python-medio-hacer-web-estatica-pelican) ya que los pasos son los mismos.
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y [TikTok](https://www.tiktok.com/@fcoterroba). 🤟🏻

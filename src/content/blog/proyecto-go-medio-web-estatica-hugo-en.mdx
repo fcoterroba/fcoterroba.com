@@ -1,0 +1,95 @@
+---
+title: "medium Go project: how to make a static website with HuGo?"
+description: "practical tutorial to create a static website with Go and Hugo, from installation to deployment."
+excerpt: "learn to create a complete static website with Go and Hugo step by step, including configuration, content and deployment."
+category: "web development"
+tags: ["go", "hugo", "static website", "tutorial", "project"]
+author: "fcoterroba"
+date: "2023-05-15"
+readTime: "8 min read"
+featured: false
+coverImage: "/blog/covers/proyecto-go-hugo.jpg"
+lang: "en"
+---
+
+Hello world 👋, my name is Francisco — fcoterroba on the internet — and today I'm bringing you a project that you really like because we set aside all the theory we already know (or should know) and put that theory into practice to make a practical project.
+
+With this, we know that we enhance our CV **NOT** only with knowledge and titles (regulated and unregulated) but also with projects that could be perfectly real and valid in any company in the sector.
+
+Today we're going to do a medium-level project in Go (GoLang), the famous programming language developed by Google in 2009. We won't go into much more detail about the language because, if you want to learn more about how it emerged and the first steps with it, I recommend [this other post I made some time ago](https://fcoterroba.com/go-que-lenguaje-donde-primer-contacto).
+
+The project we're going to do is one in which we're going to create a static website with HuGo, a famous library of the language that allows us to create static websites very easily.
+
+I remind you that some time ago I uploaded a video to my YouTube channel showing the installation of smart bulbs that can be controlled with Google Assistant or mobile. Here's the video in case you haven't seen it yet:
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Finally, before we begin, I'll show you one of my latest videos I made for TikTok. It's part 3 of a series of videos where I show my favorite songs from this Eurovision 2023.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7230585400044096795" data-video-id="7230585400044096795" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    My favorite Eurovision 2023 songs — PART 3
+    <a title="eurovision" target="_blank" href="https://www.tiktok.com/tag/eurovision?refer=embed" rel="noopener noreferrer">#eurovision</a>
+    <a title="eurovision2023" target="_blank" href="https://www.tiktok.com/tag/eurovision2023?refer=embed" rel="noopener noreferrer">#eurovision2023</a>
+    <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a>
+    <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a>
+    @Eurovision @Eurovisión TVE @Piqued Jacks @TVORCHI
+    <a target="_blank" title="♬ original sound - fcoterroba" href="https://www.tiktok.com/music/original-sound-7230585436404534043?refer=embed" rel="noopener noreferrer">♬ original sound - fcoterroba</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+**Now let's get started 👇**
+
+## First step: Environment installation
+
+As with almost any programming project I usually do, the first and most important thing is to install the appropriate environment. For this, we'll need to install Go following the instructions on their own [website](https://go.dev/dl/) as well as a code editor. In my case, I always use [VSCodium](https://vscodium.com/).
+
+Once we've done these two things, we'll have our entire setup configured correctly to start programming. Simply, to verify the correct installation of the language, we'll open a terminal and type:
+
+```bash
+go version
+```
+
+![Go verification](/blog/go-hugo/imagen.png)
+
+## Second step: Project initialization
+
+Next, since HuGo already comes as one of the "basic" parts of the language, we'll simply need to do a quickstart, enter the directory it creates for us and initialize it in git since we'll add some submodules later
+
+```bash
+hugo new site quickstart
++cd quickstart
++git init
+```
+
+Next, we choose one of the hundreds of themes available on the [Hugo](https://themes.gohugo.io/) page. In my case I'll pick "bilberry" by cloning it into the themes directory and adding that configuration to the config.toml file.
+
+Finally, with **hugo server** we can start our website locally
+
+![Local Hugo server](/blog/go-hugo/image-1.png)
+
+## Third step: Filling our website with content
+
+What would websites be in general if they didn't have content?
+
+Exactly that, the part that involved more "programming" we've already done, so now we just need to add some posts to the website.
+
+For this, we need to create a new file using the **hugo new posts/pagename.md** command, edit the content inside and then start the hugo server with the **buildDrafts** flag
+
+![Post creation](/blog/go-hugo/image-2.png)
+
+## Last step: Finalizing configurations
+
+To finish, we save all the changes we've made, and that's it.
+
+If, for example, we want to upload this so it can be seen beyond localhost, we simply upload the entire directory to a hosting service like GitHub pages.
+
+Check the last steps we did in our [Python static website](https://fcoterroba.com/proyecto-python-medio-hacer-web-estatica-pelican) post since the steps are the same.
+
+And that's all for today. Thanks for reading until the end, I hope it was useful and you liked it. See you soon!
+
+You can also support my work via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
+I also hope you have a great week and we'll see each other here soon! Greetings and remember to follow me on social media like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) and [TikTok](https://www.tiktok.com/@fcoterroba). 🤟🏻
