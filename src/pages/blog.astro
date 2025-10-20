@@ -5,7 +5,7 @@ import { getLanguageFromURL } from '../utils/i18n';
 
 const allPosts = await getCollection('blog');
 
-const finalPosts = allPosts;
+const finalPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const currentLang = getLanguageFromURL(Astro.url);
 const postsInCurrentLang = finalPosts.filter(post => post.data.lang === currentLang);
