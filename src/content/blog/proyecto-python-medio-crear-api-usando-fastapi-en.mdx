@@ -1,0 +1,254 @@
+---
+title: "medium Python project: how to create an API using FastAPI?"
+description: "practical tutorial to create a complete API with Python and FastAPI, from installation to automatic documentation."
+excerpt: "learn to create a complete REST API with Python and FastAPI step by step, including endpoints, JSON data and automatic documentation."
+category: "web development"
+tags: ["python", "fastapi", "api", "tutorial", "project", "backend"]
+author: "fcoterroba"
+date: "2023-01-09"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/proyecto-python-fastapi.jpg"
+lang: "en"
+---
+
+Hello world 🤟🏻 my name is Francisco, fcoterroba on the Internet and today I bring you a post that usually goes down well here on the web. As you can see in the title, today we're going to create an API in Python using the FastAPI library or framework.
+
+Very interesting project to add to your developer portfolio whether backend or even front-end.
+
+Before we start, as it couldn't be otherwise, if you haven't seen it yet, I strongly recommend that you go see the latest video I have on my YouTube channel where I explained, in a very simple and concise way, how to install a smart bulb 🧠 with which you can change its color, control it with your own voice and much more! You can see it here 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Finally before we start, I wanted to communicate that I've been uploading videos to TikTok for a few weeks. Lately they're about Eurovision since it's coming up soon but I'll leave here the latest one I made today about computing.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7118137831297420550" data-video-id="7118137831297420550" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    How to make a small <a title="juego" target="_blank" href="https://www.tiktok.com/tag/juego?refer=embed" rel="noopener noreferrer">#game</a> in <a title="python" target="_blank" href="https://www.tiktok.com/tag/python?refer=embed" rel="noopener noreferrer">#Python</a> ? Like for part 2! <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a> <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a> <a title="dev" target="_blank" href="https://www.tiktok.com/tag/dev?refer=embed" rel="noopener noreferrer">#dev</a> <a title="programacion" target="_blank" href="https://www.tiktok.com/tag/programacion?refer=embed" rel="noopener noreferrer">#programming</a>
+    <a target="_blank" title="♬ LoFi(860862) - skollbeats" href="https://www.tiktok.com/music/LoFi-860862-6873526724840130562?refer=embed" rel="noopener noreferrer">♬ LoFi(860862) - skollbeats</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+## Something I should know before starting?
+
+Yes, several things really:
+
+### What is an API?
+
+- An API (abbreviation of **A**pplication **P**rogramming **I**nterfaces), is, basically, a set of definitions and protocols that are used to develop and integrate application or web software. Thus allowing communication between two applications that are a priori totally different.
+- An API is a place where certain information about certain aspects is encompassed. The thing is that this information is not accessible and not easily readable by humans.
+- Generally, an API returns the information when requested in JSON format and it's the developer in their new web or software who is responsible for making this information readable.
+  - For example, this free API from [The Simpsons](https://thesimpsonsquoteapi.glitch.me/), if you access the basic API, it returns a quote from one of the characters from this series.
+
+![The Simpsons API](/blog/python-fastapi/imagen.png)
+
+### What is Python?
+
+- Python is a programming language used in practically everything imaginable
+- Web development, software, AI, ML, Data Science. These are some of the tech areas where Python is widely used.
+- It offers quite good readability close to human reading.
+  - In the [Python](https://fcoterroba.com/category/python) category on the web you can find +8 Python projects divided by difficulty. What are you waiting for? Your API can wait.
+
+### What is FastAPI?
+
+- FastAPI is a framework for building APIs easily and quickly with Python.
+- In recent times it has become a very popular framework as it's considered one of the fastest existing frameworks in Python.
+- Some benchmarks have put FastAPI **much** ahead of Django, Flask or Pyramid.
+
+![Performance comparison](/blog/python-fastapi/comparacion-rendimiento.png)
+
+## 1️⃣ FIRST STEP 1️⃣ Install what's needed
+
+We'll take into account that we already have Python installed, in my case I have Python version 3.10.7 but you don't necessarily need to have this version to follow the tutorial. It's just recommended that it's a Python 3 version. python 3.x.x
+
+The first thing we need to do is install the FastAPI library, for this we'll use the command
+
+```bash
+pip install fastapi
+```
+
+Finally, we'll need the **uvicorn** library, an ASGI web server written for Python. We'll need this library to check that everything is working. We can install it with this command:
+
+```bash
+pip install uvicorn
+```
+
+Once installed, we can really start
+
+## 2️⃣ SECOND STEP 2️⃣ Hello world
+
+The first thing and as you might already be imagining, is to import the FastAPI library, for this we import it like any other:
+
+```python
+from fastapi import FastAPI
+```
+
+Then, we'll have to create a general object that, normally, is usually called app
+
+```python
+app = FastAPI()
+```
+
+FastAPI works with asynchronous functions and many getters, so we'll have to take, to start, the root of our server and right below declare the return message:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+```
+
+With this, if we visit our localhost (by default on port 8000), we'll get the json we sent for return:
+
+![FastAPI Hello World](/blog/python-fastapi/imagen-1.png)
+
+## 3️⃣ THIRD STEP 3️⃣ More functions and pages
+
+With the previous step we've made great progress, we already have our web server running, waiting for queries and returning a json with what we say. It's good, but it's missing more substance, right?
+
+In this case I'm going to test as if I were creating an API of the famous anime "Shin Chan".
+
+The first thing we'll have to do is, somehow, store the information we want to return in the API. I'm going to store the main characters of the series in a JSON with their age, an image, name, etc. Like this:
+
+![Character JSON data](/blog/python-fastapi/imagen-2.png)
+
+Now, let's say we want to pass those four characters to the root of our API.
+
+For this we simply have to convert our JSON file to a Python dictionary. We import the json library to work with it and opening it, we can pass the variable using the load function
+
+```python
+import json
+
+data = ""
+
+with open('characters.json') as json_file:
+    data = json.load(json_file)
+```
+
+Finally, in our root we pass that variable and if we visit our API we'll get that json
+
+```python
+@app.get("/")
+async def root():
+    return data
+```
+
+If we pass, for example, **data[0]** we'll pass only the first field of the json, **data[1]** for the second field, etc.
+
+![API result](/blog/python-fastapi/imagen-3.png)
+
+Now, everything we've done has been in the root, when accessing the main page of the API, let's say we want each page to return a certain thing.
+
+For this, we'll have to create a getter with a function for each page we want.
+
+For example, let's say I want a page that will return a totally random character for each visit. We import the random library and use the choice function passing our dictionary AS A LIST.
+
+```python
+import random
+
+@app.get("/randomCharacter")
+async def randomCharacter():
+    return random.choice(list(data))
+```
+
+Another example, let's say we have a list with all the ids we can get, for this we can pass an id to the getter and to the function, to return that record.
+
+Keep in mind that we subtract one because the json starts at 0 but the user will write "normal", starting at 1.
+
+```python
+@app.get("/specificCharacter/{id}")
+async def specificCharacter(id: int):
+    return data[id-1]
+```
+
+## 4️⃣ FOURTH STEP 4️⃣ Main page
+
+We're almost almost done, we already have our basic API, our functions, our calls, everything.
+
+But of course, our root still returns a json, it's neither aesthetic nor simple nor has good practices. The correct thing would be to create an index.html and call that file in the root.
+
+I've created this small 50-line html based on a W3Schools template.
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Shin Chan API - @fcoterroba</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <style>
+        body,h1,h2{font-family: "Raleway", sans-serif}
+        body, html {height: 100%}
+        p {line-height: 2}
+        .bgimg {
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+        }
+        .bgimg {background-image: url("https://preview.redd.it/7fx1jell8p551.png?auto=webp&s=8ff53edc7ff4752ca0262c8a58f2d0a7efbbad61")}
+        </style>
+    </head>
+    <body>
+
+        <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+            <div class="w3-display-middle w3-text-blue w3-center" style="background-color: white;">
+                <h1 class="w3-jumbo">Shin Chan API</h1>
+                <h2>The free Shin Chan API</h2>
+                <h2><b>Created by @fcoterroba</b></h2>
+            </div>
+        </header>
+
+        <div class="w3-container w3-padding-64 w3-pale-blue w3-grayscale-min" id="us">
+            <div class="w3-content">
+                <h1 class="w3-center w3-text-grey"><b>Just call it</b></h1>
+                <img class="w3-round" src="https://images5.alphacoders.com/116/1166283.jpg" style="width:100%;margin:32px 0">
+                <p><i>Get the full name, age and picture of your favourite characters.</i>
+                </p><br>
+                <p class="w3-center"><a href="#" class="w3-button w3-black w3-round w3-padding-large w3-large">Documentation</a></p>
+            </div>
+        </div>
+
+    </body>
+</html>
+```
+
+Once we have the html, we simply import the **FileResponse** function from starlette.responses and return it using that function.
+
+```python
+from starlette.responses import FileResponse 
+
+@app.get("/")
+async def root():
+    return FileResponse('index.html')
+```
+
+![API main page](/blog/python-fastapi/imagen-4.png)
+
+## 5️⃣ FIFTH STEP 5️⃣ Generate documentation
+
+Every API worth its salt requires custom documentation and FastAPI also gets a very good point in favor of this.
+
+By default, this library generates two very clean and beautiful documentations
+
+One of them is at /redoc and the other, something more classic, at /docs.
+
+![Automatic documentation](/blog/python-fastapi/documentacion.png)
+
+You can enter the repository of this API on my [GitHub](https://github.com/fcoterroba/ShinChanAPI)!
+
+## 🏁 END OF POST 🏁
+
+And that's all for today. Thanks for reading until the end, I hope it was useful and you liked it. See you soon!
+
+You can also support my work via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
+I also hope you have a great week and we'll see each other here soon! Greetings and remember to follow me on social media like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) and now also on [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+*Sources: [Xataka.com](https://www.xataka.com/basics/api-que-sirve), [AWS.amazon.com](https://aws.amazon.com/es/what-is/python/), [sngular.com](https://www.sngular.com/es/fastapi-como-construir-una-api-con-python-en-una-media-hora/), [coffeebytes.dev](https://coffeebytes.dev/python-fastapi-el-mejor-framework-de-python/), [w3schools.com](https://www.w3schools.com/w3css/w3css_templates.asp)*
