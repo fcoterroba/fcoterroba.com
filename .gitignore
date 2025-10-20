@@ -82,3 +82,5 @@ temp/
 *.sw?
 
 .astro/
+
+wordpress/
