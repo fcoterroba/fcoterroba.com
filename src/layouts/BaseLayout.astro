@@ -55,12 +55,29 @@ const siteName = 'fcoterroba';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
+      (function() {
+        function loadGA(measurementId) {
+          if (!measurementId) return;
+          if (window.__gaLoaded) return;
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'GA_MEASUREMENT_ID');
+          window.__gaLoaded = true;
+        }
+        const consent = localStorage.getItem('cookie-consent');
+        const hasConsent = consent ? JSON.parse(consent)?.analytics === true : false;
+        if (hasConsent) {
+          loadGA('GA_MEASUREMENT_ID');
+        }
+        window.__grantAnalytics = function() { loadGA('GA_MEASUREMENT_ID'); };
+      })();
     </script>
   </head>
   <body class="bg-white text-gray-900 font-sans antialiased transition-colors duration-300" id="body">
@@ -190,6 +207,7 @@ const siteName = 'fcoterroba';
               <li><a href="/blog" class="footer-link" data-es="blog" data-en="blog">blog</a></li>
               <li><a href="/agradecimientos" class="footer-link" data-es="agradecimientos" data-en="acknowledgments">acknowledgments</a></li>
               <li><a href="/contacto" class="footer-link" data-es="contacto" data-en="contact">contact</a></li>
+              <li><a href="/cookies" class="footer-link" data-es="cookies" data-en="cookies">cookies</a></li>
             </ul>
           </div>
           
@@ -230,12 +248,22 @@ const siteName = 'fcoterroba';
         </div>
         
         <div class="footer-border mt-12 pt-8 text-center">
-          <p class="footer-copyright" data-es="© 2025 fcoterroba. all rights reserved." data-en="© 2025 fcoterroba. all rights reserved.">
-            © 2025 fcoterroba. All rights reserved.
+          <p class="footer-copyright" data-es="© 2025 fcoterroba. todos los derechos reservados." data-en="© 2025 fcoterroba. all rights reserved.">
+            © 2025 fcoterroba. all rights reserved.
           </p>
         </div>
       </div>
     </footer>
+
+    <div id="cookies-toast" class="fixed top-4 inset-x-4 sm:top-6 sm:right-6 sm:left-auto z-50 hidden">
+      <div class="flex items-start gap-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl px-4 py-3 max-w-sm sm:ml-auto">
+        <div class="w-9 h-9 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center text-lg">✓</div>
+        <div class="flex-1">
+          <p id="cookies-toast-text" class="text-sm theme-text">preferencia guardada</p>
+        </div>
+        <button id="cookies-toast-close" class="ml-2 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">✕</button>
+      </div>
+    </div>
 
     <style>
       :root {
@@ -797,6 +825,74 @@ const siteName = 'fcoterroba';
           }
         });
       }
+    </script>
+
+    <div id="cookie-banner" class="fixed inset-x-0 bottom-0 z-40 hidden">
+      <div class="mx-auto max-w-7xl px-4 sm:px-8 pb-6">
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="text-sm sm:text-base theme-text">
+            <p class="leading-6">
+              <span data-es="Usamos cookies analíticas opcionales para entender el uso y mejorar la web. Puedes aceptarlas o rechazarlas." data-en="We use optional analytics cookies to understand usage and improve the site. You can accept or reject them.">We use optional analytics cookies to understand usage and improve the site. You can accept or reject them.</span>
+              <a href="/cookies" class="underline text-brand-green ml-1" data-es="Más info" data-en="More info">More info</a>
+            </p>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3">
+            <button id="cookie-reject" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 theme-text hover:bg-gray-50 dark:hover:bg-gray-800 text-sm sm:text-base" data-es="Rechazar" data-en="Reject">Reject</button>
+            <button id="cookie-accept" class="px-4 py-2 rounded-full bg-brand-green text-white hover:bg-brand-green/90 text-sm sm:text-base" data-es="Aceptar" data-en="Accept">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const KEY = 'cookie-consent';
+        const banner = document.getElementById('cookie-banner');
+        const accept = document.getElementById('cookie-accept');
+        const reject = document.getElementById('cookie-reject');
+        const toast = document.getElementById('cookies-toast');
+        const toastText = document.getElementById('cookies-toast-text');
+        const toastClose = document.getElementById('cookies-toast-close');
+
+        let toastTimer = 0;
+
+        function showToast(message: string) {
+          if (!toast || !toastText) return;
+          (toastText as HTMLElement).textContent = message;
+          toast.classList.remove('hidden');
+          clearTimeout(toastTimer as any);
+          toastTimer = window.setTimeout(() => { toast?.classList.add('hidden'); }, 2500);
+        }
+
+        (window as any).__showCookieToast = showToast;
+
+        toastClose?.addEventListener('click', () => {
+          toast?.classList.add('hidden');
+          clearTimeout(toastTimer as any);
+        });
+        try {
+          const stored = localStorage.getItem(KEY);
+          const consent = stored ? JSON.parse(stored) : null;
+          if (!consent) {
+            if (banner) banner.classList.remove('hidden');
+          }
+        } catch (_) {
+          if (banner) banner.classList.remove('hidden');
+        }
+
+        function saveConsent(analytics: boolean) {
+          const value = { analytics: !!analytics, ts: Date.now() };
+          try { localStorage.setItem(KEY, JSON.stringify(value)); } catch (_) {}
+          if (banner) banner.classList.add('hidden');
+          if (analytics && typeof (window as any).__grantAnalytics === 'function') {
+            (window as any).__grantAnalytics();
+          }
+          showToast(analytics ? 'analíticas activadas' : 'analíticas desactivadas');
+        }
+
+        accept?.addEventListener('click', function() { saveConsent(true); });
+        reject?.addEventListener('click', function() { saveConsent(false); });
+      });
     </script>
   </body>
 </html>

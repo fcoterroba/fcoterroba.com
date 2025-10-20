@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="cookies - fcoterroba"
+  description="política de cookies y preferencias de privacidad"
+  lang="es"
+>
+  <section class="pt-28 pb-16 theme-bg">
+    <div class="max-w-4xl mx-auto px-8 lg:px-12">
+      <h1 class="text-4xl font-bold theme-text mb-6" data-es="política de cookies" data-en="cookies policy">política de cookies</h1>
+      <p class="theme-text-70 mb-6" data-es="esta web utiliza únicamente cookies analíticas opcionales de Google Analytics, que solo se cargarán si las aceptas." data-en="this website only uses optional Google Analytics cookies, which will load only if you accept them.">esta web utiliza únicamente cookies analíticas opcionales de Google Analytics, que solo se cargarán si las aceptas.</p>
+
+      <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8">
+        <h2 class="text-2xl font-semibold theme-text mb-3" data-es="¿qué cookies usamos?" data-en="which cookies do we use?">¿qué cookies usamos?</h2>
+        <ul class="list-disc pl-6 space-y-2 theme-text-70">
+          <li data-es="cookies analíticas (Google Analytics): sirven para medir el uso del sitio. Son opcionales." data-en="analytics cookies (Google Analytics): used to measure site usage. optional.">cookies analíticas (Google Analytics): sirven para medir el uso del sitio. son opcionales.</li>
+          <li data-es="no usamos cookies publicitarias ni de seguimiento entre sitios." data-en="we do not use advertising or cross-site tracking cookies.">no usamos cookies publicitarias ni de seguimiento entre sitios.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8">
+        <h2 class="text-2xl font-semibold theme-text mb-3" data-es="cómo gestionar tus preferencias" data-en="how to manage your preferences">cómo gestionar tus preferencias</h2>
+        <p class="theme-text-70 mb-3" data-es="puedes aceptar o rechazar las cookies analíticas desde el banner o usando los botones siguientes." data-en="you can accept or reject analytics cookies from the banner or using the buttons below.">puedes aceptar o rechazar las cookies analíticas desde el banner o usando los botones siguientes.</p>
+        <div class="flex gap-3">
+          <button id="cookies-accept-page" class="px-4 py-2 rounded-full bg-brand-green text-white hover:bg-brand-green/90" data-es="aceptar analíticas" data-en="accept analytics">aceptar analíticas</button>
+          <button id="cookies-reject-page" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 theme-text hover:bg-gray-50 dark:hover:bg-gray-800" data-es="rechazar analíticas" data-en="reject analytics">rechazar analíticas</button>
+        </div>
+      </div>
+
+      <div class="theme-text-70 text-sm">
+        <p data-es="base legal: consentimiento. conservación: hasta que lo retires (puedes borrar el almacenamiento local del navegador)." data-en="legal basis: consent. retention: until you withdraw consent (you can clear browser local storage).">base legal: consentimiento. conservación: hasta que lo retires (puedes borrar el almacenamiento local del navegador).</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const KEY = 'cookie-consent';
+      const accept = document.getElementById('cookies-accept-page');
+      const reject = document.getElementById('cookies-reject-page');
+      function showToast(message: string) {
+        const fn = (window as any).__showCookieToast;
+        if (typeof fn === 'function') { fn(message); } else { alert(message); }
+      }
+
+      function saveConsent(analytics: boolean) {
+        const value = { analytics: !!analytics, ts: Date.now() };
+        try { localStorage.setItem(KEY, JSON.stringify(value)); } catch (_) {}
+        if (analytics && typeof (window as any).__grantAnalytics === 'function') {
+          (window as any).__grantAnalytics();
+        }
+        showToast(analytics ? 'analíticas activadas' : 'analíticas desactivadas');
+      }
+
+      accept?.addEventListener('click', function() { saveConsent(true); });
+      reject?.addEventListener('click', function() { saveConsent(false); });
+    });
+  </script>
+</BaseLayout>
+
+
