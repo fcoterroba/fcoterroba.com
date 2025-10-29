@@ -57,6 +57,7 @@ const siteName = 'fcoterroba';
 
     <script is:inline>
       (function() {
+        const GA_ID = 'G-S41Z51V98S';
         function loadGA(measurementId) {
           if (!measurementId) return;
           if (window.__gaLoaded) return;
@@ -68,15 +69,15 @@ const siteName = 'fcoterroba';
           function gtag(){window.dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('config', 'GA_MEASUREMENT_ID');
+          gtag('config', measurementId);
           window.__gaLoaded = true;
         }
         const consent = localStorage.getItem('cookie-consent');
         const hasConsent = consent ? JSON.parse(consent)?.analytics === true : false;
         if (hasConsent) {
-          loadGA('GA_MEASUREMENT_ID');
+          loadGA(GA_ID);
         }
-        window.__grantAnalytics = function() { loadGA('GA_MEASUREMENT_ID'); };
+        window.__grantAnalytics = function() { loadGA(GA_ID); };
       })();
     </script>
   </head>
