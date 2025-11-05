@@ -21,12 +21,17 @@ const equivalentPost = allPosts.find(p => {
   const otherBaseSlug = (p as any).slug.replace(/-es$|-en$/, '');
   return otherBaseSlug === baseSlug && p.data.lang !== post.data.lang;
 });
+
+const ogImage = post.data.coverImage 
+  ? new URL(post.data.coverImage, Astro.url.origin).href
+  : '/og-image.jpg';
 ---
 
 <BaseLayout 
   title={`${post.data.title} - fcoterroba blog`}
   description={post.data.description}
   lang={post.data.lang}
+  image={ogImage}
 >
   <div>
     <section class="pt-32 pb-16 theme-bg">
