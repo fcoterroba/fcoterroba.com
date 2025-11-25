@@ -37,4 +37,4 @@ lang: "es/en"
 © 2025 fcoterroba. all rights reserved.  
 this website’s code and content are not open source and may not be reused without permission.
 
-read more about the license on (ToDo: add license link)
+read more about the license on https://github.com/fcoterroba/fcoterroba.com/blob/main/LICENSE.md
