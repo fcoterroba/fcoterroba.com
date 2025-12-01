@@ -1,0 +1,189 @@
+---
+title: "Proyecto Python medio: ¿Cómo hacer tu propio acortador de enlaces con interfaz gráfica?"
+description: "Aprende a crear un acortador de enlaces con Python usando pyshorteners y tkinter para crear una interfaz gráfica funcional."
+excerpt: "Aprende a crear un acortador de enlaces con Python usando pyshorteners y tkinter para crear una interfaz gráfica funcional."
+category: "programación de software"
+tags: ["python", "tkinter", "gui", "pyshorteners", "tutorial", "programación", "interfaz gráfica"]
+author: "fcoterroba"
+date: "2020-11-09"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/url-shortener-python.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os vuelvo a traer un post en el que vamos a realizar otro proyecto en nuestro lenguaje favorito, Python 🐍.
+
+Este proyecto es algo más complejo a los anteriormente realizados en la página web.
+Si no los has visto ya, te recomiendo verlos antes de proseguir con este: [¿Cómo hacer una calculadora en la consola de comandos?](https://fcoterroba.com/proyecto-python-principiantes-calculadora) así cómo el proyecto que hicimos [para generar códigos QR.](https://fcoterroba.com/proyecto-python-principiantes-generar-codigo-qr)
+También, antes de ver este, te recomiendo visitar el post que considero que está a este mismo nivel. Un proyecto en el que, usando [APIs públicas y gratuitas, fuimos capaces de conseguir un exchange de monedas con interfaz gráfica.](https://fcoterroba.com/proyecto-python-medio-exchange-interfaz-grafica)
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comencemos 👇🏻
+
+**¿Qué es un acortador de enlaces?**
+
+Un acortador de enlaces, según Wikipedia, es:
+
+Un tipo de servicio software que permite usar URL cortas las cuales redirigen a la URL original. El origen de este tipo de servicios es hacer la URL más manejable y fácil de compartir y recordar.
+Se utiliza sobre todo para acortar enlaces profundos que, por su naturaleza, suelen ser largos.
+
+En resumen, un acortador de enlaces o URL es un programa o servicio en el cual transforman un enlace, normalmente grande en corto. Usando principalmente servicios de terceros.
+
+Existen servicios que incluso te abonan un pago por visita por usar dichos servicios. El beneficio se suele realizar dada la publicidad integrada en él a cambio de esperar un dicho tiempo.
+
+Y esto es lo que vamos a realizar hoy, vamos a conseguir hacer un programa en Python con interfaz gráfica o GUI por sus siglas en inglés en el cual, el usuario insertará un enlace y el programa devolverá la URL acortada.
+
+**Antes de comenzar, de verdad**, quiero mostrarte en un GIF, lo que tú mismo vas a ser capaz de realizar en menos de 1 hora.
+
+![Demo del acortador de enlaces](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Vamos a usar una librería de Python llamada PyShorteners disponible en [PyPI](https://pypi.org/project/pyshorteners/) con la documentación (en inglés) en [ReadTheDocs](https://pyshorteners.readthedocs.io/en/latest/).
+
+Para instalar dicha librería deberemos escribir **pip install pyshorteners** en nuestra terminal. (No suele ser necesario escribirlo en modo administrador)
+
+![Instalación de pyshorteners](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Vamos a hacer una simple y rápida prueba del funcionamiento de la librería, escribiendo un pequeño script para que nos acorte mi página web y lo muestre por terminal.
+
+![Prueba de pyshorteners](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Puedes comprobar el correcto funcionamiento haciéndolo tú mismo!
+
+El enlace generado es el siguiente, comprueba que vuelves a entrar en mi página! [https://tinyurl.com/y6to3jqd](https://tinyurl.com/y6to3jqd)
+
+El código (comentado correctamente) que he usado es el siguiente:
+
+```python
+import pyshorteners # Importamos el paquete necesario y que hemos instalado previamente
+
+s = pyshorteners.Shortener() # Creamos el objeto del paquete pyshorteners
+
+# Mostramos por pantalla, usando la propiedad tinyurl del objeto que acabamos de
+# crear, para que nos genere un enlace acortado, usando el servicio de tinyurl
+print(s.tinyurl.short('https://www.fcoterroba.com'))
+```
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Ahora que hemos controlado, mínimamente, la librería con la que vamos a realizar el proyecto, vamos a crear la interfaz gráfica.
+
+He pensado en crear algo así:
+
+![Interfaz gráfica del acortador](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Ya sabéis y veis, que no me gano la vida con el front-end... 😂
+
+Aunque ahora voy a explicar y mostrar el código que he usado para el proyecto, no os vayáis todavía ya que nos queda una encrucijada pendiente!
+
+El código que he usado es el siguiente:
+
+```python
+#Importamos los paquetes necesarios para la interfaz gráfica y el acortador
+import pyshorteners
+from tkinter import *
+from tkinter import ttk
+
+#Creamos la ventana con título, tamaño y demás parámetros
+ventana = Tk() 
+ventana.minsize(400, 360)
+ventana.title("Acortador de enlaces | fcoterroba.com")
+ventana.resizable(0,0)
+
+#Función para acortar y mostrar enlace (la llamaremos posteriormente)
+def acortamiento():
+    s = pyshorteners.Shortener()
+    acortado = s.tinyurl.short(acortar_entry.get())
+    resultado_label = Label(ventana, text=acortado)
+    resultado_label.grid(row=8, column=0)
+    resultado_label.config(
+        fg="black",
+        bg="#16a596",
+        font=("Arial", 20),
+        padx=210,
+        pady=20
+        )
+
+#Diseño del título
+home_label = Label(ventana, text="¡Acortador de enlaces!")
+home_label.config(
+        fg="white",
+        bg="#898b8a",
+        font=("Candara", 30),
+        padx=210,
+        pady=20
+    )
+home_label.grid(row=0, column=0)
+
+#Diseño del label y el entry_text para mostrar el texto y el input.
+acortar_label = Label(ventana, text="¿Qué quieres acortar?", bg="#16a596")
+acortar_entry = Entry(ventana)
+acortar_label.grid(row=1, column=0, padx=5, pady=5)
+acortar_entry.grid(row=2, column=0, padx=5, pady=5)
+
+#Botón para hacer funcionar el método
+boton = Button(ventana, text="¡Acorta! ✂", command=acortamiento)
+boton.grid(row=6, column=0)
+
+#Configuración general y muestra de la ventana principal con su respectivo color
+ventana.configure(bg='#16a596')
+ventana.mainloop()
+```
+
+Hasta aquí todo bien y cualquiera podría decir que ha acabado pero no, si queremos ser buenos desarrolladores de Python, debemos darnos cuenta de que el resultado_label del final, en la función, no permite al usuario copiar y pegar dicho enlace, solamente verlo. Es algo que o yo no sé realizar o juraría que no se puede seleccionar texto de un label.
+
+Para remediar esto se me ocurren dos maneras de hacerlo.
+
+La primera es establecer un botón debajo de dicho label que abra el navegador web por defecto del usuario con dicho enlace acortado.
+
+Para ello simplemente debemos importar la librería **webbrowser** y usar su método **open**, escribiendo entre los paréntesis, dicho enlace.
+
+```python
+#Botón para abrir enlace en el navegador
+    boton = Button(ventana, text="Abrir enlace", command=abrir_enlace)
+    boton.grid(row=9, column=0)   
+    
+def abrir_enlace():
+    webbrowser.open(s.tinyurl.short(acortar_entry.get()))
+```
+
+La segunda opción es permitir que, con un botón, el usuario pueda obtener dicho enlace en su portapapeles.
+
+Para esto tenemos que instalar una librería externa, llamada **pyperclip.** La instalación se realiza, como ya te podrás imaginar, usando **pip install pyperclip**
+
+![Instalación de pyperclip](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Una vez instalado simplemente llamaremos a la librería incluyendo el método **copy** y pasando el enlace entre paréntesis.
+
+```python
+#Botón para copiar al portapapeles
+    boton = Button(ventana, text="Copiar enlace", command=copiar_enlace)
+    boton.grid(row=10, column=0)   
+    
+def copiar_enlace():
+    pyperclip.copy(s.tinyurl.short(acortar_entry.get()))
+```
+
+Si habéis seguido el post al pie de la letra, os quedará algo resultante a esto:
+
+Podéis ver el repositorio completo en mi [perfil de GitHub.](https://github.com/fcoterroba/Shortener_Python)
+
+Lo último que me queda por recordar es que el método tinyurl está ahí porque es el servicio que personalmente uso para acortar enlaces pero la librería de **pyshorteners** dispone de más de 15 servicios.
+
+Algunos precisan de una API para funcionar correctamente pero, eso os lo dejo a vosotr@s!
+
+Recuerda leer los documentos! [https://pyshorteners.readthedocs.io/en/latest/index.html](https://pyshorteners.readthedocs.io/en/latest/index.html)
+
+Y esto ha sido todo por hoy chic@s, espero que os haya gustado este post tanto cómo me ha gustado a mí hacerlo, programar el proyecto y pelearme con la GUI! Al fin y al cabo, esto es lo bonito de programar, ¿no creéis? 🤓
+
+Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
