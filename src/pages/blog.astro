@@ -36,8 +36,8 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
 
     <section class="py-12 bg-gradient-to-br from-brand-light/5 to-brand-green/5">
       <div class="max-w-6xl mx-auto px-8 lg:px-12">
-        <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
-          <div class="flex-1 max-w-lg">
+        <div class="mb-10">
+          <div class="max-w-2xl mx-auto">
             <div class="relative group">
               <input 
                 type="text" 
@@ -45,17 +45,24 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
                 placeholder="buscar posts..."
                 data-es-placeholder="buscar posts..."
                 data-en-placeholder="search posts..."
-                class="w-full px-6 py-4 pl-14 pr-6 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-3xl focus:outline-none focus:ring-4 focus:ring-brand-green/20 focus:border-brand-green transition-all duration-300 text-lg backdrop-blur-sm"
+                class="w-full px-8 py-5 pl-16 pr-8 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-3xl focus:outline-none focus:ring-4 focus:ring-brand-green/20 focus:border-brand-green transition-all duration-300 text-xl backdrop-blur-sm shadow-lg hover:shadow-xl"
               />
-              <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                <svg class="h-6 w-6 text-gray-400 group-focus-within:text-brand-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="absolute inset-y-0 left-0 pl-8 flex items-center pointer-events-none">
+                <svg class="h-7 w-7 text-gray-400 group-focus-within:text-brand-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="flex flex-wrap gap-3">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <h3 class="text-sm font-semibold theme-text-60 tracking-wider" data-es="filtrar por categoría" data-en="filter by category">
+              Filtrar por categoría
+            </h3>
+          </div>
+          <div class="flex flex-wrap gap-3 justify-center max-w-4xl">
             <button 
               class="category-filter px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-green text-white shadow-lg hover:shadow-xl hover:scale-105"
               data-category="all"
@@ -330,12 +337,20 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
       function updateLanguage() {
         currentLang = document.documentElement.lang || 'es';
         currentPage = 1;
+
+        if (searchInput) {
+          const placeholder = currentLang === 'es' 
+            ? searchInput.getAttribute('data-es-placeholder') || 'buscar posts...'
+            : searchInput.getAttribute('data-en-placeholder') || 'search posts...';
+          searchInput.placeholder = placeholder;
+        }
+        
         updateCategories();
         filterPosts();
       }
 
       function updateCategories() {
-        const categoryContainer = document.querySelector('.flex.flex-wrap.gap-3');
+        const categoryContainer = document.querySelector('.flex.flex-wrap.gap-3.justify-center');
         if (!categoryContainer) return;
 
         const postsInLang = Array.from(document.querySelectorAll('article[data-lang]'))
@@ -453,6 +468,13 @@ const regularPosts = finalPosts.filter(post => !post.data.featured);
           filterPosts();
         });
       });
+
+      if (searchInput) {
+        const placeholder = currentLang === 'es' 
+          ? searchInput.getAttribute('data-es-placeholder') || 'buscar posts...'
+          : searchInput.getAttribute('data-en-placeholder') || 'search posts...';
+        searchInput.placeholder = placeholder;
+      }
 
       updateCategories();
       filterPosts();
