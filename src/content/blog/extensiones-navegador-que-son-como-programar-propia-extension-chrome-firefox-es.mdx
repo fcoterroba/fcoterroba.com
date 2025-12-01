@@ -1,0 +1,233 @@
+---
+title: "Extensiones de navegador: ¿Qué son y Cómo programar tu propia extensión para subir a Chrome y Firefox?"
+description: "Aprende qué son las extensiones de navegador y cómo crear tu propia extensión para Chrome y Firefox con un ejemplo práctico."
+excerpt: "Aprende qué son las extensiones de navegador y cómo crear tu propia extensión para Chrome y Firefox con un ejemplo práctico."
+category: "desarrollo web"
+tags: ["javascript", "extensiones", "chrome", "firefox", "tutorial", "frontend", "web extensions"]
+author: "fcoterroba"
+date: "2021-02-16"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/browser-extension.jpg"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que voy a explicar qué son las extensiones de navegadores, un punto muy importante y a tener en cuenta para poder mejorar nuestra productividad en el ordenador, además de muchas otras más cosas.
+
+Además, vamos a saber programar nuestra propia extensión así cómo una pequeña guía para poder subir dicha extensión a la tienda oficial de Chrome y Firefox. Interesante, ¿verdad?
+
+Para saber realizar este post vamos a necesitar saber lo máximo de front-end. Tecnologías para el diseño correcto, funcional y responsive de una página web.
+
+Necesitarás saber, entonces, como mínimo, HTML y CSS aunque, una web o extensión sin JS no podrá hacer gran cosa. Así que sí, necesitamos a los tres mosqueteros!
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**¿Qué son las extensiones de navegador?**
+
+Las extensiones son pequeños programas o funciones extra que añadimos a Chrome para conseguir extraer más rendimiento y mejorar la experiencia. Además, debido a su naturaleza técnica, las extensiones de Chrome pueden ser instaladas también sin problemas en navegadores como Opera, Brave o Chromium entre otros.
+
+En resumen, son aplicaciones, para realizar tareas muy específicas mientras navegas. No son más que programas que se añaden que aportan funcionalidades extra a nuestro navegador.
+
+**¿Cómo se programa una extensión?**
+
+Bueno, pues, a ver, yo, en mi caso, voy a hacer una extensión **REAL** que, aunque puede ser algo chorrada, sirve para afianzar conocimientos y quien sabe si quizás pueda ayudar a alguien más!
+
+Vamos a hacer una extensión para aquellos momentos en los que, aún estando solo, necesitamos algún mensaje o algo que nos muestre apoyo.
+
+De esa absurda idea nació **Advice Me.** La extensión que vamos a desarrollar 👇
+
+Lo primero que vamos a hacer, como siempre, es crear un nuevo proyecto en Visual Studio Code o nuestro editor (o IDE) de código favorito.
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Previo a este paso, necesitaremos, sí o sí, como mínimo, un icono en formato png con transparencia de 128x128. Posteriormente podemos añadir dicho icono en distintas medidas.
+
+Debemos crear primeramente un archivo de manifiesto con extensión JSON.
+
+Google, en su propia documentación ofrece este [archivo de ejemplo](https://storage.googleapis.com/support-kms-prod/VagPFTGCZxfCjvrR3fww3bFyfQENTX7PmQMM) aunque yo te puedo mostrar (y explicar) el mío:
+
+```json
+{
+"manifest_version": 2,
+"name": "Advice me",
+"description": "Millions of free advices every time you click",
+"version": "1.0",
+"icons": {
+"128": "icon.png"
+},
+"background": {
+    "persistent": true,
+    "scripts": [
+        "background.js"
+    ]
+},
+"browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+}
+}
+```
+
+Todo se puede explicar de manera bastante sencilla solamente leyendo la par clave-valor
+
+**IMPORTANTE:** Guardar el archivo como `manifest.json`
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Vamos a crear nuestro archivo main que, aunque normalmente debiera ser **index.html**, para extensiones este fichero principal debe llamarse **popup.html**
+
+Vamos a crearlo con una estructura básica de hola mundo.
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>Hello World!</p>
+</body>
+</html>
+```
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Ahora que tenemos pensado la extensión y vemos que, de momento, es totalmente funcional. Vamos a crear la funcionalidad principal.
+
+Como he mencionado anteriormente, yo quiero hacer una extensión que cada vez que la abras (o le dés al botón de recargar) te muestre un consejo para motivarte!
+
+Así que, así de primeras, vamos a crear un archivo js que contenga un array con un montonazo de frases!
+
+El script debe llamarse de la misma manera que hemos escrito en el manifiesto
+
+```javascript
+var randomArray = [
+    ""All our dreams can come true, if we have the courage to pursue them."",
+    ""The secret of getting ahead is getting started."",
+    ""I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life and that is why I succeed."",
+    ""Don't limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve."",
+    ""The best time to plant a tree was 20 years ago. The second best time is now."",
+    ""Only the paranoid survive."",
+    ""It's hard to beat a person who never gives up."",
+    ""I wake up every morning and think to myself, 'how far can I push this company in the next 24 hours."",
+    ""If people are doubting how far you can go, go so far that you can't hear them anymore."",
+    ""We need to accept that we won't always make the right decisions, that we'll screw up royally sometimes – understanding that failure is not the opposite of success, it's part of success."",
+    ""Write it. Shoot it. Publish it. Crochet it, sauté it, whatever. MAKE.""
+  	...
+]
+```
+
+**4️⃣ CUARTO PASO 4️⃣**
+
+Vamos a añadir algo de CSS, modificar el párrafo, vaciarlo e importar dicho script previamente creado.
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap');
+        body{
+            max-width:200px;
+            max-height:400px;
+        }
+        button{
+            width: 100%;
+        }
+        p{
+            font-family: 'Lexend Peta', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <p class="frase">Did you need strength to continue?</p>
+    <script src="background.js"></script>
+</body>
+</html>
+```
+
+**5️⃣ QUINTO PASO 5️⃣**
+
+Volvemos a JS escribiendo un botón y haciendo una función que seleccione la clase del párrafo y modifique dicho valor por uno, escogido aleatoriamente del array previamente creado.
+
+```javascript
+var randomArray = [
+    ""All our dreams can come true, if we have the courage to pursue them."",
+    ""The secret of getting ahead is getting started."",
+    ""I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life and that is why I succeed."",
+    ""Don't limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve."",
+    ""The best time to plant a tree was 20 years ago. The second best time is now."",
+    ""Only the paranoid survive."",
+    ""It's hard to beat a person who never gives up."",
+    ""I wake up every morning and think to myself, 'how far can I push this company in the next 24 hours."",
+    ""If people are doubting how far you can go, go so far that you can't hear them anymore."",
+    ""We need to accept that we won't always make the right decisions, that we'll screw up royally sometimes – understanding that failure is not the opposite of success, it's part of success."",
+    ""Write it. Shoot it. Publish it. Crochet it, sauté it, whatever. MAKE."",
+  	...
+]
+
+document.write(""<button>I need advice</button>"")
+
+document.addEventListener(""click"", function(){
+    document.querySelector('.frase').innerHTML = randomArray[Math.floor(Math.random() * 11)]
+});
+```
+
+**6️⃣ SEXTO PASO 6️⃣**
+
+Con estos sencillos archivos tendríamos listo nuestra extensión.
+
+Para probarla, en Firefox, debemos escribir *about:debugging* en el navegador y entonces importar un archivo **.zip** que contenga todos nuestros ficheros.
+
+![Probar extensión en Firefox](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**ÚLTIMO PASO**
+
+Una vez que tengamos nuestra extensión totalmente funcional, simplemente tendremos que subirla a los principales navegadores. En este post te enseñaré a hacerlo en Firefox y Chrome!
+
+**Firefox**
+
+Para subir nuestra extensión a Firefox lo que deberemos hacer es crear una cuenta en [AMO](https://addons.mozilla.org/es/firefox/)
+
+![AMO - Firefox Add-ons](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Una vez registrados pasamos al [centro de desarrolladores de Mozilla](https://addons.mozilla.org/es/developers/) y damos click en la opción de "enviar nuestra primera extensión"
+
+![Centro de desarrolladores](/blog/covers/wordpress_to_astro_ES.jpg)
+
+A continuación vamos a leer y aceptar las políticas de Firefox y, **bastante importante,** elegir la manera de distribuir la extensión.
+
+Resumidamente, si elegimos la primera opción, aunque nuestra extensión tarde un poco más en estar ONLINE, podremos salir en la tienda de complementos de Firefox así como actualizarlo desde el mismo dashboard.
+
+La segunda opción es más auto-gestionada.
+
+![Opciones de distribución](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Tras varias preguntas sobre tu código, la privacidad, del mismo, etcétera. Tu extensión quedará en espera de aprobación.
+
+![Espera de aprobación](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**Google Chrome**
+
+Para subir la extensión a Google Chrome debemos ingresar en su [página](https://chrome.google.com/webstore/devconsole/register) y pagar su cuota de 5$USD de una sola vez.
+
+![Chrome Web Store Developer](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Yo, actualmente, no puedo pagar esos 5$USD pero este post será **actualizado** en cuanto pueda pagar.
+
+**Puedes descargar** el addons de manera totalmente gratuita [aquí](https://addons.mozilla.org/es/firefox/addon/advice-me/).
+También puedes **recomendar** más frases directamente en el [repositorio!](https://github.com/fcoterroba/Advice_Me)
+
+Esto ha sido todo por hoy chic@s! Espero que os haya gustado mucho este post para crear vuestras propias extensiones y subirlas a Internet!
+
+Recordarte que puedes ver el repositorio de esta extensión y muchas más en mi perfil personal de [GitHub!](https://github.com/fcoterroba) (PR con más frases motivacionales son bienvenidas!). Además de invitarte a seguirme en mi [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+
+Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+**Fuentes:** [LaVanguardia.com](https://www.lavanguardia.com/tecnologia/20190214/46437036899/extensiones-chrome.html#:~:text=Las%20extensiones%20son%20peque%C3%B1os%20programas,Brave%20o%20Chromium%20entre%20otros.), [ProfesoraDeInformática.com](https://profesoradeinformatica.com/extensiones-google-chrome/#Que_son_las_extensiones), [DerivadaCero.com](https://derivadacero.com/blog/instalar-extensiones-de-chrome/), [Google.com](https://support.google.com/chrome/a/answer/2714278?hl=es)
+
