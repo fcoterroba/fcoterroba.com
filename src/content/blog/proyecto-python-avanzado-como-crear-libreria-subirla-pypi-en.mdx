@@ -1,0 +1,275 @@
+---
+title: "Advanced Python Project: How to Create a Library and Upload it to PyPi?"
+description: "Learn how to create a Python library from scratch and upload it to PyPi, the largest Python package indexer."
+excerpt: "Learn how to create a Python library from scratch and upload it to PyPi, the largest Python package indexer."
+category: "software development"
+tags: ["python", "library", "tutorial", "project", "advanced"]
+author: "fcoterroba"
+date: "2022-05-03"
+readTime: "9 min read"
+featured: false
+coverImage: "/blog/covers/pypi-post.jpg"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoterroba on the Internet and today I'm bringing you another one of those posts you like, where we do a little project, this time quite advanced, in Python 🐍.
+
+Specifically, we're going to, given an idea we've already found, create and program a library using Python and then share it with the largest library indexer of the language, the PyPi website.
+
+Currently, along with the post about programming a [Twitter bot](https://fcoterroba.com/proyecto-python-avanzado-como-hacer-bot-twitter-automatizarlo), I think this is one of the most complicated projects not only because of the programming itself, but because you have to take several factors into account. Factors that, if you have the more advanced knowledge about the language, you can probably handle without any problems.
+
+Even so, if you see that this project is too big for you, remember that you have [an entire category](https://fcoterroba.com/category/python) on my website where you can go project by project learning from scratch.
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Finally, before we begin, I wanted to let you know that I've been uploading videos to TikTok for a few weeks now. Lately they're about Eurovision since it's coming up soon, but I'll leave you here the latest one I made today about computer science.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7077605052181007622" data-video-id="7077605052181007622" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba" rel="noopener noreferrer">@fcoterroba</a> like for part 2#<a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp" rel="noopener noreferrer">fyp </a>#<a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati" rel="noopener noreferrer">parati </a>#<a title="informatica" target="_blank" href="https://www.tiktok.com/tag/informatica" rel="noopener noreferrer">computer science </a>#<a title="darkweb" target="_blank" href="https://www.tiktok.com/tag/darkweb" rel="noopener noreferrer">darkweb </a>#<a title="deepweb" target="_blank" href="https://www.tiktok.com/tag/deepweb" rel="noopener noreferrer">deepweb</a>
+    <a target="_blank" title="♬ She Share Story (for Vlog) - 山口夕依" href="https://www.tiktok.com/music/She-Share-Story-for-Vlog-6722656094272883458" rel="noopener noreferrer">♬ She Share Story (for Vlog) - 山口夕依</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+**Before we begin, what is a library or package in Python?**
+
+A library or package in Python (and therefore in almost all other programming languages that allow it) is a set of functional tools that help you program.
+
+As David Zarruk said, a programming library is a set of functions that someone wrote somewhere in the world and has made available for anyone to use for free.
+
+I love this definition because I think it's a nice nod to free software and programming in general. Reaching any other part of the planet through code.🤩
+
+**1️⃣ FIRST STEP 1️⃣**
+
+**Have the idea.**
+
+Before we start programming itself, we need to have the idea for our library.
+
+It's true that we can simply create a library that returns Hello World, but try to be a bit creative and, for example, return a string in binary.
+
+In my case, what I'm going to do is a random generator of Spanish names.
+
+**2️⃣ SECOND STEP 2️⃣**
+
+**Get everything needed**
+
+If, for example, you're going to return a string in binary, you don't need anything else and you can go directly to the third step, but in my case, I need data and official sources.
+
+For my case, I needed to download a CSV with all the information about Spanish names and surnames and I found this fantastic repository by [Marc Boquet](https://github.com/marcboquet/spanish-names)
+
+So, I cloned the repository and kept the three main CSVs: the one for male names, the one for female names, and the one for surnames.
+
+**3️⃣ THIRD STEP 3️⃣**
+
+**Let's start programming**
+
+Now that we have everything we need, we create our directory, open it with VSCode, and we're going to import the necessary files if we need them.
+
+I'm not going to be very explanatory in this project since it's not about how I made this library but about how to make your own, but still, let's go step by step:
+
+The first thing I did was install the only library I needed to work easily with CSV files: Pandas.
+
+```
+pip3 install pandas
+```
+
+Next, I simply wanted to return a random name from the male CSV, for example.
+
+```python
+name = pd.read_csv("hombres.csv")
+temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+print(temporal_return)
+
+# Returns a string like this:
+# BRYAN ANTHONY
+```
+
+I did the same with the female one and the surnames.
+
+Then, I made it a bit more sophisticated and wanted to give a bit more freedom to the user who installed the library by giving them the possibility to request as many names as they wanted.
+
+For this, I had to add a parameter **WITH DEFAULT** to the function and modify the content a bit:
+
+```python
+def testing(numberNames=1):
+    name = pd.read_csv("hombres.csv")
+    if numberNames >= 2:
+        result_array = []
+        for i in range(numberNames):
+            temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+            result_array.append(temporal_return)
+        return result_array
+    else:
+        result_string = name.sample()["nombre"].to_string(index=False).strip()
+        return result_string
+
+print(testing(5))
+# Returns an array like this:
+# ['FEDERICO JOAQUIN', 'QUNWEI', 'DAVID MANUEL', 'PEDRO BASILIO', 'JAVIER ANIBAL']
+```
+
+Now, the last thing I thought of that could be frequent in the probable uses of the library is the request for **FULL NAMES**, that is, the user requests 1 or more names but with their respective surnames. This is how it turned out:
+
+```python
+def getRandomMaleName(numberNames=1, fullName=False):
+    name = pd.read_csv("hombres.csv")
+    if numberNames >= 2:
+        result_array = []
+        surname = pd.read_csv("apellidos.csv")
+        for i in range(numberNames):
+            temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+            if fullName:
+                temporal_return += " "
+                temporal_return += surname.sample()["apellido"].to_string(index=False)
+                temporal_return += " "
+                temporal_return += surname.sample()["apellido"].to_string(index=False)
+            result_array.append(temporal_return)
+        return result_array
+    else:
+        result_string = name.sample()["nombre"].to_string(index=False).strip()
+        return result_string
+
+print(getRandomMaleName(2, True))
+# This returns an array of two strings with full names
+# ['JUAN BENIGNO PASQUAL MORAGREGA', 'ADRIAN ENRIQUE CEDEÑO KENT']
+```
+
+For female names it applies exactly the same, but of course, what parameters can we add when requesting only surnames?
+
+Well, just like before, how many surnames they want and if they want individual surnames or IN PAIRS.
+
+```python
+def getRandomSurname(numberSurnames=1, pairs=False):
+    surname = pd.read_csv("apellidos.csv")
+    if numberSurnames >= 2:
+        result_array = []
+        tmp = ""
+        for i in range(numberSurnames):
+            if pairs:
+                tmp = surname.sample()["apellido"].to_string(index=False)
+            result_array.append(surname.sample()["apellido"].to_string(index=False)  + " " + tmp)
+        return result_array
+    else:
+        tmp = ""
+        if pairs:
+            tmp = surname.sample()["apellido"].to_string(index=False)
+        return f"{surname.sample()['apellido'].to_string(index=False) + ' ' + tmp}"
+
+print(getRandomSurname(4, True))
+# This returns an array of strings with pairs of surnames
+# ['AINOZA LAFORET', 'SAID JUAREZ', 'ALFARO RAHHOU', 'LLADOSA CAPOTE']
+```
+
+**4️⃣ FOURTH STEP 4️⃣**
+
+Once we have our script working and we've tested it correctly, we're going to start with the process of uploading to PyPi.
+
+But before uploading it, we need to have our project directory properly distributed.
+
+First, we need the **__init__.py** file which will be the way we indicate how we can invoke our functions.
+
+It's possible to leave it empty, although it would be more complicated for the user since they would have to import it in their project like this:
+
+```
+from folder.file import function
+```
+
+To make it more elegant, we'll have to indicate the **RELATIVE PATH** as well as write one line per function. In our case:
+
+```
+from .functions import getRandomMaleName
+from .functions import getRandomFemaleName
+from .functions import getRandomSurname
+```
+
+Next, we need the **setup.py** file, which follows a standard template and is not complicated at all. Here's the empty template:
+
+```python
+import pathlib
+from setuptools import find_packages, setup
+
+HERE = pathlib.Path(__file__).parent
+
+VERSION = 'X.X'
+PACKAGE_NAME = 'YOUR PACKAGE NAME'
+AUTHOR = 'AUTHOR'
+AUTHOR_EMAIL = 'YOUR@EMAIL.COM'
+URL = 'WWW.YOURWEBSITE.COM'
+
+LICENSE = 'LICENSE TYPE'
+DESCRIPTION = 'SHORT DESCRIPTION EXPLAINING THE LIBRARY'
+
+#Packages needed for the library to work. They will be installed at the same time if you don't already have them installed
+INSTALL_REQUIRES = [
+    'pandas'
+]
+
+setup(
+    name=PACKAGE_NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    url=URL,
+    install_requires=INSTALL_REQUIRES,
+    license=LICENSE,
+    packages=find_packages(),
+    include_package_data=True
+)
+```
+
+Once we have all this, we distribute it like this:
+
+![Project structure](/blog/covers/proyecto-python-fastapi.jpg)
+
+A BASE folder that contains the setup and a folder that contains the init and our functions file
+
+**5️⃣ FIFTH STEP 5️⃣**
+
+We're getting close to the end, but first we'll need to **PACKAGE** the library and create the distribution files.
+
+For this, we run the setup.py we've created in the following way:
+
+```
+python3 setup.py sdist bdist_wheel
+```
+
+This will create a folder called *dist* that will contain the library in **.tar.gz** format and in **.whl**
+
+**6️⃣ SIXTH STEP 6️⃣**
+
+Now, let's proceed to upload our library to the PyPi indexer.
+
+For this, the first thing is to install the twine library with:
+
+```
+pip3 install twine
+```
+
+![Twine installation](/blog/covers/proyecto-python-fastapi.jpg)
+
+Once installed, we upload the two generated formats and that's it!
+
+```
+twine upload dist/YOURFILE.tar.gz dist/YOURFILE-py3-none-any.whl
+```
+
+Once done, it will ask you for your PyPi profile username and password, and that's it, you'll have created your first library!
+
+You can check out my library repository on [GitHub](https://github.com/fcoterroba/random_spanish) and even see it on [PyPi](https://pypi.org/project/random-spanish/)!
+
+🏁 **End of post** 🏁
+
+And that's all for today. Thanks for reading until the end, I hope it was useful and you liked it. See you soon!
+
+You can contribute financially via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
+I also hope you have a great week and we'll see each other here soon! Greetings and remember to follow me on social media like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) and now also on [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+**Sources:** [crehana.com](https://www.crehana.com/es/blog/desarrollo-web/librerias-python/), [antonio-fernandez-troyano.medium.com](https://antonio-fernandez-troyano.medium.com/crear-una-libreria-python-4e841fbd154f)
+

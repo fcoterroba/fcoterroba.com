@@ -1,0 +1,275 @@
+---
+title: "Proyecto Python avanzado: ¿Cómo crear una librería y subirla a PyPi?"
+description: "Aprende a crear una librería en Python desde cero y subirla a PyPi, el mayor indexador de paquetes de Python."
+excerpt: "Aprende a crear una librería en Python desde cero y subirla a PyPi, el mayor indexador de paquetes de Python."
+category: "programación de software"
+tags: ["python", "librería", "tutorial", "proyecto", "avanzado"]
+author: "fcoterroba"
+date: "2022-05-03"
+readTime: "9 min read"
+featured: false
+coverImage: "/blog/covers/pypi-post.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os vuelvo a traer un post de esos que os gusta, en el que hacemos un proyectito, esta vez bastante avanzado, en Python 🐍.
+
+Concretamente, vamos a, dada una idea ya encontrada, crear y programar una librería usando Python y posteriormente compartirla al mayor indexador de librerías del lenguaje, la web PyPi.
+
+Actualmente, junto al post sobre programar un [bot en Twitter](https://fcoterroba.com/proyecto-python-avanzado-como-hacer-bot-twitter-automatizarlo), me parece uno de los proyectos más complicados no solo por el hecho de programar, sino porque hay que tener varios factores en cuenta. Factores que seguramente, si tienes las nociones más avanzadas sobre el lenguaje, puedas realizar sin ningún tipo de problemas.
+
+Aún así, si ves que este proyecto se te hace demasiado grande, recuerda que tienes [una categoría entera](https://fcoterroba.com/category/python) en mi página web donde podrás ir proyecto a proyecto aprendiendo desde 0.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Por último antes de comenzar, quería comunicar que llevo unas semanas subiendo vídeos a TikTok. Últimamente son de Eurovisión dado que ya queda poco para ello pero te dejo por aquí el último que hice a día de hoy sobre informática.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7077605052181007622" data-video-id="7077605052181007622" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba" rel="noopener noreferrer">@fcoterroba</a> like para la parte 2#<a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp" rel="noopener noreferrer">fyp </a>#<a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati" rel="noopener noreferrer">parati </a>#<a title="informatica" target="_blank" href="https://www.tiktok.com/tag/informatica" rel="noopener noreferrer">informatica </a>#<a title="darkweb" target="_blank" href="https://www.tiktok.com/tag/darkweb" rel="noopener noreferrer">darkweb </a>#<a title="deepweb" target="_blank" href="https://www.tiktok.com/tag/deepweb" rel="noopener noreferrer">deepweb</a>
+    <a target="_blank" title="♬ She Share Story (for Vlog) - 山口夕依" href="https://www.tiktok.com/music/She-Share-Story-for-Vlog-6722656094272883458" rel="noopener noreferrer">♬ She Share Story (for Vlog) - 山口夕依</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+**Antes de comenzar, ¿qué es una librería o paquete en Python?**
+
+Una librería o paquete en Python (y por ende en casi todo el resto de lenguajes de programación que lo permiten) es un conjunto de implementos funcionales que te ayudan a programar.
+
+Según dijo David Zarruk, una librería de programación es un conjunto de funciones que alguien escribió en alguna parte del mundo y ha disponibilizado para que cualquiera pueda utilizarlo de forma gratuita.
+
+Me encanta esta definición porque creo que es un bonito guiño al software libre y a la programación en general. Llegar mediante código a cualquier otra parte del planeta.🤩
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+**Tener la idea.**
+
+Antes de empezar a programar en sí, necesitamos tener la idea de nuestra librería.
+
+Bien es cierto que podemos simplemente crear una librería que te devuelva Hola Mundo pero intenta sacarle un poco de ingenio y, por ejemplo, devuelve un string en binario.
+
+En mi caso, lo que voy a hacer es un generador aleatorio de nombres Españoles.
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+**Obtener todo lo necesario**
+
+Si por ejemplo vas a devolver un string en binario no necesitas nada más y puedes pasar directamente al tercer paso, pero en mi caso, necesito datos y fuentes oficiales.
+
+Para mí caso, necesitaba descargar un csv con toda la información sobre nombres y apellidos Españoles y encontré este fantastico repositorio de [Marc Boquet](https://github.com/marcboquet/spanish-names)
+
+Entonces, cloné el repositorio y me quedé con los tres CSV principales, el de nombres de hombre, el de nombres de mujer y el de los apellidos
+
+**3️⃣ TERCER PASO 3️⃣**
+
+**Empecemos a programar**
+
+Ahora que tengamos todo lo necesario, creamos nuestro directorio, lo abrimos con VSCode y vamos a importar los archivos necesarios en caso de necesitarlos.
+
+No voy a ser muy explicativo en este proyecto ya que no va de cómo hice este librería sino de cómo hacer la tuya propia, pero aún así, vayamos poco a poco:
+
+Lo primero que hice fue instalar la única librería que necesitaba para trabajar fácilmente con archivos CSV: Pandas.
+
+```
+pip3 install pandas
+```
+
+A continuación simplemente quise devolver un nombre aleatorio del csv de hombres, por ejemplo.
+
+```python
+name = pd.read_csv("hombres.csv")
+temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+print(temporal_return)
+
+# Te devuelve un string así:
+# BRYAN ANTHONY
+```
+
+Al igual que hice con el de mujer y el de los apellidos.
+
+Luego, ricé un poco más el rizo y quise dar un poco más de libertad al usuario que instalase la librería dandole la posibilidad de solicitar tantos nombres como quisiera.
+
+Para ello tenía que añadirle un parámetro **CON DEFAULT** a la función y modificar un poco el contenido de la misma
+
+```python
+def testing(numberNames=1):
+    name = pd.read_csv("hombres.csv")
+    if numberNames >= 2:
+        result_array = []
+        for i in range(numberNames):
+            temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+            result_array.append(temporal_return)
+        return result_array
+    else:
+        result_string = name.sample()["nombre"].to_string(index=False).strip()
+        return result_string
+
+print(testing(5))
+# Te devuelve un array de este estilo:
+# ['FEDERICO JOAQUIN', 'QUNWEI', 'DAVID MANUEL', 'PEDRO BASILIO', 'JAVIER ANIBAL']
+```
+
+Ahora, lo último que se me ocurrió que podía llegar a ser frecuente en los usos probables de la librería es la solicitud de **NOMBRES COMLETOS,** es decir, que el usuario solicite 1 o más nombres pero con sus respectivos apellidos, así fue cómo quedó esto:
+
+```python
+def getRandomMaleName(numberNames=1, fullName=False):
+    name = pd.read_csv("hombres.csv")
+    if numberNames >= 2:
+        result_array = []
+        surname = pd.read_csv("apellidos.csv")
+        for i in range(numberNames):
+            temporal_return = name.sample()["nombre"].to_string(index=False).strip()
+            if fullName:
+                temporal_return += " "
+                temporal_return += surname.sample()["apellido"].to_string(index=False)
+                temporal_return += " "
+                temporal_return += surname.sample()["apellido"].to_string(index=False)
+            result_array.append(temporal_return)
+        return result_array
+    else:
+        result_string = name.sample()["nombre"].to_string(index=False).strip()
+        return result_string
+
+print(getRandomMaleName(2, True))
+# Esto nos devuelve un array de dos strings con nombres completos
+# ['JUAN BENIGNO PASQUAL MORAGREGA', 'ADRIAN ENRIQUE CEDEÑO KENT']
+```
+
+Para los nombres de mujer aplica exactamente igual pero claro, qué parámetros podemos añadir a la hora de solicitar solo apellidos?
+
+Pues, al igual que antes, cuántos apellidos quiere y si quiere apellidos individuales o A PARES.
+
+```python
+def getRandomSurname(numberSurnames=1, pairs=False):
+    surname = pd.read_csv("apellidos.csv")
+    if numberSurnames >= 2:
+        result_array = []
+        tmp = ""
+        for i in range(numberSurnames):
+            if pairs:
+                tmp = surname.sample()["apellido"].to_string(index=False)
+            result_array.append(surname.sample()["apellido"].to_string(index=False)  + " " + tmp)
+        return result_array
+    else:
+        tmp = ""
+        if pairs:
+            tmp = surname.sample()["apellido"].to_string(index=False)
+        return f"{surname.sample()['apellido'].to_string(index=False) + ' ' + tmp}"
+
+print(getRandomSurname(4, True))
+# Esto nos devuelve un array de strings con pares de apellidos
+# ['AINOZA LAFORET', 'SAID JUAREZ', 'ALFARO RAHHOU', 'LLADOSA CAPOTE']
+```
+
+**4️⃣ CUARTO PASO 4️⃣**
+
+Una vez que ya tenemos nuestro script funcionando y lo hemos testeado correctamente, vamos a empezar con el proceso de subida a pypi.
+
+Pero antes de subirla necesitamos tener nuestro directorio del proyecto correctamente distribuido.
+
+Primeramente, necesitamos el archivo **__init__.py** que será la forma en la que indicamos cómo podemos invocar nuestras funciones.
+
+Es posible dejarlo vacío aunque para el usuario sería más complicado ya que debería importarla en su proyecto así:
+
+```
+from carpeta.archivo import función
+```
+
+Para hacerlo más elegante tendremos que indicar la **RUTA RELATIVA** así cómo escribir una línea por función. En nuestro caso:
+
+```
+from .functions import getRandomMaleName
+from .functions import getRandomFemaleName
+from .functions import getRandomSurname
+```
+
+A continuación necesitamos el archivo de **setup.py** que, sigue una plantilla estándar y no es nada complejo. Aquí os dejo la plantilla vacía:
+
+```python
+import pathlib
+from setuptools import find_packages, setup
+
+HERE = pathlib.Path(__file__).parent
+
+VERSION = 'X.X'
+PACKAGE_NAME = 'EL NOMBRE DE TU PAQUETE'
+AUTHOR = 'AUTOR'
+AUTHOR_EMAIL = 'TU@EMAIL.COM'
+URL = 'WWW.TUPAGINAWEB.ES'
+
+LICENSE = 'TIPO DE LICENCIA'
+DESCRIPTION = 'DESCRIPCIÓN CORTA EXPLICANDO LA LIBRERÍA'
+
+#Paquetes necesarios para que funcione la libreía. Se instalarán a la vez si no lo tuvieras ya instalado
+INSTALL_REQUIRES = [
+    'pandas'
+]
+
+setup(
+    name=PACKAGE_NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    url=URL,
+    install_requires=INSTALL_REQUIRES,
+    license=LICENSE,
+    packages=find_packages(),
+    include_package_data=True
+)
+```
+
+Una vez que tengamos todo esto lo distribuimos así:
+
+![Estructura del proyecto](/blog/covers/proyecto-python-fastapi.jpg)
+
+Una carpeta BASE que contenga el setup y una carpeta que contenga el init y nuestro archivo de funciones
+
+**5️⃣ QUINTO PASO 5️⃣**
+
+Ya nos acercamos al final pero previamente necesitaremos **EMPAQUETAR** la librería y crear los ficheros de distribución.
+
+Para ello ejecutamos el setup.py que hemos creado de la siguiente manera:
+
+```
+python3 setup.py sdist bdist_wheel
+```
+
+Esto nos creará una carpeta llamada *dist* que contendrá la librería en formato **.tar.gz** y en **.whl**
+
+**6️⃣ SEXTO PASO 6️⃣**
+
+Ahora sí que sí, vamos a proceder a subir nuestra librería al indexador pypi.
+
+Para ello, lo primero es instalar la librería de twine con:
+
+```
+pip3 install twine
+```
+
+![Instalación de twine](/blog/covers/proyecto-python-fastapi.jpg)
+
+Una vez instalado subimos los dos formatos generados y listo!
+
+```
+twine upload dist/TUARCHIVO.tar.gz dist/TUARCHIVO-py3-none-any.whl
+```
+
+Una vez hecho te pedirá usuario y contraseña de tu perfil en Pypi y listo, ya habrás creado tu primera librería!
+
+Puedes entrar al repositorio de mi librería en [GitHub](https://github.com/fcoterroba/random_spanish) e incluso verla en [pypi](https://pypi.org/project/random-spanish/)!
+
+🏁 **Fin del post** 🏁
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y ahora también en [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+**Fuentes:** [crehana.com](https://www.crehana.com/es/blog/desarrollo-web/librerias-python/), [antonio-fernandez-troyano.medium.com](https://antonio-fernandez-troyano.medium.com/crear-una-libreria-python-4e841fbd154f)
+
