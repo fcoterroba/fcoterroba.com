@@ -1,0 +1,163 @@
+---
+title: "Go: ¿Qué lenguaje es, de dónde viene y primera toma de contacto?"
+description: "Aprende qué es Go (GoLang), su historia, popularidad y cómo hacer tus primeros programas con este lenguaje de programación de Google."
+excerpt: "Aprende qué es Go (GoLang), su historia, popularidad y cómo hacer tus primeros programas con este lenguaje de programación de Google."
+category: "programación de software"
+tags: ["go", "golang", "google", "programación", "tutorial", "lenguaje de programación", "backend"]
+author: "fcoterroba"
+date: "2020-11-16"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/what-is-golang.jpg"
+lang: "es"
+---
+
+Hola mundo 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a hablar sobre un lenguaje de programación. Go (o GoLang).
+
+En cuestión de minutos, vas a saber el por qué del auge de este lenguaje, quién está detrás del mismo, cuáles son sus aplicaciones más usuales, qué cuota de mercado tiene actualmente, para qué sirve y sobre todo, lo más importante, veremos la primera toma de contacto con el lenguaje.
+
+La primera toma de contacto se basará en todo lo que está en torno a él, desde la instalación de todo lo necesario para empezar a cacharrear hasta los principales ejemplos que se suelen realizar en cualquier otro lenguaje común.
+
+Si te gusta la programación, te recomiendo pasarte por el tag de programación en el que podrás encontrar los [más de 5 proyectos que he subido hasta la fecha en una inmensidad de lenguajes de programación distinto, incluyendo JavaScript, Swift y, sobretodo, Python.](https://fcoterroba.com/category/programacion)
+
+Si tengo que recalcar alguno, me ha gustado especialmente el [acortador de enlaces con interfaz gráfica en Python](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica) con un nivel algo avanzado en la materia.
+
+En el caso de que tengas un nivel inferior, te recomiendo los [primeros pasos en Swift](https://fcoterroba.com/primeros-pasos-en-macos-y-swift) o [cómo realizar una calculadora en Python mediante la línea de comandos](https://fcoterroba.com/proyecto-python-principiantes-calculadora).
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comencemos 👇
+
+**Go: ¿Qué es?**
+
+Go (o GoLang, para hacerlo más sencillo), es otro lenguaje de programación más.
+
+Hace unos días salió una noticia histórica para Python ya que según el [index TIOBE,](https://www.tiobe.com/tiobe-index/) estudio que analiza las búsquedas de tecnologías, Python superó por primera vez en la historia a Java, quedando así 2º en la lista.
+Pues bien, haciendo caso a este estudio, Golang aparece como el 13º lenguaje más buscado.
+A pesar de ser un lenguaje tan joven, ha sido de los pocos lenguajes capaces de avanzar 7 posiciones hacia delante en un solo año.
+
+La mascota de Go se llama Gordon, es un Gopher (Geómido), una especie de roedor con forma de castor. 😍
+
+![Gopher - Mascota de Go](/blog/covers/wordpress_to_astro_ES.jpg)
+
+*Él es Gopher*
+
+Go es un lenguaje compilado, concurrente, imperativo, estructurado y orientado a objetos
+
+Está inspirado en la sintaxis de C (aunque a mí, sinceramente, me recuerda bastante más a Java) que intenta ser tan dinámico y polivalente como Python añadiendo el intento de rendimiento de C o C++.
+
+La empresa detrás del lenguaje es nada más y nada menos que Google.
+
+Fue lanzado en 2009 y es de filosofía open source.
+
+Añade una funcionalidad inexistente en prácticamente cualquier otro lenguaje de programación (excluyendo Java) que es el **recolector de basura**.
+
+Además, cuenta, al igual que Python, con la posibilidad de añadir de manera opcional el punto y coma.
+
+Según la [encuesta a desarrolladores de StackOverflow en 2019](https://insights.stackoverflow.com/survey/2019#technology), Golang se posiciona como el 13º lenguaje más popular, el 9º más amado y el 3º más querido.
+Dichas cifras subieron 1 y 4 posiciones respectivamente y se mantuvieron el 3º más querido [durante otro año consecutivo.](https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-wanted)
+
+Si quieres ampliar información a nivel teórico sobre el lenguaje, te recomiendo ver el siguiente vídeo, de Víctor Robles.
+
+<iframe src="https://www.youtube.com/embed/pGSI1o1K7FU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Hay mucha más información técnica en [su Wikipedia.](https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n))
+
+**Me tienes HYPE! 🤩 ¿Cómo se instala?**
+
+Antes de comenzar, has de saber que Go, en su página web, tiene una especie de playground en la que puedes realizar los aspectos más básicos del lenguaje sin necesidad alguna de instalar cosas.
+
+[Puedes visitar el playground pinchando en mí!](https://play.golang.org/p/kwmlRsXekwR)
+
+Si por el contrario, y cómo es normal, prefieres realizar la instalación sobre tu ordenador o portátil, sigue las instrucciones 👇🏻
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Lo primero que tenemos que hacer es acceder a su [página web](https://golang.org/) y dar click en el botón que está debajo de nuestro amigo Gopher.
+
+En la siguiente ventana, tendremos cuatro botones, uno para cada tipo de ejecutable. (Linux, MacOS, Windows y el código fuente). Elegiremos nuestro sistema operativo y comenzará la descarga.
+
+![Descarga de Go](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Tras unos segundos de descarga, obtendremos el archivo de instalación que, para el caso de Windows, servirá con que ejecutemos la aplicación como administradores y realicemos la típica instalación de siguiente > siguiente > finalizar.
+
+![Instalación de Go](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Y con esto ya estaría la instalación hecha y funcional. Podemos comprobarlo escribiendo `go version` en la terminal o línea de comandos.
+
+![Verificar instalación de Go](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**PROGRAMAS SENCILLOS**
+
+Antes de comenzar a realizar nuestros pequeños scripts en Golang, tenemos que abrir nuestro editor de código favorito (en mi caso ya sabéis que es VSCode) e instalar la extensión personal de Google. Es sencilla de encontrar, simplemente debéis escribir **Go** en el buscador de plugins e instalarla.
+
+Si por otro lado, decidís trabajar desde la terminal, para correr el script simplemente deberéis escribir `go run nombre_del_archivo.go`
+
+Ahora sí que sí, comencemos con el **HOLA MUNDO 👋🏻**
+
+Lo primero que tenemos que hacer, en la línea 1, es declarar el nombre del paquete principal. Por lo general se llamará `main`
+
+A continuación debemos importar los paquetes que vayamos a usar, de momento es simplemente para imprimir por pantalla y poco más. `import "fmt"`
+
+Después, debemos declarar la función con el mismo nombre que el de la línea 1 y dentro de esta función, el código para mostrar por pantalla un texto. ¿Ves ahora por qué me recuerda a Java? (Ahora al menos no hay puntos y comas) 🥺
+
+`func main(){}` y `fmt.Println("Lo que quieras que se muestre por pantalla")`
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hola mundo! Mi nombre es Francisco, fcoterroba en Internet!")
+}
+```
+
+Las condiciones en Go son una mezcla de Java y Python, siendo algo más o menos así:
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+	if 20 % 2 == 0{
+		fmt.Println("20 es par")
+	}else{
+		fmt.Println("20 es impar") 
+	}
+}
+```
+
+Vamos a ir acabando haciendo dos cosas bastante importantes, creando variables y realizando bucles.
+
+Con `a:=5` y `b:="Esto es texto"` podemos realizar declaraciones de variables. (En este aspecto es similar a Python ya que no se justifica el tipo de variable, Go, por detrás, le asigna uno, eso sí.
+Las parte de los bucles es como casi **cualquier lenguaje**, `for contador=numero-donde-empezar; contador<=numero-donde-parar; contador++{}`
+*contador++ sirve para aumentar el contador en uno.*
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+	a := 5
+	b := "Esto es texto"
+	
+	for i:=0;i<=a;i++{
+		fmt.Println(i)
+	}
+	fmt.Println(b) 
+}
+```
+
+Y esto es todo por hoy chicos, ahora os voy a dejar un post en [medium.com sobre Python y Go, del gran Orlando Monteverde](https://medium.com/@orlmonteverde/de-python-a-go-golang-7e4a14077f08) por si queréis ampliar conocimientos en la materia! 🤓
+
+Y poco más que añadir chic@s, espero que os haya gustado muchísimo ya que a mí me ha encantado! Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
