@@ -1,0 +1,131 @@
+---
+title: "Proyecto Python medio: ¿Qué es el WebScrapping y cómo realizarlo?"
+description: "Aprende qué es el web scraping y cómo realizarlo con Python usando BeautifulSoup para extraer información de sitios web como MediaMarkt."
+excerpt: "Aprende qué es el web scraping y cómo realizarlo con Python usando BeautifulSoup para extraer información de sitios web como MediaMarkt."
+category: "programación de software"
+tags: ["python", "web scraping", "beautifulsoup", "tutorial", "programación", "automatización"]
+author: "fcoterroba"
+date: "2021-01-04"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/what-is-webscrappe.jpg"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a hablar, teórica y prácticamente, qué es y cómo se realiza la palabra tendencia del momento. **WebScrapping**.
+
+Vamos a necesitar saber un poquitín de Python por lo que te recomiendo pasar antes por alguno de los anteriores que he hecho: [¿Cómo hacer una calculadora en la consola de comandos?](https://fcoterroba.com/proyecto-python-principiantes-calculadora), [proyecto para generar códigos QR.](https://fcoterroba.com/proyecto-python-principiantes-generar-codigo-qr)
+[Proyecto usando APIs públicas y gratuitas, fuimos capaces de conseguir un exchange de monedas con interfaz gráfica.](https://fcoterroba.com/proyecto-python-medio-exchange-interfaz-grafica)
+Por último, te recomiendo el penúltimo post que he subido hasta la fecha, en el que hicimos un [acortador de enlaces con interfaz gráfica donde puedes abrir y copiar automáticamente los enlaces generados](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica).
+Y, si te ves con ánimo y fuerzas, sigue por el post más complicado hasta el momento! [Programando un bot en Twitter totalmente funcional!](https://fcoterroba.com/proyecto-python-avanzado-como-hacer-bot-twitter-automatizarlo)
+
+Antes de comenzar con toda mi parrafada, quería felicitarte el año nuevo, deseando con toda mi alma, que hayas podido pasar las fiestas rodeado de los tuyos.
+También os deseo lo mejor para 2021!
+
+Yo, voy a dar una serie de pequeños tips que van a cambiar en la website.
+
+- Dejaré de subir posts semanalmente para empezar a subirlos cuando buenamente pueda.
+- La sección de [recomendaciones](https://fcoterroba.com/recomendaciones) se quedará tal cómo está, con 30 canciones y 30 vídeos PERO se modificarán de manera mensual. El primer Lunes de cada mes.
+
+Hago esto debido a que con los estudios, no puedo dedicarle todo lo que me gustaría a la página y es por eso que prefiero dejaros, de momento, en un segundo plano, acabar mis estudios y retomar la página. Eso sí, podéis estar informados de todo lo que hago en mis redes sociales. Tenéis enlaces al final de la entrada.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**¿Qué es el webscrapping?**
+
+El web scraping consiste en navegar automáticamente una web y extraer de ella información. Esto puede ser muy útil para muchísimas cosas y beneficioso para casi cualquier negocio. A día de hoy, no creo que exista una sola empresa de éxito que no lo haga —o que no quiera hacerlo—.
+
+Al software programado para scrapear se le suele llamar bot, spider o crawler. Todo el mundo puede programar un crawler, ya que existen herramientas para ponerlo a punto que no requieren conocimientos de programación. Eso sí, estas herramientas nunca te van a dar toda la flexibilidad que tendrías si los desarrollaras en un lenguaje de programación. Más adelante veremos las tecnologías y herramientas más utilizadas para la creación de estos bichitos.
+
+Quizá te hayan venido a la mente los típicos captchas o el típico "No soy un robot" que nos encontramos normalmente al rellenar un formulario online. ¡Exacto! Es de los crawlers de lo que se protegen. Porque además de recopilar información, también se pueden utilizar para rellenar formularios, crear cuentas falsas o realizar cualquier acción en la red de forma automática.
+
+Es cierto que hay un debate legal y ético sobre el scrapeo. Más adelante veremos los riesgos judiciales que supone y cómo llevarlo a cabo de forma responsable.
+
+No es tan sencillo decir si scrapear es legal o no. Depende mucho de cada caso y, aún así, la mayoría de las veces no estará muy claro. Por eso, aunque sea poco probable, siempre antes de scrapear se tiene que asumir el riesgo de que la empresa scrapeada pueda poner una denuncia. Aunque lo más probable es que, en el caso de realizar alguna acción de respuesta, sea bloquear al bot o dar alguna especie de aviso.
+
+Eso sí, antes de ponerse a scrapear, es más que recomendable comprobar si se proporciona una API con la cual acceder a los datos sin tener hacer scraping. Por ejemplo, Idealista, la conocida web de alquiler y compra de viviendas, ofrece una API para que ambos lados salgan ganando. Por un lado, realizar peticiones a una API requiere menos desarrollo que scrapear y, por otro, Idealista evita todo ese tráfico "indeseado". Además, al abrir sus datos al público, dan la oportunidad de que alguien desarrolle algo potente para ellos.
+
+Si no ha habido suerte y no proporcionan una API, habrá que leerse los términos y condiciones, para comprobar que no dicen nada con respecto a la extracción automática de la información. De todas formas, antes de ponerse a scrapear habrá que considerar si el número de peticiones necesarias son demasiado abusivas y si el fin del proyecto perjudica al negocio de la página. Podría haber más pegas por parte de la empresa scrapeada si te estás lucrando a costa de su contenido, ya que puedes ser denunciado por la vulneración de los derechos de propiedad intelectual. Sobre todo si el contenido que se quiere extraer está detrás del login de usuario, ya que, en este caso, seguro que no estamos hablando de información de dominio público.
+
+En conclusión, con el fin de evitar sustos, es recomendable contactar con la empresa para contarles en qué consiste el proyecto o, incluso, llegar a algún acuerdo con ellos. Además, siempre es buena idea dejarse aconsejar por un abogado experto.
+
+**Proyecto: WebScrapping a Amazon, MediaMarkt y PCComponentes**
+
+Pongámonos en la situación de que quiero comprarme un juego y un mando de la PS5. Pero, como no me urge el tiempo, quiero esperar y ver cuando está por menos precio en MediaMarkt
+
+Está bien. Pues, el ejercicio irá sobre:
+
+- MediaMarkt:
+  - [Juego](https://www.mediamarkt.es/es/product/_ps5-marvel-s-spider-man-miles-morales-1487492.html) y [Mando](https://www.mediamarkt.es/es/product/_mando-sony-ps5-dualsense%E2%84%A2-wireless-controller-blanco-1487502.html)
+
+Abrimos nuestro editor de código favorito e iniciamos un proyecto en Python! La base del proyecto, aunque puede ser como quieras, yo la comienzo así:
+
+```python
+def MediaMarkt():
+    print ("Hola MediaMarkt")
+
+if __name__ == '__main__':
+    MediaMarkt()
+```
+
+Existen muchas librerías de Python para scrapear webs como Selenium, Scrapy, etcétera. Aunque yo, por su sencillez a la vez que complejidad, me gusta **BeautifulSoup.**
+
+Así que sí, como ya imaginarás, tienes que instalar dicho paquete. Para ello tienes que escribir lo siguiente en la terminal:
+
+`pip3 install beautifulsoup4`
+
+A continuación, importamos el paquete en la primera línea, antes que cualquier función
+
+`from bs4 import BeautifulSoup`
+
+Y podemos empezar a scrappear!
+
+Para hacerlo de una manera indicativa, lo primero que vamos a hacer será escribir una cabecera con la fecha y hora actual. Existe una librería ya interna de Python que sirve para eso:
+
+```python
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+now = datetime.now()
+def MediaMarkt():
+    print (f"Precios MediaMarkt -- {now.date()} {now.time()}")
+
+if __name__ == '__main__':
+    MediaMarkt()
+```
+
+Posteriormente añadimos el siguiente código, necesario para identificar los elementos dentro de la clase:
+
+```python
+from bs4 import BeautifulSoup
+import urllib.request
+from datetime import datetime
+
+now = datetime.now()
+
+def MediaMarkt():
+
+    print (f"Precios MediaMarkt -- {now.date()} {now.time()}")
+    mando = 'https://www.mediamarkt.es/es/product/_mando-sony-ps5-dualsense%E2%84%A2-wireless-controller-blanco-1487502.html'
+    mandoOnURL = urllib.request.urlopen(mando)
+    mandoSoup = BeautifulSoup(mandoOnURL, 'html.parser')
+    for i in mandoSoup.find('div', {'class':'big'}):
+        print(f"El mando cuesta {i}€")
+    juego = 'https://www.mediamarkt.es/es/product/_ps5-marvel-s-spider-man-miles-morales-1487492.html'
+    juegoOnURL = urllib.request.urlopen(juego)
+    juegoSoup = BeautifulSoup(juegoOnURL, 'html.parser')
+    for j in juegoSoup.find('div', {'class':'big'}):
+        print(f"El juego cuesta {j}€")
+
+if __name__ == '__main__':
+    MediaMarkt()
+```
+
+Y eso sería todo por hoy! Espero que os haya gustado tanto como a mí realizarlo! Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Fuentes:** [Aukera](https://aukera.es/blog/web-scraping/)
+
