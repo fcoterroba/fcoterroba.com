@@ -1,0 +1,133 @@
+---
+title: "Scrollbar: ¿Qué es y cómo hacer uno indicador con código y en Wordpress?"
+description: "Aprende qué es un scrollbar indicador y cómo implementarlo tanto con código HTML/CSS/JavaScript como con plugins de WordPress."
+excerpt: "Aprende qué es un scrollbar indicador y cómo implementarlo tanto con código HTML/CSS/JavaScript como con plugins de WordPress."
+category: "desarrollo web"
+tags: ["wordpress", "javascript", "css", "html", "scrollbar", "tutorial", "plugins", "desarrollo web"]
+author: "fcoterroba"
+date: "2020-11-02"
+readTime: "8 min read"
+featured: false
+coverImage: "/blog/covers/scrollbar-post.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en internet y hoy os traigo un post enfocado a mi mundo, al mundo del desarrollo web
+
+En esta ocasión os traigo un post en el que voy a hablar, explicar y demostrar cómo y qué es un indicador de scrollbar. Así cómo los mejores wordpress para añadir a Wordpress.
+
+Si después de leer esto te quedas con más ganas de escribir código, quizás te quieras pasar por la colección de posts con proyectos en Python que existen en la web! A día de hoy cuentas con [¿Cómo hacer una calculadora en la consola de comandos?](https://fcoterroba.com/proyecto-python-principiantes-calculadora), el proyecto que hicimos [para generar códigos QR](https://fcoterroba.com/proyecto-python-principiantes-generar-codigo-qr) y la [exchange gráfica en la que hacemos uso de APIs, interfaz gráfica y muchísimo más!](https://fcoterroba.com/proyecto-python-medio-exchange-interfaz-grafica)
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unas semanas subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comencemos 👇🏻
+
+**¿Qué es un scrollbar?**
+
+Aunque no haga referencia específicamente a lo siguiente, un scrollbar es la barra de desplazamiento ubicada normalmente a la derecha de todas las páginas webs y aplicaciones que muestran cuando llegará al final de dicha página web.
+
+Según wikipedia y, como siempre, ambigua descripción, La barra de desplazamiento (o scrollbar en inglés) es un objeto de la interfaz gráfica de usuario mediante el cual una página de internet, una imagen, un texto, etc, pueden ser deslizados hacia abajo o arriba. La barra aparece por lo general a la derecha de la pantalla, aunque también se puede configurar para que aparezca a la izquierda.
+
+**WORDPRESS:**
+
+Como ya te he comentado en [algunos](https://fcoterroba.com/wordpress-que-como-formularios-captcha) de mis posts sobre [WordPress](https://fcoterroba.com/wordpress-ocultar-admin-login). Esta herramienta es tan potentísima que existe una infinidad de plugins para llegar al punto donde quieres acabar.
+
+A veces, como en esta ocasión, es prácticamente imposible poder elegir una cuando puede haber, fácilmente y sin exagerar, unos 100 plugins que hacen exactamente lo mismo.
+
+Pero, en resumen, los tres mejores plugins de wordpress en cuanto a scrollbar son:
+
+- [Reading Position Indicator](https://wordpress.org/plugins/reading-position-indicator/) -> Parece minimalista pero no sé hasta qué punto podría llegar a ser poco customizable o seca. Es por eso que decidí NO instalar esta. ❌
+- [Read Meter](https://wordpress.org/plugins/read-meter/) -> Con este plugin tuve que examinarlo muy de cerca ya que, estaba y parecía muy buen pero no llegaba realmente a llamarme la atención sobretodo porque es el típico plugin que hace muchas cosas pero ninguna bien del todo. Tenía muchas mini cositas que acaban acumulando el plugin muchísimo para hacer cosas tan simples como esto. Es por eso que esta también está rechazada. ❌
+- [Reading Progressbar](https://es.wordpress.org/plugins/reading-progress-bar/) -> Finalmente decidí quedarme con esta dado que era la más minimalista. Cumplía y cumple con su objetivo sin sobrecargar el plugin hasta el punto de hacerlo pesado. ✅
+
+Como expliqué en anteriores posts, para instalar dicho plugin simplemente tienes que escribirlo en la tienda de plugins existente en la dashboard de wordpress.
+
+Una vez instalado y activado, iremos dentro de **Ajustes > Reading Progressbar**
+
+Dentro de estas opciones configuraremos a nuestro gusto como lo queramos:
+
+![Configuración de Reading Progressbar](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Si miras para arriba, verás cómo queda con esta configuración! 🤓👆🏻
+
+**CÓDIGO**
+
+Si eres un desarrollador pureta o simplemente tienes una web con código a pelo, esto es para ti.
+
+Antes de comenzar, te dejo este gif para que veas como va a quedar todo! 👇🏻
+
+![Demo del scrollbar indicador](/blog/covers/wordpress_to_astro_ES.jpg)
+
+El código HTML es uno básico, con su cabecera, enlazando los distintos estilos y poquita cosa más. Muy sencillito. 😁
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCOTERROBA.COM | ScrollBar indicador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="line" id="scrollIndicator"></div>
+    <h1>MIRA HACIA ARRIBA Y VERÁS EL SCROLLBAR INDICADOR A MEDIDA QUE VAS BAJANDO LA PANTALLA</h1>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut blanditiis cupiditate in a odit? Voluptate, sed pariatur, ducimus minus autem deserunt inventore corrupti doloribus voluptatem at possimus! Libero, sequi perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas modi qui esse maxime. Mollitia expedita ea officiis enim veritatis harum illum blanditiis quo sint esse aliquam eos, illo vitae laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus aut dolor voluptas neque deserunt laborum quas dolorem eum provident expedita numquam asperiores inventore distinctio vitae exercitationem animi, iste suscipit quasi?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores incidunt quisquam expedita quae esse illo facere consectetur molestiae provident exercitationem aliquid nostrum aspernatur explicabo itaque labore, in aut alias dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, quaerat tempora. Reiciendis recusandae officia, odit deserunt, quae ratione in modi, veniam sapiente iusto aspernatur et. Quam velit corporis aliquid sed? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ut facilis et est repudiandae ullam modi quidem cupiditate dicta ducimus adipisci voluptatem nihil impedit, saepe animi laudantium! Nam, ad voluptate!</p>
+</body>
+</html>
+```
+
+En cuanto al CSS, simplemente he añadido fondos, cambiado la tipografía y toqueteado los margenes.
+
+```css
+*{
+    text-align: center;
+}
+
+h1{
+    font-family: 'Itim', cursive;
+}
+
+p{
+    font-family: 'Indie Flower', cursive;
+}
+
+.line{
+    background: black;
+    height: 8px;
+    border-radius: 4px;
+    width: 0%;
+    position: fixed;
+    top: 0px;
+    margin-left: 0px;
+}
+```
+
+Por último y más importante, el script, que calcula y muestra, según el ancho de la pantalla todo metido dentro de una sencilla función.
+
+```javascript
+window.onscroll = function(){ myFunction(); };
+
+function myFunction(){
+  var winscroll = document.body.scrollTop || document.documentElement.scrollTop;
+  console.log(winscroll);
+  
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  console.log(height);
+  
+  var scrolled = (winscroll/height) * 100;
+  document.getElementById("scrollIndicator").style.width = scrolled + "%";
+}
+```
+
+Copiando (y editando lo justo y necesario) estos tres códigos, serás capaz de conseguir un scrollbar indicator muy bonito a la par que con una sencillez, elengancia y minimalismo que nada tiene que envidiar a las demás páginas! 😁
+
+Y chic@s, ha llegado la despedida, esto es todo por hoy! Espero que os haya gustado y os haya sido de grata utilidad! 🤓 Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
