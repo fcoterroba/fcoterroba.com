@@ -1,0 +1,183 @@
+---
+title: "First Website Birthday 2/2: Representing Charts Using Python"
+description: "Learn to create bar, line, and pie charts using Python and matplotlib to visualize web visit data."
+excerpt: "Learn to create bar, line, and pie charts using Python and matplotlib to visualize web visit data."
+category: "software development"
+tags: ["python", "matplotlib", "charts", "data visualization", "tutorial", "data science"]
+author: "fcoterroba"
+date: "2021-06-14"
+readTime: "8 min"
+featured: false
+coverImage: "/blog/covers/first-birthday-2.jpg"
+lang: "en"
+---
+
+Hello world! My name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to continue celebrating, even though almost 1 month has passed, the first birthday of the website!
+
+And as it couldn't be otherwise, I couldn't leave you with honey on your lips. Yes, it's very good and very nice to make charts for the web using JavaScript but what if I tell you that we can also make those same charts but using such a powerful language as Python? You like it right? Well stay, let's start now!
+
+As you can see in the title if you're not very distracted, this is the second part of a double post that I already uploaded in the previous post doing something quite similar to what we're going to do now but focused on a website! We used JavaScript to make interactive and dynamic charts without using any server. Everything very static!
+
+Just like in the previous post, we're going to use the same data, we'll make very similar charts and more but I'm sure this post can be a bridge to your future! Python is very interesting and has incredible potential in all areas of computing, artificial intelligence, machine learning, cloud computing, etc.
+
+And it's true, a year has already passed since I began the adventure of my life, the adventure of what I've been passionate about since I was little.
+And even though my expectations, both monetary, because I haven't earned what I thought, and in terms of frequency, haven't been optimal. I'm very proud of what I've achieved, my almost 40 posts, the almost 10 comments with feedback from people and all the contacts I've made.
+
+Because, for example, I've **TRIPLED** my contacts on LinkedIn since I started with the website.
+
+I've also **TRIPLED** my number of followers on Twitter.
+
+And I've met a lot of wonderful people along the way who I'll be totally grateful to forever.
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Although lately I haven't had much time (you can stay up to date with my life by following me on Twitter and LinkedIn), on the occasion of the website's birthday I wanted to do something special and thought a few weeks ago about doing a project where we're going to show, in a totally practical way, how to make some charts (bars, circular, etc.) with the data from **MY WEBSITE VISITS** monthly throughout a year.
+Then I also thought that I could extract two matrices indicating the number of visits in relation to the number of posts uploaded in that month.
+
+I've done this only once in my life for the final project we did at Andalucía Lab together with my colleagues Carlos, [Luismi](https://www.linkedin.com/in/luismibaro/) and [Juanan](https://www.linkedin.com/in/juan-antonio-c%C3%B3rdoba-garc%C3%ADa-a3443115b/).
+The project consisted of a kind of real-time and physical tracking of low-latency bluetooth devices. Commonly called Beacons.
+
+After analyzing user behavior with these devices, extracting metrics, applying Machine Learning, Deep Learning, Artificial Intelligence and much more, as a final point we decided to extract some interactive charts on a static website where those users who are interested can get more information about the collected data.
+
+**Are you liking it? Stay, let's start now!**
+
+**1️⃣ FIRST STEP 1️⃣**
+
+Just like in the previous post, we must have well in mind what data we're going to put in our chart, and although I already wrote it in the previous post, I'm putting duplicate the information we're going to represent in this case.
+
+| April | May | June | July | August | September | October | November | December | January | February | March |
+|-------|-----|------|------|--------|-----------|---------|----------|----------|---------|----------|--------|
+| 816   | 1034| 1101 | 1250 | 1604   | 1983      | 2468    | 3021     | 2867     | 3520    | 4010     | 5097   |
+
+**2️⃣ SECOND STEP 2️⃣**
+
+Open our favorite code editor (which in my case is VSCodium) and install the package we need to generate charts. Matplotlib. The command to perform this installation is:
+
+```bash
+pip install matplotlib
+```
+
+**3️⃣ THIRD STEP 3️⃣**
+
+Create a file with .py extension and import the library we previously installed.
+
+```python
+import matplotlib.pyplot as plt
+
+print("Hello! You have correctly imported the MatPlotLib library")
+```
+
+As you already know, we can check the script's operation by writing python nombre_del_script.py
+
+**4️⃣ FOURTH STEP 4️⃣ — Vertical bar chart**
+
+The first thing we should do is declare two arrays, one for the X axis where we put the month names and another, for the Y axis where the number of visits appears. It could be something like this:
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_barra_vertical():
+  meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+  visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+```
+
+Then, we must create the matplotlib object, set a label for the Y axis, another for the X axis and transfer the two arrays we've created to the previously created object.
+
+Finally, we'll use the `show` function to display the chart.
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_barra_vertical():
+    # Make the arrays with the info
+    meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+    visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+    
+    # Make the object
+    fig, ax = plt.subplots()
+    
+    # Label for Y
+    ax.set_ylabel('Visits')
+    # Label for X
+    ax.set_title('Visits on the first anniversary of the website')
+    
+    # Set the arrays to the X and Y
+    plt.bar(meses, visitas)
+    
+    # Show the chart
+    plt.show()
+
+if __name__ == "__main__":
+    grafico_barra_vertical()
+```
+
+![Vertical bar chart](/blog/covers/wordpress_to_astro_EN.png)
+
+**5️⃣ FIFTH STEP 5️⃣ — Horizontal line chart**
+
+To vary a bit, this fifth step I'm going to do without adding much label or anything so you can see how simple it can be to extract a chart using Python and plt
+
+We simply use the `plot` function, passing it the arrays and displaying it.
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_lineas_horizontal(): 
+    meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+    visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+
+    # Make a plot with data
+    plt.plot(meses, visitas)
+
+    # Show the chart
+    plt.show()
+
+if __name__ == "__main__":
+    # grafico_barra_vertical()
+    grafico_lineas_horizontal()
+```
+
+![Line chart](/blog/covers/wordpress_to_astro_EN.png)
+
+**6️⃣ SIXTH STEP 6️⃣ — Pie chart by quarter**
+
+For this last exercise we're going to create two more arrays, combining the data by quarters to end up making a pie chart. With this we could extract the difference in visits between seasons of the year, for example.
+
+For this we simply need to create the `pie` method passing it as parameters the numeric data and the month labels
+
+```python
+import matplotlib.pyplot as plt
+
+# Make the arrays with trimester data
+months = ["1º trimestre: Abril-Junio", "2º trimestre: Julio-Septiembre", "3º trimestre: Octubre-Diciembre", "4º trimestre: Enero-Marzo"]
+visits_trimester = [2951, 4837, 8356, 12627]
+
+def grafico_tarta_trimestral():
+    # Make a plot with the data and labels
+    plt.pie(visits_trimester, labels = months)
+    plt.show()
+
+if __name__ == "__main__":
+    # grafico_barra_vertical()
+    # grafico_lineas_horizontal()
+    grafico_tarta_trimestral()
+```
+
+![Pie chart](/blog/covers/wordpress_to_astro_EN.png)
+
+---
+
+And this would really be all for today. As you can see, matplotlib is a very lightweight, very simple library with many possibilities.
+
+You'll also have noticed that when we display any of the charts, a window opens which is a bit interactive. With this window we can zoom in on a certain range, save the image in png format, etc.
+
+I hope you liked it, thanks to everyone for being there with me during this long, costly but happy year! :) I hope to see you for much more. See you soon!
+
+Remind you that you can see the repository of this extension and many more on my personal profile on [GitHub!](https://github.com/fcoterroba). Also invite you to follow me on my [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+
+Finally, remember that if you like my content and want to contribute financially (since I don't earn anything from Adsense), you can send me whatever amount you want via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+

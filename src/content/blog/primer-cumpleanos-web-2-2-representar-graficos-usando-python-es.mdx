@@ -1,0 +1,183 @@
+---
+title: "Primer cumpleaños de la web 2/2: Representar gráficos usando Python"
+description: "Aprende a crear gráficos de barras, líneas y tarta usando Python y matplotlib para visualizar datos de visitas web."
+excerpt: "Aprende a crear gráficos de barras, líneas y tarta usando Python y matplotlib para visualizar datos de visitas web."
+category: "programación de software"
+tags: ["python", "matplotlib", "gráficos", "visualización de datos", "tutorial", "data science"]
+author: "fcoterroba"
+date: "2021-06-14"
+readTime: "8 min"
+featured: false
+coverImage: "/blog/covers/first-birthday-2.jpg"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a seguir celebrando, aunque haya pasado ya casi 1 mes, el primer cumpleaños de la página web!
+
+Y cómo no podía ser de otra manera, no os podía dejar con la miel en los labios. Que sí que está muy bien y muy bonito realizar gráficos para la web usando JavaScript pero qué me dices si te digo que también podemos hacer esos mismos gráficos pero usando un lenguaje tan potente cómo es Python? Te mola verdad? Pues quédate, que empezamos ya!
+
+Como veis en el título si no sois muy despistados, esta es la segunda parte de un post doble que ya subí en el post anterior realizando algo bastante similar a lo que vamos a hacer ahora pero enfocado a una página web! Usamos JavaScript para hacer gráficos interactivos y dinámicos sin hacer uso de ningun servidor. Todo muy estático!
+
+Al igual que en el anterior post, vamos a usar los mismos datos, realizaremos gráficas muy similares y demás pero estoy seguro de que este post podrá ser un puente hacia tu futuro! Python es muy interesante y tiene un potencial increíble en todo el ámbito de la computación, inteligencia artifical, machine learning, cloud computing, etc.
+
+Y es que es verdad, ya ha pasado un año desde que comencé la aventura de mi vida, la aventura de aquello que me apasionaba desde pequeño.
+Y es que aunque mis expectativas, tanto monetarias, porque no he ganado lo que me pensaba, como en el sentido de frecuencia, no han sido las óptimas. Estoy muy orgulloso de lo que he conseguido, de mis casi 40 posts, de los casi 10 comentarios con feedbacks de personas y de todos los contactos que he hecho.
+
+Porque, por poner un ejemplo, he **TRIPLICADO** mis contactos en LinkedIn desde que empecé con la página web.
+
+También he **TRIPLICADO** mi número de seguidores en Twitter.
+
+Y he conocido a un montón de gente maravillosa por el camino a la que estaré totalmente agradecido por y para siempre.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Aunque últimamente no he tenido mucho tiempo (puedes estar al día de mi vida siguiéndome en Twitter y LinkedIn), con motivo del cumpleaños de la web quise hacer algo especial y pensé hace unas semanas en realizar un proyecto en el que vayamos a mostrar, de manera totalmente práctica, cómo realizar unos gráficos (de barras, circulares, etc.) con los datos de **LAS VISITAS A MI WEB** mensualmente durante todo un año.
+Después pensé también en que podría sacar dos matrices indicando el número de visitas en relación al número de posts subidos en dicho mes.
+
+He realizado esto una sola vez en mi vida para el proyecto final que hicimos en Andalucía Lab junto a mis compañeros Carlos, [Luismi](https://www.linkedin.com/in/luismibaro/) y [Juanan](https://www.linkedin.com/in/juan-antonio-c%C3%B3rdoba-garc%C3%ADa-a3443115b/).
+El proyecto constaba de una especie de trackeo en tiempo real y físicamente de dispositivos bluetooth de baja latencia. Comúnmenete llamados Beacons.
+
+Tras analizar el comportamiento de los usuarios con dichos dispositivos, sacar métricas, aplicar Machine Learning, Deep Learning, Artificial Intelligence y mucho más, como punto final decidimos sacar unas gráficas interactivas en una website estática donde aquellos usuarios que estén interesados, puedan obtener más infomación acerca de los datos recogidos.
+
+**¿Te está gustando? Quédate, que empezamos ya!**
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Al igual que en el anterior post, debemos tener bien en mente cuáles van a ser los datos que vamos a poner en nuestro gráfico, y aunque ya lo escribí en el anterior post, pongo por duplicada la información que vamos a representar en este caso.
+
+| Abril | Mayo | Junio | Julio | Agosto | Septiembre | Octubre | Noviembre | Diciembre | Enero | Febrero | Marzo |
+|-------|------|-------|-------|--------|------------|---------|-----------|-----------|-------|---------|-------|
+| 816   | 1034 | 1101  | 1250  | 1604   | 1983       | 2468    | 3021      | 2867      | 3520  | 4010    | 5097  |
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Abrir nuestro editor de código favorito (que en mi caso es VSCodium) e instalar el paquete que necesitamos para generar gráficas. Matplotlib. El comando para realizar esta instalación es:
+
+```bash
+pip install matplotlib
+```
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Crear un archivo con extensión .py e importar la librería que hemos instalado previamente.
+
+```python
+import matplotlib.pyplot as plt
+
+print("Hola! Has importado correctamente la librería de MatPlotLib")
+```
+
+Cómo ya sabéis, podemos comprobar el funcionamiento del script escribiendo python nombre_del_script.py
+
+**4️⃣ CUARTO PASO 4️⃣ — Gráfico de barras vertical**
+
+Lo primero que deberemos hacer es declarar dos arrays, uno para el eje X en el que pongamos los nombres de los meses y otro, para el eje Y donde aparezcan el número de visitas. Podría ser algo así:
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_barra_vertical():
+  meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+  visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+```
+
+Posteriormente, debemos crear el objeto de matplotlib, establecer una etiqueta para el eje Y, otra para el eje X y traspasar los dos arrays que hemos creado al objeto antes creaedo.
+
+Por último, usaremos la función `show` para mostrar el gráfico.
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_barra_vertical():
+    # Make the arrays with the info
+    meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+    visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+    
+    # Make the object
+    fig, ax = plt.subplots()
+    
+    # Label for Y
+    ax.set_ylabel('Visitas')
+    # Label for X
+    ax.set_title('Visitas en el primer aniversario de la web')
+    
+    # Set the arrays to the X and Y
+    plt.bar(meses, visitas)
+    
+    # Show the chart
+    plt.show()
+
+if __name__ == "__main__":
+    grafico_barra_vertical()
+```
+
+![Gráfico de barras vertical](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**5️⃣ QUINTO PASO 5️⃣ — Gráfico de líneas horizontal**
+
+Por variar un poco, este quinto paso voy a hacerlo sin añadirle mucho label ni nada de eso para que veáis cuán sencillo puede llegar a ser sacar un gráfico usando Python y plt
+
+Simplemente usamos la función `plot`, pasándole los arrays y mostramos el mismo.
+
+```python
+import matplotlib.pyplot as plt
+
+def grafico_lineas_horizontal(): 
+    meses = ["Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo"]
+    visitas = [816, 1034, 1101, 1250, 1604, 1983, 2468, 3021, 2867, 3520, 4010, 5097]
+
+    # Make a plot with data
+    plt.plot(meses, visitas)
+
+    # Show the chart
+    plt.show()
+
+if __name__ == "__main__":
+    # grafico_barra_vertical()
+    grafico_lineas_horizontal()
+```
+
+![Gráfico de líneas](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**6️⃣ SEXTO PASO 6️⃣ — Gráfica de quesitos por trimestre**
+
+Para este último ejercicio vamos a crear dos arrays más, combinando los datos por trimestres para acabar realizando un gráfico de quesitos, porciones o tarta. Con esto podríamos sacar la diferencia de visitas entre estaciones del año, por ejemplo.
+
+Para esto simplemente deberemos crear el método `pie` pasándole como parámetros los datos numéricos y el label de meses
+
+```python
+import matplotlib.pyplot as plt
+
+# Make the arrays with trimester data
+months = ["1º trimestre: Abril-Junio", "2º trimestre: Julio-Septiembre", "3º trimestre: Octubre-Diciembre", "4º trimestre: Enero-Marzo"]
+visits_trimester = [2951, 4837, 8356, 12627]
+
+def grafico_tarta_trimestral():
+    # Make a plot with the data and labels
+    plt.pie(visits_trimester, labels = months)
+    plt.show()
+
+if __name__ == "__main__":
+    # grafico_barra_vertical()
+    # grafico_lineas_horizontal()
+    grafico_tarta_trimestral()
+```
+
+![Gráfico de tarta](/blog/covers/wordpress_to_astro_ES.jpg)
+
+---
+
+Y esto sería realmente todo por hoy. Como veis, matplotlib es una librería muy liviana, muy sencilla y con muchísimas posibilidades.
+
+También habréis comprobado que cuando mostramos alguna de las gráficas, se abre una ventana la cual es un poco interactiva. Con esta ventana podemos ampliar un cierto rango, guardar la imagen en formato png, etc.
+
+Espero que os haya gustado, gracias a todes por estare ahí conmigo durante este largo, costoso pero feliz año! :) Espero vernos por muchísimo más. Nos vemos pronto!
+
+Recordarte que puedes ver el repositorio de esta extensión y muchas más en mi perfil personal de [GitHub!](https://github.com/fcoterroba). Además de invitarte a seguirme en mi [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+
+Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
