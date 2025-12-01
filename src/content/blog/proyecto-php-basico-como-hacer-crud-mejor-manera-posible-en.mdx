@@ -1,0 +1,444 @@
+---
+title: "Basic PHP Project: How to Make a CRUD the Best Way Possible?"
+description: "Learn what a CRUD is and how to implement it in PHP following web development best practices."
+excerpt: "Learn what a CRUD is and how to implement it in PHP following web development best practices."
+category: "web development"
+tags: ["php", "crud", "mysql", "pdo", "tutorial", "backend", "database"]
+author: "fcoterroba"
+date: "2021-08-04"
+readTime: "15 min read"
+featured: false
+coverImage: "/blog/covers/php-crud-practicas.jpg"
+lang: "en"
+---
+
+Hello world! My name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to talk, theoretically and practically, about what a CRUD is and how to do it in the most used web back-end language today, PHP.
+
+Performing a CRUD, regardless of the programming language used, is one of the most basic points we should know how to do to start considering ourselves developers. If you don't know what a CRUD is right now, don't worry, I'll explain what it is shortly.
+
+Before starting with this, perhaps you should start tinkering with PHP following the tutorial I uploaded a few months ago where we learned to capture forms using PHP as well as using Google's Captcha service. You can read the full post [here](https://fcoterroba.com/php-que-como-hacer-formularios-bonitos-con-y-sin-captcha).
+
+Of course, before starting to develop in PHP, we'll need a web server enabled with PHP and MySQL, for this you can install XAMPP on any operating system or follow [my tutorial](https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows) if you prefer the native Windows option.
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Now let's begin 👇
+
+**What is a CRUD?**
+
+According to Wikipedia, in Computer Science, CRUD is an acronym that refers to the basic functions in databases.
+
+This acronym was first popularized by James Martin in 1980 in his book *Managing the Data-base Enviroment*.
+
+CRUD -> Create, Read, Update and Delete.
+
+![CRUD diagram](/blog/covers/wordpress_to_astro_EN.png)
+
+In short, CRUD summarizes the functions required by a user to create and manage data. Any web application that works, to a greater or lesser extent with data, will make use of this acronym.
+
+And that's why it's so important to know what it is and how to do it.
+
+**1️⃣ FIRST STEP 1️⃣**
+
+The first thing we should do is open our web server by turning on both the PHP module and MySQL or the database manager we use. In my case it will be MySQL. All this is set up on a LAMP with php 7.4.18 with MySQL 8.0.23 on Linux Mint 20.1 Cinnamon.
+
+Then we're going to create a folder inside the web server called, for example, **crud_php**
+
+Once this is done, we can create the four necessary files initially: **create.php, read.php, update.php, delete.php** empty for now.
+
+Also, as a plus for good practices, we're going to create a file called **conn.php**. I'll explain its use later.
+
+It should look something like this:
+
+**2️⃣ SECOND STEP 2️⃣**
+
+We're going to start editing the conn file since, as I said before, it's a good practice to isolate all possible code in functions, objects, etc. So, we're going to use this script to make a database connection.
+
+This script has only 10 lines of code including the try/catch and message outputs.
+
+```php
+<?php
+
+try {
+
+  ## We create the $dbh variable which is the complete connection to the database, passing it
+
+  # the connection parameters of the host, the database, the user and the password
+
+    $dbh = new PDO("mysql:host=127.0.0.1;dbname=crud_example_php", "fcoterroba", "Password123#@!");
+
+} catch (PDOException $e){
+
+    $dbh = $e->getMessage();
+
+}
+
+?>
+```
+
+Once we've made this connection and verified that it works (we can add echos in the try and in the catch), let's move on to the next step.
+
+**3️⃣ THIRD STEP 3️⃣**
+
+For the third step we're going to need data, so we're going to create a simple table with an auto-incremental ID, name and surnames. The most basic.
+
+```sql
+-- Put the table name
+CREATE TABLE main_data(
+  -- Add an ID field to control, which cannot be NULL and auto-increments on each record
+  ID int NOT NULL AUTO_INCREMENT,
+  -- Name and surnames of text type and maximum 255
+  nombre VARCHAR(255),
+  apellidos VARCHAR(255),
+  -- We indicate that the primary key of the table is the ID
+  PRIMARY KEY (ID)
+);
+```
+
+Once created, we're going to add some information.
+
+```sql
+INSERT INTO main_data (nombre, apellidos) VALUES ("Nuria del Mar", "Lara Molina");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Adolfo", "Borras");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Cayetano", "Montero");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Susi", "Pote");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Susana", "Oria");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Javier", "Arnau");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Leonardo", "Messi");
+INSERT INTO main_data (nombre, apellidos) VALUES ("Cristiano", "Ronaldo");
+```
+
+**4️⃣ FOURTH STEP 4️⃣**
+
+Now let's start with the CRUD, specifically with the R, reading, the read.
+
+We're going to open our **read.php** file and then include the connection file, **conn.php.**
+
+Next, we're going to create a table with html tags that only goes to the header.
+
+Then, the rest of the table rows we'll generate as we make the query.
+
+For this we use the **prepare** function of our connection and pass it the SQL query we want to do in parentheses.
+
+Then, we must execute that query and we'll use a loop to extract all the info using the arrows -> as if it were an object.
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cRud - @fcoterroba.com</title>
+</head>
+<body>
+	<h1>cRud - Read - Reading</h1>
+	<?php
+
+	include 'conn.php';
+
+	
+
+	?>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Surnames</th>
+		</tr>
+	<?php
+		$get_all = $dbh->prepare("SELECT * FROM main_data");
+		$get_all->execute();
+		while($fila = $get_all->fetch(PDO::FETCH_OBJ)){
+			echo "<tr><td>$fila->ID</td><td>$fila->nombre</td><td>$fila->apellidos</td></tr>";
+		}
+	?>
+	</table>
+</body>
+</html>
+```
+
+If we add a bit of styling it will look something like this:
+
+![Read view](/blog/covers/wordpress_to_astro_EN.png)
+
+**5️⃣ FIFTH STEP 5️⃣**
+
+Now let's do the part of creating and adding data. The C of create.
+
+For this part, we'll open the **create.php** file and add a form with empty action and POST method plus two text inputs, one for the name and one for the surname. The ID is not added because it's something that should execute automatically.
+
+Once done, we're going to go below the header and in case we've received data by POST (both the name and the surname), we add the connection file and perform the query with its respective execution.
+
+This will look something like this:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crud - @fcoterroba.com</title>
+</head>
+<body>
+	<h1>Crud - Create - Create</h1>
+	<?php
+
+	if (!empty($_POST['name']) && !empty($_POST['apellidos'])) {
+
+		include 'conn.php';
+
+		$nombre = $_POST['name'];
+
+		$apellidos = $_POST['apellidos'];
+
+		$insert_data = $dbh->prepare("INSERT INTO main_data (nombre, apellidos) VALUES ('$nombre', '$apellidos')");
+
+		$insert_data->execute();
+
+	}
+
+	?>
+	<form action="" method="POST">
+		Enter your name:
+		<br>
+		<input type="text" name="name" placeholder="Enter your name" required>
+		<br>
+		Enter your surnames:
+		<br>
+		<input type="text" name="apellidos" placeholder="Enter your surnames" required>
+		<br>
+		<input type="submit" value="Create user">
+	</form>
+</body>
+</html>
+```
+
+Adding a bit of styling, an alert library, etc., would leave us something like this:
+
+![Create view](/blog/covers/wordpress_to_astro_EN.png)
+
+**6️⃣ SIXTH STEP 6️⃣**
+
+Second to last step before finishing our CRUD. The U of update, updating.
+
+The first thing we're going to do is open the **update.php** file and show, similar to read.php, all the values in the table adding one more field that is a button for each record where we'll then proceed to edit the values.
+
+Once the table is made, we're going to make each button redirect to that same page but adding a GET with the ID of the record to modify.
+
+When the page has been reloaded, we show the current values in name and surnames allowing the user to modify them as they like and then a submit button, sending data by POST to that same page and then we'll do the query.
+
+The code is something like this:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>crUd - @fcoterroba.com</title>
+</head>
+<body>
+	<h1>crUd - Update - Update</h1>
+	<?php
+
+	include 'conn.php';
+
+	if(!empty($_POST['nombre']) && !empty($_POST['apellidos'])){
+
+
+
+		$id = $_GET['id'];
+
+		$name = $_POST['nombre'];
+
+		$apellidos = $_POST['apellidos'];
+
+
+
+		$get_all = $dbh->prepare("UPDATE main_data SET nombre = '$name', apellidos = '$apellidos' WHERE ID = '$id'");
+
+		$get_all->execute();
+
+
+
+		header('Location: http://localhost/prueba_CRUD/update.php');
+
+
+
+	}else if (!empty($_GET['id'])) {
+
+		$id = $_GET['id'];
+
+		echo "<form action='' method='POST'>";
+
+		$get_all = $dbh->prepare("SELECT * FROM main_data WHERE ID = '$id'");
+
+		$get_all->execute();
+
+		while($fila = $get_all->fetch(PDO::FETCH_OBJ)){
+
+			echo "Name to modify: <input type='text' value='$fila->nombre' name='nombre'><br>Surnames to modify: <input type='text' value='$fila->apellidos' name='apellidos'>";
+
+		}
+
+		echo "<br><input type='submit' value='Update data'></form>";
+
+	}else{
+
+		echo "<table>
+
+		<tr>
+
+			<th>ID</th>
+
+			<th>Name</th>
+
+			<th>Surnames</th>
+
+			<th>Update</th>
+
+		</tr>";
+
+	
+
+		$get_all = $dbh->prepare("SELECT * FROM main_data");
+
+		$get_all->execute();
+
+		while($fila = $get_all->fetch(PDO::FETCH_OBJ)){
+
+			echo "<tr><td>$fila->ID</td><td>$fila->nombre</td><td>$fila->apellidos</td><td><button id='boton' onclick='prueba($fila->ID);'>Update</button></td></tr>";
+
+		}
+
+		echo "</table>";
+
+		}
+
+		?>
+
+	<script type="text/javascript">
+
+		function prueba(id){
+
+			window.location.replace("http://localhost/prueba_CRUD/update.php?id="+id);
+
+		}
+
+	</script>
+</body>
+</html>
+```
+
+Adding a bit of styling, the complete process would be as follows:
+
+![Update view](/blog/covers/wordpress_to_astro_EN.png)
+
+**7️⃣ SEVENTH STEP 7️⃣**
+
+For the last step and we're done with the post and our basic CRUD done with good practices, we're going to do the delete option, the Delete.
+
+The first thing we're going to do is open the **delete.php** file and show, similar to read.php, all the values in the table adding one more field that is a button with an X to indicate that we're going to delete that record.
+
+It can be approached in many different ways but I'm going to approach it similar to the previous step. The button will change the location to this same one but adding the ID by GET and the script will execute the query as soon as it receives it.
+
+We would need to add a bit of confirmation in case the user clicked by mistake. I'll leave you to add it yourself!
+
+The code would look something like this:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cruD - @fcoterroba.com</title>
+</head>
+<body>
+	<?php
+
+	include 'conn.php';
+
+	
+
+
+
+	if(!empty($_GET['id'])){
+
+		$id = $_GET['id'];
+
+
+
+		$get_all = $dbh->prepare("DELETE FROM main_data WHERE ID = '$id'");
+
+		$get_all->execute();
+
+
+
+		header('Location: http://localhost/prueba_CRUD/delete.php');
+
+
+
+
+
+
+
+	}
+
+
+
+	?>
+
+	<h1>cruD - Delete - Delete</h1>
+
+	<table>
+
+		<tr>
+
+			<th>ID</th>
+
+			<th>Name</th>
+
+			<th>Surnames</th>
+
+			<th>Delete</th>
+
+		</tr>
+
+	<?php
+
+			$get_all = $dbh->prepare("SELECT * FROM main_data");
+
+		$get_all->execute();
+
+		while($fila = $get_all->fetch(PDO::FETCH_OBJ)){
+
+			echo "<tr><td>$fila->ID</td><td>$fila->nombre</td><td>$fila->apellidos</td><td><button onclick='borra($fila->ID);'>❌</button></td></tr>";
+
+		}
+
+	?>
+
+	</table>
+
+	<script type="text/javascript">
+
+		function borra(id){
+
+			window.location.replace("http://localhost/prueba_CRUD/delete.php?id="+id);
+
+		}
+
+	</script>
+</body>
+</html>
+```
+
+Adding styling it would look like this:
+
+![Delete view](/blog/covers/wordpress_to_astro_EN.png)
+
+And little more to add guys, I hope you've learned a lot from this post! Knowing what a CRUD is and how to do it correctly is the basis of any programmer, especially backend.
+
+Finally, remember that if you like my content and want to contribute financially (since I don't earn anything from Adsense), you can send me whatever amount you want via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
+I also hope you have a great week and we'll see each other here soon! Greetings and remember to follow me on social media like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Sources:** [IONOS.ES](https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/crud-las-principales-operaciones-de-bases-de-datos/), [Wikipedia](https://es.wikipedia.org/wiki/CRUD), [diego.com.es](https://diego.com.es/tutorial-de-pdo)
+
