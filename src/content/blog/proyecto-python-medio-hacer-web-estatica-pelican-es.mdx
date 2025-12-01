@@ -1,0 +1,142 @@
+---
+title: "Proyecto Python medio: ¿Cómo hacer una web estática con Pelican?"
+description: "Aprende a crear una web estática usando Pelican, una importante librería de Python para generar sitios web estáticos."
+excerpt: "Aprende a crear una web estática usando Pelican, una importante librería de Python para generar sitios web estáticos."
+category: "desarrollo web"
+tags: ["python", "pelican", "web estática", "tutorial", "proyecto"]
+author: "fcoterroba"
+date: "2022-02-22"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/pelican-post.png"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post sobre programación ya que es uno de los apartados principales de la web y, probablemete, uno de los que más gusta a mis lectores.
+
+En este caso, vamos a realizar una web estática (no te preocupes si ahora mismo no sabes lo que es, posteriormente lo explicaré) haciendo uso de Pelican, una importante librería de Python.
+
+Antes de comenzar con este proyecto, te aviso que la dificultad del mismo es media, tanto si te consideras un experto en Python como si acabas de empezar, este proyecto es de tu agrado. Aún así, probablemente no te vendría mal repasar antes la categoría [Python](https://fcoterroba.com/category/python) de la web, donde se recogen todos los proyectos hechos previamente con este lenguaje.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**Antes de empezar, ¿qué es una web estática?**
+
+Una página web estática es una página web/sitio en internet que muestra el mismo contenido para todos los usuarios en vez de editar dicho contenido personalizado.
+
+Para que te hagas una idea, **CUALQUIER** red social es una página web dinámica ya que, según tus interes, cookies y demás, te muestra un contenido totalmente distinto al de otro usuario.
+
+En cambio, las páginas estáticas suelen ser vistas frecuentemente como landing pages y/o blogs.
+
+Ahora sí que sí, comencemos!
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Lo primero que tenemos que hacer es instalar el lenguaje de programación Python.
+
+En Linux, casi por norma general, viene Python preinstalado pero si no es así, debemos recurrir a la página web oficial de [Python](https://www.python.org/downloads/) con la que podremos, de manera sencilla, instalar el lenguaje de programación en nuestro ordenador.
+
+Cuando esté instalado, simplemente lo verificaremos usando `python --version` en la terminal
+
+![Verificación de Python](/blog/covers/proyecto-python-fastapi.jpg)
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Debemos instalar el gestor de librerías de Python. Personalmente prefiero el típico [pip3](https://pypi.org/project/pip/) aunque podéis usar cualquier otro como [Anaconda](https://www.anaconda.com/)
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Una vez que tengamos nuestro gestor instalado, vamos a instalar la librería que nos ayudará a crear nuestra web estática.
+
+```
+pip3 install pelican
+```
+
+![Instalación de Pelican](/blog/covers/proyecto-python-fastapi.jpg)
+
+**4️⃣ CUARTO PASO 4️⃣**
+
+Vamos a crear un directorio donde, temporalmente, vayamos a alojar nuestra página web. Entramos en ésta y **dentro**, vamos a lanzar el comando:
+
+```
+pelican-quickstart
+```
+
+Luego tendremos que responder a una serie de preguntas que nos lanzará el instalador y ya tendríamos todo lo necesario para empezar.
+
+![Pelican quickstart](/blog/covers/proyecto-python-fastapi.jpg)
+
+**5️⃣ QUINTO PASO 5️⃣**
+
+¿Qué sería de las páginas web estáticas sin contenido? Pues eso mismo, sin haber creado ningún artículo previamente, no podemos observar la página web creada con Pelican, es por eso que vamos a crear nuestro primer artículo de pruebas.
+
+Pelican usa Markdown, un lenguaje de etiquetas similar a HTML pero con una sintaxis mucho más sencilla.
+
+Dentro de la carpeta *content* vamos a crear un archivo markdown. No es relevante si usas algún editor de código que si usas la terminal que si usas lo que sea, pero en Markdown y que siga este estilo:
+
+![Ejemplo de archivo Markdown](/blog/covers/proyecto-python-fastapi.jpg)
+
+Una vez creado y guardado procedemos a la generación de la web. Primero tenemos que generarla usando: (en la raíz del proyecto)
+
+```
+pelican content
+```
+
+Y posteriormente, para pruebas **NOT FINAL DEPLOY,** usamos el comando:
+
+```
+pelican -l
+```
+
+Por pantalla nos mostrará el enlace con el puerto al que apunta nuestra web mientras no cancelemos o cerremos esa ventana. Por defecto suele ser **localhost:8000**
+
+![Servidor local Pelican](/blog/covers/proyecto-python-fastapi.jpg)
+
+Con esto ya tendríamos nuestra web estática creada aunque, como último tip vamos a proceder a explicar cómo se sustituye este tema default de Pelican por uno que nosotros decidamos.
+
+**6️⃣ SEXTO PASO 6️⃣**
+
+Lo primero que deberemos hacer es buscar en el [listado de temas de Pelican](http://www.pelicanthemes.com/) el tema que más nos guste.
+
+En mi caso voy a usar el de Attila, típico theme ghost tan popular últimamente debido al uso de Notion. Este es el [link](https://github.com/arulrajnet/attila)
+
+Para instalar nuestro tema vamos a clonar o descargar el zip de la última release, posteriormente vamos a descomrpimir dicho theme y usaremos el siguiente comando:
+
+```
+sudo pelican-themes -U <nombre_theme>
+```
+
+![Instalación de tema Pelican](/blog/covers/proyecto-python-fastapi.jpg)
+
+Podemos confirmar que se ha instalado correctamente el tema con el comando:
+
+```
+sudo pelican-themes -l
+```
+
+Posteriormente vamos a editar el archivo *pelicanconf.py* y **AL FINAL** del archivo vamos a añadir la **RUTA COMPLETA** del theme.
+
+```
+THEME = ".local/lib/python3.9/site-packages/pelican/themes/attila-1.3"
+```
+
+🏁 **Fin del post** 🏁
+
+El resultado final es una web estática subida a GH Pages ([puedes ver cómo hacerlo aquí](https://fcoterroba.com/proyecto-javascript-medio-letra-dni-deploy-github-pages)) en la que voy a dar mi punto de vista y color en un **RANKING** mis canciones favoritas para este Eurovisión 2022.
+
+Si quieres verlo haz click en la imagen!
+
+[![Eurovisión 2022](/blog/covers/proyecto-python-fastapi.jpg)](https://fcoterroba.github.io/Eurovision_2022/)
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Fuentes:** [techlandia.com](https://techlandia.com/pagina-web-estatica-info_314661/), [python.org](https://www.python.org/downloads/), [pypi.org](https://pypi.org/project/pip/), [anaconda.com](https://www.anaconda.com/), [pelican.com](https://docs.getpelican.com/en/3.6.3/index.html), [pelicanthemes.com](http://www.pelicanthemes.com/), [github.com](https://github.com/arulrajnet/attila), [geekyshacklebolt.wordpress.com](https://geekyshacklebolt.wordpress.com/2020/08/18/how-to-use-a-custom-pelican-blog-theme/)
+
