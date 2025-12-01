@@ -1,0 +1,321 @@
+---
+title: "Primer cumpleaños de la web 1/2: Representar gráficos usando JavaScript"
+description: "Aprende a crear gráficos interactivos de barras, líneas y tarta usando JavaScript y Chart.js para visualizar datos de visitas web."
+excerpt: "Aprende a crear gráficos interactivos de barras, líneas y tarta usando JavaScript y Chart.js para visualizar datos de visitas web."
+category: "desarrollo web"
+tags: ["javascript", "chart.js", "gráficos", "visualización de datos", "tutorial", "frontend"]
+author: "fcoterroba"
+date: "2021-04-01"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/firsts-birthday-1.jpg"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a celebrar, todes juntos el primer cumpleaños de mi página web, fcoterroba.com.
+
+Y como no podía ser de otra manera, también os traigo un post en el que vamos a realizar un proyecto para usuarios con conocimientos medianamente avanzados sobre Javascript y Node.js ya que vamos a usar una librería muy sencilla y potente para realizar gráficos 100% interactivos en una página web!
+
+Como veis en el título, esta es la primera parte de un doble-post que, aunque en principio no van a tener mucho que ver, van a ser dos formas totalmente distintas, aunque similares y con total enfoque hacia los gráficos, los datos, etc. Con temática del cumpleaños de la web.
+
+Y es que es verdad, ya ha pasado un año desde que comencé la aventura de mi vida, la aventura de aquello que me apasionaba desde pequeño.
+Y es que aunque mis expectativas, tanto monetarias, porque no he ganado lo que me pensaba, como en el sentido de frecuencia, no han sido las óptimas. Estoy muy orgulloso de lo que he conseguido, de mis casi 40 posts, de los casi 10 comentarios con feedbacks de personas y de todos los contactos que he hecho.
+
+Porque, por poner un ejemplo, he **TRIPLICADO** mis contactos en LinkedIn desde que empecé con la página web.
+
+También he **TRIPLICADO** mi número de seguidores en Twitter.
+
+Y he conocido a un montón de gente maravillosa por el camino a la que estaré totalmente agradecido por y para siempre.
+
+Ahora vamos a entrar ya un poquito en materia y te comento que para saber realizar este proyecto vamos a necesitar saber bastante de JavaScript y Node.JS. Tecnologías esenciales para el front-end de cualquier web e incluso imprescindibles para cualquier desarrollador full-stack que se precie.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+---
+
+Aunque últimamente no he tenido mucho tiempo (puedes estar al día de mi vida siguiéndome en Twitter y LinkedIn), con motivo del cumpleaños de la web quise hacer algo especial y pensé hace unas semanas en realizar un proyecto en el que vayamos a mostrar, de manera totalmente práctica, cómo realizar unos gráficos (de barras, circulares, etc.) con los datos de **LAS VISITAS A MI WEB** mensualmente durante todo un año.
+Después pensé también en que podría sacar dos matrices indicando el número de visitas en relación al número de posts subidos en dicho mes.
+
+He realizado esto una sola vez en mi vida para el proyecto final que hicimos en Andalucía Lab junto a mis compañeros Carlos, [Luismi](https://www.linkedin.com/in/luismibaro/) y [Juanan](https://www.linkedin.com/in/juan-antonio-c%C3%B3rdoba-garc%C3%ADa-a3443115b/).
+El proyecto constaba de una especie de trackeo en tiempo real y físicamente de dispositivos bluetooth de baja latencia. Comúnmenete llamados Beacons.
+
+Tras analizar el comportamiento de los usuarios con dichos dispositivos, sacar métricas, aplicar Machine Learning, Deep Learning, Artificial Intelligence y mucho más, como punto final decidimos sacar unas gráficas interactivas en una website estática donde aquellos usuarios que estén interesados, puedan obtener más infomación acerca de los datos recogidos.
+Aquí os dejo una imagen de cómo quedó y es, más o menos, lo que vamos a sacar hoy:
+
+![Proyecto de gráficos interactivos](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**¿Te está gustando? Quédate, que empezamos ya!**
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Tener bien claro qué es aquella información que podemos mostrar y en qué eje (X o Y).
+
+Yo, por ejemplo, almacenaba cada mes el número de visitas que recibía y quedó resultante algo así:
+
+| Abril | Mayo | Junio | Julio | Agosto | Septiembre | Octubre | Noviembre | Diciembre | Enero | Febrero | Marzo |
+|-------|------|-------|-------|--------|------------|---------|-----------|-----------|-------|---------|-------|
+| 816   | 1034 | 1101  | 1250  | 1604   | 1983       | 2468    | 3021      | 2867      | 3520  | 4010    | 5097  |
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Una vez que tengamos nuestra información lista, tendremos que crear una carpeta donde queramos y crear nuestro esqueleto HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos del primer cumpleaños de @fcoterroba.com</title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Para hacer gráficos en la web vamos a usar la librería open source [Chart.js](https://www.chartjs.org/). Esta librería es, tal cómo ellos se definen, "Una forma de graficar simple y flexible en Javascript para diseñadores y desarrolladores.
+
+![Chart.js logo](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Esta librería contiene una documentación enorme para hacer un montón de gráficas de muy diversos tipos. Aunque, también tiene varios ejemplos con los que simplemente deberás de copiar y pegar, cambiar los valores de los gráficos y el color, si quieres.
+
+**4️⃣ CUARTO PASO 4️⃣ — Gráfico de barras vertical**
+
+Vamos a empezar ya a hacer algunas graficas. Para este gráfico de barras vertical vamos a fijarnos en el código del ejemplo que aparece en la documentación de la librería. [Estamos hablando de éste.](https://www.chartjs.org/samples/latest/charts/bar/vertical.html)
+
+Entre pitos y flautas, el código resultante sería algo así:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Estadísticas web del primer cumpleaños de @fcoterroba.com</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <center>
+        <div id="container" style="width: 75%;">
+            <canvas id="canvas"></canvas>
+        </div>
+        <script>
+            var color = Chart.helpers.color;
+            var barChartData = {
+                labels: ['Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo'],
+                datasets: [{
+                    label: 'Visitas mensuales',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1,
+                    data: [
+                        816,
+                        1034,
+                        1101,
+                        1250,
+                        1604,
+                        1983,
+                        2468,
+                        3021,
+                        2867,
+                        3520,
+                        4010,
+                        5097
+                    ]
+                }]
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById('canvas').getContext('2d');
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Estadísitcas web del primer cumpleaños de @fcoterroba.com'
+                        }
+                    }
+                });
+            };
+        </script>
+    </center>
+</body>
+</html>
+```
+
+![Gráfico de barras vertical](/blog/covers/wordpress_to_astro_ES.jpg)
+
+*Sí, he añadido <center> porque soy backender y no sé centrar nada 😂*
+
+**5️⃣ QUINTO PASO 5️⃣ — Gráfico de líneas horizontal**
+
+El siguiente que vamos a hacer es un gráfico de lineas! De la misma manera que la de antes, podemos centrarnos en [este que ya está hecho que viene en la documentación de la librería](https://www.chartjs.org/samples/latest/charts/line/basic.html)
+
+De la misma forma que antes o al menos bastante similar, el código resultante es el siguiente:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Line Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas{
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <br>
+    <br>
+    <script>
+        var config = {
+            type: 'line',
+            data: {
+                labels: ['Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo'],
+                datasets: [{
+                    label: 'Visitas mensuales',
+                    backgroundColor: 'rgb(255, 205, 86)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [
+                        816,
+                        1034,
+                        1101,
+                        1250,
+                        1604,
+                        1983,
+                        2468,
+                        3021,
+                        2867,
+                        3520,
+                        4010,
+                        5097
+                    ],
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Estadísticas web del primer cumpleaños de @fcoterroba.com'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = new Chart(ctx, config);
+        };
+    </script>
+</body>
+</html>
+```
+
+![Gráfico de líneas](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**6️⃣ SEXTO PASO 6️⃣ — Gráfica de quesitos por trimestre**
+
+Ahora vamos a hacer otra gráfica similar pero distinta. Vamos a hacer una gráfica de quesitos, osea, de círculo pero que los datos estén dividos por trimestres. Osea, en conjunto de tres meses. Con esto podríamos sacar la diferencia de visitas entre estaciones del año, por ejemplo.
+
+Para esta última gráfica del post [vamos a usar el ejemplo que nos proporciona la librería llamado Pie Chart.](https://www.chartjs.org/samples/latest/charts/pie.html)
+
+Este último varía un poco de los anteriores porque digamos que cada parte es una gráfica distinta, entre comillas. Pero en mi caso, queda algo así:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <center>
+        <div id="canvas-holder" style="width:40%">
+            <canvas id="chart-area"></canvas>
+        </div>
+        <script>
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            2951,
+                            4837,
+                            8356,
+                            12627
+                        ],
+                        backgroundColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(255, 159, 64)',
+                            'rgb(75, 192, 192)',
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        '1º trimestre: Abril-Junio',
+                        '2º trimestre: Julio-Septiembre',
+                        '3º trimestre: Octubre-Diciembre',
+                        '4º trimestre: Enero-Marzo'
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Estadísticas web del primer cumpleaños de @fcoterroba.com'
+                    }
+                },
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById('chart-area').getContext('2d');
+                window.myPie = new Chart(ctx, config);
+            };
+        </script>
+    </center>
+</body>
+</html>
+```
+
+![Gráfico de tarta](/blog/covers/wordpress_to_astro_ES.jpg)
+
+---
+
+En todas las gráficas, si te das cuenta, cambian cuatro cosas entre el tipo de gráfica pero lo importante es la información básicamente principal que se modifica en "labels" para establecer un nombre al pie de cada barra y "data" que es el dato en sí.
+
+Después hay un montón de cosas modificables como la altura, el tamaño, los colores, alfa del color, etc.
+
+Y esto ha sido todo por hoy chicos! Espero que os haya gustado, gracias a todes por estare ahí conmigo durante este largo, costoso pero feliz año! :) Espero vernos por muchísimo más. Os espero en la segunda parte ;)
+
+Recordarte que puedes ver el repositorio de esta extensión y muchas más en mi perfil personal de [GitHub!](https://github.com/fcoterroba). Además de invitarte a seguirme en mi [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+
+Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+

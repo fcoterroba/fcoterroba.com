@@ -1,0 +1,321 @@
+---
+title: "First Website Birthday 1/2: Representing Charts Using JavaScript"
+description: "Learn to create interactive bar, line, and pie charts using JavaScript and Chart.js to visualize web visit data."
+excerpt: "Learn to create interactive bar, line, and pie charts using JavaScript and Chart.js to visualize web visit data."
+category: "web development"
+tags: ["javascript", "chart.js", "charts", "data visualization", "tutorial", "frontend"]
+author: "fcoterroba"
+date: "2021-04-01"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/firsts-birthday-1.jpg"
+lang: "en"
+---
+
+Hello world! My name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to celebrate, all together, the first birthday of my website, fcoterroba.com.
+
+And as it couldn't be otherwise, I'm also bringing you a post where we're going to do a project for users with moderately advanced knowledge of JavaScript and Node.js since we're going to use a very simple and powerful library to make 100% interactive charts on a web page!
+
+As you can see in the title, this is the first part of a double-post that, although in principle they won't have much to do with each other, will be two totally different ways, although similar and with total focus on charts, data, etc. With the theme of the website's birthday.
+
+And it's true, a year has already passed since I began the adventure of my life, the adventure of what I've been passionate about since I was little.
+And even though my expectations, both monetary, because I haven't earned what I thought, and in terms of frequency, haven't been optimal. I'm very proud of what I've achieved, my almost 40 posts, the almost 10 comments with feedback from people and all the contacts I've made.
+
+Because, for example, I've **TRIPLED** my contacts on LinkedIn since I started with the website.
+
+I've also **TRIPLED** my number of followers on Twitter.
+
+And I've met a lot of wonderful people along the way who I'll be totally grateful to forever.
+
+Now we're going to get into the subject a bit and I tell you that to know how to do this project we're going to need to know quite a bit about JavaScript and Node.JS. Essential technologies for the front-end of any website and even essential for any self-respecting full-stack developer.
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+---
+
+Although lately I haven't had much time (you can stay up to date with my life by following me on Twitter and LinkedIn), on the occasion of the website's birthday I wanted to do something special and thought a few weeks ago about doing a project where we're going to show, in a totally practical way, how to make some charts (bars, circular, etc.) with the data from **MY WEBSITE VISITS** monthly throughout a year.
+Then I also thought that I could extract two matrices indicating the number of visits in relation to the number of posts uploaded in that month.
+
+I've done this only once in my life for the final project we did at Andalucía Lab together with my colleagues Carlos, [Luismi](https://www.linkedin.com/in/luismibaro/) and [Juanan](https://www.linkedin.com/in/juan-antonio-c%C3%B3rdoba-garc%C3%ADa-a3443115b/).
+The project consisted of a kind of real-time and physical tracking of low-latency bluetooth devices. Commonly called Beacons.
+
+After analyzing user behavior with these devices, extracting metrics, applying Machine Learning, Deep Learning, Artificial Intelligence and much more, as a final point we decided to extract some interactive charts on a static website where those users who are interested can get more information about the collected data.
+Here I leave you an image of how it turned out and it's, more or less, what we're going to extract today:
+
+![Interactive charts project](/blog/covers/wordpress_to_astro_EN.png)
+
+**Are you liking it? Stay, let's start now!**
+
+**1️⃣ FIRST STEP 1️⃣**
+
+Have very clear what information we can show and on which axis (X or Y).
+
+I, for example, stored each month the number of visits I received and it turned out something like this:
+
+| April | May | June | July | August | September | October | November | December | January | February | March |
+|-------|-----|------|------|--------|-----------|---------|----------|----------|---------|----------|--------|
+| 816   | 1034| 1101 | 1250 | 1604   | 1983      | 2468    | 3021     | 2867     | 3520    | 4010     | 5097   |
+
+**2️⃣ SECOND STEP 2️⃣**
+
+Once we have our information ready, we'll have to create a folder where we want and create our HTML skeleton
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts of the first birthday of @fcoterroba.com</title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+
+**3️⃣ THIRD STEP 3️⃣**
+
+To make charts on the web we're going to use the open source library [Chart.js](https://www.chartjs.org/). This library is, as they define themselves, "A simple and flexible way to chart in Javascript for designers and developers.
+
+![Chart.js logo](/blog/covers/wordpress_to_astro_EN.png)
+
+This library contains huge documentation to make a lot of charts of very diverse types. Although, it also has several examples with which you'll simply have to copy and paste, change the chart values and the color, if you want.
+
+**4️⃣ FOURTH STEP 4️⃣ — Vertical bar chart**
+
+Let's start making some charts. For this vertical bar chart we're going to look at the code from the example that appears in the library's documentation. [We're talking about this one.](https://www.chartjs.org/samples/latest/charts/bar/vertical.html)
+
+All in all, the resulting code would be something like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Website statistics of the first birthday of @fcoterroba.com</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <center>
+        <div id="container" style="width: 75%;">
+            <canvas id="canvas"></canvas>
+        </div>
+        <script>
+            var color = Chart.helpers.color;
+            var barChartData = {
+                labels: ['Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo'],
+                datasets: [{
+                    label: 'Monthly visits',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1,
+                    data: [
+                        816,
+                        1034,
+                        1101,
+                        1250,
+                        1604,
+                        1983,
+                        2468,
+                        3021,
+                        2867,
+                        3520,
+                        4010,
+                        5097
+                    ]
+                }]
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById('canvas').getContext('2d');
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Website statistics of the first birthday of @fcoterroba.com'
+                        }
+                    }
+                });
+            };
+        </script>
+    </center>
+</body>
+</html>
+```
+
+![Vertical bar chart](/blog/covers/wordpress_to_astro_EN.png)
+
+*Yes, I added <center> because I'm a backender and I don't know how to center anything 😂*
+
+**5️⃣ FIFTH STEP 5️⃣ — Horizontal line chart**
+
+The next one we're going to make is a line chart! In the same way as before, we can focus on [this one that's already made that comes in the library's documentation](https://www.chartjs.org/samples/latest/charts/line/basic.html)
+
+In the same way as before or at least quite similar, the resulting code is the following:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Line Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas{
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <br>
+    <br>
+    <script>
+        var config = {
+            type: 'line',
+            data: {
+                labels: ['Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo'],
+                datasets: [{
+                    label: 'Monthly visits',
+                    backgroundColor: 'rgb(255, 205, 86)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [
+                        816,
+                        1034,
+                        1101,
+                        1250,
+                        1604,
+                        1983,
+                        2468,
+                        3021,
+                        2867,
+                        3520,
+                        4010,
+                        5097
+                    ],
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Website statistics of the first birthday of @fcoterroba.com'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = new Chart(ctx, config);
+        };
+    </script>
+</body>
+</html>
+```
+
+![Line chart](/blog/covers/wordpress_to_astro_EN.png)
+
+**6️⃣ SIXTH STEP 6️⃣ — Pie chart by quarter**
+
+Now we're going to make another similar but different chart. We're going to make a pie chart, that is, a circle but with the data divided by quarters. That is, in groups of three months. With this we could extract the difference in visits between seasons of the year, for example.
+
+For this last chart of the post [we're going to use the example that the library provides called Pie Chart.](https://www.chartjs.org/samples/latest/charts/pie.html)
+
+This last one varies a bit from the previous ones because let's say each part is a different chart, in quotes. But in my case, it looks something like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <center>
+        <div id="canvas-holder" style="width:40%">
+            <canvas id="chart-area"></canvas>
+        </div>
+        <script>
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            2951,
+                            4837,
+                            8356,
+                            12627
+                        ],
+                        backgroundColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(255, 159, 64)',
+                            'rgb(75, 192, 192)',
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        '1º trimestre: Abril-Junio',
+                        '2º trimestre: Julio-Septiembre',
+                        '3º trimestre: Octubre-Diciembre',
+                        '4º trimestre: Enero-Marzo'
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Website statistics of the first birthday of @fcoterroba.com'
+                    }
+                },
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById('chart-area').getContext('2d');
+                window.myPie = new Chart(ctx, config);
+            };
+        </script>
+    </center>
+</body>
+</html>
+```
+
+![Pie chart](/blog/covers/wordpress_to_astro_EN.png)
+
+---
+
+In all the charts, if you notice, four things change between the chart type but the important thing is basically the main information that is modified in "labels" to establish a name at the foot of each bar and "data" which is the data itself.
+
+Then there are a lot of modifiable things like height, size, colors, color alpha, etc.
+
+And that's all for today guys! I hope you liked it, thanks to everyone for being there with me during this long, costly but happy year! :) I hope to see you for much more. I'll see you in the second part ;)
+
+Remind you that you can see the repository of this extension and many more on my personal profile on [GitHub!](https://github.com/fcoterroba). Also invite you to follow me on my [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+
+Finally, remember that if you like my content and want to contribute financially (since I don't earn anything from Adsense), you can send me whatever amount you want via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
