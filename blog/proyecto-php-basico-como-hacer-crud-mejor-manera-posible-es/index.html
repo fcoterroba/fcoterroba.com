@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="es" class="scroll-smooth" data-theme="light" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v4.16.19"><title>Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? - fcoterroba blog</title><meta name="title" content="Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? - fcoterroba blog"><meta name="description" content="Aprende qué es un CRUD y cómo implementarlo en PHP siguiendo las mejores prácticas de desarrollo web."><link rel="canonical" href="https://fcoterroba.com/blog/proyecto-php-basico-como-hacer-crud-mejor-manera-posible-es/"><meta property="og:type" content="website"><meta property="og:url" content="https://fcoterroba.com/blog/proyecto-php-basico-como-hacer-crud-mejor-manera-posible-es/"><meta property="og:title" content="Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? - fcoterroba blog"><meta property="og:description" content="Aprende qué es un CRUD y cómo implementarlo en PHP siguiendo las mejores prácticas de desarrollo web."><meta property="og:image" content="https://fcoterroba.com/blog/covers/php-crud-practicas.jpg"><meta property="og:site_name" content="fcoterroba"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://fcoterroba.com/blog/proyecto-php-basico-como-hacer-crud-mejor-manera-posible-es/"><meta property="twitter:title" content="Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? - fcoterroba blog"><meta property="twitter:description" content="Aprende qué es un CRUD y cómo implementarlo en PHP siguiendo las mejores prácticas de desarrollo web."><meta property="twitter:image" content="https://fcoterroba.com/blog/covers/php-crud-practicas.jpg"><link rel="icon" type="image/svg+xml" href="/isologo.svg"><link rel="apple-touch-icon" href="/isologo.svg"><link rel="shortcut icon" href="/isologo.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet"><script>
+      (function() {
+        const GA_ID = 'G-S41Z51V98S';
+        function loadGA(measurementId) {
+          if (!measurementId) return;
+          if (window.__gaLoaded) return;
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', measurementId);
+          window.__gaLoaded = true;
+        }
+        const consent = localStorage.getItem('cookie-consent');
+        const hasConsent = consent ? JSON.parse(consent)?.analytics === true : false;
+        if (hasConsent) {
+          loadGA(GA_ID);
+        }
+        window.__grantAnalytics = function() { loadGA(GA_ID); };
+      })();
+    </script><link rel="stylesheet" href="/_astro/agradecimientos.Dhp2Di1m.css">
+<link rel="stylesheet" href="/_astro/agradecimientos.DpH9cK_r.css">
+<link rel="stylesheet" href="/_astro/_slug_.09tj-eGH.css"><script type="module" src="/_astro/hoisted.DTZuQKj4.js"></script></head> <body class="bg-white text-gray-900 font-sans antialiased transition-colors duration-300" id="body" data-astro-cid-37fxchfa> <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-7xl px-4 sm:px-8 lg:px-12" id="navbar" data-astro-cid-37fxchfa> <div class="navbar-bg backdrop-blur-md rounded-full px-4 sm:px-8 py-4 shadow-lg navbar-border" data-astro-cid-37fxchfa> <div class="flex items-center justify-between" data-astro-cid-37fxchfa> <div class="flex items-center space-x-3" data-astro-cid-37fxchfa> <img src="/isologo.svg" alt="fcoterroba Logo" class="h-6 w-auto navbar-logo" data-astro-cid-37fxchfa> <span class="navbar-text text-lg font-logo font-semibold" data-astro-cid-37fxchfa>fcoterroba</span> </div> <ul class="hidden lg:flex items-center space-x-8" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/" class="navbar-link" data-es="inicio" data-en="home" data-astro-cid-37fxchfa>inicio</a></li> <li data-astro-cid-37fxchfa><a href="/portfolio" class="navbar-link" data-es="portfolio" data-en="portfolio" data-astro-cid-37fxchfa>portfolio</a></li> <li data-astro-cid-37fxchfa><a href="/blog" class="navbar-link" data-es="blog" data-en="blog" data-astro-cid-37fxchfa>blog</a></li> <li data-astro-cid-37fxchfa><a href="/agradecimientos" class="navbar-link" data-es="agradecimientos" data-en="acknowledgments" data-astro-cid-37fxchfa>agradecimientos</a></li> <li data-astro-cid-37fxchfa><a href="/contacto" class="navbar-link" data-es="contacto" data-en="contact" data-astro-cid-37fxchfa>contacto</a></li> </ul> <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Toggle mobile menu" data-astro-cid-37fxchfa> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-37fxchfa> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-37fxchfa></path> </svg> </button> </div> </div> <div id="mobile-menu" class="lg:hidden mt-4 hidden" data-astro-cid-37fxchfa> <div class="navbar-bg backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg navbar-border" data-astro-cid-37fxchfa> <ul class="flex flex-col space-y-3" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/" class="navbar-link block py-3 text-center" data-es="inicio" data-en="home" data-astro-cid-37fxchfa>inicio</a></li> <li data-astro-cid-37fxchfa><a href="/portfolio" class="navbar-link block py-3 text-center" data-es="portfolio" data-en="portfolio" data-astro-cid-37fxchfa>portfolio</a></li> <li data-astro-cid-37fxchfa><a href="/blog" class="navbar-link block py-3 text-center" data-es="blog" data-en="blog" data-astro-cid-37fxchfa>blog</a></li> <li data-astro-cid-37fxchfa><a href="/agradecimientos" class="navbar-link block py-3 text-center" data-es="agradecimientos" data-en="acknowledgments" data-astro-cid-37fxchfa>agradecimientos</a></li> <li data-astro-cid-37fxchfa><a href="/contacto" class="navbar-link block py-3 text-center" data-es="contacto" data-en="contact" data-astro-cid-37fxchfa>contacto</a></li> </ul> </div> </div> </nav> <div class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-30" id="preferences-toggle" data-astro-cid-37fxchfa> <div class="preferences-bg backdrop-blur-sm rounded-full px-3 py-2 sm:px-4 shadow-lg preferences-border" data-astro-cid-37fxchfa> <div class="flex items-center space-x-2 sm:space-x-3" data-astro-cid-37fxchfa> <div class="flex items-center space-x-1" data-astro-cid-37fxchfa> <button id="lang-es" class="lang-btn text-xs sm:text-sm" data-lang="es" data-astro-cid-37fxchfa>
+ES
+</button> <button id="lang-en" class="lang-btn text-xs sm:text-sm" data-lang="en" data-astro-cid-37fxchfa>
+EN
+</button> </div> <div class="w-px h-4 sm:h-6 preferences-separator" data-astro-cid-37fxchfa></div> <div class="flex items-center space-x-1" data-astro-cid-37fxchfa> <button id="theme-light" class="theme-btn text-sm sm:text-base" data-theme="light" data-astro-cid-37fxchfa>
+☀️
+</button> <button id="theme-dark" class="theme-btn text-sm sm:text-base" data-theme="dark" data-astro-cid-37fxchfa>
+🌙
+</button> </div> </div> </div> </div> <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-500 text-white px-4 py-2 rounded-md z-50" data-astro-cid-37fxchfa>
+Saltar al contenido principal
+</a> <main id="main-content" class="pt-8" data-astro-cid-37fxchfa>  <div data-astro-cid-4sn4zg3r> <section class="pt-32 pb-16 theme-bg" data-astro-cid-4sn4zg3r> <div class="max-w-5xl mx-auto px-8 lg:px-12" data-astro-cid-4sn4zg3r> <div class="text-center mb-16" data-astro-cid-4sn4zg3r> <div class="flex items-center justify-center gap-4 mb-8" data-astro-cid-4sn4zg3r> <span class="text-sm theme-text-60 font-medium" data-astro-cid-4sn4zg3r>15 min</span> <span class="text-sm theme-text-60" data-astro-cid-4sn4zg3r>•</span> <span class="px-6 py-3 bg-brand-green text-white text-sm font-semibold rounded-full shadow-lg" data-astro-cid-4sn4zg3r> desarrollo web </span> <span class="text-sm theme-text-60" data-astro-cid-4sn4zg3r>•</span> <span class="text-sm theme-text-60" data-astro-cid-4sn4zg3r>04/08/2021</span> </div> <h1 class="text-5xl lg:text-7xl font-bold theme-text mb-8 leading-tight" data-astro-cid-4sn4zg3r> Proyecto PHP básico: ¿Cómo hacer un CRUD de la mejor manera posible? </h1> <p class="text-2xl theme-text-70 leading-relaxed max-w-4xl mx-auto" data-astro-cid-4sn4zg3r> Aprende qué es un CRUD y cómo implementarlo en PHP siguiendo las mejores prácticas de desarrollo web. </p> </div> </div> </section> <article class="py-16 bg-gradient-to-br from-brand-light/5 to-brand-green/5" data-astro-cid-4sn4zg3r> <div class="max-w-7xl mx-auto px-8 lg:px-12" data-astro-cid-4sn4zg3r> <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 lg:p-12 shadow-2xl backdrop-blur-sm border border-gray-200 dark:border-gray-700" data-astro-cid-4sn4zg3r> <div class="prose-content" id="blog-content" data-astro-cid-4sn4zg3r> <p>Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a hablar, teórica y prácticamente, qué es y cómo se realiza un CRUD en el lenguaje back-end web más usado en la actualidad, PHP.</p>
+<p>Realizar un CRUD, indistintamente del lenguaje de programación usado, es uno de los puntos más básicos que deberemos saber hacer para empezar a considerarnos desarrolladores. Si ahora mismo no sabes qué es un CRUD, no te preocupes, en breves te voy a explicar qué es.</p>
+<p>Antes de comenzar con esto, quizás deberías comenzar a toquetear PHP siguiendo el tutorial que subí hace unos meses en el que aprendimos a realizar la captura de formularios usando PHP además de usar el servicio Captcha de Google. Puedes leer el post completo <a href="https://fcoterroba.com/php-que-como-hacer-formularios-bonitos-con-y-sin-captcha">aquí</a>.</p>
+<p>Por supuesto, antes de comenzar a desarrollar en PHP, necesitaremos un servidor web habilitado con PHP y MySQL, para ello puedes instalar XAMPP en cualquier sistema operativo o bien seguir <a href="https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows">mi tutorial</a> si prefieres la opción nativa de Windows.</p>
+<p>Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 <strong><a href="https://fcoterroba.com/diccionario-tecnologico-informatico">Puedes leer el post aquí</a></strong>.</p>
+<p>También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻</p>
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+<p>Ahora sí que sí, comencemos 👇</p>
+<p><strong>¿Qué es un CRUD?</strong></p>
+<p>Según Wikipedia, en Informática, CRUD es un acrónimo que se refiere a las funciones básicas en las bases de datos.</p>
+<p>Este acrónimo fue popularizado por primera vez por James Martin en 1980 en su libro <em>Managing the Data-base Enviroment</em>.</p>
+<p>CRUD -&gt; Create, Read, Update and Delete. Crear, Leer, Actualizar y Borrar.</p>
+<p><img src="/blog/covers/wordpress_to_astro_ES.jpg" alt="CRUD diagram"/></p>
+<p>En pocas palabras, CRUD resume las funciones requeridas por un usuario para crear y gestionar datos. Cualquier aplicación web que trabaje, en mayor o menor medida con datos, hará uso de este acrónimo.</p>
+<p>Y es por eso que es tan importante saber qué es y cómo hacerlo.</p>
+<p><strong>1️⃣ PRIMER PASO 1️⃣</strong></p>
+<p>Lo primero que deberemos hacer es abrir nuestro servidor web encendiendo tanto el módulo de PHP como el de MySQL o el gestor de bases de datos que usemos. En mi caso será MySQL. Todo esto está montado en un LAMP con php 7.4.18 con MySQL 8.0.23 en Linux Mint 20.1 Cinnamon.</p>
+<p>Posteriormente vamos a crear una carpeta dentro del servidor web que se llame, por ejemplo, <strong>crud_php</strong></p>
+<p>Una vez hecho esto, podemos crear los cuatro archivos necesarios en un principio: <strong>create.php, read.php, update.php, delete.php</strong> vacíos de momento.</p>
+<p>También, como plus de buenas prácticas, vamos a crear un archivo llamado <strong>conn.php</strong>. Explicaré posteriormente su uso.</p>
+<p>Nos deberá quedar algo más o menos así:</p>
+<p><strong>2️⃣ SEGUNDO PASO 2️⃣</strong></p>
+<p>Vamos a empezar a editar el archivo conn ya que, como he dicho antes, es una buena práctica aislar todo el código posible en funciones, objetos y demás. Por lo que, vamos a usar este script para hacer una conexión a la base de datos.</p>
+<p>Este script tiene solamente 10 líneas de código incluyendo el try/catch y salidas de mensaje.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  ## Creamos la variable $dbh que es la conexión completa a la base de datos, pasándole</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  # los parámetros de conexión del host, la base de datos, el usuario y la contraseña</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    $dbh </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#79B8FF"> PDO</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;mysql:host=127.0.0.1;dbname=crud_example_php&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;fcoterroba&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Password123#@!&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">PDOException</span><span style="color:#E1E4E8"> $e){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    $dbh </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $e</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">?&gt;</span></span>
+<span class="line"></span></code></pre>
+<p>Una vez que hayamos hecho esta conexión y hayamos comprobado que funciona (podemos ponerle echos en el try y en el catch), vamos con el siguiente paso.</p>
+<p><strong>3️⃣ TERCER PASO 3️⃣</strong></p>
+<p>Para el tercer paso vamos a necesitar datos, por lo que vamos a crear una tabla sencilla con un ID autoincremental, nombre y apellidos. Lo más básico.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#6A737D">-- Poner el nombre de la tabla</span></span>
+<span class="line"><span style="color:#F97583">CREATE</span><span style="color:#F97583"> TABLE</span><span style="color:#B392F0"> main_data</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#6A737D">  -- Añadir un campo ID para controlar, que no pueda ser NULL y que se autoincremente en cada registro</span></span>
+<span class="line"><span style="color:#E1E4E8">  ID </span><span style="color:#F97583">int</span><span style="color:#F97583"> NOT NULL</span><span style="color:#E1E4E8"> AUTO_INCREMENT,</span></span>
+<span class="line"><span style="color:#6A737D">  -- Nombre y apellidos de tipo texto y máximo 255</span></span>
+<span class="line"><span style="color:#E1E4E8">  nombre </span><span style="color:#F97583">VARCHAR</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">255</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">  apellidos </span><span style="color:#F97583">VARCHAR</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">255</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#6A737D">  -- Indicamoss que la clave primaria de la tabla es el ID</span></span>
+<span class="line"><span style="color:#F97583">  PRIMARY KEY</span><span style="color:#E1E4E8"> (ID)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span></code></pre>
+<p>Una vez creado, vamos a añadir un poco de información.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Nuria del Mar&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Lara Molina&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Adolfo&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Borras&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Cayetano&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Montero&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Susi&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Pote&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Susana&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Oria&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Javier&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Arnau&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Leonardo&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Messi&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;Cristiano&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Ronaldo&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span></code></pre>
+<p><strong>4️⃣ CUARTO PASO 4️⃣</strong></p>
+<p>Ahora sí que sí, vamos a empezar con el CRUD, concretamente con la R, la lectura, el read.</p>
+<p>Vamos a abrir nuestro fichero <strong>read.php</strong> y posteriormente vamos a incluir el archivo con la conexión, <strong>conn.php.</strong></p>
+<p>A continuación, vamos a crear una tabla con tags de html que llegue solamente al encabezado.</p>
+<p>Posteriormente, el resto de filas de la tabla las generaremos a medida que vayamos haciendo la consulta.</p>
+<p>Para ello usamos la función <strong>prepare</strong> de nuestra conexión y le pasamos entre paréntesis la consulta SQL que queremos hacer.</p>
+<p>Posteriormente, debemos ejecutar dicha consulta y usaremos un bucle para extraer toda la info usando las flechas -&gt; como si de un objeto se tratara.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">&lt;!</span><span style="color:#79B8FF">DOCTYPE</span><span style="color:#79B8FF"> html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">cRud</span><span style="color:#F97583"> -</span><span style="color:#F97583"> @</span><span style="color:#79B8FF">fcoterroba</span><span style="color:#F97583">.</span><span style="color:#79B8FF">com</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">cRud</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Read</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Lectura</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	include</span><span style="color:#9ECBFF"> &#39;conn.php&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	?&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">table</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">tr</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">ID</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Nombre</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Apellidos</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;/</span><span style="color:#79B8FF">tr</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#9ECBFF"> main_data&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">		while</span><span style="color:#E1E4E8">($fila </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">PDO</span><span style="color:#F97583">::</span><span style="color:#79B8FF">FETCH_OBJ</span><span style="color:#E1E4E8">)){</span></span>
+<span class="line"><span style="color:#79B8FF">			echo</span><span style="color:#9ECBFF"> &quot;&lt;tr&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">ID</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">nombre</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">apellidos</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;/tr&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#F97583">	?&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;/</span><span style="color:#79B8FF">table</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span></code></pre>
+<p>Si le metemos un poquito de estilos nos quedará algo así:</p>
+<p><img src="/blog/covers/wordpress_to_astro_ES.jpg" alt="Vista de lectura"/></p>
+<p><strong>5️⃣ QUINTO PASO 5️⃣</strong></p>
+<p>Vamos a hacer ahora la parte de crear y añadir datos. La C de create.</p>
+<p>Para esta parte, abriremos el fichero <strong>create.php</strong> y le añadimos un formulario con action vacío y método POST además de dos entradas de texto, una para el nombre y otra para el apellido. El ID no se añade porque es algo que se tendría que ejecutar automáticamente.</p>
+<p>Una vez hecho, vamos a ir debajo del encabezado y en el caso de que hayamos recibido datos por POST (tanto el nombre como el apellido), añadimos el archivo de conexión y realizamos la consulta con su respectiva ejecución.</p>
+<p>Esto nos quedará más o menos así:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">&lt;!</span><span style="color:#79B8FF">DOCTYPE</span><span style="color:#79B8FF"> html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Crud</span><span style="color:#F97583"> -</span><span style="color:#F97583"> @</span><span style="color:#79B8FF">fcoterroba</span><span style="color:#F97583">.</span><span style="color:#79B8FF">com</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Crud</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Create</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Crear</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_POST[</span><span style="color:#9ECBFF">&#39;name&#39;</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">&amp;&amp;</span><span style="color:#F97583"> !</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_POST[</span><span style="color:#9ECBFF">&#39;apellidos&#39;</span><span style="color:#E1E4E8">])) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		include</span><span style="color:#9ECBFF"> &#39;conn.php&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$nombre </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_POST[</span><span style="color:#9ECBFF">&#39;name&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$apellidos </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_POST[</span><span style="color:#9ECBFF">&#39;apellidos&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$insert_data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">INSERT INTO</span><span style="color:#9ECBFF"> main_data (nombre, apellidos) </span><span style="color:#F97583">VALUES</span><span style="color:#9ECBFF"> (&#39;</span><span style="color:#E1E4E8">$nombre</span><span style="color:#9ECBFF">&#39;, &#39;</span><span style="color:#E1E4E8">$apellidos</span><span style="color:#9ECBFF">&#39;)&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$insert_data</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	?&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">form</span><span style="color:#79B8FF"> action</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;&quot;</span><span style="color:#79B8FF"> method</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;POST&quot;</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#79B8FF">		Escriba</span><span style="color:#79B8FF"> su</span><span style="color:#79B8FF"> nombre</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">br</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">input</span><span style="color:#79B8FF"> type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;text&quot;</span><span style="color:#79B8FF"> name</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;name&quot;</span><span style="color:#79B8FF"> placeholder</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;Escriba su nombre&quot;</span><span style="color:#79B8FF"> required</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">br</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#79B8FF">		Escriba</span><span style="color:#79B8FF"> sus</span><span style="color:#79B8FF"> apellidos</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">br</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">input</span><span style="color:#79B8FF"> type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;text&quot;</span><span style="color:#79B8FF"> name</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;apellidos&quot;</span><span style="color:#79B8FF"> placeholder</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;Escriba sus apellidos&quot;</span><span style="color:#79B8FF"> required</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">br</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">input</span><span style="color:#79B8FF"> type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;submit&quot;</span><span style="color:#79B8FF"> value</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;Crear usuario&quot;</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;/</span><span style="color:#79B8FF">form</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span></code></pre>
+<p>Añadiendo un poco de estilos, una librería de alertas y demás, nos dejaría algo así:</p>
+<p><img src="/blog/covers/wordpress_to_astro_ES.jpg" alt="Vista de creación"/></p>
+<p><strong>6️⃣ SEXTO PASO 6️⃣</strong></p>
+<p>Penúltimo paso antes de finalizar nuestro CRUD. La U de update, actualizar.</p>
+<p>Lo primero que vamos a hacer es abrir el fichero <strong>update.php</strong> y mostrar, de manera similar al read.php, todos los valores de la tabla añadiéndole un campo más que sea un botón por cada registro dónde entonces procederemos a editar los valores.</p>
+<p>Una vez hecha la tabla, vamos a hacer que cada botón redirija a esa misma página pero añadiendo un GET con el ID del registro a modificar.</p>
+<p>Cuando se haya recargado la página, mostramos los valores actuales en nombre y apellidos permitiendo al usuario que lo modifique a su gusto y posteriormente un botón de enviar, enviando datos por POST a esa misma página y entonces haremos la query.</p>
+<p>El código es algo más o menos así:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">&lt;!</span><span style="color:#79B8FF">DOCTYPE</span><span style="color:#79B8FF"> html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">crUd</span><span style="color:#F97583"> -</span><span style="color:#F97583"> @</span><span style="color:#79B8FF">fcoterroba</span><span style="color:#F97583">.</span><span style="color:#79B8FF">com</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">crUd</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Update</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Actualizar</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	include</span><span style="color:#9ECBFF"> &#39;conn.php&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_POST[</span><span style="color:#9ECBFF">&#39;nombre&#39;</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">&amp;&amp;</span><span style="color:#F97583"> !</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_POST[</span><span style="color:#9ECBFF">&#39;apellidos&#39;</span><span style="color:#E1E4E8">])){</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_GET[</span><span style="color:#9ECBFF">&#39;id&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_POST[</span><span style="color:#9ECBFF">&#39;nombre&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$apellidos </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_POST[</span><span style="color:#9ECBFF">&#39;apellidos&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">UPDATE</span><span style="color:#9ECBFF"> main_data </span><span style="color:#F97583">SET</span><span style="color:#9ECBFF"> nombre </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;</span><span style="color:#E1E4E8">$name</span><span style="color:#9ECBFF">&#39;, apellidos </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;</span><span style="color:#E1E4E8">$apellidos</span><span style="color:#9ECBFF">&#39; </span><span style="color:#F97583">WHERE</span><span style="color:#9ECBFF"> ID </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;</span><span style="color:#E1E4E8">$id</span><span style="color:#9ECBFF">&#39;&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&#39;Location: http://localhost/prueba_CRUD/update.php&#39;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	}</span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_GET[</span><span style="color:#9ECBFF">&#39;id&#39;</span><span style="color:#E1E4E8">])) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_GET[</span><span style="color:#9ECBFF">&#39;id&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		echo</span><span style="color:#9ECBFF"> &quot;&lt;form action=&#39;&#39; method=&#39;POST&#39;&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#9ECBFF"> main_data </span><span style="color:#F97583">WHERE</span><span style="color:#9ECBFF"> ID </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;</span><span style="color:#E1E4E8">$id</span><span style="color:#9ECBFF">&#39;&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		while</span><span style="color:#E1E4E8">($fila </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">PDO</span><span style="color:#F97583">::</span><span style="color:#79B8FF">FETCH_OBJ</span><span style="color:#E1E4E8">)){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">			echo</span><span style="color:#9ECBFF"> &quot;Nombre a modificar: &lt;input type=&#39;text&#39; value=&#39;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">nombre</span><span style="color:#9ECBFF">&#39; name=&#39;nombre&#39;&gt;&lt;br&gt;Apellidos a modificar: &lt;input type=&#39;text&#39; value=&#39;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">apellidos</span><span style="color:#9ECBFF">&#39; name=&#39;apellidos&#39;&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		echo</span><span style="color:#9ECBFF"> &quot;&lt;br&gt;&lt;input type=&#39;submit&#39; value=&#39;Actualizar datos&#39;&gt;&lt;/form&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	}</span><span style="color:#F97583">else</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		echo</span><span style="color:#9ECBFF"> &quot;&lt;table&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">		&lt;tr&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">			&lt;th&gt;ID&lt;/th&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">			&lt;th&gt;Nombre&lt;/th&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">			&lt;th&gt;Apellidos&lt;/th&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">			&lt;th&gt;Actualizar&lt;/th&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">		&lt;/tr&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#9ECBFF"> main_data&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		while</span><span style="color:#E1E4E8">($fila </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">PDO</span><span style="color:#F97583">::</span><span style="color:#79B8FF">FETCH_OBJ</span><span style="color:#E1E4E8">)){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">			echo</span><span style="color:#9ECBFF"> &quot;&lt;tr&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">ID</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">nombre</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">apellidos</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;&lt;button id=&#39;boton&#39; onclick=&#39;prueba(</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">ID</span><span style="color:#9ECBFF">);&#39;&gt;Actualizar&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		echo</span><span style="color:#9ECBFF"> &quot;&lt;/table&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		?&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">script</span><span style="color:#79B8FF"> type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;text/javascript&quot;</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		function</span><span style="color:#B392F0"> prueba</span><span style="color:#E1E4E8">(id){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">			window</span><span style="color:#F97583">.</span><span style="color:#79B8FF">location</span><span style="color:#F97583">.</span><span style="color:#B392F0">replace</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;http://localhost/prueba_CRUD/update.php?id=&quot;</span><span style="color:#F97583">+</span><span style="color:#79B8FF">id</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;/</span><span style="color:#79B8FF">script</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span></code></pre>
+<p>Añadiendo un poquito de estilos, el proceso completo sería el siguiente:</p>
+<p><img src="/blog/covers/wordpress_to_astro_ES.jpg" alt="Vista de actualización"/></p>
+<p><strong>7️⃣ SÉPTIMO PASO 7️⃣</strong></p>
+<p>Para el último paso y ya acabamos con el post y nuestro CRUD básico realizado con buenas prácticas, vamos a hacer la opción de borrar, el Delete.</p>
+<p>Lo primero que vamos a hacer es abrir el fichero <strong>delete.php</strong> y mostrar, de manera similar al read.php, todos los valores de la tabla añadiéndole un campo más que sea un botón con una X para indicar que vamos a borrar ese registro.</p>
+<p>Se puede plantear de muchas maneras distintas pero voy a plantearlo similar al anterior paso. El botón cambiará la ubicación a esta misma pero añadiendo el ID por GET y el script ejecutará la query en cuanto la reciba.</p>
+<p>Nos faltaría añadirle un poco de confirmación por si el usuario le ha dado sin querer. Te dejo que lo añadas tú mismo!</p>
+<p>El código se quedaría más o menos así:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">&lt;!</span><span style="color:#79B8FF">DOCTYPE</span><span style="color:#79B8FF"> html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">cruD</span><span style="color:#F97583"> -</span><span style="color:#F97583"> @</span><span style="color:#79B8FF">fcoterroba</span><span style="color:#F97583">.</span><span style="color:#79B8FF">com</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">title</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">head</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	include</span><span style="color:#9ECBFF"> &#39;conn.php&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#79B8FF">empty</span><span style="color:#E1E4E8">($_GET[</span><span style="color:#9ECBFF">&#39;id&#39;</span><span style="color:#E1E4E8">])){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $_GET[</span><span style="color:#9ECBFF">&#39;id&#39;</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">DELETE</span><span style="color:#F97583"> FROM</span><span style="color:#9ECBFF"> main_data </span><span style="color:#F97583">WHERE</span><span style="color:#9ECBFF"> ID </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;</span><span style="color:#E1E4E8">$id</span><span style="color:#9ECBFF">&#39;&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">		header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&#39;Location: http://localhost/prueba_CRUD/delete.php&#39;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	?&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">cruD</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Delete</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> Borrar</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">h1</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">table</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		&lt;</span><span style="color:#79B8FF">tr</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">ID</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Nombre</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Apellidos</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">			&lt;</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF">Borrar</span><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">th</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		&lt;/</span><span style="color:#79B8FF">tr</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;?</span><span style="color:#79B8FF">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">			$get_all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $dbh</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">prepare</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#9ECBFF"> main_data&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		$get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		while</span><span style="color:#E1E4E8">($fila </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> $get_all</span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">PDO</span><span style="color:#F97583">::</span><span style="color:#79B8FF">FETCH_OBJ</span><span style="color:#E1E4E8">)){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">			echo</span><span style="color:#9ECBFF"> &quot;&lt;tr&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">ID</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">nombre</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">apellidos</span><span style="color:#9ECBFF">&lt;/td&gt;&lt;td&gt;&lt;button onclick=&#39;borra(</span><span style="color:#E1E4E8">$fila</span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8">ID</span><span style="color:#9ECBFF">);&#39;&gt;❌&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	?&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;/</span><span style="color:#79B8FF">table</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;</span><span style="color:#79B8FF">script</span><span style="color:#79B8FF"> type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;text/javascript&quot;</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		function</span><span style="color:#B392F0"> borra</span><span style="color:#E1E4E8">(id){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">			window</span><span style="color:#F97583">.</span><span style="color:#79B8FF">location</span><span style="color:#F97583">.</span><span style="color:#B392F0">replace</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;http://localhost/prueba_CRUD/delete.php?id=&quot;</span><span style="color:#F97583">+</span><span style="color:#79B8FF">id</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	&lt;/</span><span style="color:#79B8FF">script</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">body</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"><span style="color:#F97583">&lt;/</span><span style="color:#79B8FF">html</span><span style="color:#F97583">&gt;</span></span>
+<span class="line"></span></code></pre>
+<p>Añadiendo estilos se quedaría así:</p>
+<p><img src="/blog/covers/wordpress_to_astro_ES.jpg" alt="Vista de borrado"/></p>
+<p>Y poco más que añadir chic@s, espero que hayáis aprendido mucho a raíz de este post! Saber qué es y cómo hacer un CRUD correctamente es la base de cualquier programador, especialmente del backend.</p>
+<p>Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por <a href="https://www.paypal.com/paypalme/fcoterroba">Paypal</a>. Toda cantidad es bien recibida! 🙂</p>
+<p>Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como <a href="https://twitter.com/fcoterroba">Twitter</a>, <a href="https://www.facebook.com/fcoterroba">Facebook</a>, <a href="https://www.instagram.com/fcoterroba/">Instagram</a>, <a href="https://www.github.com/fcoterroba">GitHub</a> y <a href="https://www.linkedin.com/in/fcoterroba/">LinkedIn</a>. 🤟🏻</p>
+<p><strong>Fuentes:</strong> <a href="https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/crud-las-principales-operaciones-de-bases-de-datos/">IONOS.ES</a>, <a href="https://es.wikipedia.org/wiki/CRUD">Wikipedia</a>, <a href="https://diego.com.es/tutorial-de-pdo">diego.com.es</a></p> </div> </div> </div> </article> <section class="py-12 theme-bg" data-astro-cid-4sn4zg3r> <div class="max-w-7xl mx-auto px-8 lg:px-12 text-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="inline-flex items-center gap-3 px-8 py-4 bg-brand-green text-white rounded-3xl font-semibold hover:bg-brand-green/90 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl" data-astro-cid-4sn4zg3r> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-4sn4zg3r> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" data-astro-cid-4sn4zg3r></path> </svg> <span data-astro-cid-4sn4zg3r>volver al blog</span> </a> </div> </section> </div>    </main> <footer class="footer-bg py-16" data-astro-cid-37fxchfa> <div class="max-w-7xl mx-auto px-8 lg:px-12" data-astro-cid-37fxchfa> <div class="grid grid-cols-1 md:grid-cols-3 gap-12" data-astro-cid-37fxchfa> <div data-astro-cid-37fxchfa> <div class="flex items-center space-x-3 mb-6" data-astro-cid-37fxchfa> <img src="/isologo.svg" alt="fcoterroba Logo" class="h-8 w-auto invert" data-astro-cid-37fxchfa> <span class="footer-title text-2xl font-logo font-bold" data-astro-cid-37fxchfa>fcoterroba</span> </div> <p class="footer-text leading-relaxed text-lg" data-es="software engineer, escritor y product builder." data-en="software engineer, writer and product builder." data-astro-cid-37fxchfa>
+software engineer, writer and product builder.
+</p> </div> <div data-astro-cid-37fxchfa> <h4 class="footer-title text-xl font-bold mb-6" data-es="enlaces" data-en="links" data-astro-cid-37fxchfa>
+links
+</h4> <ul class="space-y-3" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/" class="footer-link" data-es="inicio" data-en="home" data-astro-cid-37fxchfa>home</a></li> <li data-astro-cid-37fxchfa><a href="/portfolio" class="footer-link" data-es="portfolio" data-en="portfolio" data-astro-cid-37fxchfa>portfolio</a></li> <li data-astro-cid-37fxchfa><a href="https://amzn.to/48A8qbj" target="_blank" class="footer-link" data-es="libro" data-en="book" data-astro-cid-37fxchfa>book</a></li> <li data-astro-cid-37fxchfa><a href="/blog" class="footer-link" data-es="blog" data-en="blog" data-astro-cid-37fxchfa>blog</a></li> <li data-astro-cid-37fxchfa><a href="/agradecimientos" class="footer-link" data-es="agradecimientos" data-en="acknowledgments" data-astro-cid-37fxchfa>acknowledgments</a></li> <li data-astro-cid-37fxchfa><a href="/contacto" class="footer-link" data-es="contacto" data-en="contact" data-astro-cid-37fxchfa>contact</a></li> <li data-astro-cid-37fxchfa><a href="/cookies" class="footer-link" data-es="cookies" data-en="cookies" data-astro-cid-37fxchfa>cookies</a></li> </ul> </div> <div data-astro-cid-37fxchfa> <h4 class="footer-title text-xl font-bold mb-6" data-es="sígueme" data-en="follow me" data-astro-cid-37fxchfa>
+follow me
+</h4> <div class="grid grid-cols-4 gap-4" data-astro-cid-37fxchfa> <a href="https://github.com/fcoterroba" target="_blank" class="footer-social" data-astro-cid-37fxchfa> <span class="sr-only" data-astro-cid-37fxchfa>GitHub</span> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-37fxchfa> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-37fxchfa></path> </svg> </a> <a href="https://linkedin.com/in/fcoterroba" target="_blank" class="footer-social" data-astro-cid-37fxchfa> <span class="sr-only" data-astro-cid-37fxchfa>LinkedIn</span> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-37fxchfa> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-37fxchfa></path> </svg> </a> <a href="https://instagram.com/fcoterroba" target="_blank" class="footer-social" data-astro-cid-37fxchfa> <span class="sr-only" data-astro-cid-37fxchfa>Instagram</span> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-37fxchfa> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" data-astro-cid-37fxchfa></path> </svg> </a> <a href="https://tiktok.com/@fcoterroba" target="_blank" class="footer-social" data-astro-cid-37fxchfa> <span class="sr-only" data-astro-cid-37fxchfa>TikTok</span> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-37fxchfa> <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" data-astro-cid-37fxchfa></path> </svg> </a> </div> </div> </div> <div class="footer-border mt-12 pt-8 text-center" data-astro-cid-37fxchfa> <p class="footer-copyright" data-es="© 2025 fcoterroba. todos los derechos reservados." data-en="© 2025 fcoterroba. all rights reserved." data-astro-cid-37fxchfa>
+© 2025 fcoterroba. all rights reserved.
+</p> </div> </div> </footer> <div id="cookies-toast" class="fixed top-4 inset-x-4 sm:top-6 sm:right-6 sm:left-auto z-50 hidden" data-astro-cid-37fxchfa> <div class="flex items-start gap-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl px-4 py-3 max-w-sm sm:ml-auto" data-astro-cid-37fxchfa> <div class="w-9 h-9 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center text-lg" data-astro-cid-37fxchfa>✓</div> <div class="flex-1" data-astro-cid-37fxchfa> <p id="cookies-toast-text" class="text-sm theme-text" data-astro-cid-37fxchfa>preferencia guardada</p> </div> <button id="cookies-toast-close" class="ml-2 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200" data-astro-cid-37fxchfa>✕</button> </div> </div>   <div id="cookie-banner" class="fixed inset-x-0 bottom-0 z-40 hidden" data-astro-cid-37fxchfa> <div class="mx-auto max-w-7xl px-4 sm:px-8 pb-6" data-astro-cid-37fxchfa> <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" data-astro-cid-37fxchfa> <div class="text-sm sm:text-base theme-text" data-astro-cid-37fxchfa> <p class="leading-6" data-astro-cid-37fxchfa> <span data-es="Usamos cookies analíticas opcionales para entender el uso y mejorar la web. Puedes aceptarlas o rechazarlas." data-en="We use optional analytics cookies to understand usage and improve the site. You can accept or reject them." data-astro-cid-37fxchfa>We use optional analytics cookies to understand usage and improve the site. You can accept or reject them.</span> <a href="/cookies" class="underline text-brand-green ml-1" data-es="Más info" data-en="More info" data-astro-cid-37fxchfa>More info</a> </p> </div> <div class="flex items-center gap-2 sm:gap-3" data-astro-cid-37fxchfa> <button id="cookie-reject" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 theme-text hover:bg-gray-50 dark:hover:bg-gray-800 text-sm sm:text-base" data-es="Rechazar" data-en="Reject" data-astro-cid-37fxchfa>Reject</button> <button id="cookie-accept" class="px-4 py-2 rounded-full bg-brand-green text-white hover:bg-brand-green/90 text-sm sm:text-base" data-es="Aceptar" data-en="Accept" data-astro-cid-37fxchfa>Accept</button> </div> </div> </div> </div>  </body> </html>
