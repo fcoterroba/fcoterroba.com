@@ -1,0 +1,153 @@
+---
+title: "IONIC 🔵: What Is It, Where Does It Come From and First Contact?"
+description: "Learn what IONIC is, its history, alternatives and how to make your first hybrid mobile application with this framework."
+excerpt: "Learn what IONIC is, its history, alternatives and how to make your first hybrid mobile application with this framework."
+category: "web development"
+tags: ["ionic", "javascript", "angular", "react", "mobile development", "hybrid apps", "tutorial", "framework"]
+author: "fcoterroba"
+date: "2020-12-07"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/ionic-post.jpg"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to talk about the latest framework I'm learning personally. IONIC 🔵
+
+In a matter of minutes, and with hardly any prior experience, you're going to know why I'm learning this framework, what it's intended for, who's behind it, the market share it currently has, what it's for and above all, what you like most, we'll see the first contact with the language 🤓
+
+The first contact will be based on everything around the framework, from the correct installation, the things we'll need beforehand to the main examples that are usually used to learn and finish testing any language, library or framework. 💪🏻
+
+If you like programming, I recommend checking out the programming tag where you can find [more than 5 projects I've uploaded to date in a multitude of different programming languages, including JavaScript, Swift and, especially, Python](https://fcoterroba.com/category/programacion).
+
+If I have to highlight one, I especially liked the [link shortener with graphical interface in Python](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica) with a somewhat advanced level in the subject.
+
+If you have a lower level, I recommend [first steps in Swift](https://fcoterroba.com/primeros-pasos-en-macos-y-swift) or [how to make a calculator in Python through the command line](https://fcoterroba.com/proyecto-python-principiantes-calculadora).
+
+I also remind you that everything you learn here you can upload to GitHub as a personal project, companies value that! 👁‍🗨
+Also, you can give a touch of [beauty to your profile following the post I uploaded last week](https://fcoterroba.com/git-github-que-son-como-hacer-buen-perfil-github)
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+If you're more interested in backend, I also recommend checking out my post talking about [Go, Google's backend language.](https://fcoterroba.com/go-que-lenguaje-donde-primer-contacto)
+
+Now yes, let's begin 👇🏻
+
+**IONIC: What is it?**
+
+IONIC is a framework (a framework is a standardized set of concepts, practices and criteria to approach a particular type of problem that serves as a reference to face and solve new problems of a similar nature. A set of tools additional to a programming language, let's say.) open source used in the development of hybrid mobile applications, combining HTML5, CSS and JavaScript.
+
+In summary, IONIC is a framework that, using front-end web technologies like HTML5, CSS3 and JavaScript, is capable of making mobile applications for Android and iOS. From the same code, yes.
+
+**A bit of history about IONIC**
+
+IONIC's base is developed on Angular and Cordova. It was born in 2013 and its latest version is IONIC 4, launched at the beginning of last year.
+
+**Are there alternatives to IONIC?**
+
+Yes.
+
+Today, in my opinion, there are three frameworks, libraries or technologies that serve this same purpose. React Native, Angular and IONIC.
+
+According to what we see in Google Trends charts, we can see that Angular wins followed by Ionic at the beginning of the last five-year period although the position was snatched by Facebook's framework, React Native, in mid-2017.
+
+Worldwide, except in China, victory has always been on Angular's side.
+
+**But let's get to it! 👇🏻**
+
+**1️⃣ FIRST STEP 1️⃣**
+
+Before installing Ionic we must install Node.JS which is a Javascript environment that allows us to run that programming language on the server.
+
+We can download the latest version or the LTS version (latest stable version, without bugs) on its [website](https://nodejs.org/en/).
+
+The installation doesn't go much further than clicking **next** until **finish** appears
+
+![Node.js installation](/blog/covers/wordpress_to_astro_EN.png)
+
+**2️⃣ SECOND STEP 2️⃣**
+
+Once installed we're going to install IONIC by typing the following command in the terminal:
+
+```bash
+npm install -g ionic
+```
+
+![Ionic installation](/blog/covers/wordpress_to_astro_EN.png)
+
+**3️⃣ THIRD STEP 3️⃣**
+
+Finally we must open our favorite IDE or code editor (in case it has terminal inside, if not, we must type the command in the terminal inside the project folder that we have previously created), create a specific folder for the project and type the following command in the terminal:
+
+```bash
+ionic start hola-mundo blank
+```
+
+When we type it, it asks us to choose a framework between Angular and React. You can choose whichever you want.
+
+When this installs we already have our IONIC project up. To see it we must type this last command:
+
+```bash
+cd "NOMBREDELACARPETAQUENOSHACREADO"
+ionic serve
+```
+
+And it will automatically open a web page that shows us what our App looks like in IONIC. Usually at **localhost:8100**
+
+![Ionic application in browser](/blog/covers/wordpress_to_astro_EN.png)
+
+**HELLO WORLD**
+
+For this we're going to first edit the **BLANK** that appears top left. The file `/src/pages/Home.tsx` and we modify the `IonTitle` tag to put the name we want, in my case, Inicio.
+
+```typescript
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import React from 'react';
+import ExploreContainer from '../components/ExploreContainer';
+import './Home.css';
+
+const Home: React.FC = () => {
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>INICIO</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+...
+```
+
+And subsequently, we're going to edit what appears on screen, which is located in `/src/components/ExploreContainer.tsx` I've written something like this, inside the return, but you can write whatever you want, always in HTML format.
+
+```typescript
+import React from 'react';
+import './ExploreContainer.css';
+
+interface ContainerProps { }
+
+const ExploreContainer: React.FC<ContainerProps> = () => {
+  return (
+    <div className="container">
+      <strong>HOLA MUNDO 👋🏻 SOY FCOTERROBA</strong>
+      <p>Visita mi web! <a target="_blank" rel="noopener noreferrer" href="https://www.fcoterroba.com">www.fcoterroba.com</a></p>
+    </div>
+  );
+};
+
+export default ExploreContainer;
+```
+
+With this we already have our hello world!
+
+If you're interested, I leave you the complete repository on my [GitHub profile](https://github.com/fcoterroba/HelloWorld_ionic) and also invite you to follow me! ♥
+
+I leave you this YouTube course to make a complete chat app with Firebase login! 🔥
+
+<iframe src="https://www.youtube.com/embed/xgkwOBpU3ek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+And little more to add guys, I hope you liked it a lot since I loved it! I also hope you have a great week and we'll see you here soon! Greetings and remember to follow me on social networks like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Help sources:** [reviblog.net](https://reviblog.net/tag/hola-mundo-ionic/), [qualitydevs.com](https://www.qualitydevs.com/2019/05/31/que-es-ionic-desarrollador-web/)
+
