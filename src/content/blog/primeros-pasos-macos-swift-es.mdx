@@ -1,0 +1,143 @@
+---
+title: "Primeros pasos en MacOS y Swift"
+description: "Aprende los primeros pasos para programar en Swift en macOS, desde la instalación de XCode hasta crear tu primer proyecto con código básico."
+excerpt: "Aprende los primeros pasos para programar en Swift en macOS, desde la instalación de XCode hasta crear tu primer proyecto con código básico."
+category: "programación de móvil"
+tags: ["swift", "macos", "xcode", "ios", "apple", "tutorial", "programación", "desarrollo móvil"]
+author: "fcoterroba"
+date: "2020-10-19"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/first-steps-swift.jpg"
+lang: "es"
+---
+
+Hola mundo! 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que voy a mostrar los primeros pasos cuando cogemos un MacOS o empezamos a programar en Swift. (Que no Objective-C).
+
+Recientemente, estudio una especie de bootcamp cofinanciado con la Unión Europea y la Junta de Andalucía en el que estamos estudiando varias tecnologías muy modernas. Empezamos con mobile development en Android, iOS y React Native. Esta semana seguiremos con el 5G y posteriormente seguiremos con Bussines Inteligence, Arquitecturas Agile, Big Data, Inteligencia Artificial, Robótica, Deep Learning, etcétera. Muy completito.
+Y, es por eso, que actualmente, durante las dos semanas que dura el módulo de Swift, poseo un MacOS.
+
+Lo he estado bicheando y, definitivamente, MacOS no es para mí. Tiene cosas muy buenas pero también cosas muy malas. No voy a entrar en el qué de cada uno, esto es un blog de informática, no de salseo.
+
+Te aviso de que, en este post leerás términos que no entenderás. Es por eso que te recomiendo leer un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Antes de comenzar, también quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comenzamos 👇
+
+Lo primero que debemos hacer es crearnos una cuenta de AppleID dentro del App Store, ya que, Apple, no permite hacer uso y disfrute de sus dispositivos sin estar dentro de su burbuja.
+
+![Creación de cuenta AppleID](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Una vez que nos creemos una cuenta con ellos, vamos a descargar el conocido XCode.
+
+XCode es el único IDE que permite Apple para hacer uso totalitario de los desarrollos en su ecosistema.
+
+Esto quiere decir que, aunque puedas escribir código Swift en VSCode, Sublime Text o NetBeans, jamás tendrás todas las capacidades que sirve XCode porque, ya sabemos, como es Apple.
+
+Tras este despotrique hacia Apple y la instalación del IDE, vamos a abrirlo por primera vez y ahora sí que sí, vamos a programar. 👨‍💻
+
+Esta 👇 es la pantalla de inicio del programa. Como vemos, una pantalla de inicio muy sosegada, tranquila y como no, con los colores light de la compañía.
+
+![Pantalla de inicio de XCode](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Desde esta primera pantalla podremos abrir nuestros proyectos recientes, crear uno nuevo, clonar directamente desde un repositorio de github o gitlab o, como no, abrir un proyecto ya existente y descargado.
+
+Pero, en XCode diferenciamos dos partes de proyectos. Playground y project.
+
+**Playground**
+
+El playground como su propio nombre indica, es un patio de juegos, es un sitio donde bichear, probar y jugar.
+
+Aquí no vamos a tener emuladores de iPhones, iPod o iPad.
+
+Aquí vamos a tener un espacio en blanco donde ir escribiendo nuestro código, sin interfaz gráfica, jugando solo con la terminal.
+
+**Básicos en Swift**
+
+Te dejo aquí abajo, un código, muy simple realizado desde Playground en el que muestro los elementos más básicos en cualquier lenguaje de programación.
+
+![Código básico en Swift](/blog/covers/wordpress_to_astro_ES.jpg)
+
+```swift
+import UIKit //Paquete que por defecto siempre vamos a necesitar
+
+//Así imprimimos por pantalla
+print("Hola mundo. Visita mi página www.fcoterroba.com")
+
+//Así se crean variables, NO es necesario establecer el tipo
+var x = "Esto es una variable de tipo string"
+var y = 24
+print(x, y)
+
+//Así se crean constantes
+let constant = 99
+
+//Los bucles numéricos se realizan así. Creando una variable contadora y estableciendo el arco de números
+for index in 1...5{
+    print(index)
+}
+
+//Así se crean los arrays de String y enteros en Swift.
+let nombres = ["Anna", "Alex", "Brian", "Jack"]
+let numeros = [1, 2, 3, 4]
+
+//Los bucles también pueden recorrer arrays ya creados.
+for nombre in nombres{
+    //Para concatenar variables en prints
+    print("Hola, \(nombre)")
+}
+
+for numero in numeros{
+    //Las condiciones se realizan así, sin condición entre paréntesis
+    if numero < 3 {
+        print(numero, "Es MENOR QUE 3")
+    }else{
+        print(numero, "Es MAYOR O IGUAL QUE 3")
+    }
+}
+
+var paraElSwitch = 2
+
+//Así se crea un Switch en Swift. Nótese que no es necesario establecer kill o similares en cada caso
+switch paraElSwitch {
+case 1:
+    print("La variable denominada 'paraElSwitch' vale ",paraElSwitch)
+case 2:
+    print("La variable denominada 'paraElSwitch' vale ",paraElSwitch)
+case 3:
+    print("La variable denominada 'paraElSwitch' vale ",paraElSwitch)
+case 4:
+    print("La variable denominada 'paraElSwitch' vale ",paraElSwitch)
+default:
+    print("La variable denominada 'paraElSwitch' no vale ninguno de los valores anteriores.")
+}
+
+//Función que devuelve algo
+func exampleFunction() -> Int{
+    return (2)
+}
+
+//Función vacía
+func exampleVoidFunction(){
+    var variableFunction = 4
+}
+print(exampleFunction())
+```
+
+**Project**
+
+Vamos ahora con lo interesante de verdad, la razón por la que, probablemente, hayas entrado en este post.
+
+Vamos a hacer un pequeño proyecto en Swift. Con su interfaz gráfica y responsive para todos los dispositivos de la compañía.
+
+Cuando creamos un nuevo proyecto nos pregunta qué template vamos a usar. En el 99% de los casos, usaremos uno vacío. Luego, escribimos las propiedades correspondientes tal que así 👇
+
+![Creación de nuevo proyecto en XCode](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Una vez creado, ya podremos realizar todo lo que queramos programar para Apple. Es muy sencillo, y con lo aprendido previamente, puedes empezar a hacer cosas muy rápidas. Realmente Swift tiene un pro muy bueno y es que su curva de aprendizaje es prácticamente instantánea.
+
+Y esto es todo por hoy chicos, espero que os haya gustado y os haya sido de grata utilidad! 🤓 Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
