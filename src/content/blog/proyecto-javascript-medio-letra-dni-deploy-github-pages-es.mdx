@@ -1,0 +1,343 @@
+---
+title: "Proyecto JavaScript medio: Calcular letra del DNI y hacer deploy en GitHub Pages"
+description: "Aprende a crear un proyecto en JavaScript puro para calcular la letra del DNI y hacer deploy en GitHub Pages de forma gratuita."
+excerpt: "Aprende a crear un proyecto en JavaScript puro para calcular la letra del DNI y hacer deploy en GitHub Pages de forma gratuita."
+category: "desarrollo web"
+tags: ["javascript", "github pages", "deploy", "tutorial", "proyecto", "frontend"]
+author: "fcoterroba"
+date: "2021-09-14"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/github-pages.jpg"
+lang: "es"
+---
+
+Hola mundo! Mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post relacionado con el front-end. Vamos a realizar un proyecto muy sencillito (pero que aumenta su dificultad por el tema del deploy) escrito en JavaScript puro en el que, dado un número de DNI, devolveremos la letra correspondiente.
+
+Por muy sencillo que parezca, en el sector IT, aunque se valoran los estudios y la experiencia, también cuenta el hecho de tener un portafolio con proyectos, más o menos sencillos. Y es por eso que explicaré este proyecto tan sencillito pero que, dándole un poco de imaginación, puede convertirse en algo muy chulo y que llame la atención a los reclutadores IT.
+
+Antes de comenzar el proyecto, deberías saber un poquito de JavaScript así cómo el funcionamiento de los servidores, qué es deployar, los pros de hacer deploy usando Javascript, etc. En internet podéis encontrar muchísima información al respecto pero puedes ir empezando revisando los posts que tengo escritos bajo la categoría de [JavaScript](https://fcoterroba.com/category/javascript).
+
+Para los proyectos Javascript básicos (sin Node ni dependencias) no necesitaremos ningún tipo de servidor. Es más, no necesitaremos más que un navegador y un editor de código cómo puede ser VSCodium o Sublime Text, entre otros.
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**Ahora sí que sí, comencemos 👇**
+
+Puede ser normal que desconozcas qué es el DNI ya que puedes leerme desde el otro lado del charco y no tener ni pajolera idea de qué es esto.
+
+No soy un experto en legalidad pero el DNI es es el documento de identidad que se expide en España. Desde marzo de 2006 es electrónico. Es una tarjeta de policarbonato que incorpora un chip con información digital, que tiene unas dimensiones idénticas a las de las tarjetas de crédito comúnmente utilizadas. Es obligatorio a partir de los 14 años de edad, aunque puede solicitarse desde la inscripción del menor en el Registro Civil. A fecha de octubre de 2015 se habían emitido más de 44 millones de DNI electrónicos en España.
+
+Básicamente, sin Wikipedia, es un carné de identidad obligatorio que se usa en España.
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Debemos entender cuál es el **algoritmo** que usa el gobierno para elegir una letra u otra en base a los números de tu DNI. No es algo realmente complicado pero hay que tenerlo muy presente para hacer este proyecto, obviamente.
+
+Simplemente hay que dividir el número de tu DNI entre el número 23 y el resto que te dé de esa operación, se sustituye por la letra correspondiente:
+
+| **RESTO** | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+| **LETRA** | T | R | W | A | G | M | Y | F | P | D | X | B |
+
+| **RESTO** | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 |
+| **LETRA** | N | J | Z | S | Q | V | H | L | C | K | E |
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Lo segundo que vamos a hacer es crear nuestra estructura básica del proyecto.
+
+Ya sabéis, cómo siempre, una carpetita con su correspondiente nombre, un fichero **.html**, un fichero **.js** y un fichero **.css** si queremos darle estilos.
+
+![Estructura del proyecto](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Comencemos con la estructura del html que puede ser la parte más sencilla del proyecto.
+
+Creamos una estructura básica de HTML. En mi caso he usado la librería de materialize por lo que lo único "fuera de lo común" de esta estructura son los CSS y JS compilados de esta librería.
+
+Que no se nos pase, que aunque de momento no haga nada, añadir los estilos y el script al principio del body.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular letra del DNI - @fcoterroba.com</title>
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+            
+</head>
+<body>
+    <script src="script.js"></script>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Letra del DNI</a>
+        </div>
+    </nav>
+    <center>
+        <div class="contenedor">
+            <img class="center" id="dni" src="unnamed-removebg-preview.png"  alt="" srcset="">
+            <div class="texto_imagen"><input type="number" name="" id="" minlength="8"></div>
+            <div id="nombre_random"></div>
+            <div id="apellido_random"></div>
+            <div id="fecha_random"></div>
+            <div id="img_random"></div>
+            <h3 id="letra"></h3>
+        </div>
+    </center>
+    <footer class="page-footer">
+          <div class="container">
+          © 2021 
+          <a class="grey-text text-lighten-4 right" href="https://www.fcoterroba.com" target="_blank">fcoterroba</a>
+          </div>
+    </footer>
+</body>
+</html>
+```
+
+![Vista del proyecto](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**4️⃣ CUARTO PASO 4️⃣**
+
+Vamos ahora a dejarlo mínimamente visible, porque esto es muy de los 2000.
+
+Para los estilos he tirado principalmente de dos "familias" ya que jugábamos con la imagen editada del DNI. Una de las versiones para pantallas medianamente grandes (ordenadores, portátiles y tablets) y otra versión para móviles.
+
+Para esta diferencia usamos la propiedad **@media** de CSS en la cual le podemos pasar un tamaño máximo y aplicar reglas según este.
+
+```css
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.texto_imagen{
+    position: absolute;
+    top: 430px;
+    left: 40px;
+    font-size: large;
+}
+
+#nombre_random{
+    position: absolute;
+    top: 177px;
+    left: 185px;
+    font-size: large;
+}
+
+#apellido_random{
+    position: absolute;
+    top: 208px;
+    left: 185px;
+    font-size: large;
+}
+
+#fecha_random{
+    position: absolute;
+    top: 240px;
+    left: 185px;
+    font-size: large;
+}
+
+#img_random{
+    position: absolute;
+    top: 300px;
+    left: 420px;
+    font-size: large;
+}
+
+#dni{
+    width: 600px;
+}
+
+#img_dni{
+    width: 100px;
+}
+
+#letra{
+    margin-top: -70px;
+}
+
+/*A partir de aquí, las reglas sólo se aplicarán en móviles*/
+@media only screen and (max-width : 480px) {
+    #dni{
+        width: 340px;
+    }
+    .texto_imagen{
+        position: absolute;
+        top: 235px;
+        left: 22px;
+        font-size: large;
+    }
+    #nombre_random{
+        position: absolute;
+        top: 97px;
+        left: 105px;
+        font-size: small;
+    }
+    #apellido_random{
+        position: absolute;
+        top: 114px;
+        left: 105px;
+        font-size: small;
+    }
+    #fecha_random{
+        position: absolute;
+        top: 132px;
+        left: 105px;
+        font-size: medium;
+    }
+    #img_random{
+        position: absolute;
+        top: 145px;
+        left: 235px;
+        font-size: large;
+    }
+    #img_dni{
+        width: 80px;
+    }
+    #letra{
+        margin-top: -50px;
+    }   
+}
+```
+
+![Vista responsive](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**5️⃣ QUINTO PASO 5️⃣**
+
+Vamos con la lógica, el script.
+
+Aunque, antes que nada, vamos a añadir la propiedad *onchange* al input ya que querremos comprobar este campo cada vez que se modifique.
+
+En la propiedad onkeyup le pasaremos el nombre de la función que creemos posteriormente y la propiedad *this.value* que hace referencia, como bien dice el nombre, al valor escrito en ese tag.
+
+```
+<div class="texto_imagen"><input type="number" name="" id="" minlength="8" onkeyup="get_letter(this.value)"></div>
+```
+
+Ahora sí, vámonos ya al script.
+
+Cómo dicen [Imagine Dragons, first things first](https://www.youtube.com/watch?v=7wtfhZwyrcc), lo primero que vamos a hacer es crear la función en cuestión. Yo le he puesto ese nombre por ser prácticos pero realmente puedes poner el nombre que quieras.
+
+Lo primero que debemos hacer dentro de esta función es comprobar si el parámetro que le hemos pasado en la función posee más de 8 carácteres. Para esto existe la función **.length**
+
+En caso incorrecto no haremos nada (ahí viene tu imaginación. Puedes poner una alerta, prohibirlo, poner un mensaje, etc.) pero en caso correcto crearemos una variable de tipo clave-valor dónde cada carácter corresponderá al número en cuestión. Algo así:
+
+```javascript
+if (dni.length == 8) {
+    const letters = {
+        "T": 0,
+        "R": 1,
+        "W": 2,
+        "A": 3,
+        "G": 4,
+        "M": 5,
+        "Y": 6,
+        "F": 7,
+        "P": 8,
+        "D": 9,
+        "X": 10,
+        "B": 11,
+        "N": 12,
+        "J": 13,
+        "Z": 14,
+        "S": 15,
+        "Q": 16,
+        "V": 17,
+        "H": 18,
+        "L": 19,
+        "C": 20,
+        "K": 21,
+        "E": 22
+    }; 
+}
+```
+
+Posteriormente, vamos a editar la letra del DNI para mostrar el valor correspondiente según el número que haya tocado. Para eso será necesario crear otra función que lo que haga sea devolver la clave correspondiente según el valor que le pasemos. Esto podemos hacerlo directamente usando el operador **%** que ya sabéis que nos saca el resto de una división
+
+```javascript
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => 
+            object[key] === value);
+}
+
+function get_letter(dni){
+    if (dni.length == 8) {
+        const letters = {
+        "T": 0,
+        "R": 1,
+        "W": 2,
+        "A": 3,
+        "G": 4,
+        "M": 5,
+        "Y": 6,
+        "F": 7,
+        "P": 8,
+        "D": 9,
+        "X": 10,
+        "B": 11,
+        "N": 12,
+        "J": 13,
+        "Z": 14,
+        "S": 15,
+        "Q": 16,
+        "V": 17,
+        "H": 18,
+        "L": 19,
+        "C": 20,
+        "K": 21,
+        "E": 22
+    };
+      document.getElementById("letra").innerHTML = getKeyByValue(letters, (dni%23));
+}
+```
+
+Con esto ya tendríamos el proyecto hecho PERO QUÉ PASA? Que absolutamente todos los desarrolladores juniors hinchan sus portafolios con las mismas ideas y prácticamente calcadas.
+
+¿Tener un portafolio grande está bien? Por supuesto. ¿Que también habría que añadir un poco de originalidad, aunque la finalidad sea la misma? Absolutamente sí.
+
+Es por eso que, aunque sea una chorrada, voy a upgradear este proyecto añadiendo que, cuando se complete el proceso de cálculo de letra, pinte directamente en el DNI la información sobre famosos. Es una tontería pero llama la atención tanto para darte a conocer cómo para dar a entender a los reclutadores IT que tienes imaginación.
+
+Básicamente abriendo tu imaginación te quedaría algo así de chulo:
+
+![Demo del proyecto](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**6️⃣ SEXTO PASO 6️⃣**
+
+Por último, vamos a proceder a subir nuestro proyecto a internet usando un servidor estático como github pages. Ahí puedes tener básicamente y resumiendo un montón, tu propia página web. Y para proyectos cómo este, que no requisan para nada de base de datos y/o ficheros para almacenar, va de escándalo.
+
+Existen muchas alternativas a GH Pages pero empezaremos por esta e iremos viendo poco a poco las más famosas.
+
+Lo primero que debemos hacer es crear un repositorio y posteriormente subir los archivos de nuestro proyecto. Esto lo podemos realizar usando la terminal mediante comandos de git, mediante la aplicación de escritorio de github desktop o desde la interfaz web de github en sí. Para esta prueba usaremos este último. Nos queda así:
+
+![Repositorio en GitHub](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Posteriormente, vamos a **settings** y modificamos la **branch** principal por **gh-pages**
+
+![Configuración de GitHub Pages](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Por último, volvemos a **settings** y aparecerá una nueva sección llamada **pages**. Será entonces cuando tengamos nuestra web 🆙.
+
+Esto ha sido todo por hoy chicos! Espero que os haya gustado la reflexión, cómo juguetear un poco más con JavaScript y la posibilidad que tenemos con este lenguaje de tener hosting gratis!
+
+Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Fuentes:** [Wikipedia](https://es.wikipedia.org/wiki/DNI_(Espa%C3%B1a)), [CadenaSer](https://cadenaser.com/ser/2020/08/26/sociedad/1598425330_620547.html), [DevCode.la](https://devcode.la/tutoriales/publicar-tu-web-usando-github-pages/)
+
