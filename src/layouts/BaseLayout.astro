@@ -728,14 +728,17 @@ const siteName = 'fcoterroba';
         document.documentElement.lang = lang;
 
         const currentPath = window.location.pathname;
-        if (currentPath.startsWith('/blog/') && currentPath !== '/blog') {
+        const isBlogPost = currentPath.startsWith('/blog/') && currentPath !== '/blog';
+        if (isBlogPost) {
           const currentSlug = currentPath.replace('/blog/', '');
-          const baseSlug = currentSlug.replace(/-es$|-en$/, '');
-          const newSlug = `${baseSlug}-${lang}`;
+          if (currentSlug && currentSlug.trim() !== '') {
+            const baseSlug = currentSlug.replace(/-es$|-en$/, '');
+            const newSlug = `${baseSlug}-${lang}`;
 
-          if (currentSlug !== newSlug) {
-            window.location.href = `/blog/${newSlug}`;
-            return;
+            if (currentSlug !== newSlug) {
+              window.location.href = `/blog/${newSlug}`;
+              return;
+            }
           }
         }
         
