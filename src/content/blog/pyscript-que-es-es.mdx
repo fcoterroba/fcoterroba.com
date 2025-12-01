@@ -1,0 +1,129 @@
+---
+title: "PyScript: ¿Qué es este framework javascript del que todo el mundo está hablando?"
+description: "Aprende qué es PyScript, un framework de javascript que está a la orden del día."
+excerpt: "Aprende qué es PyScript, un framework de javascript que está a la orden del día."
+category: "desarrollo web"
+tags: ["python", "javascript", "noticia"]
+author: "fcoterroba"
+date: "2022-09-30"
+readTime: "7 min read"
+featured: false
+coverImage: "/blog/covers/pyscript.webp"
+lang: "es"
+---
+
+Hola mundo 🤟🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un medio post medio noticia en el que vamos a hablar de una librería que está muy de moda actualmente en el sector del desarrollo web.
+
+Sé que os gustan mucho más los posts cuando hablamos y creamos un nuevo proyecto desde 0 pero también hay que dar cabida a noticias importantes del sector y es por eso que hoy vamos a hablar de PyScript.
+
+Antes de comenzar, cómo no podía ser de otra forma, si aún no lo has visto, te recomiendo encarecidamente que vayas a ver el último vídeo que tengo en mi canal de YouTube en el que expliqué, de manera muy sencilla y concisa, cómo realizar la instalación de una bombilla inteligente 🧠 con la cual podrás cambiar el color del mismo, controlarla mediante tu propia voz y muchísimo más! Puedes verlo aquí 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Por último antes de comenzar, quería comunicar que llevo unas semanas subiendo vídeos a TikTok. Últimamente son de Eurovisión dado que ya queda poco para ello pero te dejo por aquí el último que hice a día de hoy sobre informática.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7077605052181007622" data-video-id="7077605052181007622" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba" rel="noopener noreferrer">@fcoterroba</a> like para la parte 2#<a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp" rel="noopener noreferrer">fyp </a>#<a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati" rel="noopener noreferrer">parati </a>#<a title="informatica" target="_blank" href="https://www.tiktok.com/tag/informatica" rel="noopener noreferrer">informatica</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+**Antes de comenzar, ¿qué es un framework en JavaScript?**
+
+En pocas palabras, un Framework es una estructura previa que se puede aprovechar para desarrollar un proyecto. El Framework es una especie de plantilla, un esquema conceptual, que simplifica la elaboración de una tarea, ya que solo es necesario complementarlo de acuerdo a lo que se quiere realizar.
+
+Generalmente, los frameworks son usados por programadores porque permiten acelerar el trabajo y favorecer que este sea colaborativo, reducir errores y obtener un resultado de más calidad. Pero no pienses que estas estructuras son cosa solo del departamento IT, qué va, en el mundo online hay frameworks para prácticamente todo: para definir el viaje de compra de un cliente, para aplicar mejoras a un producto digital y tener más conversiones… Y es que, hoy en día, la automatización es la clave para conseguir que cualquier proceso de trabajo sea rápido y eficaz sin perder un ápice de calidad.
+
+Vamos, resumidamente, un framework es un sencillo marco de trabajo con el que empezar a desarrollar una idea superior partiendo con las bases más sencillas establecidas correctamente. Nos olvidamos de toda la parte más tediosa de la programación.
+
+**¿Qué es Py-Script?**
+
+Es mundialmente conocido en el sector que para la progamación en web, lo que se usa es, al menos del lado del cliente, JavaScript.
+
+Es el único lenguaje de programación que aceptan a día de hoy los estándares de internet pero con Py-Script vamos un poco más allá.
+
+Desarrollado por el equipo de Anaconda, "es una forma de incluir python con html y otros lenguajes en el navegador." Esto significa que puede escribir y ejecutar código Python con HTML, interactuar con las bibliotecas de Javascript en PyScript y hacer todo el desarrollo en PyScript.
+
+Sin necesidad de ejecutar el código desde el lado del servidor, ahora se puede ejecutar Python desde el lado del navegador.
+
+Cierto es que no deja de tratarse a Python como un contenedor dentro de JavaScript, ya que, como veremos más adelante, para que esto funcione, debemos importar previamente una etiqueta usando JavaScript. Pero mola mucho ver los posibles avances del lenguaje.
+
+Además, por rizar un poco más el rizo y seguir echando un poco de balones fuera hacia Py-Script. Debemos saber que este framework no es más que una tecnología dependiente de otra, la famosa Pyodide. Tecnología que usa Node.js y webassembly por detrás.
+
+Este entorno ya viene con librerías comunes como numpy, pandas, scikit-learn y mucho más. Además, tiene comunicación bidireccional entre el entorno de Python y JavaScript
+
+Importante recalcar que el desarrollador tiene absoluto control a la hora de elegir qué paquetes y archivos va a cargar en el entorno.
+
+**Veamos algunos ejemplos**
+
+**Hola Mundo**
+
+Empecemos con el ejemplo básico, un hola mundo:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+    <h1>Hola mundo</h1>
+    <h2>Vamos a añadir la fecha y hora actual</h2>
+    <py-script>
+        from datetime import datetime
+        now = datetime.now()
+        now.strftime("%m/%d/%Y, %H:%M:%S")
+    </py-script>
+</body>
+</html>
+```
+
+![Ejemplo PyScript](/blog/covers/pyscript.webp)
+
+También podemos hacer cálculos en el mismo documento
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+    <h1>Hola mundo</h1>
+    <h2>Podemos hacer todos los cálculos</h2>
+    <py-script>
+        print("2+2 = " , 2+2)
+        print("32-12 = " , 32-12)
+        print("8*4 = " , 8*4)
+        print("240/5 = " , 240/5)
+    </py-script>
+</body>
+</html>
+```
+
+![Ejemplo cálculos PyScript](/blog/covers/pyscript.webp)
+
+Y muchísimo más!
+
+Recordad que está aún en unas fases muy iniciales por lo que hay cosas que no están pero es flipante ver hasta dónde está llegando el desarrollo web!
+
+🏁 **Fin del post** 🏁
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y ahora también en [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+**Fuentes:** [rockcontent.com](https://rockcontent.com/es/blog/framework/), [edix.com](https://www.edix.com/es/instituto/framework/), [pyodide.org](https://pyodide.org/en/stable/), [analyticslane.com](https://www.analyticslane.com/2022/06/10/comenzando-con-pyscript-ejecutar-python-en-un-navegador/), [devjaime.medium.com](https://devjaime.medium.com/pyscript-python-en-el-navegador-de83a7cde1b8), [platzi.com](https://platzi.com/blog/pyscript-la-forma-de-correr-python-en-el-navegador-news/)
