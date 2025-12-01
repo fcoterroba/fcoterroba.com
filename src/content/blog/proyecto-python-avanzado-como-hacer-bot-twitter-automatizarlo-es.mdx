@@ -1,0 +1,190 @@
+---
+title: "Proyecto Python avanzado: ¿Cómo hacer un bot en Twitter y automatizarlo?"
+description: "Aprende a crear un bot de Twitter con Python usando Tweepy, desde solicitar las API keys hasta automatizarlo con crontab en un servidor."
+excerpt: "Aprende a crear un bot de Twitter con Python usando Tweepy, desde solicitar las API keys hasta automatizarlo con crontab en un servidor."
+category: "programación de software"
+tags: ["python", "twitter", "bot", "tweepy", "automatización", "api", "tutorial"]
+author: "fcoterroba"
+date: "2020-12-14"
+readTime: "15 min read"
+featured: false
+coverImage: "/blog/covers/twitter-bot-python.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os vuelvo a traer un post de esos que os gusta, en el que hacemos un proyectito, esta vez bastante avanzado, en Python 🐍.
+Concretamente, vamos a programar un bot en Twitter, explicando cómo solicitar las keys, cómo empezar a programarlo, qué funciones se le puede dar, cómo hacer un deploy correctamente, qué librerías necesitamos, etcétera
+
+Este proyecto es, **bajo mi punto de vista**, el proyecto más complicado que he realizado hasta la fecha en la página por lo que, aunque sé que te interesa mucho esta parte, te recomiendo visitar antes todos mis proyectos de Python, que poseen un nivel algo inferior a este y puedes así, asentar conceptos de manera correcta! ✅
+
+Por orden, yo te recomiendo mi post sobre [¿Cómo hacer una calculadora en la consola de comandos?](https://fcoterroba.com/proyecto-python-principiantes-calculadora), el proyecto que hicimos [para generar códigos QR.](https://fcoterroba.com/proyecto-python-principiantes-generar-codigo-qr)
+Pasamos después a un proyecto en el que, usando [APIs públicas y gratuitas, fuimos capaces de conseguir un exchange de monedas con interfaz gráfica.](https://fcoterroba.com/proyecto-python-medio-exchange-interfaz-grafica)
+Por último, te recomiendo el último post que he subido hasta la fecha, en el que hicimos un [acortador de enlaces con interfaz gráfica donde puedes abrir y copiar automáticamente los enlaces generados](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica).
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comencemos 👇🏻
+
+**¿Qué es un bot de Twitter?**
+
+Según wikipedia, un bot de Twitter o Twitterbot es un software que controla una cuenta de Twitter a través de la API oficial de estos.
+
+Por lo general, el bot podrá tuitear, retuitear, dar likes, seguir, dejar de seguir, etcétera.
+
+En resumen, un bot de Twitter suele ser una cuenta o perfil de usuario donde todas, o casi todas las acciones están automatizadas por un programa o script.
+
+**¿Qué vamos a hacer?**
+
+Pues, voy a aprovechar el post para explicar cómo se programa un bot en Twitter pero quiero hacer algo que ya tenía en mente hace unos meses, cuando vi que la gente en Twitter le gusta jugar a pequeños juegos del estilo RT o FAV si eres más alto que X (sustituyendo X por el personaje famoso de turno). **Ejemplo:**
+
+<iframe border="0" frameborder="0" height="500" width="100%" src="https://twitframe.com/show?url=https://twitter.com/comradenyan/status/1333972341966184450"></iframe>
+
+Una vez definido nuestro objetivo, comenzamos.
+
+**1️⃣ PRIMER PASO 1️⃣**
+
+Para trabajar con la API de Twitter necesitamos crear una cuenta de Twitter (si no tenemos ya una o queremos que nuestro bot tenga cuenta propia, cómo es lo normal) y posteriormente registrarnos en la [página de Twitter para desarrolladores](https://developer.twitter.com/en) (solo está en Inglés)
+
+Simplemente tendremos que dar click en **Apply,** arriba a la derecha y rellenar el formulario indicando para qué queremos el acceso a la API de Twitter.
+
+Una vez que lo rellenemos, llegaremos a esta página y solo nos quedará estar pendientes del correo electrónico (tarda, como mucho, dos días) en el que nos darán el OK o bien nos harán más preguntas sobre nuestro desarrollo con dicha API
+
+![Twitter Developer Portal](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**2️⃣ SEGUNDO PASO 2️⃣**
+
+Una vez que nos hayan dado el acceso a la API (mirar el correo incluyendo la bandeja de spam), vamos a crear **un proyecto** al cual le daremos un nombre, una descripción y en general, rellenar toda la información que se nos pide.
+
+![Crear proyecto en Twitter](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**3️⃣ TERCER PASO 3️⃣**
+
+Vamos a empezar ahora con la programación.
+Como ya he dicho antes, este proyecto lo quiero orientar a un bot que twittea una vez al día a modo de encuesta publicando la altura de un personaje famoso, el nombre del susodicho y una imagen del mismo.
+
+Para ello, quiero englobar todo el dataset en un archivo **json.**
+
+Las imágenes las cogeré de un sitio web estable como wikipedia.
+
+Nos quedaría algo así:
+
+```json
+[
+    {
+        "appear": "False",
+        "name": "Shrek",
+        "height": "2.13 m",
+        "img": "https://vignette.wikia.nocookie.net/shrekogro/images/9/98/Shrek.png/revision/latest?cb=20161204164724&path-prefix=es"
+    },
+    ...
+    {
+      	"appear": "False",
+        "name": "Felipe VI",
+        "height": "1.97 m",
+        "img": "https://www.aboutespanol.com/thmb/ADj-DP6ByR_omi2FnIMReJHgnus=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/SAR_Principe_1024_px-597b9eeb3df78cbb7a257605.jpg"
+    }
+]
+```
+
+Es simplemente el nombre del personaje, la altura, una imagen con su enlace de internet y una propiedad llamada **appear** (aparecer en Inglés) que por defecto estará en falso pero que modificaremos posteriormente en Python.
+
+**4️⃣ CUARTO PASO 4️⃣**
+
+Ahora sí que sí, vamos con el código de python:
+
+Lo primero que tenemos que hacer es instalar, con **pip**, el paquete necesario para twittear.
+
+`pip install tweepy`
+
+![Instalar tweepy](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Posteriormente y de manera resumida, vamos a importar la librería, creamos un objeto con nuestras credenciales (API keys) y usamos el método `update_status` para publicar un tweet.
+
+```python
+import tweepy
+import json
+import random
+import requests
+import os
+
+# Abrimos el archivo json
+with open('characters.json') as f:
+  data = json.load(f)
+
+# Nos autenticamos en Twitter
+auth = tweepy.OAuthHandler("ESCRIBE TUS CREDENCIALES", "ESCRIBE TUS CREDENCIALES")
+auth.set_access_token("ESCRIBE TUS CREDENCIALES", "ESCRIBE TUS CREDENCIALES")
+
+# Creamos un objeto de la librería
+api = tweepy.API(auth)
+
+# Generamos un valor aleatorio para elegir el personaje del JSON
+# Y posteriormente cambiamos el valor de su aparición para que
+# No vuelva a salir
+character = 0
+while data[character]['appear'] == "True":
+  character = int(random.uniform(0,len(data)))
+  if data[character]['appear'] == "False":
+    data[character]['appear'] = "True"
+    break
+    
+# Abrimos el archivo json con permisos para escritura
+with open('characters.json', 'w') as f:
+  f.write(json.dumps(data, sort_keys=True, indent=4, separators=(',',': ')))
+  
+# Creamos una variable para transformar metros a pies (medida comúnmente
+# usada en EEUU)
+height_in_foot = round(float(data[character]['height'][0:4]) * 3.281, 3)
+
+# Guardamos el mensaje final
+msg = f"RT si mides más que {data[character]['name']} --> {data[character]['height']}\n\nRT if you're taller than {data[character]['name']} --> {height_in_foot} ft"
+
+# Descargamos y borramos la imagen del enlace automáticamente
+filename = "temp.jpg"
+request = requests.get(data[character]['img'], stream=True)
+if request.status_code == 200:
+  with open(filename, 'wb') as image:
+    for chunk in request:
+      image.write(chunk)
+      
+# Tuiteamos el resultado final pasándole el parámetro de mensaje y la imagen.
+api.update_with_media(filename, msg)
+
+# Borramos la imagen al final de la ejecución
+os.remove('temp.jpg')
+```
+
+Y con esto ya tendríamos nuestro scrip listo! 🤓
+
+Es así, si queremos, podemos ejecutar el script siempre que queramos para twittear cuando queramos pero, la gracia está en automatizar este proceso, cierto? 😉
+
+**5️⃣ QUINTO PASO 5️⃣**
+
+Recientemente he obtenido un VPS al que le he instalado la última versión de Debian 10 así que, trabajaremos bajo este sistema.
+
+Existe una herramienta en Linux llamada **crontab** que sirve única y exclusivamente para realizar ciertos scripts o acciones a un determinado momento del día.
+
+Su configuración es sencilla, simplemente deberemos escribir el siguiente comando en la terminal:
+
+`crontab -e`
+
+Se nos abrirá entonces nuestro editor de texto con una información en inglés.
+
+Pero, resumidamente y con un ejemplo, si quieres que este script, como hago yo, se ejecute a diario, a las 18:00 de la tarde, deberás escribir lo siguiente, al final del archivo:
+
+`00 18 * * * cd /ruta/donde/esté/el_script && /ruta/de/python archivo.py`
+
+Guardamos con **CTRL + O** y salimos con **CTRL + X**
+
+![Configuración de crontab](/blog/covers/wordpress_to_astro_ES.jpg)
+
+---
+
+Podéis ver el resultado final y ya que estáis, seguir al bot en [su Twitter oficial](https://twitter.com/rt_or_fav_you) 🤖
+
+Y poco más que añadir chic@s, espero que os haya gustado muchísimo ya que a mí me ha encantado programarlo y explicarlo! Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
