@@ -1,0 +1,180 @@
+---
+title: "Rust: ¿Qué lenguaje es y por qué todo el mundo está hablando de él?"
+description: "Descubre qué es Rust, cómo instalarlo y por qué se ha convertido en uno de los lenguajes de programación más amados por los desarrolladores."
+excerpt: "Descubre qué es Rust, cómo instalarlo y por qué se ha convertido en uno de los lenguajes de programación más amados por los desarrolladores."
+category: "programación de software"
+tags: ["rust", "programación", "tutorial", "lenguaje de programación", "mozilla", "sistemas"]
+author: "fcoterroba"
+date: "2021-07-05"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/rust-everybody.jpeg"
+lang: "es"
+---
+
+Hola mundo 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a hablar sobre un lenguaje de programación. Rust
+
+En cuestión de minutos, vas a saber qué tipo de lenguaje es, cómo empezar con él, quién está detrás del mismo, para que se usaba, usará y usa actualmente, su cuota de mercado, etc. Y bueno, lo más importante, ya sabéis que aquí nos gusta programar, haremos algunos ejercicios sencillitos sobre dicho lenguaje.
+
+La primera toma de contacto se basará en todo lo que está en torno a él, desde la instalación de todo lo necesario para empezar a cacharrear hasta los principales ejemplos que se suelen realizar en cualquier otro lenguaje común.
+
+Si te gusta la programación, te recomiendo pasarte por el tag de programación en el que podrás encontrar los [más de 5 proyectos que he subido hasta la fecha en una inmensidad de lenguajes de programación distinto, incluyendo JavaScript, Swift y, sobretodo, Python](https://fcoterroba.com/category/programacion).
+
+Si tengo que recalcar alguno, me ha gustado especialmente el [acortador de enlaces con interfaz gráfica en Python](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica) con un nivel algo avanzado en la materia.
+
+En el caso de que tengas un nivel inferior, te recomiendo los [primeros pasos en Swift](https://fcoterroba.com/primeros-pasos-en-macos-y-swift) o [cómo realizar una calculadora en Python mediante la línea de comandos](https://fcoterroba.com/proyecto-python-principiantes-calculadora).
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unos meses subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, comencemos 👇
+
+**Rust: ¿Qué es?**
+
+Rust es un lenguaje de programación compilado, con un propósito general y multiparadigma que fue comenzado por un empleado de Mozilla, Graydon Hoare en 2010.
+
+A día de hoy, el lenguaje sigue siendo desarrollado y mantenido por Mozilla además de toda su comunidad ya que posee la licencia Apache 2.0 o Licencia MIT.
+
+Rust es un lenguaje seguro, concurrente y práctico. Busca ser un lenguaje de programación multiparadigma capaz de soportar programación funcional pura, por procedimientos, imparetiva e incluso orientada a objetos.
+
+Según la política de Mozilla, Rust es desarrollado de forma totalmente abierta y buscan opinión y contribución constante de la comunidad.
+
+Como curiosidad, en 2020 fue uno de los lenguajes de programación más usados a la hora de trabajar con criptomonedas y crear nodos para minar.
+
+En su momento se buscaba un código muy rápido que estuviera al nivel de C o C++ pero sin aquellos problemas de gestión de memoria.
+
+El núcleo principal del motor del navegador de Firefox, Servo, está principalmente escrito en Rust aprovechando las bondades de paralelismo, concurrencia y gestión eficiente de la memoria
+
+Tiene hasta su propio repositorio en [GitHub](https://github.com/rust-lang/rust).
+
+También tienen una mascota llamada Ferris (que es un cangrejo) y los programadores de este lenguaje se auto-denominan rustaceans.
+
+![Ferris, la mascota de Rust](/blog/covers/wordpress_to_astro_ES.jpg)
+
+*Él es Ferris.*
+
+Según la encuesta anual de StackOverflow, Rust es el lenguaje más amado, el menos temido y el 5º con mayor número de programadores interesados en aprender el lenguaje.
+
+Por si el dinero te es un aliciente, la media salarial de programadores en Rust está en casi 75K$ anuales (5º mejor pagado) y 130K$ si solo incluimos información de estados unidos.
+
+**¿Cómo se instala el lenguaje?**
+
+Si usas Windows, la opción más sencilla es descargar e instalar el instalador que nos proporciona en la página [rustup.rs](https://rustup.rs/#).
+
+Si usas Linux o cualquier sistema basado en Unix, simplemente ejecuta el siguiente comando en la terminal:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+![Instalación de Rust](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Para comprobar la versión de rust instalado podemos usar el comando:
+
+```bash
+rustc version
+```
+
+**PROGRAMAS SENCILLOS**
+
+Antes de comenzar a realizar nuestros pequeños scripts en Rust, tenemos que abrir nuestro editor de código favorito (en mi caso ya sabéis que es VSCodium) e instalar la extensión oficial de rust-lang. Es sencilla de encontrar, simplemente debéis escribir **Rust** en el buscador de plugins e instalarla.
+
+Ahora sí que sí, comencemos con el **HOLA MUNDO 👋🏻**
+
+Lo primero que deberemos hacer es crear un archivo con extensión de rust que es **.rs**
+
+Luego, declararemos una función main, algo similar a cómo lo hacemos en Java. Así de primeras, la sintaxis parece muy similar.
+
+Dentro de esta función principal, usaremos el método para imprimir por pantalla con **println**! y recordar, el ;
+
+```rust
+fn main(){
+    println!("Hola mundo! Os saludamos desde la web de fcoterroba");
+}
+```
+
+Posteriormente, para que esto funcione, debemos compilar el fichero desde la terminal con **rustc** y luego ejecutar el archivo que nos genera.
+
+![Compilación y ejecución](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Para las condiciones no necesitamos paréntesis, tan solo, para comprobar si un número es par o no, sería una mezcla de Python y cualquier otro lenguaje por el tema de las llaves:
+
+```rust
+fn main(){
+    if 21 % 2 == 0{
+        println!("21 es par");
+    }else{
+        println!("21 NO es par");
+    }
+}
+```
+
+Para crear y declarar variables se usa una sintaxis muy similar bajo mi punto de vista a JavaScript ya que es: **let nombrevariable = valor;**
+
+Los bucles son más similares a Python con la peculiaridad de que van con rangos (rangue), por lo que siempre va a ser **for ... in ...**
+
+Para mostrar variables en los prints, deberemos abrir y cerrar llaves y al final, después de toda la cadena de texto, separar con una coma y escribir el nombre de la variable que corresponde a cada una de las llaves que hayamos escrito
+
+Para el ejemplo de que queremos mostrar los diez primeros números, incluyendo el último, sería algo así:
+
+Un sencillo contador sería algo así:
+
+```rust
+fn main(){
+    for i in 1..=10 {
+        println!("{}",i);
+    }
+}
+```
+
+Para acabar, vamos a hacer las cosas bien, vamos a tener una sola función main y dentro de esta importaremos los tres ejercicios anteriores.
+
+El tema de las funciones, cuando hay que pasarles parámetros, es algo más complejo porque, aparte de darle un nombre a dicho parámetro, al ser un lenguaje tan fuertemente tipado, es similar a C++ y hay que dictarle el tipo de valor que espera recibir.
+
+```rust
+fn saludo(nombre: &str){
+    //Esta función es un saludo que funcionará siempre que se le pase un nombre
+    println!("Hola mundo! Os saluda {}", nombre);
+}
+
+fn par_impar(numero: i32){
+    /*
+    Esta 
+    función
+    funciona
+    pasándole
+    un
+    número
+    */
+    if numero % 2 == 0{
+        println!("{} es par", numero);
+    }else{
+        println!("{} NO es par", numero);
+    }
+}
+
+fn recordatorio_diezveces(nombre: &str){
+    let tope = 10;
+    for i in 1..=tope{
+        println!("Por {}º vez, mi nombre es: {}",i, nombre);
+    }
+}
+
+fn main() {
+    saludo("fcoterroba");
+    par_impar(24);
+    recordatorio_diezveces("fcoterroba");
+}
+```
+
+Y poco más que añadir chic@s, espero que os haya gustado muchísimo ya que a mí me ha encantado esta primera toma de contacto con Rust!
+
+Por último, recordarte que si te gusta mi contenido y quieres contribuir económicamente (ya que no gano nada de Adsense), puedes mandarme la cantidad que quieras por [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Fuentes:** [Wikipedia](https://es.wikipedia.org/wiki/Rust_(lenguaje_de_programación)#Historia), [CriptoNoticias](https://www.criptonoticias.com/entrevistas/lenguajes-programacion-bitcoin-hablan-desarrolladores/), [Genbeta](https://www.genbeta.com/desarrollo/que-rust-lenguaje-amado-muchos-programadores-gran-desconocido), [Stack Overflow](https://insights.stackoverflow.com/survey/2020)
+

@@ -1,0 +1,180 @@
+---
+title: "Rust: What Language Is It and Why Is Everyone Talking About It?"
+description: "Discover what Rust is, how to install it, and why it has become one of the most loved programming languages by developers."
+excerpt: "Discover what Rust is, how to install it, and why it has become one of the most loved programming languages by developers."
+category: "software development"
+tags: ["rust", "programming", "tutorial", "programming language", "mozilla", "systems"]
+author: "fcoterroba"
+date: "2021-07-05"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/rust-everybody.jpeg"
+lang: "en"
+---
+
+Hello world 👋 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to talk about a programming language. Rust
+
+In a matter of minutes, you'll know what type of language it is, how to get started with it, who's behind it, what it was used for, will be used for, and is currently used for, its market share, etc. And well, most importantly, you know we like to program here, we'll do some simple exercises on this language.
+
+The first contact will be based on everything around it, from installing everything necessary to start tinkering to the main examples that are usually done in any other common language.
+
+If you like programming, I recommend checking out the programming tag where you can find [more than 5 projects I've uploaded to date in a multitude of different programming languages, including JavaScript, Swift, and especially Python](https://fcoterroba.com/category/programacion).
+
+If I have to highlight one, I especially liked the [link shortener with graphical interface in Python](https://fcoterroba.com/proyecto-python-medio-hacer-acortador-enlaces-interfaz-grafica) with a somewhat advanced level in the subject.
+
+If you have a lower level, I recommend [first steps in Swift](https://fcoterroba.com/primeros-pasos-en-macos-y-swift) or [how to make a calculator in Python via command line](https://fcoterroba.com/proyecto-python-principiantes-calculadora).
+
+Before we begin, although I'll explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few months ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Now let's begin 👇
+
+**Rust: What is it?**
+
+Rust is a compiled, general-purpose, multi-paradigm programming language that was started by a Mozilla employee, Graydon Hoare in 2010.
+
+Today, the language continues to be developed and maintained by Mozilla as well as its entire community since it has the Apache 2.0 or MIT License.
+
+Rust is a safe, concurrent, and practical language. It seeks to be a multi-paradigm programming language capable of supporting pure functional programming, procedural, imperative, and even object-oriented programming.
+
+According to Mozilla's policy, Rust is developed in a completely open way and they seek constant opinion and contribution from the community.
+
+As a curiosity, in 2020 it was one of the most used programming languages when working with cryptocurrencies and creating nodes for mining.
+
+At the time, they were looking for very fast code that was at the level of C or C++ but without those memory management problems.
+
+The main core of the Firefox browser engine, Servo, is mainly written in Rust taking advantage of the benefits of parallelism, concurrency, and efficient memory management
+
+It even has its own repository on [GitHub](https://github.com/rust-lang/rust).
+
+They also have a mascot called Ferris (which is a crab) and programmers of this language call themselves rustaceans.
+
+![Ferris, Rust's mascot](/blog/covers/wordpress_to_astro_EN.png)
+
+*This is Ferris.*
+
+According to StackOverflow's annual survey, Rust is the most loved language, the least feared, and the 5th with the highest number of programmers interested in learning the language.
+
+If money is an incentive for you, the average salary of Rust programmers is almost 75K$ annually (5th best paid) and 130K$ if we only include information from the United States.
+
+**How is the language installed?**
+
+If you use Windows, the easiest option is to download and install the installer provided on the [rustup.rs](https://rustup.rs/#) page.
+
+If you use Linux or any Unix-based system, simply run the following command in the terminal:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+![Rust installation](/blog/covers/wordpress_to_astro_EN.png)
+
+To check the installed rust version we can use the command:
+
+```bash
+rustc version
+```
+
+**SIMPLE PROGRAMS**
+
+Before starting to make our small scripts in Rust, we have to open our favorite code editor (in my case you already know it's VSCodium) and install the official rust-lang extension. It's easy to find, you just need to type **Rust** in the plugin search and install it.
+
+Now let's start with **HELLO WORLD 👋🏻**
+
+The first thing we should do is create a file with Rust extension which is **.rs**
+
+Then, we'll declare a main function, something similar to how we do it in Java. At first glance, the syntax seems very similar.
+
+Inside this main function, we'll use the method to print to screen with **println**! and remember, the ;
+
+```rust
+fn main(){
+    println!("Hello world! We greet you from fcoterroba's website");
+}
+```
+
+Then, for this to work, we must compile the file from the terminal with **rustc** and then run the file it generates.
+
+![Compilation and execution](/blog/covers/wordpress_to_astro_EN.png)
+
+For conditions we don't need parentheses, just to check if a number is even or not, it would be a mix of Python and any other language because of the braces:
+
+```rust
+fn main(){
+    if 21 % 2 == 0{
+        println!("21 is even");
+    }else{
+        println!("21 is NOT even");
+    }
+}
+```
+
+To create and declare variables, a syntax very similar to JavaScript is used in my opinion since it is: **let variablename = value;**
+
+Loops are more similar to Python with the peculiarity that they go with ranges, so it will always be **for ... in ...**
+
+To display variables in prints, we'll need to open and close braces and at the end, after the entire text string, separate with a comma and write the name of the variable that corresponds to each of the braces we've written
+
+For the example that we want to show the first ten numbers, including the last one, it would be something like this:
+
+A simple counter would be something like this:
+
+```rust
+fn main(){
+    for i in 1..=10 {
+        println!("{}",i);
+    }
+}
+```
+
+To finish, let's do things right, we're going to have a single main function and inside this we'll import the three previous exercises.
+
+The topic of functions, when you have to pass them parameters, is somewhat more complex because, apart from giving a name to that parameter, being such a strongly typed language, it's similar to C++ and you have to tell it the type of value it expects to receive.
+
+```rust
+fn saludo(nombre: &str){
+    //This function is a greeting that will work whenever a name is passed to it
+    println!("Hello world! {} greets you", nombre);
+}
+
+fn par_impar(numero: i32){
+    /*
+    This 
+    function
+    works
+    by passing
+    a
+    number
+    */
+    if numero % 2 == 0{
+        println!("{} is even", numero);
+    }else{
+        println!("{} is NOT even", numero);
+    }
+}
+
+fn recordatorio_diezveces(nombre: &str){
+    let tope = 10;
+    for i in 1..=tope{
+        println!("For the {}th time, my name is: {}",i, nombre);
+    }
+}
+
+fn main() {
+    saludo("fcoterroba");
+    par_impar(24);
+    recordatorio_diezveces("fcoterroba");
+}
+```
+
+And little more to add guys, I hope you liked it a lot since I loved this first contact with Rust!
+
+Finally, remember that if you like my content and want to contribute financially (since I don't earn anything from Adsense), you can send me whatever amount you want via [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is truly appreciated! 🙂
+
+I also hope you have a great week and we'll see each other here soon! Greetings and remember to follow me on social media like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+
+**Sources:** [Wikipedia](https://es.wikipedia.org/wiki/Rust_(lenguaje_de_programación)#Historia), [CriptoNoticias](https://www.criptonoticias.com/entrevistas/lenguajes-programacion-bitcoin-hablan-desarrolladores/), [Genbeta](https://www.genbeta.com/desarrollo/que-rust-lenguaje-amado-muchos-programadores-gran-desconocido), [Stack Overflow](https://insights.stackoverflow.com/survey/2020)
+
