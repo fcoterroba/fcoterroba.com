@@ -1,0 +1,135 @@
+---
+title: "PHP: ¿Qué son y cómo hacer formularios bonitos con y sin Captcha?"
+description: "Aprende qué son los formularios, cómo realizarlos correctamente, estilizarlos con CSS y añadirles un Captcha de Google para evitar spam."
+excerpt: "Aprende qué son los formularios, cómo realizarlos correctamente, estilizarlos con CSS y añadirles un Captcha de Google para evitar spam."
+category: "desarrollo web"
+tags: ["php", "formularios", "captcha", "css", "tutorial", "backend"]
+author: "fcoterroba"
+date: "2020-10-12"
+readTime: "10 min"
+featured: false
+coverImage: "/blog/covers/php-wallpaper.jpg"
+lang: "es"
+---
+
+Hola mundo 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que voy a hablar sobre formularios y PHP.
+De aquí podría salir algún chiste de desarrolladores bastante malo pero vamos a abstenernos a ello (**Explicación para NO informáticos**: PHP se considera cómo uno de los lenguajes de programación más odiados aunque, si os puedo ser sinceros, no entiendo el por qué). 🤣
+Ya en serio, en este post, muy rápidito y sencillito, vamos a aprender qué son los formularios, cómo realizarlos correctamente, hacia dónde apuntarlos, cómo añadirles un captcha para que no se nos llene la bandeja de robots 🤖.
+
+Y sí, también aprenderemos a hacerlos bonitos usando algunos de los frameworks de CSS más famosos 🎨. He de recalcar esta parte ya que sé de primera mano que la mayoría de back-end developers sufren en esta parte. 🤣
+
+Y es que, a diferencia de usar distintos CMS como Wordpress es que, una vez tengamos el diseño de nuestra página (ya sea una plantilla, encargarla o diseñarla), solamente tendremos que preocuparnos de saber configurar un plugin de formulario y servidor correctamente. El diseño va por otra cuenta 🚶‍♂️.
+
+Que sepas que mucha de las cosas que vamos a hablar en este post está perfectamente explicado en un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Antes de comenzar, también quiero recordarte que hace unas semanas subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/RiCPuDhFbwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+**PASOS PREVIOS:**
+
+Antes de comenzar a entender qué es un formulario, cómo aplicarle diseños y mucho más, has de saber que PHP no es un lenguaje más.
+
+PHP es un lenguaje que corre a cuenta del servidor, a diferencia de JavaScript que se ejecuta en el cliente.
+
+Que PHP sea un lenguaje del servidor quiere decir que no podrá ser ejecutado hasta que no se tenga un programa concreto. Esos programas son conocidos como los **servidores.**
+
+Sobre los servidores hablé hace un tiempo y, para no rellenar tanto el post, te recomiendo que antes de seguir, si no lo tienes ya instalado, te leas el post y lo instales. Haciendo sus respectivas pruebas. **[Puedes leer el post aquí](https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows) 👈**
+
+**¿QUÉ ES UN FORMULARIO?**
+
+[Aunque lo expliqué en el post de WordPress, nunca viene mal volver a explicarlo:](https://fcoterroba.com/wordpress-que-como-formularios-captcha)
+
+Un formulario es un documento, (aunque en nuestro mundo es digital) que sirve principalmente cómo acercamiento entre clientes y empresas, o más bien entre usuarios y desarrolladores.
+
+Concretamente, yo (y probablemente el 100% de las páginas que visites) tengo una sección en la web que es exclusivamente eso, una página con un formulario de contacto. [¡Pruébalo si quieres!](https://fcoterroba.com/contacto)
+
+No tiene mucha más historia así que, comenzamos con la parte de PHP👇
+
+**DISEÑO Y REALIZACIÓN DEL FORMULARIO SIN CAPTCHA**
+
+En este mismo post van a meter mano tres lenguajes de "programación". Pongo las comillas ya que HTML y CSS, lenguajes que usaremos en este post, no se consideran como tal.
+
+Los pasos a seguir son los siguientes, pero, te recomiendo leer antes un post que hice hace un tiempo en el que enseñaba cómo realizar un botón de **dark-mode** para tu página web. Ahí explico perfectamente el comienzo de esta realización. **[Puedes leerlo aquí](https://fcoterroba.com/como-hacer-dark-mode-en-tu-web-codigo) 👈**
+
+**1. Realizar el HTML de la página (aunque vaya a tener extensión PHP)**
+
+```html
+<!DOCTYPE html> <!--Etiqueta que sirve para explicar al navegador el tipo de documento-->
+<html> <!--Etiqueta del comienzo del HTML -->
+    <head> <!--Etiqueta del comienzo de la cabecera-->
+        <title>Formularios en PHP | fcoterroba.com</title> <!--Etiqueta para ponerle título a la ventana-->
+        <meta charset="UTF-8"></meta> <!--Etiqueta para establecer los caracteres permitidos-->
+    </head> <!--Etiqueta del cierre de la cabecera-->
+    <body> <!--Etiqueta del comienzo del cuerpo -->
+        <h1>Hola mundo</h1><!--Etiqueta para escribir un encabezado de nivel 1-->
+    </body> <!--Cierre del cuerpo-->
+</html> <!--Fin del documento-->
+```
+
+**2. Confección del formulario**
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formularios en PHP | fcoterroba.com</title>
+        <meta charset="UTF-8"></meta>
+    </head>
+    <body>
+<!--Etiqueta para indicar comienzo de formulario | Con action seleccionamos el fichero que aparecerá después del botón de enviar-->
+<!--El method post es para que no aparezca lo que escribimos en la barra de búsqueda-->
+<!--Con el id le damos un identificador en forma de nombre al formulario-->
+        <form action="index.php" method="post" id="formulario">
+            <label for="name">Nombre: <!--El label sirve para identificar cada input siempre y cuando tengan el mismo for/id-->
+                <input type="text" id="name"> <!--Entrada de tipo texto-->
+            </label><!--Cierre del label-->
+            <br><br><!--Saltos de línea-->
+            <label for="subname">Apellidos: 
+                <input type="text" id="subname">
+            </label>
+            <br><br>
+            <label for="mail">Email: 
+                <input type="email" id="mail"><!--Entrada de tipo email-->
+            </label>
+            <br><br>
+            <label for="asunto">Asunto: 
+                <input type="text" id="asunto">
+            </label>
+        </form><!--Fin del formulario-->
+        <br>
+        <label for="msg">Escribe tu mensaje...</label>
+        <br>
+        <textarea id="msg" form="formulario"></textarea><!--Entrada de tipo textarea, para escrituras largas y grandes-->
+      	<br>
+        <input type="submit" form="formulario"></input> <!--Entrada para establecer un botón de finalizar-->
+    </body>
+</html>
+```
+
+**3. Diseño del formulario**
+
+Vamos a usar un CodePen.io que he visto de David Fitas con un toque rollo vintage bastante chulo. Si copiáis y pegáis directamente al style.css no queda exactamente igual pero le da el aire necesario para poder seguir.
+
+<iframe height="288" style="width: 100%;" scrolling="no" title="Vintage Inspired Contact Form" src="https://codepen.io/dfitzy/embed/VepqMq?height=288&theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dfitzy/pen/VepqMq'>Vintage Inspired Contact Form</a> by David Fitas
+  (<a href='https://codepen.io/dfitzy'>@dfitzy</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+Y con esto habríamos acabado de realizar el formulario. 🤓
+
+**AÑADIR CAPTCHA**
+
+Para añadir el captcha es tan sencillo cómo añadir la siguiente línea del código dónde nos apetezca hacer aparecer el Captcha.
+
+Obviamente, deberemos sustituir **your_site_key** por la API KEY pública que nos ofrece Google.
+
+```html
+<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+```
+
+![Captcha](/blog/covers/php-forms.jpg)
+
+Y esto ya sí que sí sería todo por hoy, chic@s. 🖖
+
+Espero que os haya gustado y os haya sido de grata utilidad! 🤓 Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻

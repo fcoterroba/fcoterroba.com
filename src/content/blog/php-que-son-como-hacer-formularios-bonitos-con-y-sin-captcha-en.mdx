@@ -1,0 +1,135 @@
+---
+title: "PHP: What are forms and how to make them beautiful with and without Captcha?"
+description: "Learn what forms are, how to create them correctly, style them with CSS, and add a Google Captcha to prevent spam."
+excerpt: "Learn what forms are, how to create them correctly, style them with CSS, and add a Google Captcha to prevent spam."
+category: "web development"
+tags: ["php", "forms", "captcha", "css", "tutorial", "backend"]
+author: "fcoterroba"
+date: "2020-10-12"
+readTime: "10 min"
+featured: false
+coverImage: "/blog/covers/php-wallpaper.jpg"
+lang: "en"
+---
+
+Hello world 👋 my name is Francisco, fcoterroba on the Internet and today I bring you a post in which I am going to talk about forms and PHP.
+A pretty bad developer joke could come out of here but we are going to abstain from it (**Explanation for NON-computer scientists**: PHP is considered one of the most hated programming languages although, if I can be honest, I don't understand why). 🤣
+Seriously now, in this post, very quick and simple, we are going to learn what forms are, how to make them correctly, where to point them, how to add a captcha so that our inbox doesn't fill up with robots 🤖.
+
+And yes, we will also learn how to make them beautiful using some of the most famous CSS frameworks 🎨. I must emphasize this part since I know firsthand that most back-end developers suffer in this part. 🤣
+
+And the thing is, unlike using different CMS like Wordpress, once we have the design of our page (whether it is a template, commissioning it or designing it), we will only have to worry about knowing how to configure a form plugin and server correctly. The design is another story 🚶‍♂️.
+
+You should know that many of the things we are going to talk about in this post are perfectly explained in a post I uploaded more than a month ago, in which I explain many of the most used computer terms in our day to day. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Before starting, I also want to remind you that a few weeks ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connect, configure and install a smart bulb 💡 with which you can change its color, turn it off, turn it on and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/RiCPuDhFbwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+**PREVIOUS STEPS:**
+
+Before starting to understand what a form is, how to apply designs to it and much more, you have to know that PHP is not just another language.
+
+PHP is a language that runs on the server side, unlike JavaScript which runs on the client.
+
+That PHP is a server language means that it cannot be executed until a specific program is available. Those programs are known as **servers.**
+
+I talked about servers a while ago and, so as not to fill the post so much, I recommend that before continuing, if you don't already have it installed, you read the post and install it. Doing their respective tests. **[You can read the post here](https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows) 👈**
+
+**WHAT IS A FORM?**
+
+[Although I explained it in the WordPress post, it never hurts to explain it again:](https://fcoterroba.com/wordpress-que-como-formularios-captcha)
+
+A form is a document, (although in our world it is digital) that serves mainly as an approach between clients and companies, or rather between users and developers.
+
+Specifically, I (and probably 100% of the pages you visit) have a section on the web that is exclusively that, a page with a contact form. [Try it if you want!](https://fcoterroba.com/contacto)
+
+It doesn't have much more history so, let's start with the PHP part👇
+
+**DESIGN AND REALIZATION OF THE FORM WITHOUT CAPTCHA**
+
+In this same post, three "programming" languages are going to be involved. I put the quotes since HTML and CSS, languages that we will use in this post, are not considered as such.
+
+The steps to follow are the following, but, I recommend you read before a post I made a while ago in which I taught how to make a **dark-mode** button for your web page. There I explain perfectly the beginning of this realization. **[You can read it here](https://fcoterroba.com/como-hacer-dark-mode-en-tu-web-codigo) 👈**
+
+**1. Make the HTML of the page (although it will have a PHP extension)**
+
+```html
+<!DOCTYPE html> <!--Tag used to explain to the browser the type of document-->
+<html> <!--Tag for the beginning of the HTML -->
+    <head> <!--Tag for the beginning of the header-->
+        <title>Forms in PHP | fcoterroba.com</title> <!--Tag to title the window-->
+        <meta charset="UTF-8"></meta> <!--Tag to establish allowed characters-->
+    </head> <!--Tag for the closing of the header-->
+    <body> <!--Tag for the beginning of the body -->
+        <h1>Hello world</h1><!--Tag to write a level 1 header-->
+    </body> <!--Closing of the body-->
+</html> <!--End of document-->
+```
+
+**2. Form creation**
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forms in PHP | fcoterroba.com</title>
+        <meta charset="UTF-8"></meta>
+    </head>
+    <body>
+<!--Tag to indicate beginning of form | With action we select the file that will appear after the send button-->
+<!--The post method is so that what we write does not appear in the search bar-->
+<!--With the id we give an identifier in the form of a name to the form-->
+        <form action="index.php" method="post" id="formulario">
+            <label for="name">Name: <!--The label serves to identify each input as long as they have the same for/id-->
+                <input type="text" id="name"> <!--Text type input-->
+            </label><!--Closing of the label-->
+            <br><br><!--Line breaks-->
+            <label for="subname">Surnames: 
+                <input type="text" id="subname">
+            </label>
+            <br><br>
+            <label for="mail">Email: 
+                <input type="email" id="mail"><!--Email type input-->
+            </label>
+            <br><br>
+            <label for="asunto">Subject: 
+                <input type="text" id="asunto">
+            </label>
+        </form><!--End of form-->
+        <br>
+        <label for="msg">Write your message...</label>
+        <br>
+        <textarea id="msg" form="formulario"></textarea><!--Textarea type input, for long and large writings-->
+      	<br>
+        <input type="submit" form="formulario"></input> <!--Input to establish a finish button-->
+    </body>
+</html>
+```
+
+**3. Form design**
+
+We are going to use a CodePen.io that I have seen from David Fitas with a pretty cool vintage touch. If you copy and paste directly to style.css it doesn't look exactly the same but it gives it the necessary air to be able to continue.
+
+<iframe height="288" style="width: 100%;" scrolling="no" title="Vintage Inspired Contact Form" src="https://codepen.io/dfitzy/embed/VepqMq?height=288&theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dfitzy/pen/VepqMq'>Vintage Inspired Contact Form</a> by David Fitas
+  (<a href='https://codepen.io/dfitzy'>@dfitzy</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+And with this we would have finished making the form. 🤓
+
+**ADD CAPTCHA**
+
+To add the captcha it is as simple as adding the following line of code where we want the Captcha to appear.
+
+Obviously, we must replace **your_site_key** with the public API KEY offered by Google.
+
+```html
+<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+```
+
+![Captcha](/blog/covers/php-forms.jpg)
+
+And this would be all for today, guys. 🖖
+
+I hope you liked it and it has been of great use to you! 🤓 See you very soon around here and you know that you can follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
