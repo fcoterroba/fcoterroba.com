@@ -1,0 +1,104 @@
+---
+title: "Guide: How to Create a Local Web Server in Windows?"
+description: "Learn how to create a local web server in Windows using Microsoft IIS or WAMP. Step-by-step guide to configure Apache, MySQL and PHP on your computer."
+excerpt: "Learn how to create a local web server in Windows using Microsoft IIS or WAMP. Step-by-step guide to configure Apache, MySQL and PHP on your computer."
+category: "general computing"
+tags: ["web-server", "windows", "iis", "wamp", "apache", "php", "mysql", "web-development"]
+author: "fcoterroba"
+date: "2020-05-04"
+readTime: "10 min read"
+featured: false
+coverImage: "https://concepto.de/wp-content/uploads/2019/04/servidor-web-e1555874258468.jpg"
+lang: "en"
+---
+
+Hello world my name is Francisco, fcoterroba on the Internet and today I'm bringing you an explanatory post to create a web server in Windows.
+
+There are many reasons why we want to have a web server on our computer, from starting to study web development, setting up a CMS, sharing multimedia, etc.
+
+Before starting, I warn that this guide is for setting up a local web server, which you can access from any device connected to the same network as the server. If you want to learn how to open it to the public, let me know in the comments!
+
+Mainly, in Windows there are two options.
+
+One of them comes "native" in the operating system itself. It uses proprietary server (Microsoft-IIS) and is very simple, mainly to practice HTML, CSS and JS. You can add back-end programming languages like PHP or MySQL later, but they don't come by default.
+
+The other option is somewhat closer to the professional field, since it uses the Apache system, present in almost 40% of world servers. We're talking about WAMP (Acronym for Web Apache MySQL PHP). I'll go into more details about WAMP later. Now, let's get to it.
+
+**SET UP WEB SERVER WITH MICROSOFT-IIS**
+
+Microsoft-IIS is a set of services part of the Windows operating system.
+
+In addition to setting up a web server, it allows FTP server configuration (I'll talk about it in another post)
+
+To activate this feature, we must type "features" in the search bar and a square window will appear with the features we have activated in Windows.
+
+Features are "small functionalities" that, although they can be installed and configured, don't come standard with the operating system.
+
+The feature we must initialize to have a web server in Windows is mainly "Internet Information Services > World Wide Web Services". Installing only that would already work, but you can also install the one above, Web Administration Tools to see the web console. Although for our purpose, it's not necessary. Specifically, the necessary ones are those marked in the image
+
+![IIS Windows Features](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-211059.png)
+
+Once we activate those, we click the accept button and it will take a few minutes to activate. (It may also ask to restart)
+
+And with this we would already have a web server made. We can check it by typing "localhost" in our browser.
+
+As you can see, a web page appears with a Windows photo and welcome in several languages.
+
+But you probably weren't looking to create a web server to have this, so I'm going to explain how to change that page.
+
+To replace this web page with the page you want, first you need to create the file.
+
+I'm not going to explain all HTML, but what's necessary to write "Hello World" is (ignore everything written between <!----> because they're comments to explain what function it has):
+
+```html
+<!DOCTYPE html> <!--Declares the file type-->
+
+<html lang="es" dir="ltr"> <!--Declares the page language and text directionality-->
+
+  <head> <!--Begins the header, everything that's not seen-->
+    <meta charset="utf-8"> <!--Sets usable characters-->
+    <title>fcoterroba on a Microsoft server</title> <!--It's the page title, what appears in the tab-->
+  </head> <!--Header closure-->
+
+  <body> <!--Beginning of the file body, everything seen on the page-->
+    <h1>HELLO WORLD</h1> <!--H followed by a number from 1 to 6 declares the header type-->
+    <h1>FCOTERROBA GREETS YOU</h1>
+    <a href="www.fcoterroba.com">VISIT MY WEB</a> <!--A is a link and href the attribute to indicate where to go-->
+  </body> <!--Body closure-->
+
+</html> <!--Document closure-->
+```
+
+You copy and paste that in your notepad or favorite code editor, rename it as index.html and upload it to the server folder, which by default is: "C:\inetpub\wwwroot"
+
+Now yes, reload localhost and what you wrote will appear.
+
+![IIS custom page](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-231537.png)
+
+**SET UP WEB SERVER WITH WAMP**
+
+WAMP is a stack (pile, set) of software for Windows that includes Apache (web server), MySQL (database) and PHP (back-end web-oriented language).
+
+This means, roughly, that from a single program it installs the three main technologies that any web has today and without going too deep into configuration files.
+
+To start, we download the executable from the [repository page](http://wampserver.aviatechno.net/) and install it. (Watch out, it weighs more than half a giga 😂)
+
+When the program is installed, an icon will be created on the desktop. It would be good to restart it to finish picking up the changes, but it's not strictly necessary.
+
+When we open the program, an icon will have been created near the clock in the taskbar. If it's green, the server works perfectly.
+
+We'll type localhost in the browser again to check operation and also press the phpinfo() link to check that it's also installed.
+
+![WAMP localhost](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-232047.png)
+
+To change this home page we modify the server index, which by default is installed in C:\wamp64\www
+
+We delete all existing content inside and replace it with what we've already learned. We save the changes, update the browser and voilà.
+
+![WAMP custom page](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-16-171315.png)
+
+And that's been it guys, I hope you found it interesting, leave me below in the comments all the doubts/ideas you have.
+
+Don't forget to follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+See you next time! 😊
+

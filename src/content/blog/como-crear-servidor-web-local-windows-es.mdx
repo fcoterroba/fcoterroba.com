@@ -1,0 +1,104 @@
+---
+title: "Guía: ¿Cómo crear un servidor web local en Windows?"
+description: "Aprende a crear un servidor web local en Windows usando Microsoft IIS o WAMP. Guía paso a paso para configurar Apache, MySQL y PHP en tu ordenador."
+excerpt: "Aprende a crear un servidor web local en Windows usando Microsoft IIS o WAMP. Guía paso a paso para configurar Apache, MySQL y PHP en tu ordenador."
+category: "informática general"
+tags: ["servidor-web", "windows", "iis", "wamp", "apache", "php", "mysql", "desarrollo-web"]
+author: "fcoterroba"
+date: "2020-05-04"
+readTime: "10 min read"
+featured: false
+coverImage: "https://concepto.de/wp-content/uploads/2019/04/servidor-web-e1555874258468.jpg"
+lang: "es"
+---
+
+Hola mundo mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post explicativo para crear un servidor web en Windows.
+
+Existen una multitud de razones por las que queramos tener un servidor web en nuestro ordenador, desde empezar a estudiar desarrollo web, montar un CMS, compartir multimedia, etc.
+
+Antes de comenzar, aviso que esta guía sirve para montar un servidor web local, al que podrás acceder desde cualquier dispositivo conectado a la misma red que el servidor. Si quieres aprender a abrirlo al público, ¡házmelo saber en los comentarios!
+
+Principalmente, en Windows existen dos opciones.
+
+Una de ellas viene "nativa" en el propio sistema operativo. Usa servidor privativo (Microsoft-IIS) y es muy sencilla, para practicar HTML, CSS y JS principalmente. Puedes añadir a posteriori lenguajes de programación back-end como PHP o MySQL, pero no vienen por defecto.
+
+La otra opción es algo más cercana al ámbito profesional, ya que usa el sistema Apache, presente en casi el 40% de servidores mundiales. Estamos hablando de WAMP (Acrónimo de Web Apache MySQL PHP). Entraré en más detalles sobre WAMP más adelante. Ahora, vamos al turrón.
+
+**MONTAR SERVIDOR WEB CON MICROSOFT-IIS**
+
+Microsoft-IIS es un conjunto de servicios parte del sistema operativo de Windows.
+
+Además de montar un servidor web, permite la configuración de un servidor FTP (hablaré de ello en otro post)
+
+Para activar esta característica, deberemos escribir "características" en la barra de búsqueda y nos aparecerá una ventana cuadrada con las características que tenemos activadas en Windows.
+
+Las características son "pequeñas funcionalidades" que, aunque pueden ser instaladas y configuradas, no vienen de serie con el sistema operativo.
+
+La característica que debemos inicializar para tener un servidor web en Windows es principalmente "Internet Information Services > Servicios World Wide Web". Instalando solo esa ya funcionaría, pero podéis también instalar la de arriba, Herramientas de Administración Web para ver la consola de la web. Aunque para nuestro fin, no es necesario. En concreto, las necesarias son las marcadas de la imagen
+
+![IIS Windows Features](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-211059.png)
+
+Una vez activemos esas, le damos al botón de aceptar y tardará unos minutos en activarse. (Quizás también pide reinicio)
+
+Y con esto ya tendríamos un servidor web hecho. Podremos comprobarlo escribiendo "localhost" en nuestro navegador.
+
+Como veis, nos aparece una página web con una foto de Windows y la bienvenida en varios idiomas.
+
+Pero seguramente no buscabas crear un servidor web para tener esto, así que te voy a explicar cómo cambiar esa página.
+
+Para reemplazar esta página web por la página que quieras, primero necesitas crear el archivo.
+
+No voy a explicar todo HTML, pero lo necesario para escribir "Hola Mundo" es (ignora todo lo escrito entre <!----> porque son comentarios para explicarte qué funcionamiento tiene):
+
+```html
+<!DOCTYPE html> <!--Declara el tipo de archivo-->
+
+<html lang="es" dir="ltr"> <!--Declara el lenguaje de la página y la direccionalidad del texto-->
+
+  <head> <!--Comienza la cabecera, todo aquello que no se ve-->
+    <meta charset="utf-8"> <!--Establece los caracteres usables-->
+    <title>fcoterroba en un servidor Microsoft</title> <!--Es el título de la página, lo que aparece en la pestaña-->
+  </head> <!--Cierre de la cabecera-->
+
+  <body> <!--Comienzo del cuerpo del archivo, todo lo que se ve en la página-->
+    <h1>HOLA MUNDO</h1> <!--H seguido de un número del 1 al 6 declara el tipo de encabezado-->
+    <h1>OS SALUDA FCOTERROBA</h1>
+    <a href="www.fcoterroba.com">VISITA MI WEB</a> <!--A es un enlace y href el atributo para indicar hacia dónde ir-->
+  </body> <!--Cierre del cuerpo-->
+
+</html> <!--Cierre del documento-->
+```
+
+Copiáis y pegáis eso en vuestro bloc de notas o editor de código favorito, lo renombráis como index.html y lo subís a la carpeta del servidor, que por defecto es: "C:\inetpub\wwwroot"
+
+Ahora sí, recargáis localhost y os aparecerá lo escrito.
+
+![IIS custom page](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-231537.png)
+
+**MONTAR SERVIDOR WEB CON WAMP**
+
+WAMP es un stack (pila, conjunto) de softwares para Windows que incluye Apache (servidor web), MySQL (base de datos) y PHP (lenguaje orientado al back-end web).
+
+Esto quiere decir, cogido con palillos, que desde un solo programa te instala las tres principales tecnologías con las que a día de hoy cuenta cualquier web y sin entrar muy a dentro en archivos de configuración.
+
+Para empezar, nos descargamos el ejecutable en la [página del repositorio](http://wampserver.aviatechno.net/) y lo instalamos. (Ojo, pesa más de medio giga 😂)
+
+Cuando el programa esté instalado, se nos creará un icono en el escritorio. Lo suyo sería reiniciarlo para hacer que termine de coger los cambios, pero no es estrictamente necesario.
+
+Cuando abramos el programa, se nos habrá creado un icono cerca del reloj en la barra de tareas. Si está en verde, el servidor funciona perfectamente.
+
+Volveremos a escribir localhost en el navegador para comprobar el funcionamiento y también presionaremos el enlace de phpinfo() para comprobar que éste esté también instalado.
+
+![WAMP localhost](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-15-232047.png)
+
+Para cambiar esta página de inicio modificamos el index del servidor, que por defecto se instala en C:\wamp64\www
+
+Borramos todo el contenido existente dentro y lo sustituimos por lo que ya hemos aprendido. Guardamos los cambios, actualizamos el navegador y voilà.
+
+![WAMP custom page](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-16-171315.png)
+
+Y esto ha sido todo chic@s, espero que os haya parecido interesante, dejarme abajo en los comentarios todas las dudas/ideas que tengáis.
+
+No olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/).
+Nos vemos en la próxima! 😊
+
