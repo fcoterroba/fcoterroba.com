@@ -1,0 +1,199 @@
+---
+title: "¿Cómo hacer un dark mode para tu web usando código?"
+description: "Aprende a implementar un modo oscuro (dark mode) para tu página web usando HTML, CSS y JavaScript, con código 100% explicado paso a paso."
+excerpt: "Aprende a implementar un modo oscuro (dark mode) para tu página web usando HTML, CSS y JavaScript, con código 100% explicado paso a paso."
+category: "desarrollo web"
+tags: ["dark-mode", "css", "javascript", "html", "tutorial", "web-development", "diseño-web"]
+author: "fcoterroba"
+date: "2020-07-13"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/dark-mode.jpg"
+lang: "es"
+---
+
+Hola mundo mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que os voy a explicar cómo hacer un dark mode para tu página web (o light mode en caso de que tu web ya sea dark) escribiendo código 100% explicado. Todo completito 🤓.
+
+Antes de comenzar, quiero dar gracias a Mohammad Farmaan por realizar el [post en dev.to](https://dev.to/mohammadfarmaan/the-best-way-to-dark-mode-your-website-1g7f) y a Desiré por compartirlo en [Twitter](https://twitter.com/helleworld_/status/1280406794662182913). Han sido las personas que me han dado la idea para realizar este post así que, ¡por ellos! 🤟🏻
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">¿Te has planteado hacer un 🌛Dark Mode🌜 sencillito para tu web, sin plugins y sin historias?<a href="https://t.co/KyJ9GBqvvo">https://t.co/KyJ9GBqvvo</a> Mohammad Farmaan lo explica de 10 👌 y muy fácil.<br><br>Quizá no sea la mejor manera, pero es sencilla.<br><br>Yo uso SIEMPRE Dark Mode, ¿y tú? 😏</p>&mdash; Desiré ☀ (@helleworld_) <a href="https://twitter.com/helleworld_/status/1280406794662182913?ref_src=twsrc%5Etfw">July 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Es innegable que desde que se puso de moda el modo oscuro, muchísima gente busca pasar su vida tecnológica usando este modo y es cierto que cuenta con numerosas ventajas como:
+
+- Si cuentas con un dispositivo con pantalla OLED, vas a verlo mucho mejor 👀
+- Reduce la fatiga visual
+- Ayuda a mantener la batería de nuestros dispositivos tecnológicos, al no usar tanto brillo en la representación de colores 🔋
+- etc.
+
+Pero, por si no conoces aún que es el dark mode, te explico que, como bien su nombre dice, es un modo que convierte todo el blanco de las aplicaciones, páginas web, etc.
+
+En Windows 10, por ejemplo, viene por defecto el modo oscuro y, a la inversa, en una de sus últimas actualizaciones, puso un tema para ver el sistema operativo bastante más light 💡.
+
+Una encuesta de [Android Authority](https://www.androidauthority.com/dark-mode-poll-results-1090716/) desvela que más del 80% de usuarios Android encuestados usa el modo oscuro en todas las aplicaciones posibles. Otra encuesta del foro [macrumors](https://forums.macrumors.com/threads/poll-dark-mode-yes-or-no.2201456/) arroja que más de la mitad de los usuarios piensa que el modo oscuro es mejor que el light mode. Para acabar, en un [reddit sobre Linux](https://www.reddit.com/r/linux/comments/66v3xk/poll_dark_themes_vs_light_themes/) de hace más de 3 años, casi el 70% de la gente ya prefería el modo oscuro.
+
+Aunque quizás sea contraproducente, yo prefiero el light mode (e intento que todo lo que uso en mi día a día tenga este modo, aún teniendo la posibilidad de cambiarlo y teniendo pantallas OLED).
+
+Una vez explicado su origen, el por qué del post y mi opinión personal, ahora sí que sí, sin daros más la chapa 😂, comenzamos 👇🏻.
+
+**CÓDIGO**
+
+Voy a explicar la de Mohammad, la expuesta antes en Dev.to.
+
+Antes de comenzar, lo recomendable es que tengas unas nociones básicas de HTML, CSS y JS. Pero tampoco es obligatorio, puesto que comentaré cada línea del código usado. 🗣
+
+Para comenzar, lo aconsejable es crear la carpeta en la que vamos a trabajar así como sus cuatro ficheros (los dos estilos, el html y el script). 👇🏻
+
+![Estructura de archivos del proyecto](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Para comenzar, vamos a escribir en nuestro fichero html todo lo que queramos que aparezca en pantalla, además de un botón con el atributo *onclick* apuntando hacia una función que escribiremos posteriormente en Javascript.
+
+```html
+<!DOCTYPE html> <!--Esto sirve para dar a entender al navegador el tipo de documento que está leyendo-->
+
+<html lang="es"> <!--Etiqueta de comienzo del HTML con el atributo para especificar el lenguaje de la web-->
+
+    <head> <!--Etiqueta de comienzo para establecer los valores de la cabecera-->
+
+        <meta charset="UTF-8"> <!--Etiqueta meta para establecer la codificación a usar-->
+
+        <title>Aprende a hacer dark mode con fcoterroba</title> <!--Establece el título de la web, lo que aparece en la pestaña-->
+
+        <link rel="stylesheet" href="light.css" id="tema" /> <!--Ruta para añadir el estilo css que usará por defecto-->
+
+    </head> <!--Cierre de la etiqueta de la cabecera-->
+
+    <body> <!--Etiqueta de comienzo para establecer los valores del cuerpo-->
+
+        <h1>¡Prueba a darle click en el botón para convertir todo esto en oscuro!</h1> <!--Etiqueta con encabezado de nivel 1-->
+
+        <button onclick="cambiarEstilo()">¡CAMBIA!</button> <!--Botón para configurar posteriormente que cambiará entre estilos-->
+
+        <script src="switch.js"></script> <!--Script añadido al final del documento para realizar la acción del cambio de estilo-->
+
+    </body> <!--Cierre de la etiqueta del cuerpo-->
+
+</html> <!--Etiqueta de fin del documento HTML-->
+```
+
+Una vez hecho el HTML, pasamos a configurar el estilo principal, light 💡.
+
+```css
+h1 { /* Estableceremos reglas de diseño para los encabezados de nivel 1 */
+
+    font-family: Alef; /* Con esta regla podemos establecer la tipografía */
+
+    font-weight: 150px; /* Con esta regla establecemos el tamaño de la tipografía */
+
+    text-align: center; /* Con esta regla establecemos el texto en el centro de la pantalla */
+
+    margin-top: 20%; /* Así le daremos un margen sobre el filo superior del 20% */
+
+}
+
+button { /* Estableceremos reglas de diseño para los botones */
+
+    padding: 15px; /* Tamaño de relleno */
+
+    background-color: #241; /* Color del fondo */
+
+    color: white; /* Color de la letra */
+
+    border: none; /* Quitamos el borde al botón */
+
+    border-radius: 4px; /* Establecemos que el radio del borde sea de 4 píxeles, ligeramente redondos */
+
+    font-size: 50px; /* Tamaño de tipografía */
+
+}
+
+button:hover { /* Estableceremos reglas para el botón mientras el ratón esté encima */
+
+    background: rgb(236, 202, 9); /* Regla para establecer el color de fondo */
+
+    color: rgb(255, 255, 255); 
+
+}
+```
+
+Pasamos ahora al estilo oscuro 🌑, que, realmente, basta con copiar y pegar el estilo claro, luego cambiar los colores y añadir pequeñeces. Quedando algo como esto ⬇.
+
+```css
+h1 {
+
+    font-family: Alef;
+
+    font-weight: 150px;
+
+    text-align: center;
+
+    margin-top: 20%;
+
+    color: white;
+
+}
+
+body{ /* Regla para cambiar todo lo perteneciente al cuerpo */
+
+    background: rgb(19, 18, 18);
+
+}
+
+button {
+
+    padding: 15px;
+
+    background-color: #241;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 4px;
+
+    font-size: 50px;
+
+}
+
+ button:hover {
+
+    background: rgb(236, 202, 9);
+
+    color: rgb(255, 255, 255);
+
+}
+```
+
+Para finalizar, haremos el script, que será, al fin y al cabo, lo que realizará el cambio de estilo. 🎨
+
+```javascript
+function cambiarEstilo() { /* Declara la función */
+
+    let color = document.getElementById("tema"); /* Crea la variable color asignado el valor de tema*/
+
+  
+
+    if (color.getAttribute("href") == "light.css") { /* Condición para comprobar que el valor de color es light, */
+
+      color.href = "dark.css"; /* Establece el fichero dark */
+
+    } else {
+
+      color.href = "light.css"; /* Establece el fichero light */
+
+    }
+
+}
+```
+
+Y con esto, ya estará listo nuestro botón para cambiar el modo de color en nuestra página web! 👨‍💻
+
+![GIF del dark mode funcionando](https://s7.gifyu.com/images/GIF-07-07-2020-15-50-51.gif)
+
+Os propongo un reto para finalizar:
+
+> Intentar conseguir que la transición de color sea mucho más sutil y no tan basta. Establecer o añadir algún barrido mientras realiza el intercambio de estilos.
+
+Espero vuestras respuestas en los comentarios! 😉
+
+Y esto es todo por hoy chicos, espero que os haya gustado esta sencilla manera de establecer un modo oscuro en vuestra página y ya sabéis, no olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [LinkedIn](https://www.linkedin.com/in/fcoterroba/). ¡Nos vemos la semana que viene!
+

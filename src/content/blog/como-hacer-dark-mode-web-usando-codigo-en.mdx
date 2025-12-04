@@ -1,0 +1,199 @@
+---
+title: "How to Make a Dark Mode for Your Website Using Code?"
+description: "Learn to implement a dark mode for your website using HTML, CSS and JavaScript, with 100% explained code step by step."
+excerpt: "Learn to implement a dark mode for your website using HTML, CSS and JavaScript, with 100% explained code step by step."
+category: "web development"
+tags: ["dark-mode", "css", "javascript", "html", "tutorial", "web-development", "web-design"]
+author: "fcoterroba"
+date: "2020-07-13"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/dark-mode.jpg"
+lang: "en"
+---
+
+Hello world my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where I'm going to explain how to make a dark mode for your website (or light mode in case your website is already dark) writing 100% explained code. Everything complete 🤓.
+
+Before we begin, I want to thank Mohammad Farmaan for making the [post on dev.to](https://dev.to/mohammadfarmaan/the-best-way-to-dark-mode-your-website-1g7f) and Desiré for sharing it on [Twitter](https://twitter.com/helleworld_/status/1280406794662182913). They've been the people who gave me the idea to make this post so, for them! 🤟🏻
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">¿Te has planteado hacer un 🌛Dark Mode🌜 sencillito para tu web, sin plugins y sin historias?<a href="https://t.co/KyJ9GBqvvo">https://t.co/KyJ9GBqvvo</a> Mohammad Farmaan lo explica de 10 👌 y muy fácil.<br><br>Quizá no sea la mejor manera, pero es sencilla.<br><br>Yo uso SIEMPRE Dark Mode, ¿y tú? 😏</p>&mdash; Desiré ☀ (@helleworld_) <a href="https://twitter.com/helleworld_/status/1280406794662182913?ref_src=twsrc%5Etfw">July 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+It's undeniable that since dark mode became fashionable, many people seek to spend their technological life using this mode and it's true that it has numerous advantages such as:
+
+- If you have a device with an OLED screen, you'll see it much better 👀
+- Reduces eye strain
+- Helps maintain the battery of our technological devices, by not using so much brightness in color representation 🔋
+- etc.
+
+But, in case you don't know yet what dark mode is, I explain that, as its name says, it's a mode that converts all the white of applications, websites, etc.
+
+In Windows 10, for example, dark mode comes by default and, conversely, in one of its latest updates, it put a theme to see the operating system much more light 💡.
+
+A survey by [Android Authority](https://www.androidauthority.com/dark-mode-poll-results-1090716/) reveals that more than 80% of surveyed Android users use dark mode in all possible applications. Another survey from the [macrumors](https://forums.macrumors.com/threads/poll-dark-mode-yes-or-no.2201456/) forum shows that more than half of users think dark mode is better than light mode. To finish, in a [reddit about Linux](https://www.reddit.com/r/linux/comments/66v3xk/poll_dark_themes_vs_light_themes/) from more than 3 years ago, almost 70% of people already preferred dark mode.
+
+Although it may be counterproductive, I prefer light mode (and I try to make everything I use in my daily life have this mode, even having the possibility to change it and having OLED screens).
+
+Once explained its origin, why the post and my personal opinion, now yes, without giving you more the chat 😂, let's begin 👇🏻.
+
+**CODE**
+
+I'm going to explain Mohammad's, the one exposed before on Dev.to.
+
+Before starting, it's advisable that you have some basic notions of HTML, CSS and JS. But it's not mandatory either, since I'll comment on each line of code used. 🗣
+
+To begin, it's advisable to create the folder we're going to work in as well as its four files (the two styles, the html and the script). 👇🏻
+
+![Project file structure](/blog/covers/wordpress_to_astro_EN.png)
+
+To begin, we're going to write in our html file everything we want to appear on screen, plus a button with the *onclick* attribute pointing to a function we'll write later in Javascript.
+
+```html
+<!DOCTYPE html> <!--This serves to make the browser understand the type of document it's reading-->
+
+<html lang="es"> <!--HTML start tag with attribute to specify the website language-->
+
+    <head> <!--Start tag to establish header values-->
+
+        <meta charset="UTF-8"> <!--Meta tag to establish the encoding to use-->
+
+        <title>Learn to make dark mode with fcoterroba</title> <!--Sets the website title, what appears in the tab-->
+
+        <link rel="stylesheet" href="light.css" id="tema" /> <!--Path to add the css style that will be used by default-->
+
+    </head> <!--Closing of the header tag-->
+
+    <body> <!--Start tag to establish body values-->
+
+        <h1>Try clicking the button to convert all this to dark!</h1> <!--Tag with level 1 heading-->
+
+        <button onclick="cambiarEstilo()">CHANGE!</button> <!--Button to configure later that will change between styles-->
+
+        <script src="switch.js"></script> <!--Script added at the end of the document to perform the style change action-->
+
+    </body> <!--Closing of the body tag-->
+
+</html> <!--End tag of the HTML document-->
+```
+
+Once the HTML is done, we move on to configure the main style, light 💡.
+
+```css
+h1 { /* We'll establish design rules for level 1 headings */
+
+    font-family: Alef; /* With this rule we can establish the typography */
+
+    font-weight: 150px; /* With this rule we establish the typography size */
+
+    text-align: center; /* With this rule we establish the text in the center of the screen */
+
+    margin-top: 20%; /* This way we'll give it a margin on the top edge of 20% */
+
+}
+
+button { /* We'll establish design rules for buttons */
+
+    padding: 15px; /* Padding size */
+
+    background-color: #241; /* Background color */
+
+    color: white; /* Letter color */
+
+    border: none; /* We remove the button border */
+
+    border-radius: 4px; /* We establish that the border radius is 4 pixels, slightly rounded */
+
+    font-size: 50px; /* Typography size */
+
+}
+
+button:hover { /* We'll establish rules for the button while the mouse is over it */
+
+    background: rgb(236, 202, 9); /* Rule to establish background color */
+
+    color: rgb(255, 255, 255); 
+
+}
+```
+
+We now move on to the dark style 🌑, which, really, it's enough to copy and paste the light style, then change the colors and add small things. Leaving something like this ⬇.
+
+```css
+h1 {
+
+    font-family: Alef;
+
+    font-weight: 150px;
+
+    text-align: center;
+
+    margin-top: 20%;
+
+    color: white;
+
+}
+
+body{ /* Rule to change everything belonging to the body */
+
+    background: rgb(19, 18, 18);
+
+}
+
+button {
+
+    padding: 15px;
+
+    background-color: #241;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 4px;
+
+    font-size: 50px;
+
+}
+
+ button:hover {
+
+    background: rgb(236, 202, 9);
+
+    color: rgb(255, 255, 255);
+
+}
+```
+
+To finish, we'll make the script, which will be, after all, what will perform the style change. 🎨
+
+```javascript
+function cambiarEstilo() { /* Declares the function */
+
+    let color = document.getElementById("tema"); /* Creates the color variable assigning the tema value*/
+
+  
+
+    if (color.getAttribute("href") == "light.css") { /* Condition to check that the color value is light, */
+
+      color.href = "dark.css"; /* Sets the dark file */
+
+    } else {
+
+      color.href = "light.css"; /* Sets the light file */
+
+    }
+
+}
+```
+
+And with this, our button to change the color mode on our website will be ready! 👨‍💻
+
+![GIF of dark mode working](https://s7.gifyu.com/images/GIF-07-07-2020-15-50-51.gif)
+
+I propose a challenge to finish:
+
+> Try to make the color transition much more subtle and not so rough. Establish or add some sweep while performing the style exchange.
+
+I hope your answers in the comments! 😉
+
+And that's all for today guys, I hope you liked this simple way to establish a dark mode on your page and you know, don't forget to follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [LinkedIn](https://www.linkedin.com/in/fcoterroba/). See you next week!
+
