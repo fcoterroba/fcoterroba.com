@@ -1,0 +1,101 @@
+---
+title: "WordPress: ¿Qué son y cómo hacer formularios con y sin captcha?"
+description: "Aprende qué son los formularios y los captcha, cómo crearlos en WordPress y cómo añadir protección captcha a tus formularios de contacto."
+excerpt: "Aprende qué son los formularios y los captcha, cómo crearlos en WordPress y cómo añadir protección captcha a tus formularios de contacto."
+category: "desarrollo web"
+tags: ["wordpress", "formularios", "captcha", "recaptcha", "contact-form-7", "tutorial", "cms", "seguridad"]
+author: "fcoterroba"
+date: "2020-10-05"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/wordpress-coffee-wallpaper.png"
+lang: "es"
+---
+
+Hola mundo 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post que va a combinar todo con todo. Voy a explicar qué son los formularios, los captcha, cómo se realizan y cómo añadir un captcha a ellos.
+Esto mismo lo vamos a ver en nuestro afamado, querido y favorito CMS, WordPress ❗
+
+Que sepas que todo esto, y mucho más están en un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Antes de comenzar, también quiero recordarte que hace unas semanas subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**¿QUÉ ES UN FORMULARIO?**
+
+Un formulario es un documento, (aunque en nuestro mundo es digital) que sirve principalmente cómo acercamiento entre clientes y empresas, o más bien entre usuarios y desarrolladores.
+
+Concretamente, yo (y probablemente el 100% de las páginas que visites) tengo una sección en la web que es exclusivamente eso, una página con un formulario de contacto. [¡Pruébalo si quieres!](https://fcoterroba.com/contacto)
+
+No tiene mucha más historia así que, comenzamos con la parte de WordPress 👇
+
+**FORMULARIO SIN CAPTCHA**
+
+[Cómo ya te dije en mi anterior post sobre Wordpress](https://fcoterroba.com/wordpress-ocultar-admin-login), en Wordpress existe una infinidad de plugins para absolutamente cualquier problema que se te ocurra, y si no, siempre puedes programarlo! 👨‍💻
+
+Y para una cosa tan básica como un formulario, existe una infinidad²
+
+Es por eso, que te voy a poner varios de ellos y te voy a enseñar a instalar uno de ellos, concretamente el que yo uso:
+
+- **[WPForms](https://wordpress.org/plugins/wpforms-lite/)** -> Es, probablemente el plugin para realizar formularios más sencillo. Simplemente tienes que arrastrar y soltar. Pero, tiene bastantes limitaciones hasta que compres algunos de los planes premium.
+- **[10Web](https://wordpress.org/plugins/form-maker/)** -> Es similar al de antes ya que busca la sencillez máxima ante los usuarios de Wordpress. También funciona con el tema de arrastrar y soltar.
+
+Y, el que yo uso, **[Contact Form 7](https://wordpress.org/plugins/contact-form-7/)**. Probablemente, el plugin más sencillo, minimalista y a la vez completo de toda la tienda.
+
+Permite ajustar todos y cada uno de los parámetros que contienen el formulario, el servidor SMTP, carga de archivos, etcétera.
+
+Para instalar dicho plugin, debemos escribir el nombre del mismo en **Plugins > Añadir nuevo** y finalmente instalar.
+
+![Instalación de Contact Form 7](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Cuando el plugin se haya instalado, en nuestra barra lateral izquierda nos aparecerá un nuevo apartado llamado **✉Contacto.** Abriremos dicho apartado y crearemos uno nuevo.
+
+En la pantalla principal introduciremos un título para identificar dicho formulario (por si queremos tener más de uno distinto.
+
+A continuación, estableceremos los campos que les pediremos al usuario. Arriba de donde se escribe, tenemos botones que añadirán automáticamente campos a rellenar.
+
+**OJO👀,** los campos obligatorios serán aquellos en los que será imposible que el usuario envíe el mensaje si éstos no tienen nada escrito.
+
+![Configuración de campos del formulario](/blog/covers/wordpress_to_astro_ES.jpg)
+
+En el siguiente apartado podremos escribir cómo queremos que dicho correo nos llegue a nosotros.
+
+Además, en la parte final, en el **correo (2)** nos ofrece la posibilidad de que el usuario reciba un correo electrónico automáticamente cuando nos envíe su correo a nosotros.
+
+![Configuración de correos del formulario](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Por último, (ya que los ajustes adicionales no nos serán de gran importancia) tendremos los mensajes que aparecerán al usuario cuando haga click en el botón de enviar el formulario.
+
+![Mensajes del formulario](/blog/covers/wordpress_to_astro_ES.jpg)
+
+**AÑADIR CAPTCHA A NUESTRO FORMULARIO**
+
+Antes de nada, quizás te preguntas qué es un captcha. Pues, al loro 🦜
+
+Weaponhealth Captcha o simplemente CAPTCHA son las siglas de *Completely Automated Public Turing test to tell Computers and Humans Apart* (prueba de Turing completamente automática y pública para diferenciar ordenadores de humanos). Son pruebas desafío-respuesta controladas por máquinas (no es necesario ningún tipo de mantenimiento ni de intervención humana para su realización, y es implementado en un ordenador) que son utilizadas para determinar cuándo el usuario es un humano o un programa automático (bot).
+
+WikiPedia y sus explicaciones ambiguas 🙄.
+Captcha, al fin y al cabo es un pequeño programa automatizado capaz de, según una serie de pruebas o inteligencia artificial, con el mero hecho de detectar cuando un usuario es usuario y cuando un robot es un robot.
+
+Si tienes una página web u aplicación que permita algún tipo de contacto (registro, login, etcétera.), ten por seguro que tu bandeja de entrada se acabará llenando de spams intentando venderte porno. 🤣
+
+Es por eso, que vamos a instalar un captcha a nuestro formulario recién hecho 👨‍🍳.
+
+Al igual que antes, WordPress, al tener un montón de plugins y una comunidad muy grande detrás, posee cientos de plugins para insertar un captcha en nuestro formulario. Eso sí, tendremos que buscar siempre uno que sea compatible con nuestro plugin de formulario. **Eso**, es lo realmente complicado.
+
+![Plugins de captcha para WordPress](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Es por eso, que yo prefiero usar el reCaptcha de Google por unas sencillas razones explicadas brevemente en este vídeo de aquí 👇
+
+<iframe src="https://www.youtube.com/embed/hMJsCBUBhcY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, vamos a la acción 🧨
+
+Primero, vamos al sitio web oficial de Google para registrar un nuevo [reCaptcha](https://www.google.com/recaptcha/admin/create). Escribimos en la etiqueta un nombre identificativo, elegimos la versión de reCaptcha, escribimos el dominio al que queramos que afecte dicho captcha y enviamos la opción.
+
+A continuación vamos a **Contacto > Integración > reCaptcha** y escribimos nuestra correspondiente clave secreta y clave del sitio
+
+![Configuración de reCaptcha en Contact Form 7](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Y con esto ya estaría todo por hoy, chic@s, espero que os haya gustado y os haya sido de grata utilidad! 🤓 Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+

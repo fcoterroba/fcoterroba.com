@@ -1,0 +1,94 @@
+---
+title: "WordPress: ¿Qué es WP-Admin, WP-Login y cómo ocultarlas?"
+description: "Aprende qué son wp-admin y wp-login en WordPress y cómo ocultarlas para mejorar la seguridad de tu sitio web usando código o plugins."
+excerpt: "Aprende qué son wp-admin y wp-login en WordPress y cómo ocultarlas para mejorar la seguridad de tu sitio web usando código o plugins."
+category: "desarrollo web"
+tags: ["wordpress", "seguridad", "wp-admin", "wp-login", "tutorial", "cms", "protección"]
+author: "fcoterroba"
+date: "2020-09-28"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/wordpress-admin-wallpaper.jpg"
+lang: "es"
+---
+
+Hola mundo 👋 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que os voy a explicar, de manera muy sencilla y con varios métodos distintos, cómo ocultar una parte muy importante de cualquier página web hecha en Wordpress, la parte del /wp-admin.
+
+Por si no lo sabías ya, wp-admin es una carpeta de las tres que vienen por defecto en WordPress (wp-admin, wp-content, wp-includes). Dentro de dicha carpeta, no hay ningún archivo de configuración (al contrario que wp-content por ejemplo). Todo el contenido es estático, y contiene archivos internos como scripts y librerías.
+
+En resumen, wp-admin aún no conteniendo nada en su interior, es vital para el correcto acceso y funcionamiento de la configuración de Wordpress. Y por ende, de tu página web.
+
+Por defecto, wp-admin viene libre al público y cualquiera añadiendo esa dirección y adivinando la contraseña, podría ser capaz de entrar en cualquier lugar de internet siempre y cuando esté hecho con Wordpress.
+
+Que sepas que todo esto, y mucho más están en un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. Ya que, en este post, verás palabras que probablemente no te suenen mucho. 🤯 **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Antes de comenzar, también quiero recordarte que hace unas semanas subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí que sí, vamos a comenzar 👇
+
+En Wordpress, prácticamente cualquier cosa se puede hacer de dos formas distintas, una de ellas es tocando el código de CMS (**OJO** 👀, si no sabes mucho del tema puedes cargarte toda la página completa) y la otra es instalando algún plugin.
+
+En Wordpress existe una infinidad de plugins para absolutamente cualquier problema que se te ocurra, y si no, siempre puedes programarlo! 👨‍💻
+
+Comencemos entonces por lo, quizás, más complicado:
+
+**CÓDIGO**
+
+Lo primero que tenemos que saber es que, usando el código vamos a limitar las IP que podrán acceder a dicha parte del Wordpress. Por lo que, antes de comenzar debemos saber cuál es nuestra ip pública. Para ello existen herramientas cómo [cualesmiip.com](http://www.cualesmiip.com/) y muchos más.
+
+Una vez sabido, empezamos con el hacking! 🤣
+
+Primeramente, debemos entrar a nuestra web con las credenciales FTP que nos da nuestro hosting. IONOS concretamente, (es mi hosting) lo tiene en su sección principal. De esta pantalla cogeremos el usuario y el servidor.
+
+![Credenciales FTP en IONOS](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Entonces, tenemos que instalar algún cliente FTP (si usas Chrome puedes usar la misma barra de búsqueda).
+Si estás un poco perdido en este mundo, te recomiendo este **[post que escribí al comienzo de la página en el que explico cómo conectarse a servidores FTP además de CÓMO CREARLOS! 🤯](https://fcoterroba.com/guia-como-crear-un-servidor-ftp-local-en-windows-y-acceder-a-el)**
+
+Una vez que abramos nuestro cliente FTP favorito (que en mi caso, para subir y editar archivos es FileZilla), deberemos escribir los parámetros anteriormente recopilados y establecer el puerto correcto. (Lo normal es 21 para conexiones normales y 22 para conexiones seguras SFTP).
+
+![Conexión FTP con FileZilla](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Lo que tendremos que hacer será abrir el archivo llamado **.htaccess** y editarlo para ponerle lo siguiente (al final del documento):
+
+```apache
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_URI} ^(.*)?wp-login\.php(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)?wp-admin$
+RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+```
+
+Dónde nosotros entramos en acción es a la hora de cambiar la quinta línea ya que tenemos que sustituir la dirección IP que ahí aparece (que es el localhost 🏠) por la nuestra. Podemos repetir dicha línea tantas veces queramos.
+
+Para finalizar simplemente dejamos guardar y volvemos a subir al servidor.
+
+**PLUGINS**
+
+Cómo he dicho previamente, existen infinidad de plugins en Wordpress y otra inmensa infinidad de plugins de Wordpress dispuestos a solucionar nuestro problema.
+
+En este post te voy a mencionar dos de ellas y vamos a instalar, paso a paso y juntos, uno de ellos:
+
+- **[WP Secure](https://wordpress.org/plugins/wp-secure-by-sitesecuritymonitorcom/#description)** -> Aunque está desactualizada, muchos desarrolladores comentan que sigue funcionando a la perfección. Yo en lo personalmente siempre intento elegir plugins que hayan sido probados en la última versión posible de Wordpress así que esta, descartada ❌.
+- **[WP Hide & Security Enhancer](https://es.wordpress.org/plugins/wp-hide-security-enhancer/)** -> Esta no la he descartado, simplemente la he dejado como una opción más. Me quedo con la que aparece a continuación por el mero hecho de que he visto más reviews pero, quién sabe, el día de mañana quizás use esta. 🤷‍♂️
+
+**[WPS Hide Login](https://es.wordpress.org/plugins/wps-hide-login/)**
+
+Es un plugin muy liviano y que cumple con creces lo que promete. Mantener a salvo las partes más importantes de nuestra página web.
+
+Este plugin lleva años en activo y es un fork de uno que quedó desactualizado, el [rename-wp-login](https://wordpress.org/plugins/rename-wp-login/).
+
+Para instalar un plugin en Wordpress deberemos ir a la barra izquierda de nuestro dashboard, **añadir plugin**, escribimos el nombre del plugin y le damos a **instalar ahora**.
+
+Cuando esté instalado, vamos a **Ajustes > Generales** y al final del todo aparecerá una sección de nuestro plugin.
+
+Es una configuración muy sencilla, simplemente tienes que escribir la terminación que quieras que a partir de **ahora** se sustituya por wp-admin y wp-login. Y en el cuadro de abajo pones hacia que parte de la página quieres que los usuarios sean redirigidos cuando escriban dicha URL.
+
+![Configuración de WPS Hide Login](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Y esto ha sido todo por hoy, chic@s, espero que os haya gustado y os haya sido de grata utilidad! 🤓 Nos vemos muy pronto por aquí y ya sabéis que podéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+

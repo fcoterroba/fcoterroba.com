@@ -1,0 +1,131 @@
+---
+title: "Beginner Python Project: How to Generate QR Codes?"
+description: "Learn to create a QR code generator in Python step by step, with explanation of each line of code and the ability to save the generated images."
+excerpt: "Learn to create a QR code generator in Python step by step, with explanation of each line of code and the ability to save the generated images."
+category: "software development"
+tags: ["python", "qr", "qr-code", "tutorial", "beginners", "programming", "project"]
+author: "fcoterroba"
+date: "2020-08-10"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/python-wallpaper-quotes.jpg"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where we're going to make, as always, step by step, with good handwriting and explaining each line of code, a QR code generator that will also allow saving the image to share it later on your social networks or website. ⬜⬛
+
+Before we begin, although I'm going to explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. (Yes, QR included.) 😁. **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few weeks ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+To conclude, I also recommend [reading my post from last week where we also made a beginner project in Python. Specifically, a fully functional calculator.
+Also, at the beginning of the post we give several guidelines to start in this language, as well as the installation of environment variables, IDE configuration, etc. 😵](https://fcoterroba.com/proyecto-python-principiantes-juego-piedra-papel-tijeras)
+
+Now yes, let's begin. 👇🏻
+
+**What are QR codes?**
+
+A QR code is a two-dimensional square barcode that can store encoded data. Most of the time the data is a link to a website (URL).
+Today, QR codes can be seen on flyers, posters, magazines, etc. You can easily detect these two-dimensional barcodes around you. QR codes allow you to interact with the world through your smartphone.
+Specifically, a QR Code extends data available to any physical object and creates a digital measure for marketing operations. This technology enables and accelerates the use of web services for mobile: it's a very creative digital tool.
+
+In summary, a QR code is a code similar to a barcode, but with a square shape in which a word, image, link or any other type of file is encoded. 🔛
+
+Today, QR codes are the order of the day and this is notably seen in restaurants or bars, where a menu is no longer given to the consumer but rather, a code of these characteristics is seen stuck to the table, so that the user scans that code and can see the menu from their own mobile device. 📱
+
+That's why, in part, I make this project, for all those people who want to learn to program their own QR code encoder for their own business without depending on any third party. 😀
+
+**QR DECODER IN THE COMMAND LINE**
+
+First, just as we always do here, I'm going to show you a small GIF of what you're going to learn to program by reading this simple post! 😁
+
+![GIF of the QR code generator working](https://s7.gifyu.com/images/GIF-09-08-2020-3-33-56.gif)
+
+It's nice, right? Well let's begin! 👀
+
+The first thing we must do is open our favorite IDE (in my case it's Visual Studio Code) 💙
+
+Although I said it in the previous post, I remember that in Python it's not necessary to specify what type the variable will be (Char, float, integer,…), unlike many other programming languages since, Python 🐍, will automatically understand the variable type according to what we store in it.
+
+For this project (and for almost all, really) I like to import both the **time (import time)** ⌚ package and the **sys** package since, I like to set a few seconds to facilitate screen reading for the user. Its use is simply by writing **time.sleep(x)** changing **x** for a certain number, in seconds.
+The sys package serves to perform operating system functions, among many, the one I mainly use is **sys.exit()** to close the program when the user requests it.
+Finally, for this specific project we must import the **qrcode** package, which is the one that will perform the code generation function.
+
+Comments in Python are written by putting the symbol **#** at the beginning of the line
+
+With print, just like in almost all programming languages, we're going to write to the screen ✍🏻.
+
+Finally, although probably the most important. In this project we're going to see functions in programming. Functions, in summary, is a piece of code that, although written, will never be triggered until it's invoked. 🧙🏻‍♂️
+
+Well, after explaining all that previously, commenting some lines of code, importing the necessary packages, preparing the first function and making a presentation to the program, we'll have something like this:
+
+```python
+#Import of necessary packages
+import time
+import qrcode
+import sys
+
+#Function to generate the QR code
+def generado_Codigo(): 
+    print("***********************************************************************************************") 
+    print("Hello world! I'm fcoterroba, you can visit my website at www.fcoterroba.com")
+    time.sleep(2)
+    print("This is a program that asks you for a link or text and generates a QR code in PNG format.")
+    time.sleep(3)
+```
+
+With this we'll have created a very fast, interesting and minimalist main screen.
+
+We need, now, to ask the user to write the link or text they want to encode to QR.
+
+For this we must create the variable name followed by an input. 📥
+
+Then, comes the important part of encoding where we'll create a qrcode.make(variable in question) object. Giving it a name, obviously. 🤓
+
+Almost to finish, we open that image to add the name correctly using the **open**("filename.extension", "wb") option.
+Finally, we save that image using the **save** method. 🤯
+
+We should have something like this 👇🏻
+
+```python
+    #We ask the user what they want to encode
+    codificar = input(f"LET'S BEGIN!\nWhat word or link do you want me to encode in QR? ")
+    print("Encoding...")
+    time.sleep(3)
+    img = qrcode.make(codificar)
+    f = open(codificar+"_QR.png", "wb")
+    img.save(f)
+    print(f"READY!\nYou have the image correctly created with the name {codificar}_QR.png")
+    time.sleep(2)
+    preguntar_Opcion()
+```
+
+With this we would have correctly created the file and it would have been saved in the folder in question where the python script is hosted. 🐍
+
+Then I made another function that asked the user (hence the invocation in the last line), at the end of each QR generation, if they wanted to make another code or if they directly wanted to exit the program. (Now is where the **sys** package comes into play). 👦🏻
+
+This function is very simple, it only has an input for the user to write the option they want to do and two if/else conditions to exit the program or invoke the **generado_Codigo()** function.
+
+Finally, let's not forget, outside the functions and as the last line of code, we must invoke again, the **generado_Codigo()** function because, otherwise, the program would never start. ♾
+
+```python
+def preguntar_Opcion():
+    opcion = input(f"What do you want to do now? (M)ake another code | (E)xit the program\n")
+    if opcion=='m' or opcion=='M':
+        generado_Codigo()
+    else:
+        time.sleep(0.4)
+        print("See you soon! Don't forget to visit my website www.fcoterroba.com")
+        sys.exit()
+
+generado_Codigo()
+```
+
+All together it would look something like this:
+
+<script src="https://gist.github.com/fcoterroba/b355115321d4ae60244be16ee8e573d8.js"></script>
+
+And that's all for today guys, I hope you liked this post so interesting! You can put me in the comments everything you want: doubts, queries, advice, etc. Don't forget to follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). See you next week!
+

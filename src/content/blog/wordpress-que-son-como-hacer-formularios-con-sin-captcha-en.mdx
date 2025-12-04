@@ -1,0 +1,101 @@
+---
+title: "WordPress: What Are Forms and How to Make Them With and Without Captcha?"
+description: "Learn what forms and captcha are, how to create them in WordPress and how to add captcha protection to your contact forms."
+excerpt: "Learn what forms and captcha are, how to create them in WordPress and how to add captcha protection to your contact forms."
+category: "web development"
+tags: ["wordpress", "forms", "captcha", "recaptcha", "contact-form-7", "tutorial", "cms", "security"]
+author: "fcoterroba"
+date: "2020-10-05"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/wordpress-coffee-wallpaper.png"
+lang: "en"
+---
+
+Hello world 👋 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post that's going to combine everything with everything. I'm going to explain what forms are, captcha, how they're made and how to add a captcha to them.
+This same thing we're going to see in our famous, beloved and favorite CMS, WordPress ❗
+
+You should know that all this, and much more are in a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+Before we begin, I also want to remind you that a few weeks ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+**WHAT IS A FORM?**
+
+A form is a document, (although in our world it's digital) that serves mainly as an approach between clients and companies, or rather between users and developers.
+
+Specifically, I (and probably 100% of the pages you visit) have a section on the web that is exclusively that, a page with a contact form. [Try it if you want!](https://fcoterroba.com/contacto)
+
+It doesn't have much more history so, let's start with the WordPress part 👇
+
+**FORM WITHOUT CAPTCHA**
+
+[As I already told you in my previous post about WordPress](https://fcoterroba.com/wordpress-ocultar-admin-login), in WordPress there are an infinite number of plugins for absolutely any problem you can think of, and if not, you can always program it! 👨‍💻
+
+And for something as basic as a form, there are an infinity²
+
+That's why, I'm going to give you several of them and I'm going to teach you to install one of them, specifically the one I use:
+
+- **[WPForms](https://wordpress.org/plugins/wpforms-lite/)** -> It's probably the simplest plugin for making forms. You just have to drag and drop. But, it has quite a few limitations until you buy some of the premium plans.
+- **[10Web](https://wordpress.org/plugins/form-maker/)** -> It's similar to the previous one since it seeks maximum simplicity for WordPress users. It also works with the drag and drop theme.
+
+And, the one I use, **[Contact Form 7](https://wordpress.org/plugins/contact-form-7/)**. Probably, the simplest, minimalist and at the same time complete plugin in the entire store.
+
+It allows adjusting each and every one of the parameters that the form contains, the SMTP server, file upload, etc.
+
+To install this plugin, we must write its name in **Plugins > Add new** and finally install.
+
+![Contact Form 7 installation](/blog/covers/wordpress_to_astro_EN.png)
+
+When the plugin has been installed, in our left sidebar a new section called **✉Contact** will appear. We'll open that section and create a new one.
+
+On the main screen we'll enter a title to identify that form (in case we want to have more than one different one.
+
+Then, we'll set the fields we'll ask the user for. Above where you write, we have buttons that will automatically add fields to fill in.
+
+**WATCH OUT👀,** the required fields will be those in which it will be impossible for the user to send the message if they don't have anything written.
+
+![Form fields configuration](/blog/covers/wordpress_to_astro_EN.png)
+
+In the next section we'll be able to write how we want that email to reach us.
+
+Also, at the end, in **email (2)** it offers us the possibility that the user receives an email automatically when they send their email to us.
+
+![Form emails configuration](/blog/covers/wordpress_to_astro_EN.png)
+
+Finally, (since the additional settings won't be of great importance to us) we'll have the messages that will appear to the user when they click on the form submit button.
+
+![Form messages](/blog/covers/wordpress_to_astro_EN.png)
+
+**ADD CAPTCHA TO OUR FORM**
+
+First of all, maybe you're wondering what a captcha is. Well, pay attention 🦜
+
+Weaponhealth Captcha or simply CAPTCHA are the acronyms for *Completely Automated Public Turing test to tell Computers and Humans Apart*. They are challenge-response tests controlled by machines (no type of maintenance or human intervention is necessary for their realization, and it's implemented on a computer) that are used to determine when the user is a human or an automatic program (bot).
+
+WikiPedia and its ambiguous explanations 🙄.
+Captcha, after all is a small automated program capable of, according to a series of tests or artificial intelligence, with the mere fact of detecting when a user is a user and when a robot is a robot.
+
+If you have a website or application that allows some type of contact (registration, login, etc.), be sure that your inbox will end up filling with spam trying to sell you porn. 🤣
+
+That's why, we're going to install a captcha to our newly made form 👨‍🍳.
+
+Just like before, WordPress, having a bunch of plugins and a very large community behind it, has hundreds of plugins to insert a captcha in our form. That said, we'll always have to look for one that's compatible with our form plugin. **That**, is what's really complicated.
+
+![Captcha plugins for WordPress](/blog/covers/wordpress_to_astro_EN.png)
+
+That's why, I prefer to use Google's reCaptcha for some simple reasons briefly explained in this video here 👇
+
+<iframe src="https://www.youtube.com/embed/hMJsCBUBhcY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Now yes, let's get to action 🧨
+
+First, let's go to Google's official website to register a new [reCaptcha](https://www.google.com/recaptcha/admin/create). We write an identifying name in the label, choose the reCaptcha version, write the domain we want that captcha to affect and send the option.
+
+Then we go to **Contact > Integration > reCaptcha** and write our corresponding secret key and site key
+
+![reCaptcha configuration in Contact Form 7](/blog/covers/wordpress_to_astro_EN.png)
+
+And with this that would be everything for today, guys, I hope you liked it and it was of great use to you! 🤓 We'll see each other very soon here and you already know you can follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+

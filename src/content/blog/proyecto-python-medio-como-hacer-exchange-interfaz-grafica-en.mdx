@@ -1,0 +1,211 @@
+---
+title: "Intermediate Python Project: How to Make an Exchange with Graphical Interface?"
+description: "Learn to create a currency converter (exchange) with graphical interface in Python using tkinter and a real-time exchange rate API."
+excerpt: "Learn to create a currency converter (exchange) with graphical interface in Python using tkinter and a real-time exchange rate API."
+category: "software development"
+tags: ["python", "tkinter", "gui", "exchange", "api", "converter", "currencies", "tutorial", "programming"]
+author: "fcoterroba"
+date: "2020-09-14"
+readTime: "15 min read"
+featured: false
+coverImage: "/blog/covers/python-wallpaper-rules.jpg"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoteroba on the Internet and today I'm bringing you another post where we're going to do another project in our beloved 💚 programming language Python 🐍.
+
+This project is somewhat more complex than the two previous ones already done on the web.
+If you haven't seen them already, I recommend you see them before continuing with this one: [How to make a calculator in the command console?](https://fcoterroba.com/proyecto-python-principiantes-calculadora) as well as the project we did [to generate QR codes.](https://fcoterroba.com/proyecto-python-principiantes-generar-codigo-qr)
+
+Before we begin, although I'm going to explain what it is later, I recommend you visit a post I uploaded more than a month ago, where I explain many of the most used computer terms in our daily lives. Since, in this post, you'll see words that probably won't sound familiar to you. 🤯 **[You can read the post here](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+I also want to remind you that a few weeks ago I uploaded a video to my YouTube channel, very interesting, focused on home automation. Specifically, we connected, configured, and installed a smart light bulb 💡 with which you can change its color, turn it off, turn it on, and much more simply by using your mobile phone and/or voice assistants like Google, Alexa, etc. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Now yes, let's begin 👇🏻
+
+**What is an exchange?**
+
+Well, I imagine that before programming something, you'll want to know what that thing is. For this, I'll tell you what Wikipedia says about it:
+
+Exchanges, also known as platforms or exchange markets, are digital platforms that allow exchanging digital currencies for fiat money and/or other cryptocurrencies or goods.
+
+It's a strange explanation at the same time as explicit, uniquely and exclusively focused on cryptocurrencies.
+
+But, in reality, an exchange is defined as a site, web or (in our case) program to enter a value in a certain currency or cryptocurrency.
+
+And that's what we're going to do today, we're going to create a graphical interface, or GUI for its acronym in English in which, the user will insert a value in a certain currency and the program will show its current value in real time.
+
+**BEFORE YOU BEGIN YOU NEED TO KNOW THAT:**
+
+An API (word you'll see in a moment) is (according to Red Hat's website definition) a set of definitions and protocols that are used to develop and integrate application software. API means application programming interface.
+
+In summary, an API is usually a file from an independent program, programmed uniquely and exclusively to be integrated into other applications.
+
+**Hey, how will we make it show the current value, if this is a market that varies every second?**
+
+I'm going to proceed to explain everything to you, step by step, just as we always do here. But first, I'm going to show you a small GIF of what you're going to learn to program by reading this simple post! 😁
+
+![GIF of the exchange working](https://s8.gifyu.com/images/Exchange_Python_FCOTERROBA.gif)
+
+Now yes, here comes the first step 1️⃣.
+
+We must register on [ExchangeRate-API](https://www.exchangerate-api.com/), which is a free, open and free API to perform conversions between the most varied currencies.
+
+Registration is simple, we'll just need to write the email address we want the free key to arrive at and press the button.
+
+![Registration on ExchangeRate-API](/blog/covers/wordpress_to_astro_EN.png)
+
+Once we register, a very long number will appear in our dashboard. That number is the API key that we'll later use in Python 🐍.
+
+When we have that code. Let's start by opening our favorite IDE. Which in my case is VSCode and we'll start importing the packages we'll need in this project. 📦
+
+Although I always say this when I make a post about Python, I remember that in this programming language it's not necessary to specify what type the variable will be (Char, float, integer,…), unlike many other programming languages since, Python 🐍, will automatically understand the variable type according to what we store in it.
+
+For this project we're going to import tkinter in the following ways **from tkinter import \*** and **from tkinter import ttk**. These two, will obviously be, to make the program's graphical interface.
+Finally, we must also import the requests package, which works with web pages to decode their JSON, extract information and much more. The code is **import requests.**
+
+**WATCH OUT 👀**, you'll probably get an error with the requests package, and this is because you have to install it first in the command line using the pip installer. **pip install requests**
+
+**Reminder 🧠**
+Comments in Python are written by putting the symbol **#** at the beginning of the line
+Functions in programming. Functions, in summary, is a piece of code that, although written, will never be triggered until it's invoked. 🧙🏻‍♂️
+
+**TKinter** 🎨
+We have to create a root window by setting a name before **Tk()**.
+Then we give the window size with **minsize(valorx, valory)**.
+We set a title for the window with **title("Name")**
+And so that no user can enlarge or reduce the window size, we'll set both parameters of **resizable(x,y)** to 0.
+
+Adding all this, our program starts like this:
+
+```python
+from tkinter import *
+from tkinter import ttk
+import requests
+
+#Window definition
+ventana = Tk() 
+ventana.minsize(500, 500)
+ventana.title("Exchange made in Python | fcoterroba.com")
+ventana.resizable(0,0)
+```
+
+Let's now do the main part, everything that will appear in our main window.
+
+1️⃣ First, we're going to write a Label as a program title, giving it its respective design and layout configuration.
+
+```python
+titulo_label = Label(ventana, text="¡Exchange de todas las monedas!")
+titulo_label.config(
+        fg="white",
+        bg="black",
+        font=("Arial", 30),
+        padx=210,
+        pady=20
+    )
+titulo_label.grid(row=0, column=0)
+```
+
+2️⃣ Second, set the text entry, even if it's a number, Tkinter doesn't distinguish it, so we'll be the ones who give an alert if it's not a number.
+The text entry will be stored in a variable that we must declare beforehand. I've done it right on the line below **ventana.resizable**
+
+```python
+numero_label = Label(ventana, text="Dime el número y la moneda correspondiente")
+numero_entry = Entry(ventana, textvariable=numero_data)
+numero_label.grid(row=1, column=0, padx=5, pady=5)
+numero_entry.grid(row=2, column=0, padx=5, pady=5)
+```
+
+3️⃣ The third part is creating the Comboboxes. These elements are like dropdown lists seen in web development or others.
+To create them in Python you must give it a name followed by **ttk.Combobox()**.
+Then, you have to block the user from being able to write on top of the list with **ttk.Combobox(state="readonly")**
+Finally, you must write all the values you want to appear in that Combobox. In this case, they'll be all the currencies available in the API.
+This has to be repeated twice, first for your money currency and then the currency you want to convert it to.
+
+```python
+combo = ttk.Combobox()
+combo = ttk.Combobox(state="readonly")
+combo["values"] = ["USD", 'AED', 'ARS', 'AUD', 'BGN', 'BRL', 'BSD', 'CAD', 'CHF', 'CLP', 'CNY', 'COP', 'CZK', 'DKK', 'DOP', 'EGP', 'EUR', 'FJD', 'GBP', 'GTQ', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'KZT', 'MVR', 'MXN', 'MYR', 'NOK', 'NZD', 'PAB', 'PEN', 'PHP', 'PKR', 'PLN', 'PYG', 'RON', 'RUB', 'SAR', 'SEK', 'SGD', 'THB' 'TRY', 'TWD', 'UAH', 'UYU', 'ZAR']
+combo.grid(row=3, column=0, padx=5, pady=5)
+
+second_moneda = Label(ventana, text="A qué moneda lo quieres convertir?")
+second_moneda.grid(row=4, column=0, padx=5, pady=5)
+
+combo2 = ttk.Combobox()
+combo2 = ttk.Combobox(state="readonly")
+combo2["values"] = ["USD", 'AED', 'ARS', 'AUD', 'BGN', 'BRL', 'BSD', 'CAD', 'CHF', 'CLP', 'CNY', 'COP', 'CZK', 'DKK', 'DOP', 'EGP', 'EUR', 'FJD', 'GBP', 'GTQ', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'KZT', 'MVR', 'MXN', 'MYR', 'NOK', 'NZD', 'PAB', 'PEN', 'PHP', 'PKR', 'PLN', 'PYG', 'RON', 'RUB', 'SAR', 'SEK', 'SGD', 'THB' 'TRY', 'TWD', 'UAH', 'UYU', 'ZAR']
+combo2.grid(row=5, column=0, padx=5, pady=5)
+```
+
+4️⃣ We continue with the fourth step, which is to make the button with the command of a function that we'll make in the next step. Function that will perform all the conversion logic and show the result.
+Also, let's not forget ❗ our precious mainloop. So that the program appears visually.
+
+```python
+boton = Button(ventana, text="Convertir", command=conversion)
+boton.grid(row=6, column=0)
+ventana.mainloop()
+```
+
+5️⃣ In our fifth step we're going to create a function with the name we've given to the **command** property of our button. **def conversion():**
+Inside that function, we're going to do a try/except mainly for when the user inserts something other than numbers.
+**TRY**
+We're going to create a variable to get the API URL adding the currency number 1 at the end with **combo.get()**.
+Then, we create a response variable to get the requests from the url with **requests.get(url).**
+After, we create another data variable to store the json from response.
+
+**And now yes, let's start with the math! 🔣**
+We have to convert the number we have to float, creating a new variable.
+To finish we must create a new result variable multiplying that float number by the currency existing in the JSON file.
+
+That said, we would only need to set a design and voilà.
+
+**EXCEPT**
+We're simply going to copy the design made for the previous result, putting a text about the error and making it somewhat more eye-catching.
+
+```python
+def conversion():
+    try:
+        url = 'https://v6.exchangerate-api.com/v6/TU-API-KEY/latest/'+combo.get()
+        response = requests.get(url)
+        data = response.json()
+        
+        numero1 = float(numero_entry.get())
+        resultado = round((numero1 * data['conversion_rates'][combo2.get()]), 2)
+        
+        espacio = Label(ventana, text="")
+        espacio.grid(row=7, column=0)
+        
+        resultado_label = Label(ventana, text=resultado)
+        resultado_label.grid(row=8, column=0)
+        resultado_label.config(
+            fg="black",
+            bg="white",
+            font=("Arial", 20),
+            padx=400,
+            pady=20
+        )
+    except:
+        espacio = Label(ventana, text="")
+        espacio.grid(row=7, column=0)
+        
+        resultado_label = Label(ventana, text="Hay algo incorrecto. Recuerda que solo puedes escribir NÚMEROS")
+        resultado_label.grid(row=8, column=0)
+        resultado_label.config(
+            fg="red",
+            bg="black",
+            font=("Arial", 20),
+            padx=100,
+            pady=20
+        )
+```
+
+If we haven't skipped any step, our project should look something like this:
+
+<script src="https://gist.github.com/fcoterroba/716c6387732627b4ab002ec0be6ac36a.js"></script>
+
+And that's been everything for today guys, I hope you liked this post as much as I enjoyed making it, programming the project and fighting with the API! After all, this is the beauty of programming, don't you think? 🤓
+
+We'll see each other very soon here and you already know you can follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). 🤟🏻
+

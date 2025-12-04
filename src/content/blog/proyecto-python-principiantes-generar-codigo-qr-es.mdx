@@ -1,0 +1,131 @@
+---
+title: "Proyecto Python principiantes: ¿Cómo generar códigos QR?"
+description: "Aprende a crear un generador de códigos QR en Python paso a paso, con explicación de cada línea de código y la capacidad de guardar las imágenes generadas."
+excerpt: "Aprende a crear un generador de códigos QR en Python paso a paso, con explicación de cada línea de código y la capacidad de guardar las imágenes generadas."
+category: "programación de software"
+tags: ["python", "qr", "código-qr", "tutorial", "principiantes", "programación", "proyecto"]
+author: "fcoterroba"
+date: "2020-08-10"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/python-wallpaper-quotes.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que vamos a hacer, cómo siempre, paso a paso, con buena letra y explicando cada línea del código, un generador de códigos QR que permitirá también guardar la imagen para compartirla posteriormente en tus redes sociales o website. ⬜⬛
+
+Antes de comenzar, aunque posteriormente te voy a explicar qué es, te recomiendo visitar un post que subí hace más de un mes, en el que explico muchos de los términos informáticos más usados en nuestro día a día. (Sí, QR incluido.) 😁. **[Puedes leer el post aquí](https://fcoterroba.com/diccionario-tecnologico-informatico)**.
+
+También quiero recordarte que hace unas semanas subí un vídeo a mi canal de YouTube, muy interesante, enfocado en la domótica del hogar. Concretamente, conectamos, configuramos e instalamos una bombilla inteligente 💡 con la que puedes cambiar el color de la misma, apagarla, encenderla y muchísimo más simplemente haciendo uso de tu teléfono móvil y/o asistentes de voz cómo Google, Alexa, etcétera. 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Para concluir, te recomiendo también [leer mi post de la semana pasada en el que también hicimos un proyecto para principiantes en Python. Concretamente, una calculadora totalmente funcional.
+Además, damos al principio del post varias pautas para comenzar en este lenguaje, así como la instalación de las variables de entorno, la configuración del IDE, etcétera. 😵](https://fcoterroba.com/proyecto-python-principiantes-juego-piedra-papel-tijeras)
+
+Ahora sí que sí, comencemos. 👇🏻
+
+**¿Qué son los códigos QR?**
+
+Un código QR es un código de barras bidimensional cuadrada que puede almacenar los datos codificados. La mayoría del tiempo los datos es un enlace a un sitio web (URL).
+Hoy en día, los códigos QR se pueden ver en folletos, carteles, revistas, etc. Usted puede detectar fácilmente estos códigos de barras de dos dimensiones a tu alrededor. Los códigos QR permiten interactuar con el mundo a través de su smartphone.
+Específicamente, un QR Code extiende los datos a disposición de cualquier objeto físico y crean una medida digital para las operaciones de marketing. Esta tecnología permite y acelera el uso de servicios web para móviles: se trata de una herramienta digital muy creativa.
+
+En resumen, un código QR es un código similar al código de barras, pero con forma cuadrada en la cual va codificada una palabra, imagen, enlace o cualquier otro tipo de archivo. 🔛
+
+Hoy en día, los códigos QR están a la orden del día y esto se ve notablemente en los restaurantes o bares, en los cuales ya no se entrega carta al consumidor sino que, se ve un código de estas características pegada a la mesa, para que el usuario escanee dicho código y pueda ver la carta desde su propio dispositivo móvil. 📱
+
+Es por eso, en parte, que hago este proyecto, para todas aquellas personas que quieran aprender a programar su propio codificador de códigos QR para su propio negocio sin depender de ningún tercero. 😀
+
+**DECODIFICADOR QR EN LA LÍNEA DE COMANDOS**
+
+Primeramente, al igual que cómo hacemos siempre aquí, te voy a enseñar un pequeño GIF de lo que vas a aprender a programar leyendo este simple post! 😁
+
+![GIF del generador de códigos QR funcionando](https://s7.gifyu.com/images/GIF-09-08-2020-3-33-56.gif)
+
+Está guapo, verdad? Pues comencemos! 👀
+
+Lo primero que debemos hacer es abrir nuestro IDE favorito (en mi caso es Visual Studio Code) 💙
+
+Aunque lo dije en el anterior post, recuerdo que en Python no es necesario precisar de qué tipo será la variable (Char, float, entero,…), a diferencia de otros muchos lenguajes de programación ya que, Python 🐍, entenderá automáticamente el tipo de variable según lo que guardemos en él.
+
+Para este proyecto (y para casi todos, realmente) a mí me gusta importar tanto el paquete **time (import time)** ⌚ como el paquete **sys** ya que, me gusta establecer unos segundos para facilitar la lectura de la pantalla al usuario. Su uso es simplemente escribiendo **time.sleep(x)** cambiando la **x** por un número determinado, en segundos.
+El paquete sys sirve para realizar funciones del sistema operativo, entre muchas, la que yo uso principalmente es la de **sys.exit()** para cerrar el programa cuando el usuario lo pida.
+Para finalizar, para este proyecto en concreto debemos importar el paquete **qrcode**, que es el que realizará la función de generado de código.
+
+Los comentarios en Python se escriben poniendo al comienzo de la línea el símbolo **#**
+
+Con print, al igual que en casi todos los lenguajes de programación, vamos a escribir por pantalla ✍🏻.
+
+Por último, aunque probablemente lo más importante. En este proyecto vamos a ver las funciones en la programación. Las funciones, de manera resumida, es un trozo de código que, aunque esté escrita, nunca se accionará hasta que sea invocada. 🧙🏻‍♂️
+
+Pues bueno, después de explicar todo eso previamente, comentar algunas líneas de código, importar los paquetes necesarios, preparar la primera función y hacer una presentación al programa, nos quedará algo cómo esto:
+
+```python
+#Importado de los paquetes necesarios
+import time
+import qrcode
+import sys
+
+#Función para generar el código QR
+def generado_Codigo(): 
+    print("***********************************************************************************************") 
+    print("Hola mundo! Soy fcoterroba, puedes visitar mi web en www.fcoterroba.com")
+    time.sleep(2)
+    print("Este es un programa que te pide un enlace o texto y te genera un código QR en formato PNG.")
+    time.sleep(3)
+```
+
+Con esto habremos creado una pantalla principal muy rápida, interesante y minimalista.
+
+Necesitamos, ahora, pedirle al usuario que escriba el enlace o texto que quiera codificar a QR.
+
+Para ello debemos crear el nombre de la variable seguido de un input. 📥
+
+Posteriormente, viene la parte importante del codificado en la que crearemos un objeto qrcode.make(variable en cuestión). Dándole un nombre, obviamente. 🤓
+
+Casi para acabar, abrimos dicha imagen para añadirle el nombre correctamente usando la opción **open**("nombredelarchivo.extension", "wb").
+Por último, guardamos dicha imagen usando el método **save.** 🤯
+
+Nos debería quedar algo así 👇🏻
+
+```python
+    #Preguntamos al usuario qué quiere codificar
+    codificar = input(f"COMENCEMOS!\n¿Qué palabra o enlace quieres que te codifique en QR? ")
+    print("Codificando...")
+    time.sleep(3)
+    img = qrcode.make(codificar)
+    f = open(codificar+"_QR.png", "wb")
+    img.save(f)
+    print(f"LISTO!\nTienes la imagen correctamente creado con el nombre {codificar}_QR.png")
+    time.sleep(2)
+    preguntar_Opcion()
+```
+
+Con esto habríamos creado correctamente el archivo y se habría guardado en la carpeta en cuestión dónde está alojado el script python. 🐍
+
+Posteriormente hice otra función que preguntaba al usuario (de ahí la invocación en la última línea), al final de cada generación de QR, si quería hacer algún código más o si directamente quería salir del programa. (Ahora es dónde entra en juego el paquete **sys**). 👦🏻
+
+Dicha función es muy sencilla, solo cuenta con un input para que el usuario escriba la opción que quiere hacer y dos condiciones if/else para salir del programa o invocar la función **generado_Codigo()**.
+
+Por último, que no se nos olvide, fuera de las funciones y cómo última línea de código, debemos invocar otra vez, la función **generado_Codigo()** porque, sino, de otra manera, el programa jamás comenzaría. ♾
+
+```python
+def preguntar_Opcion():
+    opcion = input(f"¿Qué quieres hacer ahora? (H)acer otro código | (S)alir del programa\n")
+    if opcion=='h' or opcion=='H':
+        generado_Codigo()
+    else:
+        time.sleep(0.4)
+        print("Hasta pronto! No olvides visitar mi web www.fcoterroba.com")
+        sys.exit()
+
+generado_Codigo()
+```
+
+Todo junto se quedaría algo así:
+
+<script src="https://gist.github.com/fcoterroba/b355115321d4ae60244be16ee8e573d8.js"></script>
+
+Y esto es todo por hoy chicos, espero que os haya gustado este post tan interesante! Podéis ponerme en los comentarios todo lo que os apetezca: dudas, consultas, consejos, etcétera. No olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). ¡Nos vemos la semana que viene!
+
