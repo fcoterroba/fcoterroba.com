@@ -1,0 +1,103 @@
+---
+title: "Virtual Machines: What Are They and What Are They Used For?"
+description: "Learn what virtual machines are, what they're used for and how to create your first virtual machine using VirtualBox step by step."
+excerpt: "Learn what virtual machines are, what they're used for and how to create your first virtual machine using VirtualBox step by step."
+category: "general computing"
+tags: ["virtual-machines", "virtualbox", "virtualization", "operating-systems", "tutorial", "computing"]
+author: "fcoterroba"
+date: "2020-07-27"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/virtualbox.png"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where I'm going to talk about virtual machines. What are they and what can you use them for? Regardless of your computer knowledge.
+
+Before we begin, I recommend you visit a [post I uploaded very recently where I explain, in my own handwriting, some of the most currently used terms in computing and technology. Also, at the end of it, I attach 2 PDF documents to expand knowledge even more, which doesn't take up space](https://fcoterroba.com/diccionario-tecnologico-informatico).
+
+Finally, before starting with the post, I warn that I've uploaded a video to my YouTube channel where I explain how to install a smart 💡 light bulb with which you can change color, turn off or on with voice and/or mobile, reduce its intensity or increase it, etc. You can see it here 👇
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Now yes, let's begin! 👨‍💻
+
+Virtual machines (virtual machine or MV/VM for its acronyms in Spanish and English) is a term frequently used in computing, specific also to the business sector. 🏢
+
+A virtual machine is nothing more than software that simulates a computing system and can execute programs as if it were a real computer. This software was initially defined as "an efficient and isolated duplicate of a physical machine". The current meaning of the term includes virtual machines that have no direct equivalence with any real hardware.
+
+As always, Wikipedia's definition is very good, it's very complete, but nothing clear comes out. That's why, I tell you, in summary, what an MV is 👇🏻
+
+A virtual machine is nothing more than a program that emulates a computer inside our own computer. In summary, a program to have Windows, or any other operating system or process, inside our computer, regardless of its operating system.
+
+Confused? 😵 Keep reading, it's easier and simpler than it seems.
+
+Before continuing, although it's not relevant, you should know that there are two types of virtual machines:
+
+- **Process virtual machines**
+  It doesn't emulate as such a complete computer, with its mouse, keyboard input and others. Rather, it's in charge of executing a complete process. Like a program or application.
+  If you've studied Java, a process virtual machine would be the Java Virtual Machine of Oracle's language, which comes in its JRE.
+
+- **System virtual machines**
+  This type of virtual machines are the really interesting ones for the common user since, they're programs capable of creating a new operating system inside our existing one.
+
+As I've already said, the one that's relevant for us, currently, are system virtual machines. Let's continue then ⬇.
+
+A system virtual machine (from now on we'll shorten it to virtual machine or MV) in case it wasn't clear, performs the action, speaking plainly, of emulating a computer inside a computer, makes us have two computers in one. Being able to install the operating system we want and add more or less features to it.
+
+Before getting into the matter, you should know two very important words:
+
+- **Hypervisor, host or host**
+  These nouns are reserved to indicate that the machine we're talking about is the "real" one, the physical one, the one that offers resources to the rest of virtual machines.
+
+- **Guest**
+  They're used to indicate that the machines we're talking about are virtual machines, created by ourselves and that aren't physical but are inside our host computer.
+
+Now that you already know everything necessary, theoretically about virtual machines. We can proceed to install the necessary software as well as the initial configuration to be able to create our first virtual machine.
+
+There are an infinite number of programs that perform this action, some of the most famous are: [VMWare](https://www.vmware.com/), [Parallels](https://www.parallels.com/es/), [Hyper-V](https://docs.microsoft.com/es-es/virtualization/hyper-v-on-windows/about/) exclusive by and for Windows, [Xen](https://xenproject.org/), [Qemu](https://www.qemu.org/download/) and [DOSBox](https://www.dosbox.com/), a main emulator and only intended to virtualize DOS operating systems.
+
+In our case, and for this post, we're going to use [VirtualBox](https://www.virtualbox.org/) (currently owned by Oracle) for its code freedom, potential to expand, simplicity and virtualization power when using uniquely and exclusively the exact percentage we've agreed on of the hypervisor components.
+
+![VirtualBox logo](/blog/covers/wordpress_to_astro_EN.png)
+
+👆🏻 If you click on the image you go to VirtualBox's official page. Then, let's go to the **"Downloads"** tab, in the left sidebar, the third option.
+
+We'll then click on our host team's platform, which in my case, when writing this post, is Windows.
+
+![VirtualBox download page](/blog/covers/wordpress_to_astro_EN.png)
+
+Once the executable file is downloaded we're going to install it like any other program.
+
+When it's installed, let's start the program and we'll find a tab like this. (obviously empty, the one I have is for studying and tinkering with networks)
+
+![VirtualBox interface](/blog/covers/wordpress_to_astro_EN.png)
+
+Before continuing we must emphasize one thing and that is that, by default all computers come with processor virtualization deactivated so you'll only be able to create 32-bit virtual machines. To unlock all functions you can do something like this (although in each BIOS it will be different, you can consult the motherboard manual) 👇🏻.
+
+<iframe src="https://www.youtube.com/embed/Lu4W_1fmZOI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Once we have that part done ✅, let's create our first virtual machine.
+
+First, we click on the option with the blue symbol with the name "New".
+Then we assign a name, the location where everything related to the virtual machine will be saved as well as the type and version of operating system we're going to install.
+In the next pop-up it will ask us for the RAM memory size we want to assign exclusively to the operating system.
+After, it will ask us when to create the hard disk, what type it will be, the size, etc.
+
+![GIF of virtual machine creation](https://s7.gifyu.com/images/GIF-21-07-2020-0-43-06.gif)
+
+Once the virtual machine is created ✅, we need to insert the disk file that contains the operating system installation.
+
+For this we must enter the configuration (next to the blue cloud)
+Go down to "Storage", select the empty IDE controller and then click on the disk icon on the right 💿.
+To finish, we select a disk file and search for the ISO location.
+
+![GIF of ISO configuration](https://s7.gifyu.com/images/GIF-21-07-2020-0-49-39.gif)
+
+By doing this, we have the virtual machine totally ready and functional, waiting for us to press start to begin installing the operating system as if it were a physical computer! 😋
+
+That's all for today guys, I hope you liked the post and don't forget to follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). See you next week!
+
+sources:
+[Wikipedia](https://es.wikipedia.org/wiki/M%C3%A1quina_virtual) and [Xataka](https://www.xataka.com/especiales/maquinas-virtuales-que-son-como-funcionan-y-como-utilizarlas)
+

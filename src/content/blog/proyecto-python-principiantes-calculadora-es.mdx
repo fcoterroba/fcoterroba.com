@@ -1,0 +1,97 @@
+---
+title: "Proyecto Python principiantes: ¿Cómo hacer una calculadora?"
+description: "Aprende a programar una calculadora básica en Python paso a paso, explicando línea a línea cada concepto y operación matemática."
+excerpt: "Aprende a programar una calculadora básica en Python paso a paso, explicando línea a línea cada concepto y operación matemática."
+category: "programación de software"
+tags: ["python", "calculadora", "tutorial", "principiantes", "programación", "proyecto", "matemáticas"]
+author: "fcoterroba"
+date: "2020-08-03"
+readTime: "8 min read"
+featured: false
+coverImage: "/blog/covers/python-art.jpg"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que os voy a explicar, cómo siempre hago, explicando línea a línea, cómo programar uno de los proyectos más básicos en cualquier lenguaje de programación, una calculadora!
+
+Antes de comenzar a estrujarnos el cerebro 🧠 para programar este juego, os recuerdo que hace un par de semanas subí a mi canal de YouTube un vídeo en el que explico cómo realizar la instalación de una bombilla 💡 inteligente con la que podrás cambiar de color, apagar o encender con la voz y/o móvil, reducir o aumentar su intensidad, etcétera. Además, la tienes lista en MENOS de 3 MINUTOS ❗ En la descripción encuentras además alguna que otra sorpresita 😏
+Puedes verlo (y suscribirte) aquí 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Antes de comenzar a programar con Python, tienes que tenerlo instalado correctamente en tu sistema operativo. Para ello te recomiendo leer la [documentación oficial disponible en inglés aquí.](https://wiki.python.org/moin/BeginnersGuide/Download)
+
+Ahora sí que sí, comencemos
+
+**JUEGO EN LA LÍNEA DE COMANDOS**
+
+Primeramente, te quiero enseñar en un simple gif, qué es lo que vas a acabar haciendo cuando termines de leer este post! 👇🏻
+
+![GIF de la calculadora funcionando](https://s6.gifyu.com/images/GIF-03-08-2020-15-26-50.gif)
+
+Te gusta, ¿verdad? Pues sigue leyendo! 👀
+
+Lo primero que debemos hacer es abrir nuestro IDE favorito (en mi caso es Visual Studio Code)
+
+Posteriormente, debemos crear las dos variables que, a priori, sabremos que vamos a necesitar, que son las variables para almacenar los números que insertará el usuario.
+
+En Python no es necesario precisar de qué tipo será la variable (Char, float, entero,...), a diferencia de otros muchos lenguajes de programación ya que, Python 🐍, entenderá automáticamente el tipo de variable según lo que guardemos en él.
+
+Para este proyecto (y para casi todos, realmente) a mí me gusta importar el paquete **time (import time)** ⌚ ya que, me gusta establecer unos segundos para facilitar la lectura de la pantalla al usuario. Su uso es simplemente escribiendo **time.sleep(x)** cambiando la **x** por un número determinado, en segundos.
+
+Los comentarios en Python se escriben poniendo al comienzo de la línea el símbolo **#**
+
+Con print, al igual que en casi todos los lenguajes de programación, vamos a escribir por pantalla ✍🏻.
+
+Pues bueno, después de explicar todo eso previamente, comentar algunas líneas de código, importar los paquetes necesarios y hacer una presentación al programa, nos quedará algo cómo esto:
+
+```python
+#Calculadora en CMD by fcoterroba.com 
+import time
+
+print("¡Hola! Bienvenido a la calculadora escrita en Python y desarrollada por fcoterroba")
+time.sleep(1)
+print("Puedes encontrar más códigos tan interesantes como este en mi página web")
+print(f"www.fcoterroba.com\nAhora sí, comencemos: ")
+time.sleep(0.8)
+```
+
+Con esto habremos creado una pantalla principal muy rápida, interesante y minimalista.
+
+Necesitamos, ahora, pedirle al usuario que escriba los dos números sobre los que querrá trabajar con sumas, multiplicaciones, restas,...
+
+Para ello debemos crear el nombre de la variable seguido de un input, convertido a int, ya que, por defecto el input recoge valores y los almacena en formato texto.
+
+```python
+numero1 = int(input("Dime el primer número: "))
+numero2 = int(input(f"Bien! Ahora dime el segundo número: "))
+print(f"De acuerdo, has escogido el {numero1} y el {numero2}")
+time.sleep(1)
+```
+
+Ahora que ya tenemos los números guardados en variables, debemos preguntar al usuario qué tipo de cálculo quiere realizar entre ambos y, para acabar, realizar una serie de condiciones si/si no para averiguar la tecla pulsada.
+
+```python
+simbolo = input(f"¿Qué quieres hacer con estos números? (Escribe la primera letra)\n -Sumar\n -Restar\n -Multiplicar\n -Dividir\n")
+
+if simbolo == 's' or simbolo == "S":
+    print(f"{numero1} + {numero2} =",(numero1+numero2))
+elif simbolo == 'r' or simbolo == "R":
+    print(f"{numero1} - {numero2} =",(numero1-numero2))
+elif simbolo == 'm' or simbolo == "M":
+    print(f"{numero1} * {numero2} =",(numero1*numero2))
+elif simbolo == 'd' or simbolo == "D":
+    print(f"{numero1} / {numero2} =",(numero1/numero2))
+else:
+    print(f"No has escrito ninguna letra correcta\nS|s para sumar R|r para restar M|m para multiplicar o D|d para dividir")
+```
+
+Y con esto y un bizcocho 🎂, ya hemos terminado!
+
+Ahora, a ti, pequeño amigo, te propongo dos puntos para completar en este proyecto:
+
+- Primero, has de mejorar la calculadora que hemos hecho, en el sentido de la organización del código, tener código limpio y no ser tanto código spaghetti 🍝. Has de usar funciones, colocar correctamente el código en su sitio, etcétera.
+- Por último, debes trasladarme esta calculadora a una interfaz gráfica o GUI. La más usada en Python 🐍 es TKinter, pero puedes usar cualquier otro paquete que quieras como PySimpleGUI, Kivi, PySide2, etcétera. Las opciones son amplias!
+
+Y esto ha sido todo por hoy chicos, espero que os haya gustado el post, acercándonos fácil y sencillamente a la programación. No olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). ¡Nos vemos la semana que viene!
+

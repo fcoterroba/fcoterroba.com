@@ -1,0 +1,97 @@
+---
+title: "Beginner Python Project: How to Make a Calculator?"
+description: "Learn to program a basic calculator in Python step by step, explaining line by line each concept and mathematical operation."
+excerpt: "Learn to program a basic calculator in Python step by step, explaining line by line each concept and mathematical operation."
+category: "software development"
+tags: ["python", "calculator", "tutorial", "beginners", "programming", "project", "mathematics"]
+author: "fcoterroba"
+date: "2020-08-03"
+readTime: "8 min read"
+featured: false
+coverImage: "/blog/covers/python-art.jpg"
+lang: "en"
+---
+
+Hello world 👋🏻 my name is Francisco, fcoterroba on the Internet and today I'm bringing you a post where I'm going to explain, as I always do, explaining line by line, how to program one of the most basic projects in any programming language, a calculator!
+
+Before we start squeezing our brains 🧠 to program this game, I remind you that a couple of weeks ago I uploaded to my YouTube channel a video where I explain how to install a smart 💡 light bulb with which you can change color, turn off or on with voice and/or mobile, reduce or increase its intensity, etc. Also, you have it ready in LESS than 3 MINUTES ❗ In the description you also find some other surprise 😏
+You can see it (and subscribe) here 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Before starting to program with Python, you must have it installed correctly on your operating system. For this I recommend reading the [official documentation available in English here.](https://wiki.python.org/moin/BeginnersGuide/Download)
+
+Now yes, let's begin
+
+**GAME IN THE COMMAND LINE**
+
+First, I want to show you in a simple gif, what you're going to end up doing when you finish reading this post! 👇🏻
+
+![GIF of the calculator working](https://s6.gifyu.com/images/GIF-03-08-2020-15-26-50.gif)
+
+You like it, right? Well keep reading! 👀
+
+The first thing we must do is open our favorite IDE (in my case it's Visual Studio Code)
+
+Then, we must create the two variables that, a priori, we'll know we're going to need, which are the variables to store the numbers that the user will insert.
+
+In Python it's not necessary to specify what type the variable will be (Char, float, integer,...), unlike many other programming languages since, Python 🐍, will automatically understand the variable type according to what we store in it.
+
+For this project (and for almost all, really) I like to import the **time (import time)** ⌚ package since, I like to set a few seconds to facilitate screen reading for the user. Its use is simply by writing **time.sleep(x)** changing **x** for a certain number, in seconds.
+
+Comments in Python are written by putting the symbol **#** at the beginning of the line
+
+With print, just like in almost all programming languages, we're going to write to the screen ✍🏻.
+
+Well, after explaining all that previously, commenting some lines of code, importing the necessary packages and making a presentation to the program, we'll have something like this:
+
+```python
+#Calculator in CMD by fcoterroba.com 
+import time
+
+print("Hello! Welcome to the calculator written in Python and developed by fcoterroba")
+time.sleep(1)
+print("You can find more interesting codes like this one on my website")
+print(f"www.fcoterroba.com\nNow yes, let's begin: ")
+time.sleep(0.8)
+```
+
+With this we'll have created a very fast, interesting and minimalist main screen.
+
+We need, now, to ask the user to write the two numbers they'll want to work with additions, multiplications, subtractions,...
+
+For this we must create the variable name followed by an input, converted to int, since, by default input collects values and stores them in text format.
+
+```python
+numero1 = int(input("Tell me the first number: "))
+numero2 = int(input(f"Good! Now tell me the second number: "))
+print(f"Okay, you've chosen {numero1} and {numero2}")
+time.sleep(1)
+```
+
+Now that we already have the numbers stored in variables, we must ask the user what type of calculation they want to perform between both and, to finish, perform a series of if/else conditions to find out the pressed key.
+
+```python
+simbolo = input(f"What do you want to do with these numbers? (Write the first letter)\n -Add\n -Subtract\n -Multiply\n -Divide\n")
+
+if simbolo == 'a' or simbolo == "A":
+    print(f"{numero1} + {numero2} =",(numero1+numero2))
+elif simbolo == 's' or simbolo == "S":
+    print(f"{numero1} - {numero2} =",(numero1-numero2))
+elif simbolo == 'm' or simbolo == "M":
+    print(f"{numero1} * {numero2} =",(numero1*numero2))
+elif simbolo == 'd' or simbolo == "D":
+    print(f"{numero1} / {numero2} =",(numero1/numero2))
+else:
+    print(f"You haven't written any correct letter\nA|a to add S|s to subtract M|m to multiply or D|d to divide")
+```
+
+And with this and a cake 🎂, we're done!
+
+Now, to you, little friend, I propose two points to complete in this project:
+
+- First, you must improve the calculator we've made, in terms of code organization, having clean code and not being so much spaghetti code 🍝. You must use functions, place the code correctly in its place, etc.
+- Finally, you must transfer this calculator to a graphical interface or GUI. The most used in Python 🐍 is TKinter, but you can use any other package you want like PySimpleGUI, Kivi, PySide2, etc. The options are wide!
+
+And that's been everything for today guys, I hope you liked the post, approaching programming easily and simply. Don't forget to follow me on [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) and [LinkedIn](https://www.linkedin.com/in/fcoterroba/). See you next week!
+

@@ -1,0 +1,103 @@
+---
+title: "Máquinas Virtuales: ¿Qué son y para qué se usan?"
+description: "Aprende qué son las máquinas virtuales, para qué se usan y cómo crear tu primera máquina virtual usando VirtualBox paso a paso."
+excerpt: "Aprende qué son las máquinas virtuales, para qué se usan y cómo crear tu primera máquina virtual usando VirtualBox paso a paso."
+category: "informática general"
+tags: ["máquinas-virtuales", "virtualbox", "virtualización", "sistemas-operativos", "tutorial", "informática"]
+author: "fcoterroba"
+date: "2020-07-27"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/virtualbox.png"
+lang: "es"
+---
+
+Hola mundo 👋🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el que voy a hablar sobre máquinas virtuales. ¿Qué son y para qué puedes usarlo?Indistintamente de tu conocimiento informático.
+
+Antes de comenzar, te recomiendo visitar un [post que subí hace muy poco en el que explico, de mi puño y letra, algunos de los términos más usados actualmente en la informática y tecnología. Además, al final del mismo, adjunto 2 documentos PDF para ampliar más aún el saber, que no ocupa lugar](https://fcoterroba.com/diccionario-tecnologico-informatico).
+
+Por último, antes de comenzar con el post, aviso de que he subido un vídeo a mi canal de YouTube en el que explico cómo realizar la instalación de una bombilla 💡 inteligente con la que podrás cambiar de color, apagar o encender con la voz y/o móvil, recudir su intensidad o aumentarla, etcétera. Puedes verlo aquí 👇
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Ahora sí, comenzamos! 👨‍💻
+
+Las máquinas virtuales (virtual machine o MV/VM por sus siglas en español e inglés) es un término frecuentemente usado en informática, específico también del sector empresarial. 🏢
+
+Una máquina virtual no es más que un software que simula un sistema de computación y puede ejecutar programas como si fuese una computadora real. Este software en un principio fue definido como "un duplicado eficiente y aislado de una máquina física". La acepción del término actualmente incluye a máquinas virtuales que no tienen ninguna equivalencia directa con ningún hardware real.
+
+Cómo siempre, la definición de Wikipedia, está muy bien, es muy completita, pero no se saca nada en claro. Es por ello, que te comento, resumidamente, qué es una MV 👇🏻
+
+Una virtual machine no es más que un programa que emula un ordenador dentro de nuestro propio ordenador. En resumen, un programa para tener Windows, o cualquier otro sistema operativo o proceso, dentro de nuestro ordenador, indistintamente de su sistema operativo.
+
+¿Aturdido? 😵 Sigue leyendo, es más fácil y sencillo de lo que parece.
+
+Antes de seguir, aunque no sea relevante, has de saber que existen dos tipos de máquinas virtuales:
+
+- **Máquinas virtuales de procesos**
+  No emula como tal un ordenador completo, con su ratón, su entrada de teclado y demás. Sino que, es encargada de ejecutar un proceso en completo. Como un programa o aplicación.
+  Si has estudiado Java, una máquina virtual de procesos viene a ser la Java Virtual Machine del lenguaje de Oracle, que viene en el JRE del mismo.
+
+- **Máquinas virtuales de sistema**
+  Este tipo de máquinas virtuales son las realmente interesantes para el usuario común dado que, son programas capaces de crear un nuevo sistema operativo dentro del nuestro ya existente.
+
+Cómo ya he dicho, la que es relevante para nosotros, actualmente, son las máquinas virtuales del sistema. Sigamos pues ⬇.
+
+Una máquina virtual del sistema (a partir de ahora la acortaremos en máquina virtual o MV) por si no ha quedado claro, realiza la acción, hablando en plata, de emular un ordenador dentro de un ordenador, nos hace tener dos ordenadores en uno mismo. Pudiendo instalar el sistema operativo que queramos y añadirle más o menos características.
+
+Antes de entrar en materia, has de saber dos palabras muy importantes:
+
+- **Hipervisor, host o anfitrión**
+  Se reservan estos sustantivos para indicar que la máquina de la que hablamos es la "real", la física, la que ofrece los recursos al resto de máquinas virtuales.
+
+- **Guest o invitado**
+  Se usan para indicar que las máquinas de las que hablamos son máquinas virtuales, creadas por nosotros mismos y que no son físicas sino que están dentro de nuestro ordenador anfitrión.
+
+Ahora que sabes ya todo lo necesario, teóricamente acerca de las máquinas virtuales. Podemos proceder a instalar el software necesario así cómo la configuración inicial para poder crear nuestra primera máquina virtual.
+
+Hay una infinidad de programas que realizan esta acción, algunas de las más famosas son: [VMWare](https://www.vmware.com/), [Parallels](https://www.parallels.com/es/), [Hyper-V](https://docs.microsoft.com/es-es/virtualization/hyper-v-on-windows/about/) exclusivo por y para Windows, [Xen](https://xenproject.org/), [Qemu](https://www.qemu.org/download/) y [DOSBox](https://www.dosbox.com/), un emulador principal y únicamente destinado a virtualizar sistemas operativos DOS.
+
+En nuestro caso, y para este post, vamos a usar [VirtualBox](https://www.virtualbox.org/) (actualmente poseída por Oracle) por su libertad de código, potencial para expandirse, sencillez y potencia de virtualización al usar única y exclusivamente el porcentaje exacto que hemos acordado de los componentes del hipervisor.
+
+![VirtualBox logo](/blog/covers/wordpress_to_astro_ES.jpg)
+
+👆🏻 Si das click en la imagen vas a la página oficial de VirtualBox. Entonces, vamos a la pestaña de **"Downloads"**, en la barra lateral izquierda, la tercera opción.
+
+Daremos click entonces en la plataforma de nuestro equipo host, que en mi caso, a la hora de escribir este post, es Windows.
+
+![Página de descarga de VirtualBox](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Una vez que se descargue el archivo ejecutable vamos a instalarlo como cualquier otro programa.
+
+Cuando se haya instalado, vamos a iniciar el programa y nos encontraremos una pestaña así. (obviamente vacía, la que yo tengo es para estudiar y hacer cacharreo de redes)
+
+![Interfaz de VirtualBox](/blog/covers/wordpress_to_astro_ES.jpg)
+
+Antes de seguir hay que recalcar una cosa y es que, por defecto todos los ordenadores vienen con la virtualización de procesador desactivada por lo que sólo podrás crear máquinas virtuales de 32 bits. Para desbloquear todas las funciones podéis hacer algo así (aunque en cada BIOS será distinto, podéis consultar el manual de la placa base) 👇🏻.
+
+<iframe src="https://www.youtube.com/embed/Lu4W_1fmZOI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Una vez que tengamos esa parte hecha ✅, vamos a crear nuestra primera máquina virtual.
+
+Primeramente, damos click en la opción con el símbolo azul con el nombre "Nueva".
+Posteriormente asignamos un nombre, la localización dónde se guardará todo lo relacionado a la máquina virtual así cómo el tipo y versión de sistema operativo que vamos a instalar.
+En el siguiente pop-up nos preguntará por el tamaño de memoria RAM que queremos asignar exclusivamente al sistema operativo.
+Después, nos preguntará cuándo crear el disco duro, de qué tipo será, el tamaño, etc.
+
+![GIF de creación de máquina virtual](https://s7.gifyu.com/images/GIF-21-07-2020-0-43-06.gif)
+
+Una vez creada la máquina virtual ✅, necesitamos insertar el archivo de disco que contiene la instalación del sistema operativo.
+
+Para ello debemos entrar a la configuración (al lado de la nube azul)
+Bajar hasta "Almacenamiento", seleccionar el controlador IDE vacío y posteriormente pinchar en el icono del disco a la derecha 💿.
+Para terminar, seleccionamos un archivo de disco y buscamos la localización de la ISO.
+
+![GIF de configuración de ISO](https://s7.gifyu.com/images/GIF-21-07-2020-0-49-39.gif)
+
+Realizando esto, tenemos la máquina virtual totalmente lista y funcional, esperando que le demos a iniciar para empezar a instalar el sistema operativo cómo si de un ordenador físico se tratase! 😋
+
+Esto es todo por hoy chicos, espero que os haya gustado el post y no olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). ¡Nos vemos la semana que viene!
+
+fuentes:
+[Wikipedia](https://es.wikipedia.org/wiki/M%C3%A1quina_virtual) y [Xataka](https://www.xataka.com/especiales/maquinas-virtuales-que-son-como-funcionan-y-como-utilizarlas)
+
