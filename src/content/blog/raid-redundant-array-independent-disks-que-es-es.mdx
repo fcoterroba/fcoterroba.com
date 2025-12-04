@@ -1,0 +1,123 @@
+---
+title: "RAID. Redundant Array of Independent Disks: ¿Qué es?"
+description: "Aprende qué es RAID, qué significan sus siglas, para qué sirve y cómo configurarlo. Explicación de los niveles RAID 0, RAID 1 y RAID 5 con ejemplos prácticos."
+excerpt: "Aprende qué es RAID, qué significan sus siglas, para qué sirve y cómo configurarlo. Explicación de los niveles RAID 0, RAID 1 y RAID 5 con ejemplos prácticos."
+category: "informática general"
+tags: ["raid", "discos-duros", "almacenamiento", "hardware", "informática", "ssd", "hdd"]
+author: "fcoterroba"
+date: "2020-06-15"
+readTime: "12 min read"
+featured: false
+coverImage: "/blog/covers/discos-duros.jpg"
+lang: "es"
+---
+
+Hola mundo, mi nombre es Francisco, fcoterroba en Internet y hoy os traigo, como cada semana, un nuevo post en el cual, en esta ocasión, os voy a comentar qué significan las siglas RAID dentro de la informática, para qué nos puede servir esto así cómo la configuración de los mismos para la realización.
+
+Pequeño inciso antes de comenzar, te recomiendo pasar por el post que subí hace unas semanas en el cual explico alguno de los términos informáticos y tecnológicos más usados en la actualidad, incluido este. Así cómo un par de PDFs con una explicación más detallada. [¡Vísitame!](https://fcoterroba.com/diccionario-tecnologico-informatico)
+
+**¿Qué significa RAID?**
+
+RAID, ~~aparte de ser una famosa marca antimosquitos~~ 🦟, es un término informático que son siglas. Redundant Array of Independent Disks.
+
+Que, traducido al español, se quedaría algo así cómo "Matriz redundante de discos independientes".
+
+Según Wikipedia, RAID hace referencia a un sistema de almacenamiento de datos que utiliza múltiples unidades (discos duros o SSD), entre las cuales se distribuyen o replican los datos.
+Dependiendo de su configuración (a la que suele llamarse nivel), los beneficios de un RAID respecto a un único disco son uno o varios de los siguientes: mayor integridad, tolerancia frente a fallos, tasa de transferencia y capacidad. En sus implementaciones originales, su ventaja clave era la habilidad de combinar varios dispositivos de bajo coste y tecnología más vieja en un conjunto que ofrecía mayor capacidad, fiabilidad, velocidad o una combinación de éstas que un solo dispositivo de última generación y coste más alto.
+
+Veamos, ahora, sin Wikipedia:
+
+Un RAID es un término tecnológico que hace referencia a un tipo de sistema de almacenamiento de datos, una "forma" de guardar la información en nuestro ordenador.
+
+Los RAID usan 2 o más discos duros (HDD o SSD) entre los cuales, se replican o distribuyen los datos para fortalecer su seguridad o el rápido acceso. La finalidad definitiva del RAID será marcada según el nivel que vayamos a configurar.
+
+**¿Qué son los niveles?**
+
+Realmente, al no haber una sola forma de crear un RAID, estos se dividen en niveles numerados numéricamente.
+
+Hay una infinidad de niveles RAID tanto estándares (RAID 0, RAID 1, RAID 2, …, RAID 6E), RAID anidados, que son mezclando dos estándares anteriores (RAID 0+1, RAID 1+0, RAID 30, etc.) e incluso RAID propietarios (Linux MD RAID 10, IBM ServeRAID 1E, etc.). Aunque en este post, solamente hablaré de los tres niveles RAID más principales, con los que más he trabajado laboral, estudiantilmente y con más frecuencia de uso común.
+
+**RAID 0**
+
+![RAID 0 diagram](https://fcoterroba.com/wp-content/uploads/2020/06/220px-Raid0.png)
+
+El RAID 0 (usualmente denominado como conjunto divido, volumen dividido, volumen seleccionado) es el RAID más básico existente en la actualidad. Solamente necesitas dos discos duros.
+
+Realmente no se debería considerar un nivel RAID ya que no es redundante.
+
+Se suele usar principalmente para aumentar el rendimiento de escritura ya que la realización de la tasa de escritura se realiza de manera paralela entre los dos discos. Su funcionamiento, cómo se puede ver en la imagen es ir escribiendo cada parte de un programa u archivo, por partes entre uno y otro disco.
+
+El tamaño de este conjunto RAID será x² siendo x el disco de capacidad menor. Por ejemplo, si queremos crear un RAID 0 con un disco de 250GB y otro de 500GB, el conjunto resultante será de 500GB, perdiendo así un tercio del total.
+
+**RAID 1**
+
+![RAID 1 diagram](https://fcoterroba.com/wp-content/uploads/2020/06/461px-Raid1.png)
+
+El RAID 1 (también llamado espejo) precisa de 2 o más discos duros para realizarse.
+
+Cómo se puede apreciar en la imagen, el funcionamiento principal de este Array es crear una copia exacta (de ahí lo de espejo) de un conjunto de datos en dos o más discos.
+
+Se confecciona este sistema de discos cuando lo que se busca es un extra en seguridad dado que, si perdiésemos uno de los discos, seguiríamos teniendo el otro perfectamente funcional, dejando lugar simplemente a cambiar el disco averiado por uno nuevo.
+
+Cómo podréis imaginar, este sistema no mejora la velocidad de escritura, pero tampoco la hace ir más lento, dado que trabajan cada disco independientemente en este aspecto.
+
+El tamaño de memoria de este conjunto de discos será igual al tamaño máximo del disco más pequeño existente en el array.
+
+Si repetimos el ejemplo anterior, este RAID 1 tendrá una capacidad de 250GB.
+
+**RAID 5**
+
+![RAID 5 diagram](https://fcoterroba.com/wp-content/uploads/2020/06/460px-Raid5.png)
+
+Y, por último, voy a explicar el RAID 5 (también llamado distribuido con paridad).
+
+En este RAID, cómo apreciáis en la imagen, vamos a necesitar un mínimo de 3 discos duros para la realización del mismo.
+
+El funcionamiento de este RAID se podría resumir en una rara mezcla de los dos RAID anteriormente explicados. Usa el RAID 0, al escribir cada parte del bloque de información entre sus distintos discos y luego, usa la idea del RAID 1, replicando dicha información en el último disco, después de la escritura del mismo, aunque no es así exactamente del todo.
+
+Lo que hace aquí el array es plasmar la división de datos a nivel de bloques que se distribuyen respectivamente usando la paridad entre todos los discos disponibles. (Hablaremos a continuación de la paridad)
+
+Solamente, hasta ahora, has de saber que los bloques de paridad no se leen en las operaciones de lectura ya que estos bloques, son, a palabras mayores, una forma de recuperar los datos si se nos atrofia un disco. Si nos fallara un segundo, esto provocaría la pérdida completa de datos.
+
+RAID 5 sufre cuando es sometido a muchas cargas de trabajo de escriturar pequeñas ya que el bloque de paridad ha de ser actualizado en cada trabajo de escritura.
+
+Como curiosidad, mucha gente y fabricantes que realizan sistemas RAID, independiente del nivel, los realizan usando discos de distintos lotes para aumentar la fiabilidad del mismo y reducir la probabilidad de fallo.
+
+**¿Qué es la paridad?**
+
+La paridad no es más que un método para proporcionar tolerancia a errores en un conjunto de datos, pudiendo así recuperar la información. Hablando malamente, la paridad es una forma de guardar la información, pudiendo restaurarla posteriormente siempre que no se hayan perdido dos o más discos.
+
+El cálculo de paridad se puede realizar fácilmente mirando las reglas del álgebra de Boole. Usaremos concretamente una operación denominada "or exclusivo". Que viene a significar "o uno o el otro, pero no ambos."
+
+![Parity calculation](https://fcoterroba.com/wp-content/uploads/2020/06/Sin-título.png)
+
+El cálculo se ha realizado de la siguiente forma: Si 1 o 0 está en ambos discos, la paridad será 0. De lo contrario, será 1.
+
+**10101101 XOR 10000111 = 00101010**
+
+**¿Cómo se realizan los RAID?**
+
+La forma de realizar RAID puede ser de dos formas distintas:
+
+- **Hardware**
+
+Para la realización de un sistema RAID mediante hardware será necesario comprar una tarjeta especialmente para ello. [Esta que te recomiendo en Amazon no sobrepasa los 35€, te permite realizar hasta **RAID 10** pudiendo conectar hasta 4 discos duros SATA con una velocidad de transferencia teórica de 3.0Gb/s](https://amzn.to/3fhnNGW)
+
+- **Software**
+
+Puedes crear sistemas RAID con los discos que ya tienes instalados normalmente en tu ordenador o servidor, sin necesidad de comprar una tarjeta específica para ello.
+
+Te dejo este vídeo en el que se explica de manera bastante clara cómo hacer un RAID 0 usando Windows 10:
+
+<iframe src="https://www.youtube.com/embed/faZosHybcP4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="275" frameborder="0"></iframe>
+
+Y este otro vídeo, para hacer exactamente lo mismo, usando Linux (Ubuntu, concretamente):
+
+<iframe src="https://www.youtube.com/embed/Xgh532RV8ZU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="275" frameborder="0"></iframe>
+
+Y eso es todo por hoy chicos, espero que os haya gustado este tipo de posts, un poquito más informáticos pero sin perder la esencia de que cualquiera, sin tener conocimientos, puede hacerlo. 😉
+
+No olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y nos vemos la semana que viene!
+
+![Hard drives GIF](https://fcoterroba.com/wp-content/uploads/2020/06/gif-discos-duros.gif)
+
