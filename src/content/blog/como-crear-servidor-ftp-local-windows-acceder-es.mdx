@@ -1,0 +1,114 @@
+---
+title: "Guía: ¿Cómo crear un servidor FTP local en Windows y acceder a él?"
+description: "Aprende a crear un servidor FTP local en Windows usando Microsoft IIS o FileZilla Server. Guía paso a paso para configurar y acceder a tu propio servidor de archivos."
+excerpt: "Aprende a crear un servidor FTP local en Windows usando Microsoft IIS o FileZilla Server. Guía paso a paso para configurar y acceder a tu propio servidor de archivos."
+category: "informática general"
+tags: ["ftp", "servidor", "windows", "filezilla", "iis", "redes", "informática"]
+author: "fcoterroba"
+date: "2020-05-11"
+readTime: "10 min read"
+featured: false
+coverImage: "/blog/covers/ftp-server.jpg"
+lang: "es"
+---
+
+Hola mundo mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post explicativo para crear un servidor FTP en Windows.
+
+**¿Hola? ¿Qué es eso de FTP?**
+
+[FTP (File Transfer Protocol), protocolo de transferencia de archivos, en Español.](https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_archivos) Es un protocolo de red para la transferencia de archivos entre sistemas conectados a una red TCP, basado en la arquitectura cliente-servidor (la más básica y común de las arquitecturas de red).
+
+A groso modo, y con palabras más comunes, FTP es un protocolo por el cual, a grandes rasgos, podrás montar tu propia nube privada de archivos. Sí, siendo directos, con esta guía podrás crear tu propio [Google Drive](https://www.google.com/intl/es_ALL/drive/), [Dropbox](https://www.dropbox.com/es_ES/) o [iCloud.](https://www.icloud.com/)
+
+Antes de comenzar, aviso que esta guía, al igual que la anterior, sobre [cómo realizar un servidor web en Windows](https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows), son enfocadas a una infraestructura de red casera. Podrás acceder a tu propio servidor siempre y cuando estés dentro de la misma conexión de red.
+
+Si quieres aprender a abrirlo al público o acceder desde cualquier parte de la tierra, solo teniendo conexión a internet, ¡házmelo saber en los comentarios!
+
+**¿Cuándo vamos a comenzar? 😴**
+
+Lo último antes de comenzar es que, aunque no sea imprescindible, te recomiendo visitar [el anterior post](https://fcoterroba.com/como-crear-un-servidor-web-local-en-windows), ya que te resultarán más familiares muchas cosas de las que también vamos a hablar aquí.
+
+Ahora sí, comenzamos. Has de saber que en Windows existen dos opciones para realizar este tipo de servidores.
+
+Una viene integrada en el mismo sistema operativo, usa servidor privativo (Microsoft-IIS) y otra de terceros.
+
+Existen muchos programas que configuran un servidor FTP pero uno de los más famosos y usados dentro del ámbito propuesto, es sin duda, [FileZilla Server](https://filezilla-project.org/download.php?type=server). Hablaremos de éste detenidamente más adelante, ahora vamos con la opción de Microsoft.
+
+**MONTAR SERVIDOR FTP CON MICROSOFT-IIS**
+
+Microsoft-IIS es un conjunto de servicios parte del sistema operativo de Windows.
+
+Microsoft-IIS no se descarga, sino que, por el contrario, digamos que es como una "extensión" del sistema operativo Windows. Viene descargado pero no instalado, al no ser una cosa que se use con frecuencia.
+
+Para activar dicha característica, debemos escribir "características" en la barra de búsqueda y nos aparecerá una ventana cuadrada con las características que tenemos activadas en Windows.
+
+La característica que debemos inicializar para tener un servidor FTP en Windows es principalmente "Internet Information Services > Servidor FTP".
+
+![IIS FTP Server configuration](https://fcoterroba.com/wp-content/uploads/2020/05/1.jpg)
+
+Una vez confirmadas, le damos al botón de aceptar y tardará unos minutos en terminar de activarse. (Quizás también pide reiniciar el equipo).
+
+A continuación, vamos a abrir el "Administrador de Internet Information Services (IIS)". Posteriormente, damos click derecho en "Sitios" y luego vamos a "agregar sitio FTP"
+
+![IIS Manager](https://fcoterroba.com/wp-content/uploads/2020/05/2.jpg)
+
+Escribimos el nombre del sitio (meramente identificativo) y establecemos la carpeta que vamos a compartir en el servidor. En mi caso, para esta prueba, he creado una carpeta en el escritorio llamado FTP.
+
+![FTP Site configuration](https://fcoterroba.com/wp-content/uploads/2020/05/3.jpg)
+
+Establecemos entonces la dirección IP del servidor y por último configuramos el tipo de conexión (anónima para que todo el mundo pueda conectarse, básica y la autorización de los usuarios que podrán conectarse, así como el tipo de permiso que tienen dentro de él).
+
+Para esta prueba he decidido permitir la conexión indiscriminadamente pero solo para lectura. Todos podrán leer el contenido y descargarlo pero nadie más que yo podrá actualizar dicho contenido.
+
+![FTP Authentication and Authorization](https://fcoterroba.com/wp-content/uploads/2020/05/4.jpg)
+
+Haciendo simplemente esto, ya tenemos listo nuestro servidor FTP vivito y coleando. Podremos comprobar esto escribiendo "ftp://localhost" en el navegador.
+
+**MONTAR SERVIDOR FTP CON SOFTWARE DE TERCEROS**
+
+Si me preguntáis a mí, personalmente puedo afirmar que no me gusta, pero nada, el servicio de administración de Microsoft. Puedo llegar a entenderlo e incluso gustarme, dentro de un entorno de servidor, usando su sistema operativo Windows Server 2XXX. Pero poco más.
+
+Por eso, realmente, cuando alguien me pregunta qué hacer para compartir ciertos archivos en un entorno local, ni siquiera le menciono la manera anterior. Le digo que instale algún software de terceros y a volar.
+
+Por eso, al igual que lo haría con mis cercanos, quiero hacerlo contigo. Y voy a explicarte, de manera muy detallada, cómo instalar y configurar un servidor FTP local usando software de terceros. La mejor manera de hacerlo usando un Windows de usuario.
+
+Cómo dije previamente, hay un montón de software disponible para realizar un servidor FTP en sea cual sea tu sistema operativo. Eso sí, uno de los más antiguos y que a día de hoy sigue funcionando casi como el mejor, es [FileZilla Server](https://filezilla-project.org/download.php?type=server).
+
+FileZilla Server, aunque la gente se suele confundir, no tiene relación ninguna con la [fundación Mozilla](https://foundation.mozilla.org/). Fundación sin ánimo de lucro que mantiene productos como [Firefox](https://www.mozilla.org/es-ES/firefox/features/), [Thunderbird](https://www.thunderbird.net/es-ES/) entre muchos otros.
+
+FileZilla, de acuerdo a su documentación, comenzó siendo un proyecto de estudiantes de informática hace ya casi 20 años. A día de hoy, sus versiones cliente o servidor siguen siendo los más usados en este protocolo.
+
+Historias fuera, vamos a lo que vamos. Descargamos el instalador desde la [página oficial](https://filezilla-project.org/download.php?type=server).
+
+![FileZilla Server download](https://fcoterroba.com/wp-content/uploads/2020/05/5.jpg)
+
+Cuando se descargue el ejecutable, vamos a instalarlo como si de nuestro programa favorito se tratase. Ahora mismo no hay nada de configuración.
+
+![FileZilla Server installation](https://fcoterroba.com/wp-content/uploads/2020/05/6.jpg)
+
+Una vez que el programa se haya instalado, nos pedirá host, puerto y contraseña (aunque los dos primeros suelen estar ya escritos)
+
+![FileZilla Server connection](https://fcoterroba.com/wp-content/uploads/2020/05/7.jpg)
+
+A continuación vamos a configurar los usuarios, carpetas compartidas, etc.
+
+La contraseña se establece en "General" y posteriormente establecemos usuarios y carpetas de uso.
+
+Para ello, tenemos que empezar creando usuarios para posteriormente seleccionar la carpeta que se comparten para dicho usuario así como sus permisos.
+
+![FileZilla Server user configuration](https://fcoterroba.com/wp-content/uploads/2020/05/8.jpg)
+
+Una vez que le demos a okey, podremos comprobar que el usuario puede entrar correctamente.
+
+**¿CÓMO SE ACCEDE A UN SERVIDOR FTP?**
+
+Hay varias maneras de entrar en un servidor FTP usando Windows pero, las tres principales son:
+
+- **Explorador de archivos →** Así es. El explorador de archivos de Windows permite conectarse a servidores ftp escribiendo ftp://ip_o_nombre_servidor
+- **Google Chrome →** De la misma forma que antes, el navegador rey permite conexiones de protocolo FTP, escribiéndolo igual ftp://ip_o_nombre_servidor
+- **Clientes FTP →** Un cliente es un programa que sirve para conectarse a un protocolo. En concreto, el más usado es el cliente del programa servidor que hemos usado. [FileZilla](https://filezilla-project.org/). Este tipo de programas permiten una conexión más avanzada (cambiar protocolo, guardar sesión, etc.)
+
+Sin nada más que añadir, espero que os haya gustado el post, podéis dejarme en los comentarios las dudas que tengáis así como hablar conmigo mediante la sección de [contacto](https://fcoterroba.com/contacto) para una charla privada. Responderé con mucho gusto 😊
+
+Poco más chicos, recordar seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/). ¡Nos vemos en la próxima!
+

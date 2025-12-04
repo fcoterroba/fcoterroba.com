@@ -1,0 +1,146 @@
+---
+title: "Raspberry Pi: ¿Qué es, para qué sirve, cómo usarlo y qué hacer con él?"
+description: "Aprende qué es Raspberry Pi, cómo instalar un sistema operativo, qué paquetes instalar, la configuración inicial y la configuración del SSH para acceder remotamente."
+excerpt: "Aprende qué es Raspberry Pi, cómo instalar un sistema operativo, qué paquetes instalar, la configuración inicial y la configuración del SSH para acceder remotamente."
+category: "informática general"
+tags: ["raspberry-pi", "linux", "hardware", "ssh", "raspbian", "informática", "programación"]
+author: "fcoterroba"
+date: "2020-05-25"
+readTime: "15 min read"
+featured: false
+coverImage: "/blog/covers/raspberry.jpg"
+lang: "es"
+---
+
+Hola mundo mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post en el cual vamos a hablar sobre Raspberry Pi. Cómo instalar un sistema operativo, qué paquetes instalar así como la configuración inicial y la configuración del SSH. Para poder acceder al raspi desde cualquier otro dispositivo.
+
+Antes de nada, quería agradecer a [mi pareja Nuria](https://www.instagram.com/nuria_lara_molina/) quien ha sido la persona que me ha regalado la Raspberry. Así como para iniciarme en el mundillo.
+
+**Oye oye, antes de empezar, ¿qué es eso de Raspberry Pi?**
+
+Una raspberry pi, o raspi, cómo yo le llamo. Es un ordenador de placa reducida de bajo costo desarrollado por la [Fundación Raspberry Pi](https://www.raspberrypi.org/) con el objetivo de estimular la enseñanza de informática en las escuelas.
+
+Muy a groso modo, y sin mirar [Wikipedia](https://es.wikipedia.org/wiki/Raspberry_Pi), una raspi es un mini-ordenador con el que puedes hacer funciones básicas. Aunque en su inicio fuese pensado para la informática en los colegios, a día de hoy existen un sin fin de raspis para hacer mucho más, como: ofimática, centro multimedia, imitación de Chromecast, juegos básicos, programación, etc.
+
+**De acuerdo. ¿Qué necesito?**
+
+Los materiales que necesitas son: Una fuente de alimentación (aunque debéis tener cuidado con no quemarla, fijándoos en los voltajes del conector, suele valer el del móvil. Siempre que sea micro-USB), una [tarjeta SD o microSD](https://amzn.to/3ePpGen), según el modelo de raspi, un [cable HDMI](https://amzn.to/3aE8wgi) además de un dispositivo con dicha salida, una forma de conexión a red, independientemente de [cable ethernet](https://amzn.to/2Y3G455) o conexión WiFi y una raspberry, obviamente.
+
+![Raspberry Pi materials](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-26-140241.png)
+
+**Ya he conseguido todo. ¿Por dónde empiezo?**
+
+Lo primero que debes hacer es seleccionar el sistema operativo que quieres instalar en la raspi. Aunque puedes instalar casi cualquier distribución de Linux, la sección ['Descargas' de la fundación](https://www.raspberrypi.org/downloads/), recomienda principalmente dos sistemas operativos.
+
+![Raspberry Pi downloads](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-26-140519.png)
+
+Una vez entremos en la distribución que acabemos eligiendo, nos aparecerán varias versiones del sistema (para instalaciones online u offline, imágenes sin GUI, etc.)
+
+En nuestro caso vamos a elegir la versión NOOBS. Con la que, a diferencia de la versión Lite, podremos realizar una instalación tanto online como offline. Elegimos descargarlo mediante Torrent o zip, es indistinto. Una vez que se haya descargado el archivo, nos quedará un archivo comprimido con extensión .zip.
+
+Dicho archivo vamos a descomprimirlo para que nos quede resultante un monto de más de 20 archivos.
+
+A continuación, vamos a proceder a conectar la tarjeta SD o micro SD al ordenador. No hay una norma general que obligue a los ordenadores a tener o no conectores para tarjetas SD y derivadas. Simplemente, si tienes la suerte de contar con un ordenador que lo tenga, enhorabuena.
+
+De lo contrario, te recomiendo comprar un adaptador micro SD y SD hacia USB, micro USB y tipo C. No cuesta más de [9€ en Amazon](https://amzn.to/2VETUJD)
+
+Una vez que tengas conectada la tarjeta, formateala en FAT32 (usando la herramienta nativa de Windows o [GParted](https://gparted.org/) en Linux)
+
+Y, por último, copia todo el contenido extraído del ZIP (a excepción del mismo comprimido y el archivo de texto con las instrucciones) hacia dentro de la tarjeta.
+
+![SD card content](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-26-155351.png)
+
+**Ya tengo mi tarjeta SD lista. ¿Ahora qué?**
+
+Pues, ahora, lo que toca, es instalar el Sistema Operativo.
+
+Para ello debes insertar la tarjeta SD o micro SD en la raspberry, conectar la a un monitor o televisión mediante el cable HDMI, conectarla a la red y por último enchufarle el cable de corriente.
+
+Cuando se encienda y, tras unos segundos de carga, nos aparecerá un selector de los sistemas operativos.
+
+La distribución descargada viene preinstalada de dos sistemas:
+
+- **LibreELEC** → Que es, una especie de sistema operativo orientado a Kodi, un sistema para realizar un centro multimedia.
+- **Raspbian Full** → Distribución Linux pura, basada en Debian. Para este tutorial, seleccionamos éste con el checkbox pegado a la izquierda y a continuación le daremos a instalar.
+
+![Raspberry Pi OS selection](https://fcoterroba.com/wp-content/uploads/2020/04/Anotación-2020-04-26-155902.png)
+
+Una vez que se instale (toma en torno a una media hora, dependiendo de varios factores), el dispositivo se reiniciará para realizar los últimos cambios y llegaremos al escritorio en el que nos aparecerá un asistente para configurar nuestro país, zona horaria y establecer una contraseña.
+
+**Vale, entonces, ya tengo el sistema operativo. ¿Ahora qué?**
+
+Ahora tienes una raspberry totalmente funcional.
+
+Lo que yo te recomiendo es que empieces a bichear entre los paquetes que se pueden instalar en Raspberry. Yo te voy a recomendar nueve, pero te ánimo a seguir buscando:
+
+1. El primero en la lista, para mí imprescindible es VLC. Aunque en las últimas versiones de Raspbian, éste suele venir.
+   Vayas a usar el raspi como centro multimedia o no, VLC es posiblemente el mejor reproductor multimedia existente en Linux (además de Windows y MAC). Permite prácticamente todos los formatos de vídeo, audio, etc. Además de poder convertir dichos archivos.
+
+2. Al igual que el anterior, en las últimas versiones también suele venir instalado, pero, de no ser así, te recomiendo instalar Chromium como navegador por defecto.
+
+3. También te recomiendo el gestor de archivos Nautilus, éste se puede instalar usando el comando:
+
+```bash
+sudo apt install nautilus
+```
+
+4. Vayas a usar la terminal o no, te será muchísimo más cómodo si usas Terminator.
+
+```bash
+sudo apt install terminator
+```
+
+5. Seguramente vayamos a descargar también algún que otro Torrent. Para esto, el más recomendado es Transmission
+
+```bash
+sudo apt install transmission
+```
+
+6. No es Photoshop, ni de lejos, pero nos podrá salvar más de una vez para editar tus fotos del Verano del 95. Gimp, el mejor editor de fotos libre
+
+```bash
+sudo apt install gimp
+```
+
+7. También puedes descargar, aunque no es muy liviano, el mejor editor de texto bajo mi punto de vista. [Atom](https://atom.io/)
+
+8. Si vas a programar en algún lenguaje (PHP, Java, Python, Javascript) deberías empezar a valorar usar algún IDE. Yo te recomiendo [Eclipse](https://www.eclipse.org/downloads)
+
+9. Para capturar la pantalla podemos simplemente pulsar la tecla de "Impr Pant" y entrar en la carpeta de imágenes. Pero si queremos algo más, deberemos usar Shutter
+
+```bash
+sudo apt install shutter
+```
+
+**¿Esto es todo?**
+
+Por último, lo que yo personalmente aconsejo a todas las personas que me comentan que tienen una raspberry, es configurar su servidor SSH con una contraseña y cambiando el puerto por defecto. Además de deshabilitar el usuario root y crear uno exclusivamente para dicho fin.
+
+SSH son las siglas de Secure Shell. Es el nombre de un protocolo cuya función principal es el acceso remoto por terminal. A grandes rasgos, activar y configurar SSH nos permitirá acceder a raspi desde el móvil, por ejemplo, para iniciar un proceso o consultar un archivo.
+
+Para ello, lo primero que debemos hacer es escribir en nuestra terminal
+
+```bash
+sudo raspi-config > Interfacing options > SSH
+```
+
+![Raspberry Pi SSH configuration](https://fcoterroba.com/wp-content/uploads/2020/05/C80B4B67-E7D6-4B4E-8F2E-3D69C0A73C33.png.jpg)
+
+Nos aparecerá entonces un asistente que preguntará si estamos seguros de activar el protocolo SSH. Le daremos a que sí y finalizaremos.
+
+Para comprobar que el SSH haya funcionado, usamos el comando
+
+```bash
+ssh pi@localhost
+```
+
+Entonces, nos pedirá la contraseña y con esto ya habremos terminado.
+
+![Raspberry Pi SSH connection](https://fcoterroba.com/wp-content/uploads/2020/05/8BBC273A-C211-4741-8BD3-16226975D214.png.jpg)
+
+Si os interesa una guía para realizar un centro multimedia, una nube personal o cualquier otra idea usando Raspberry, házmelo saber en los comentarios o usa la sección de [contacto](https://www.fcoterroba.com/contacto).
+
+No olvidéis seguirme en [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/) y [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y nos vemos en la próxima!
+
+![Raspberry Pi GIF](https://fcoterroba.com/wp-content/uploads/2020/05/el-mejor-gif-del-mundo.gif)
+
