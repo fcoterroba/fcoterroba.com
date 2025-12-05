@@ -1,0 +1,182 @@
+---
+const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new';
+---
+
+<a 
+  href={githubIssueUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="github-ribbon"
+  aria-label="Report a bug on GitHub"
+>
+  <div class="cat-container">
+    <img 
+      src="/my-octocat.png" 
+      alt="GitHub Octocat" 
+      class="github-icon"
+    />
+  </div>
+  
+  <div class="tooltip-container">
+    <span class="tooltip-text" data-es="¿encontraste un bug?" data-en="found a bug?">
+      found a bug?
+    </span>
+  </div>
+</a>
+
+<style>
+  .github-ribbon {
+    position: fixed;
+    bottom: -10px;
+    left: 2rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 20px; 
+  }
+
+  .cat-container {
+    position: relative;
+    width: 80px; /* Adjusted size for image */
+    height: auto;
+    /* Initial state: peeking. */
+    transform: translateY(55%); 
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+
+  /* Hover state: slide up */
+  .github-ribbon:hover .cat-container {
+    transform: translateY(0);
+  }
+
+  .github-icon {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Tooltip */
+  .tooltip-container {
+    position: absolute;
+    left: 100%;
+    bottom: 20px;
+    margin-left: 15px;
+    opacity: 0;
+    transform: translateX(-10px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .github-ribbon:hover .tooltip-container {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition-delay: 0.1s;
+  }
+
+  .tooltip-text {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  [data-theme="dark"] .tooltip-text {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1f2937;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  /* Speech bubble arrow */
+  .tooltip-text::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 6px 6px 0;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+  }
+
+  [data-theme="dark"] .tooltip-text::before {
+    border-color: transparent rgba(255, 255, 255, 0.9) transparent transparent;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    .github-ribbon {
+      left: 1rem;
+      bottom: -5px;
+    }
+    .cat-container {
+      width: 60px;
+    }
+    
+    /* Active state for mobile click */
+    .github-ribbon.is-active .cat-container {
+      transform: translateY(0);
+    }
+
+    .github-ribbon.is-active .tooltip-container {
+      display: block;
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    .tooltip-container {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ribbon = document.querySelector('.github-ribbon');
+    
+    if (ribbon) {
+      ribbon.addEventListener('click', (e) => {
+        // Check if we are on mobile (using the same breakpoint as CSS)
+        if (window.innerWidth <= 640) {
+          // If not active, prevent default and activate
+          if (!ribbon.classList.contains('is-active')) {
+            e.preventDefault();
+            ribbon.classList.add('is-active');
+            
+            // Optional: Add a click outside listener to close it
+            const closeRibbon = (event) => {
+              if (!ribbon.contains(event.target)) {
+                ribbon.classList.remove('is-active');
+                document.removeEventListener('click', closeRibbon);
+              }
+            };
+            
+            // Delay adding the listener slightly to avoid immediate trigger
+            setTimeout(() => {
+              document.addEventListener('click', closeRibbon);
+            }, 10);
+
+            // Auto-close after 5 seconds
+            setTimeout(() => {
+              if (ribbon.classList.contains('is-active')) {
+                ribbon.classList.remove('is-active');
+                document.removeEventListener('click', closeRibbon);
+              }
+            }, 5000);
+          }
+          // If already active, let the link work (do nothing here)
+        }
+      });
+    }
+  });
+</script>
