@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="404 - Página no encontrada | Page not found - fcoterroba"
+  description="La página que buscas no existe. The page you're looking for doesn't exist."
+  lang="en"
+>
+  <section class="min-h-screen flex items-center justify-center theme-bg py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
+      <div class="mb-8">
+        <h1 class="text-9xl sm:text-[12rem] font-bold text-brand-green mb-4" data-es="404" data-en="404">
+          404
+        </h1>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-text mb-6" data-es="página no encontrada" data-en="page not found">
+          page not found
+        </h2>
+        <p class="text-lg sm:text-xl theme-text-80 max-w-2xl mx-auto mb-8" data-es="lo sentimos, la página que estás buscando no existe o ha sido movida." data-en="sorry, the page you're looking for doesn't exist or has been moved.">
+          sorry, the page you're looking for doesn't exist or has been moved.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12">
+        <a 
+          href="/" 
+          class="w-full sm:w-auto bg-brand-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          <span data-es="volver al inicio" data-en="go back home">go back home</span>
+        </a>
+        <a 
+          href="/blog" 
+          class="w-full sm:w-auto bg-transparent border-2 border-brand-green text-brand-green px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-brand-green hover:text-white transition-all duration-300 transform hover:scale-105"
+        >
+          <span data-es="ir al blog" data-en="go to blog">go to blog</span>
+        </a>
+      </div>
+
+      <div class="mt-12">
+        <p class="theme-text-60 text-sm sm:text-base">
+          <span data-es="¿necesitas ayuda? puedes contactarme" data-en="need help? you can contact me">
+            need help? you can contact me
+          </span>
+          {' '}
+          <a 
+            href="/contacto" 
+            class="text-brand-green hover:text-brand-green/80 transition-colors font-semibold"
+            data-es="aquí" 
+            data-en="here"
+          >
+            here
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
