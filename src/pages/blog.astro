@@ -298,7 +298,6 @@ const sortedPosts = [...finalPosts].sort((a, b) => {
           if (currentPage > 1) {
             currentPage--;
             filterPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
         paginationContainer.appendChild(prevButton);
@@ -318,7 +317,6 @@ const sortedPosts = [...finalPosts].sort((a, b) => {
           firstButton.addEventListener('click', () => {
             currentPage = 1;
             filterPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
           paginationContainer.appendChild(firstButton);
 
@@ -341,7 +339,6 @@ const sortedPosts = [...finalPosts].sort((a, b) => {
           pageButton.addEventListener('click', () => {
             currentPage = i;
             filterPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
           paginationContainer.appendChild(pageButton);
         }
@@ -360,7 +357,6 @@ const sortedPosts = [...finalPosts].sort((a, b) => {
           lastButton.addEventListener('click', () => {
             currentPage = totalPages;
             filterPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
           paginationContainer.appendChild(lastButton);
         }
@@ -377,7 +373,6 @@ const sortedPosts = [...finalPosts].sort((a, b) => {
           if (currentPage < totalPages) {
             currentPage++;
             filterPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
         paginationContainer.appendChild(nextButton);
