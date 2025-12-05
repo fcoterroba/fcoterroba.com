@@ -1,5 +1,43 @@
 ---
-const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new';
+const baseUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new';
+
+const issueTemplate = `## page where i found the bug
+<!-- the url will be added automatically -->
+
+## bug description
+<!-- describe the bug clearly and in detail -->
+**description:** 
+[describe what is happening here]
+
+**steps to reproduce:**
+1. 
+2. 
+3. 
+
+**expected behavior:**
+[describe what should happen]
+
+**actual behavior:**
+[describe what is actually happening]
+
+## images (optional)
+<!-- if you have screenshots, you can add them here -->
+<!-- you can also drag and drop images directly into this field -->
+
+## additional information
+- **browser:** [e.g: chrome 120, firefox 121, safari 17]
+- **operating system:** [e.g: windows 11, macos sonoma, ubuntu 22.04]
+- **device:** [e.g: desktop, mobile, tablet]
+
+---
+*this issue was created from the website. if you need more information, you can edit this message.*
+
+**important: please add a label to this issue (e.g: bug or enhancement)**`;
+
+const encodedBody = encodeURIComponent(issueTemplate);
+const encodedTitle = encodeURIComponent('bug report');
+
+const githubIssueUrl = `${baseUrl}?title=${encodedTitle}&body=${encodedBody}`;
 ---
 
 <a 
@@ -8,6 +46,7 @@ const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new'
   rel="noopener noreferrer"
   class="github-ribbon"
   aria-label="Report a bug on GitHub"
+  id="github-issue-link"
 >
   <div class="cat-container">
     <img 
@@ -18,8 +57,8 @@ const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new'
   </div>
   
   <div class="tooltip-container">
-    <span class="tooltip-text" data-es="¿encontraste un bug?" data-en="found a bug?">
-      found a bug?
+    <span class="tooltip-text" data-es="¿encontraste un bug/mejora?" data-en="found a bug/improvement?">
+      found a bug/improvement?
     </span>
   </div>
 </a>
@@ -143,6 +182,36 @@ const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new'
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const ribbon = document.querySelector('.github-ribbon');
+    const issueLink = document.getElementById('github-issue-link') as HTMLAnchorElement | null;
+    
+    if (issueLink) {
+      issueLink.addEventListener('click', () => {
+        const currentUrl = window.location.href;
+        const currentTitle = document.title;
+        
+        const baseUrl = issueLink.href.split('?')[0];
+        const urlParams = new URLSearchParams(issueLink.href.split('?')[1] || '');
+        
+        let body = decodeURIComponent(urlParams.get('body') || '');
+        
+        const pageInfo = `## page where i found the bug
+**url:** ${currentUrl}
+**page title:** ${currentTitle}
+
+`;
+        
+        if (body.includes('## page where i found the bug')) {
+          body = body.replace(/## page where i found the bug[\s\S]*?(?=## bug description)/, pageInfo);
+        } else {
+          body = pageInfo + body;
+        }
+        
+        const encodedBody = encodeURIComponent(body);
+        const encodedTitle = encodeURIComponent(urlParams.get('title') || 'bug report');
+        
+        issueLink.href = `${baseUrl}?title=${encodedTitle}&body=${encodedBody}`;
+      });
+    }
     
     if (ribbon) {
       ribbon.addEventListener('click', (e) => {
@@ -151,8 +220,9 @@ const githubIssueUrl = 'https://github.com/fcoterroba/fcoterroba.com/issues/new'
             e.preventDefault();
             ribbon.classList.add('is-active');
             
-            const closeRibbon = (event) => {
-              if (!ribbon.contains(event.target)) {
+            const closeRibbon = (event: MouseEvent) => {
+              const target = event.target as Node;
+              if (!ribbon.contains(target)) {
                 ribbon.classList.remove('is-active');
                 document.removeEventListener('click', closeRibbon);
               }
