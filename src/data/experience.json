@@ -12,6 +12,7 @@
         "en": "i'm the founder and ceo of vivifind. vivifind is the next startup that will help you in your search for a new home. instead of let the user find the house, is the house, with AI and webscrape, which get close to the user.",
         "es": "soy el fundador y ceo de vivifind. vivifind es la siguiente startup que ayudará a las personas en su búsqueda de un nuevo hogar. en lugar de dejar que el usuario encuentre la casa, es la casa, con IA y webscrape, que se acerca al usuario."
       },
+      "link": "https://vivifind.fcoterroba.com/",
       "logo": "https://vivifind.com/assets/og-image.jpg",
       "gradient": "from-gray-500 to-gray-600",
       "darkGradient": "from-gray-800 to-gray-900",
@@ -43,6 +44,7 @@
         "es": "hemos creado desde 0 la plataforma líder en España para obtener ayudas públicas. el stack es vue y laravel en sus últimas versiones. hemos conseguido llegar a la incubadora 'Lanzadera' y hemos integrado procesos en metodologías ágiles y SCRUM usando Notion como centro neurárgico de problemas. además, creamos un bot en discord que nos avisa de caídas y nuevas vulnerabilidades."
       },
       "logo": "https://alhambraventure.com/wp-content/uploads/2025/05/Tu-Tramite-Facil-copia.png",
+      "link": "https://tutramitefacil.es/",
       "gradient": "from-gray-500 to-gray-600",
       "darkGradient": "from-gray-800 to-gray-900",
       "technologies": [
@@ -103,6 +105,7 @@
         "es": "en betterfly desarrollamos el backoffice de una nueva manera de obtener beneficios en tu nómina. mucho código heredado que ha sido actualizado a lo largo del tiempo."
       },
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Betterfly_Earth_sin_sello_sin_fondo_SVG.svg/1024px-Betterfly_Earth_sin_sello_sin_fondo_SVG.svg.png",
+      "link": "https://www.betterfly.com/",
       "gradient": "from-green-50 to-green-100",
       "darkGradient": "from-green-900/30 to-green-800/30",
       "technologies": [
@@ -133,6 +136,7 @@
         "es": "en avature trabajamos con algunas de las mejores empresas del mundo. proporcionando un sistema gestionado completamente para departamentos de recursos humanos. trabajé y gestioné equipos entre 2 y 10 personas. implementando SCRUM y ágile desde el día 1. también creé algunas herramientas en python para mejorar la experiencia de developers."
       },
       "logo": "https://www.hrdconnect.com/wp-content/uploads/2020/04/Avature-Logo-Positive-Transparent-Screen.png",
+      "link": "https://www.avature.net/",
       "gradient": "from-green-50 to-green-100",
       "darkGradient": "from-green-900/30 to-green-800/30",
       "technologies": [
@@ -162,7 +166,8 @@
         "en": "in newe i worked as a backend developer. i developed the backend to a brand-new startup which allows bussiness to offer renting plans.",
         "es": "en newe trabajé como backend developer. desarrollé el backend de una nueva startup que permite a las empresas ofrecer planes de alquiler."
       },
-      "logo": "https://www.turylogisticsecommerce.com/wp-content/uploads/2022/07/NEWE-LOGO-PNG-2.png",
+      "logo": "https://lanzadera.es/wp-content/uploads/2021/04/newe-420.png",
+      "link": "https://newe.eco/",
       "gradient": "from-green-50 to-green-100",
       "darkGradient": "from-green-900/30 to-green-800/30",
       "technologies": [
@@ -195,6 +200,7 @@
       "logo": "https://ideanto.com/wp-content/uploads/2023/03/mainlogo.png",
       "gradient": "from-teal-50 to-teal-100",
       "darkGradient": "from-teal-900/30 to-teal-800/30",
+      "link": "https://ideanto.com/",
       "technologies": [
         {
           "name": "php",
