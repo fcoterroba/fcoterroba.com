@@ -9,16 +9,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <section class="min-h-screen flex items-center justify-center theme-bg py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
-      <div class="my-12 flex justify-center">
-        <div class="relative inline-block">
-          <img 
-            src="/huh-cat.gif" 
-            alt="Confused cat looking at you"
-            class="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-2xl shadow-2xl"
-          />
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-        </div>
-      </div>
       <div class="mb-8">
         <h1 class="text-9xl sm:text-[12rem] font-bold text-brand-green mb-4" data-es="404" data-en="404">
           404
@@ -29,6 +19,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="text-lg sm:text-xl theme-text-80 max-w-2xl mx-auto mb-8" data-es="lo sentimos, la página que estás buscando no existe o ha sido movida." data-en="sorry, the page you're looking for doesn't exist or has been moved.">
           sorry, the page you're looking for doesn't exist or has been moved.
         </p>
+      </div>
+
+      <div class="my-12 flex justify-center">
+        <div class="relative inline-block">
+          <img 
+            src="/huh-cat.gif" 
+            alt="Confused cat looking at you"
+            class="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-2xl shadow-2xl"
+          />
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+        </div>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12">
