@@ -9,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <section class="min-h-screen flex items-center justify-center theme-bg py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
-      <div class="mb-8">
+      <div class="mb-8 content-header">
         <h1 class="text-9xl sm:text-[12rem] font-bold text-brand-green mb-4" data-es="404" data-en="404">
           404
         </h1>
@@ -21,12 +21,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
 
-      <div class="my-12 flex justify-center">
-        <div class="relative inline-block">
+      <div class="my-12 flex justify-center gif-container">
+        <div class="relative inline-block floating-gif">
           <img 
-            src="/huh-cat.gif" 
+            src="/404-cat.gif" 
             alt="Confused cat looking at you"
-            class="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-2xl shadow-2xl"
+            class="h-auto sm:h-auto rounded-2xl shadow-2xl"
+            style="width: 300px; max-width: 90vw; aspect-ratio: 9/16;"
           />
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
@@ -66,4 +67,95 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .floating-gif {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .content-header {
+    animation: slideInDown 0.8s ease-out;
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const gifContainer = document.querySelector('.gif-container');
+    const contentHeader = document.querySelector('.content-header');
+
+    gsap.from(contentHeader, {
+      opacity: 0,
+      y: -30,
+      duration: 0.8,
+      ease: 'power2.out',
+    });
+
+    gsap.to('.floating-gif', {
+      y: -15,
+      duration: 3,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!gifContainer) return;
+      
+      const rect = gifContainer.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const distX = (e.clientX - centerX) * 0.05;
+      const distY = (e.clientY - centerY) * 0.05;
+      
+      gsap.to('.floating-gif', {
+        x: distX,
+        y: -15 + distY,
+        duration: 0.3,
+        overwrite: 'auto',
+      });
+    });
+
+    const gifImg = document.querySelector('.floating-gif img');
+    if (gifImg) {
+      gifImg.addEventListener('mouseenter', () => {
+        gsap.to('.floating-gif', {
+          boxShadow: '0 0 30px rgba(76, 175, 80, 0.5)',
+          scale: 1.05,
+          duration: 0.3,
+        });
+      });
+
+      gifImg.addEventListener('mouseleave', () => {
+        gsap.to('.floating-gif', {
+          boxShadow: '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+          scale: 1,
+          duration: 0.3,
+        });
+      });
+    }
+  });
+</script>
 
