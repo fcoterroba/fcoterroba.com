@@ -1,0 +1,65 @@
+---
+title: "what is the 404 error and why is it called that?"
+description: "discover the origin of the 404 error, why we use numbers in HTTP status codes, and how i've updated my own error page."
+excerpt: "4-0-4. the error you've probably seen the most while browsing the web. but do you know what it actually means? in this post, i explain everything about HTTP codes and my new 404."
+category: "technology"
+tags: ["404","http","errors","internet","programming"]
+author: "fcoterroba"
+date: "2026-01-19"
+readTime: "5 min"
+featured: false
+coverImage: "/blog/covers/error-404-en.jpg"
+lang: "en"
+---
+
+# what is the 404 error and why is it called that?
+
+4-0-4. 
+
+The 404 error is probably the error that, if you're not an IT person, you've seen the most throughout your life. It appears when you try to visit a website and suddenly—boom! Nothing. "Page Not Found."
+
+But have you ever wondered what it actually means? And why is it specifically the number 404?
+
+<iframe src="https://www.tiktok.com/player/v1/7596775423233543446" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="700" frameborder="0" style="border-radius: 20px; margin: 2rem 0;"></iframe>
+
+hello world, my name is Francisco, **fcoterroba** on the internet, and today I want to take advantage of a TikTok video I just uploaded to dive a little deeper: why are numbers used in web errors?
+
+## the HTTP standard and the language barrier
+
+everything that lives on a website follows a standard called **Hypertext Transfer Protocol** (the famous HTTP at the beginning of URLs).
+
+numbers are used for one very simple reason: **they are language-independent**. It doesn't matter if you're from China, Spain, or Australia; a `200` will always mean "everything is OK" and a `404` will always mean "not found." It's the universal language of servers.
+
+## the 5 families of codes
+
+the HTTP protocol establishes 5 families of codes based on their first digit:
+
+- **1XX (Informational):** Request received, continuing process.
+- **2XX (Success):** The action was successfully received, understood, and accepted. The famous `200 OK`.
+- **3XX (Redirection):** Further action needs to be taken to complete the request.
+- **4XX (Client Errors):** The request contains bad syntax or cannot be fulfilled. This is where our friend 404 lives.
+- **5XX (Server Errors):** The server failed to fulfill an apparently valid request.
+
+knowing just the first number, you can figure out who has the problem. If it starts with a 4, it's something you did (or a broken link you clicked); if it starts with a 5, it's the server's fault.
+
+## the mystery of 404
+
+this error appears when the URL you're trying to visit **doesn't exist**. Maybe it existed before and the owner deleted it, or maybe you just mistyped the address.
+
+there are many urban legends about 404 (like it being the room number at CERN where the servers were kept), but the reality is more mundane: it was simply the next available number in the list of client errors.
+
+many companies use this error to redirect to their homepage or to show something creative.
+
+## my new 404 and the "ha cat"
+
+until now, my 404 page was a bit... basic. Plain text and not much else. But I've decided it was time to give it a more personal touch and use probably the cat meme I've used the most so far this year: **the ha cat**.
+
+if you want to see how it looks (and check that it works), you can visit any non-existent URL on my site, like: [www.fcoterroba.com/bleblebleble](https://fcoterroba.com/bleblebleble)
+
+I'll probably get tired of this design soon, so if you have a better idea, leave it in the TikTok comments! The comment with the most likes will be the one I put up in February.
+
+---
+
+That's all for today, I hope you learned something new about how the internet works under the hood. Don't forget to follow me on social media for more IT and programming content. See you in the next post!
+
+[TikTok](https://www.tiktok.com/@fcoterroba) | [Twitter](https://twitter.com/fcoterroba) | [Instagram](https://www.instagram.com/fcoterroba/) | [LinkedIn](https://www.linkedin.com/in/fcoterroba/)
