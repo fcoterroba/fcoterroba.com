@@ -1,0 +1,52 @@
+---
+title: "did you know some emojis are just sums of other emojis?"
+description: "discover the Zero Width Joiner (ZWJ), the invisible character that allows you to 'add' emojis together to create new ones like the heart on fire or families."
+excerpt: "❤️ + 🔥 = ❤️‍🔥. it looks like magic, but it's computer science. in this post, i explain how emoji sums work and what the famous ZWJ is."
+category: "technology"
+tags: ["emojis","unicode","zwj","curiosities","programming"]
+author: "fcoterroba"
+date: "2026-01-25"
+readTime: "4 min"
+featured: false
+coverImage: "/blog/covers/emoji-sums-en.jpg"
+lang: "en"
+---
+
+# did you know some emojis are just sums of other emojis?
+
+❤️ + 🔥 = ❤️‍🔥
+
+It might seem simple, but behind that burning heart emoji, there's a super interesting tech trick.
+
+Hello world, my name is Francisco, **fcoterroba** on the internet, and today I want to dive deeper into a video I just uploaded to TikTok about how emojis aren't always what they seem.
+
+<iframe src="https://www.tiktok.com/player/v1/7599385226199960854" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="700" frameborder="0" style="border-radius: 20px; margin: 2rem 0;"></iframe>
+
+## what is the Zero Width Joiner (ZWJ)?
+
+For two emojis to "merge" into one, we need a special glue. In computing, this glue is called the **Zero Width Joiner** (or ZWJ for short).
+
+It's an invisible character (Unicode `U+200D`) that tells the device: "hey, don't render these two emojis separately, join them and see if there's a combined version."
+
+## examples of emoji "sums"
+
+I'm sure you've used them a thousand times without knowing they were a sum:
+
+- **heart on fire:** ❤️ + [ZWJ] + 🔥 = ❤️‍🔥
+- **families:** 👨 + [ZWJ] + 👩 + [ZWJ] + 👧 = 👨‍👩‍👧
+- **professions:** 👩 + [ZWJ] + 💻 = 👩‍💻 (woman technologist)
+- **hair colors:** 👨 + [ZWJ] + 🦰 = 👨‍🦰 (man with red hair)
+
+If your phone or computer is old and doesn't recognize the combination, you'll simply see the emojis separately. This is what we call an elegant *fallback*.
+
+## why is it done this way?
+
+Imagine if for every family combination, every skin tone, and every profession, we had to create a unique code in the Unicode standard. It would be infinite!
+
+By using sums, the standard stays lightweight and allows for enormous flexibility. It's basically programming applied to font design.
+
+---
+
+I hope that from now on, when you send a ❤️‍🔥, you see the "sum" behind it. Don't forget to follow me on my social media for more tech curiosities. See you in the next post!
+
+[TikTok](https://www.tiktok.com/@fcoterroba) | [Twitter](https://twitter.com/fcoterroba) | [Instagram](https://www.instagram.com/fcoterroba/) | [LinkedIn](https://www.linkedin.com/in/fcoterroba/)
