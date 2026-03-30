@@ -83,6 +83,13 @@ const siteName = 'fcoterroba';
     </script>
   </head>
   <body class="bg-white text-gray-900 font-sans antialiased transition-colors duration-300" id="body">
+    <div id="logo-animation" class="fixed inset-0 z-50 pointer-events-none">
+      <div class="logo-mask-container w-full h-full flex items-center justify-center">
+        <div class="logo-mask" style="width: 50px; height: 50px;">
+        </div>
+      </div>
+    </div>
+    
     <GitHubIssueOpener />
     <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-7xl px-4 sm:px-8 lg:px-12" id="navbar">
       <div class="navbar-bg backdrop-blur-md rounded-full px-4 sm:px-8 py-4 shadow-lg navbar-border">
@@ -638,6 +645,51 @@ const siteName = 'fcoterroba';
           transform: translateY(-10px);
         }
       }
+
+      #logo-animation {
+        background: white;
+      }
+
+      [data-theme="dark"] #logo-animation {
+        background: #1a1a1a;
+      }
+
+      .logo-mask {
+        background: transparent;
+        mask-image: url('/svg_logo.svg');
+        -webkit-mask-image: url('/svg_logo.svg');
+        mask-size: contain;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        background-color: black;
+        transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      [data-theme="dark"] .logo-mask {
+        background-color: #1a1a1a;
+        mask-image: url('/svg_logo.svg');
+        -webkit-mask-image: url('/svg_logo.svg');
+        mask-size: contain;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .logo-mask.animate {
+        width: 100vw !important;
+        height: 1000vh !important;
+      }
+
+      #logo-animation.fade-out {
+        opacity: 0;
+        transition: opacity 2s ease-out;
+      }
     </style>
 
     <script>
@@ -647,12 +699,13 @@ const siteName = 'fcoterroba';
       gsap.registerPlugin(ScrollTrigger);
       
       document.addEventListener('DOMContentLoaded', () => {
+        initializeLogoAnimation();
         initializePreferences();
         setupMobileMenu();
         
         gsap.fromTo('main', 
           { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 2 }
         );
         
         gsap.utils.toArray('[data-animate]').forEach((element: any) => {
@@ -682,6 +735,23 @@ const siteName = 'fcoterroba';
           );
         });
       });
+
+      function initializeLogoAnimation() {
+        const logoAnimation = document.getElementById('logo-animation');
+        const logoMask = document.querySelector('.logo-mask');
+        
+        if (logoAnimation && logoMask) {
+          setTimeout(() => {
+            logoMask.classList.add('animate');
+            setTimeout(() => {
+              logoAnimation.classList.add('fade-out');
+              setTimeout(() => {
+                logoAnimation.style.display = 'none';
+              }, 500);
+            }, 1500);
+          }, 100);
+        }
+      }
 
       function initializePreferences() {
         const browserLang = navigator.language.startsWith('es') ? 'es' : 'en';
