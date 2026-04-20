@@ -1,0 +1,248 @@
+---
+title: "proyecto Python medio: ¿cómo crear un servidor MCP usando FastMCP?"
+description: "tutorial práctico para crear un servidor MCP completo con Python y FastMCP, desde la instalación hasta la conexión con Claude."
+excerpt: "aprende a crear un servidor MCP completo con Python y FastMCP paso a paso, incluyendo herramientas, recursos y conexión con asistentes de IA."
+category: "inteligencia artificial"
+tags: ["python", "fastmcp", "mcp", "ia", "tutorial", "proyecto", "model context protocol"]
+author: "fcoterroba"
+date: "2026-04-20"
+readTime: "12 min"
+featured: false
+coverImage: "/blog/covers/proyecto-python-fastmcp-es.jpg"
+lang: "es"
+---
+
+Hola mundo 🤟🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post de los que suelen gustar aquí en la web. Como veis en el título, hoy vamos a crear un servidor MCP en Python usando la librería o framework FastMCP.
+
+Proyecto muy interesante para añadir a tu portafolio de desarrollador de IA y backend.
+
+Antes de comenzar, cómo no podía ser de otra forma, si aún no lo has visto, te recomiendo encarecidamente que vayas a ver el último vídeo que tengo en mi canal de YouTube en el que expliqué, de manera muy sencilla y concisa, cómo realizar la instalación de una bombilla inteligente 🧠 con la cual podrás cambiar el color del mismo, controlarla mediante tu propia voz y muchísimo más! Puedes verlo aquí 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Por último antes de comenzar, quería comunicar que llevo unas semanas subiendo vídeos a TikTok. Últimamente son de Eurovisión dado que ya queda poco para ello pero te dejo por aquí el último que hice a día de hoy sobre informática.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7118137831297420550" data-video-id="7118137831297420550" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    ¿Cómo hacer un pequeño <a title="juego" target="_blank" href="https://www.tiktok.com/tag/juego?refer=embed" rel="noopener noreferrer">#juego</a> en <a title="python" target="_blank" href="https://www.tiktok.com/tag/python?refer=embed" rel="noopener noreferrer">#Python</a> ? Like para parte 2! <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a> <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a> <a title="dev" target="_blank" href="https://www.tiktok.com/tag/dev?refer=embed" rel="noopener noreferrer">#dev</a> <a title="programacion" target="_blank" href="https://www.tiktok.com/tag/programacion?refer=embed" rel="noopener noreferrer">#programacion</a>
+    <a target="_blank" title="♬ LoFi(860862) - skollbeats" href="https://www.tiktok.com/music/LoFi-860862-6873526724840130562?refer=embed" rel="noopener noreferrer">♬ LoFi(860862) - skollbeats</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+## ¿Algo que deba saber antes de empezar?
+
+Pues sí, varias cosas realmente:
+
+### ¿Qué es MCP?
+
+- MCP (Model Context Protocol) es un estándar abierto para conectar aplicaciones de IA con sistemas externos. Piensa en ello como un USB-C universal para IA.
+- MCP permite que aplicaciones como Claude, ChatGPT o tus propios modelos puedan acceder a archivos locales, bases de datos, herramientas y workflows.
+- Por lo general, MCP funciona con un servidor que expone herramientas y un cliente (como Claude) que las consume.
+  - Por ejemplo, este [servidor MCP de archivos](https://github.com/modelcontextprotocol/servers) te permite acceder a tu sistema de archivos desde Claude.
+
+### ¿Qué es Python?
+
+- Python es un lenguaje de programación usado en prácticamente todo lo imaginable
+- Desarrollo web, software, IA, ML, Data Science. Son algunos de los ámbitos tech en los que Python es ampliamente usados.
+- Ofrece una legibilidad bastante buena y cercana a la lectura humana.
+
+### ¿Qué es FastMCP?
+
+- FastMCP es un framework para construir servidores MCP de forma sencilla y rápida con Python.
+- En los últimos tiempos se ha vuelto un framework muy popular al ser considerado como el framework estándar para trabajar con MCP.
+- Algunas estadísticas han llegado a sacar a FastMCP **mucho más** por delante de otras implementaciones: se descarga más de un millón de veces al día.
+
+## 1° PRIMER PASO 1° Instalar lo necesario
+
+Vamos a tener en cuenta que tenemos ya instalado Python, en mi caso tengo la versión Python 3.10.7 pero no necesariamente debes tener esta versión para seguir el tutorial. Solo es recomendable que sea una versión Python 3. python 3.x.x
+
+Lo primero que tenemos que hacer es instalar la librería de FastMCP, para ello vamos a usar el comando
+
+```bash
+pip install fastmcp
+```
+
+Por último, necesitaremos la librería **uvicorn**, un servidor web ASGI escrito para Python. Necesitaremos esta librería para comprobar que todo esté funcionando. Podemos instalarla con este comando:
+
+```bash
+pip install uvicorn
+```
+
+Una vez instalados, podemos empezar de verdad
+
+## 2° SEGUNDO PASO 2° Hola mundo
+
+Lo primero y como ya te estarás imaginando, es importar la librería de FastMCP, para ello lo importamos como cualquier otro:
+
+```python
+from fastmcp import FastMCP
+```
+
+Luego, tendremos que crear un objeto general que, por lo normal, se le suele denominar como mcp
+
+```python
+mcp = FastMCP("Demo de fcoterroba")
+```
+
+FastMCP funciona con decoradores y herramientas, por lo que tendremos que coger, para empezar, una herramienta simple y justo debajo declarar el mensaje de return:
+
+```python
+from fastmcp import FastMCP
+
+mcp = FastMCP("Demo de fcoterroba")
+
+@mcp.tool
+def add(a: int, b: int) -> int:
+    """Suma dos números"""
+    return a + b
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+Con esto, si ejecutamos nuestro script, tendremos un servidor MCP funcionando que expone una herramienta para sumar números.
+
+## 3° TERCER PASO 3° Más herramientas y recursos
+
+Con el paso anterior hemos hecho un gran avance, tenemos ya nuestro servidor MCP funcionando, a la espera de conexiones y que nos ejecute las herramientas. Está bien, pero falta más chicha, no?
+
+En este caso voy a hacer la prueba como si fuera a crear un servidor MCP para gestionar una lista de tareas.
+
+Lo primero que tendremos que hacer es, de alguna forma, almacenar la información que querremos gestionar. Yo voy a almacenar las tareas en una lista de diccionarios con su título, descripción y estado. Tal que así:
+
+```python
+tareas = [
+    {"id": 1, "titulo": "Aprender FastMCP", "descripcion": "Crear un tutorial completo", "completada": False},
+    {"id": 2, "titulo": "Hacer la compra", "descripcion": "Comprar leche y pan", "completada": False},
+    {"id": 3, "titulo": "Escribir post", "descripcion": "Terminar el post de FastMCP", "completada": True}
+]
+```
+
+Ahora, supongamos que queremos pasar esas tareas a nuestro servidor MCP.
+
+Para ello simplemente tendremos que crear herramientas que manipulen nuestra lista de tareas.
+
+```python
+@mcp.tool
+def listar_tareas() -> list:
+    """Lista todas las tareas disponibles"""
+    return tareas
+
+@mcp.tool
+def buscar_tarea_por_id(id: int) -> dict:
+    """Busca una tarea específica por su ID"""
+    for tarea in tareas:
+        if tarea["id"] == id:
+            return tarea
+    return {"error": "Tarea no encontrada"}
+```
+
+Si llamamos a **listar_tareas** nos devolverá todas las tareas, **buscar_tarea_por_id** nos buscará una tarea específica.
+
+Ahora, todo esto que hemos hecho ha sido básico, supongamos que queremos que nuestro servidor MCP pueda crear nuevas tareas y marcarlas como completadas.
+
+Para ello, tendremos que crear más herramientas con funciones por cada acción que queramos.
+
+Por ejemplo, digamos que quiero una herramienta que cree una nueva tarea.
+
+```python
+@mcp.tool
+def crear_tarea(titulo: str, descripcion: str) -> dict:
+    """Crea una nueva tarea"""
+    nueva_id = max([t["id"] for t in tareas]) + 1 if tareas else 1
+    nueva_tarea = {
+        "id": nueva_id,
+        "titulo": titulo,
+        "descripcion": descripcion,
+        "completada": False
+    }
+    tareas.append(nueva_tarea)
+    return nueva_tarea
+```
+
+Otro ejemplo, supongamos que queremos marcar una tarea como completada, para ello podemos pasarle un id a la herramienta y a la función, para actualizar dicha tarea.
+
+```python
+@mcp.tool
+def completar_tarea(id: int) -> dict:
+    """Marca una tarea como completada"""
+    for tarea in tareas:
+        if tarea["id"] == id:
+            tarea["completada"] = True
+            return tarea
+    return {"error": "Tarea no encontrada"}
+```
+
+## 4° CUARTO PASO 4° Añadir recursos
+
+Ya estamos casi casi acabando, tenemos ya nuestro servidor MCP básico, nuestras herramientas, nuestras funciones, todo.
+
+Pero claro, nuestro servidor solo tiene herramientas, ni es completo ni tiene todas las funcionalidades de MCP. Lo correcto será que añadamos también recursos, que son como endpoints GET para acceder a datos.
+
+Yo voy a crear un recurso que nos dé acceso a un archivo de configuración.
+
+```python
+@mcp.resource("config://app")
+def get_config() -> str:
+    """Devuelve la configuración de la aplicación"""
+    return """
+{
+    "app_name": "Gestor de Tareas MCP",
+    "version": "1.0.0",
+    "author": "fcoterroba",
+    "max_tasks": 100
+}
+"""
+```
+
+Una vez que tenemos el recurso, podemos acceder a él desde cualquier cliente MCP que soporte recursos.
+
+También podemos añadir prompts, que son plantillas para ayudar a la IA a generar respuestas mejores.
+
+```python
+@mcp.prompt
+def help_prompt() -> str:
+    """Prompt de ayuda para el usuario"""
+    return """
+Soy un asistente que te ayuda a gestionar tus tareas. Puedo:
+
+- Listar todas las tareas
+- Buscar tareas por ID
+- Crear nuevas tareas
+- Marcar tareas como completadas
+
+¿Qué te gustaría hacer?
+"""
+```
+
+## 5° QUINTO PASO 5° Probar nuestro servidor
+
+Toda servidor MCP que se precie requiere una prueba para asegurarse de que funciona correctamente y en eso FastMCP también se lleva un muy buen punto a favor.
+
+Por defecto, esta librería facilita mucho la prueba de nuestro servidor MCP.
+
+Podemos ejecutar nuestro servidor con:
+
+```bash
+python nombre_del_archivo.py
+```
+
+Y para probarlo, podemos usar el MCP Inspector que viene con FastMCP:
+
+```bash
+mcp inspector nombre_del_archivo.py
+```
+
+Esto nos abrirá una interfaz interactiva donde podremos probar todas nuestras herramientas, recursos y prompts.
+
+## FIN DEL POST
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y ahora también en [TikTok](https://us.tiktok.com/@fcoterroba). 
+
+*Fuentes: [Model Context Protocol](https://modelcontextprotocol.io/), [FastMCP Documentation](https://gofastmcp.com/), [Prefect.io](https://www.prefect.io/), [Anthropic Claude](https://claude.ai/)*

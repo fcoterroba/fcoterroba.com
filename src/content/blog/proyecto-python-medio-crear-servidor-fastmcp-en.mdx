@@ -1,0 +1,248 @@
+---
+title: "Python medium project: how to create an MCP server using FastMCP?"
+description: "practical tutorial to create a complete MCP server with Python and FastMCP, from installation to connection with Claude."
+excerpt: "learn to create a complete MCP server with Python and FastMCP step by step, including tools, resources and connection with AI assistants."
+category: "artificial intelligence"
+tags: ["python", "fastmcp", "mcp", "ai", "tutorial", "project", "model context protocol"]
+author: "fcoterroba"
+date: "2026-04-20"
+readTime: "12 min"
+featured: false
+coverImage: "/blog/covers/proyecto-python-fastmcp-en.jpg"
+lang: "en"
+---
+
+Hello world 🤟🏻 my name is Francisco, fcoterroba on the Internet and today I bring you a post that usually likes here on the web. As you can see in the title, today we are going to create an MCP server in Python using the FastMCP library or framework.
+
+Very interesting project to add to your developer portfolio, whether backend or even frontend.
+
+Before starting, as it could not be otherwise, if you haven't seen it yet, I highly recommend that you go watch the latest video I have on my YouTube channel where I explained, in a very simple and concise way, how to install a smart bulb 🧠 with which you can change its color, control it with your own voice and much more! You can see it here 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Finally before starting, I wanted to communicate that I have been uploading videos to TikTok for a few weeks. Lately they are about Eurovision since there is little left for it but I leave you here the last one I made to date about computer science.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7118137831297420550" data-video-id="7118137831297420550" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    How to make a small <a title="game" target="_blank" href="https://www.tiktok.com/tag/game?refer=embed" rel="noopener noreferrer">#game</a> in <a title="python" target="_blank" href="https://www.tiktok.com/tag/python?refer=embed" rel="noopener noreferrer">#Python</a> ? Like for part 2! <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a> <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a> <a title="dev" target="_blank" href="https://www.tiktok.com/tag/dev?refer=embed" rel="noopener noreferrer">#dev</a> <a title="programming" target="_blank" href="https://www.tiktok.com/tag/programming?refer=embed" rel="noopener noreferrer">#programming</a>
+    <a target="_blank" title="♬ LoFi(860862) - skollbeats" href="https://www.tiktok.com/music/LoFi-860862-6873526724840130562?refer=embed" rel="noopener noreferrer">♬ LoFi(860862) - skollbeats</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+## Anything I should know before starting?
+
+Well yes, several things really:
+
+### What is MCP?
+
+- MCP (Model Context Protocol) is an open standard for connecting AI applications with external systems. Think of it as a universal USB-C for AI.
+- MCP allows applications like Claude, ChatGPT or your own models to access local files, databases, tools and workflows.
+- Generally, MCP works with a server that exposes tools and a client (like Claude) that consumes them.
+  - For example, this [MCP file server](https://github.com/modelcontextprotocol/servers) allows you to access your file system from Claude.
+
+### What is Python?
+
+- Python is a programming language used in practically everything imaginable
+- Web development, software, AI, ML, Data Science. These are some of the tech areas where Python is widely used.
+- It offers quite good readability close to human reading.
+
+### What is FastMCP?
+
+- FastMCP is a framework for building MCP servers in a simple and fast way with Python.
+- In recent times it has become a very popular framework by being considered as the standard framework for working with MCP.
+- Some statistics have managed to put FastMCP **much** ahead of other implementations: it is downloaded more than a million times a day.
+
+## 1️⃣ FIRST STEP 1️⃣ Install what's necessary
+
+We are going to take into account that we already have Python installed, in my case I have Python version 3.10.7 but you don't necessarily have to have this version to follow the tutorial. It is only recommended that it be a Python 3 version. python 3.x.x
+
+The first thing we have to do is install the FastMCP library, for this we will use the command
+
+```bash
+pip install fastmcp
+```
+
+Finally, we will need the **uvicorn** library, an ASGI web server written for Python. We will need this library to check that everything is working. We can install it with this command:
+
+```bash
+pip install uvicorn
+```
+
+Once installed, we can really start
+
+## 2️⃣ SECOND STEP 2️⃣ Hello world
+
+The first thing and as you can already imagine, is to import the FastMCP library, for this we import it like any other:
+
+```python
+from fastmcp import FastMCP
+```
+
+Then, we will have to create a general object that, normally, is usually called mcp
+
+```python
+mcp = FastMCP("fcoterroba's Demo")
+```
+
+FastMCP works with decorators and tools, so we will have to take, to start, a simple tool and just below declare the return message:
+
+```python
+from fastmcp import FastMCP
+
+mcp = FastMCP("fcoterroba's Demo")
+
+@mcp.tool
+def add(a: int, b: int) -> int:
+    """Add two numbers"""
+    return a + b
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+With this, if we run our script, we will have a working MCP server that exposes a tool to add numbers.
+
+## 3️⃣ THIRD STEP 3️⃣ More tools and resources
+
+With the previous step we have made great progress, we already have our MCP server working, waiting for connections and that executes our tools. It's good, but there's missing more substance, isn't there?
+
+In this case I'm going to do the test as if I were going to create an MCP server to manage a list of tasks.
+
+The first thing we will have to do is, in some way, store the information that we will want to manage. I'm going to store the tasks in a list of dictionaries with their title, description and status. Like this:
+
+```python
+tasks = [
+    {"id": 1, "title": "Learn FastMCP", "description": "Create a complete tutorial", "completed": False},
+    {"id": 2, "title": "Go shopping", "description": "Buy milk and bread", "completed": False},
+    {"id": 3, "title": "Write post", "description": "Finish the FastMCP post", "completed": True}
+]
+```
+
+Now, suppose we want to pass those tasks to our MCP server.
+
+For this we simply have to create tools that manipulate our list of tasks.
+
+```python
+@mcp.tool
+def list_tasks() -> list:
+    """List all available tasks"""
+    return tasks
+
+@mcp.tool
+def find_task_by_id(id: int) -> dict:
+    """Find a specific task by its ID"""
+    for task in tasks:
+        if task["id"] == id:
+            return task
+    return {"error": "Task not found"}
+```
+
+If we call **list_tasks** it will return all tasks, **find_task_by_id** will search for a specific task.
+
+Now, all this we have done has been basic, suppose we want our MCP server to be able to create new tasks and mark them as completed.
+
+For this, we will have to create more tools with functions for each action we want.
+
+For example, let's say I want a tool that creates a new task.
+
+```python
+@mcp.tool
+def create_task(title: str, description: str) -> dict:
+    """Create a new task"""
+    new_id = max([t["id"] for t in tasks]) + 1 if tasks else 1
+    new_task = {
+        "id": new_id,
+        "title": title,
+        "description": description,
+        "completed": False
+    }
+    tasks.append(new_task)
+    return new_task
+```
+
+Another example, suppose we want to mark a task as completed, for this we can pass an id to the tool and to the function, to update said task.
+
+```python
+@mcp.tool
+def complete_task(id: int) -> dict:
+    """Mark a task as completed"""
+    for task in tasks:
+        if task["id"] == id:
+            task["completed"] = True
+            return task
+    return {"error": "Task not found"}
+```
+
+## 4️⃣ FOURTH STEP 4️⃣ Add resources
+
+We are almost almost finishing, we already have our basic MCP server, our tools, our functions, everything.
+
+But of course, our server only has tools, it's neither complete nor has all the functionalities of MCP. The right thing will be that we also add resources, which are like GET endpoints to access data.
+
+I'm going to create a resource that gives us access to a configuration file.
+
+```python
+@mcp.resource("config://app")
+def get_config() -> str:
+    """Return the application configuration"""
+    return """
+{
+    "app_name": "Task Manager MCP",
+    "version": "1.0.0",
+    "author": "fcoterroba",
+    "max_tasks": 100
+}
+"""
+```
+
+Once we have the resource, we can access it from any MCP client that supports resources.
+
+We can also add prompts, which are templates to help the AI generate better responses.
+
+```python
+@mcp.prompt
+def help_prompt() -> str:
+    """Help prompt for the user"""
+    return """
+I am an assistant that helps you manage your tasks. I can:
+
+- List all tasks
+- Find tasks by ID
+- Create new tasks
+- Mark tasks as completed
+
+What would you like to do?
+"""
+```
+
+## 5️⃣ FIFTH STEP 5️⃣ Test our server
+
+Every MCP server worth its salt requires a test to ensure that it works correctly and FastMCP also takes a very good point in favor.
+
+By default, this library greatly facilitates testing our MCP server.
+
+We can run our server with:
+
+```bash
+python file_name.py
+```
+
+And to test it, we can use the MCP Inspector that comes with FastMCP:
+
+```bash
+mcp inspector file_name.py
+```
+
+This will open an interactive interface where we can test all our tools, resources and prompts.
+
+## END OF POST
+
+And this has been all for today. Thanks for reaching the end, I hope it has been useful and you liked it. See you soon!
+
+You can contribute economically through [Paypal](https://www.paypal.com/paypalme/fcoterroba). Any amount is welcome! 🙂
+
+I also hope you have a great week and we'll see you here again soon! A greeting and remember to follow me on social networks like [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) and now also on [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+*Sources: [Model Context Protocol](https://modelcontextprotocol.io/), [FastMCP Documentation](https://gofastmcp.com/), [Prefect.io](https://www.prefect.io/), [Anthropic Claude](https://claude.ai/)*
