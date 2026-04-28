@@ -1,0 +1,258 @@
+---
+title: "proyecto Python medio: ¿cómo crear una app de datos usando Streamlit?"
+description: "tutorial práctico para crear una aplicación web de datos completa con Python y Streamlit, desde la instalación hasta el despliegue."
+excerpt: "aprende a crear una aplicación web de datos interactiva con Python y Streamlit paso a paso, incluyendo gráficos, widgets y despliegue en la nube."
+category: "desarrollo web"
+tags: ["python", "streamlit", "datos", "web", "tutorial", "proyecto", "visualización"]
+author: "fcoterroba"
+date: "2026-04-28"
+readTime: "12 min"
+featured: false
+coverImage: "/blog/covers/proyecto-python-streamlit-es.jpg"
+lang: "es"
+---
+
+Hola mundo 🤟🏻 mi nombre es Francisco, fcoterroba en Internet y hoy os traigo un post de los que suelen gustar aquí en la web. Como veis en el título, hoy vamos a crear una aplicación web de datos en Python usando la librería o framework Streamlit.
+
+Proyecto muy interesante para añadir a tu portafolio de desarrollador de datos y web.
+
+Antes de comenzar, cómo no podía ser de otra forma, si aún no lo has visto, te recomiendo encarecidamente que vayas a ver el último vídeo que tengo en mi canal de YouTube en el que expliqué, de manera muy sencilla y concisa, cómo realizar la instalación de una bombilla inteligente 🧠 con la cual podrás cambiar el color del mismo, controlarla mediante tu propia voz y muchísimo más! Puedes verlo aquí 👇🏻
+
+<iframe src="https://www.youtube.com/embed/RiCPuDhFbwI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="100%" height="315" frameborder="0"></iframe>
+
+Por último antes de comenzar, quería comunicar que llevo unas semanas subiendo vídeos a TikTok. Últimamente son de Eurovisión dado que ya queda poco para ello pero te dejo por aquí el último que hice a día de hoy sobre informática.
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fcoterroba/video/7118137831297420550" data-video-id="7118137831297420550" style="max-width: 605px;min-width: 325px;">
+  <section>
+    <a target="_blank" title="@fcoterroba" href="https://www.tiktok.com/@fcoterroba?refer=embed" rel="noopener noreferrer">@fcoterroba</a>
+    ¿Cómo hacer un pequeño <a title="juego" target="_blank" href="https://www.tiktok.com/tag/juego?refer=embed" rel="noopener noreferrer">#juego</a> en <a title="python" target="_blank" href="https://www.tiktok.com/tag/python?refer=embed" rel="noopener noreferrer">#Python</a> ? Like para parte 2! <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed" rel="noopener noreferrer">#fyp</a> <a title="parati" target="_blank" href="https://www.tiktok.com/tag/parati?refer=embed" rel="noopener noreferrer">#parati</a> <a title="dev" target="_blank" href="https://www.tiktok.com/tag/dev?refer=embed" rel="noopener noreferrer">#dev</a> <a title="programacion" target="_blank" href="https://www.tiktok.com/tag/programacion?refer=embed" rel="noopener noreferrer">#programacion</a>
+    <a target="_blank" title="♬ LoFi(860862) - skollbeats" href="https://www.tiktok.com/music/LoFi-860862-6873526724840130562?refer=embed" rel="noopener noreferrer">♬ LoFi(860862) - skollbeats</a>
+  </section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+## ¿Algo que deba saber antes de empezar?
+
+Pues sí, varias cosas realmente:
+
+### ¿Qué es Streamlit?
+
+- Streamlit es un framework de código abierto para crear aplicaciones web de datos de forma rápida y sencilla con Python.
+- Streamlit permite que científicos de datos y desarrolladores creen aplicaciones interactivas sin necesidad de conocer HTML, CSS o JavaScript.
+- Por lo general, Streamlit funciona ejecutando tu script Python de arriba a abajo cada vez que hay un cambio.
+  - Por ejemplo, esta [app de demostración](https://share.streamlit.io/streamlit/demo-uber-nyc-pickups/main) muestra lo rápido que se puede crear una visualización de datos.
+
+### ¿Qué es Python?
+
+- Python es un lenguaje de programación usado en prácticamente todo lo imaginable
+- Desarrollo web, software, IA, ML, Data Science. Son algunos de los ámbitos tech en los que Python es ampliamente usados.
+- Ofrece una legibilidad bastante buena y cercana a la lectura humana.
+  - En la categoría [Python](https://fcoterroba.com/category/python) de la web puedes encontrar +8 proyectos con Python divididos por su dificultad. ¿A qué esperas? Tu app de Streamlit puede esperar.
+
+### ¿Qué es Streamlit?
+
+- Streamlit es un framework para construir aplicaciones web de datos de forma sencilla y rápida con Python.
+- En los últimos tiempos se ha vuelto un framework muy popular al ser considerado como el framework estándar para crear apps de datos.
+- Algunas estadísticas han llegado a sacar a Streamlit **mucho más** por delante de otras soluciones: más de 2 millones de descargas mensuales y usado por empresas como Snowflake.
+
+## 1️⃣ PRIMER PASO 1️⃣ Instalar lo necesario
+
+Vamos a tener en cuenta que tenemos ya instalado Python, en mi caso tengo la versión Python 3.10.7 pero no necesariamente debes tener esta versión para seguir el tutorial. Solo es recomendable que sea una versión Python 3. python 3.x.x
+
+Lo primero que tenemos que hacer es instalar la librería de Streamlit, para ello vamos a usar el comando
+
+```bash
+pip install streamlit
+```
+
+Por último, necesitaremos la librería **pandas**, una librería esencial para el manejo de datos en Python. Necesitaremos esta librería para trabajar con nuestros datos. Podemos instalarla con este comando:
+
+```bash
+pip install pandas
+```
+
+Una vez instalados, podemos empezar de verdad
+
+## 2️⃣ SEGUNDO PASO 2️⃣ Hola mundo
+
+Lo primero y como ya te estarás imaginando, es importar la librería de Streamlit, para ello lo importamos como cualquier otro:
+
+```python
+import streamlit as st
+```
+
+Luego, tendremos que crear un texto simple usando los comandos de Streamlit
+
+```python
+st.title("Mi primera app con Streamlit")
+st.write("¡Hola mundo! Esta es mi primera aplicación web.")
+```
+
+Streamlit funciona con comandos simples, por lo que tendremos que coger, para empezar, un texto simple y justo debajo declarar el mensaje:
+
+```python
+import streamlit as st
+
+st.title("Demo de fcoterroba")
+st.write("¡Hola mundo! Esta es mi primera app con Streamlit.")
+
+if __name__ == "__main__":
+    # Streamlit no necesita esto, pero es buena práctica
+    pass
+```
+
+Con esto, si ejecutamos nuestro script con `streamlit run nombre_del_archivo.py`, tendremos una aplicación web funcionando que muestra un texto.
+
+## 3️⃣ TERCER PASO 3️⃣ Más widgets y datos
+
+Con el paso anterior hemos hecho un gran avance, tenemos ya nuestra aplicación web funcionando, pero está bien, pero falta más chicha, no?
+
+En este caso voy a hacer la prueba como si fuera a crear una aplicación web para analizar datos de ventas.
+
+Lo primero que tendremos que hacer es, de alguna forma, crear algunos datos de ejemplo. Yo voy a crear datos de ventas con pandas. Tal que así:
+
+```python
+import pandas as pd
+import numpy as np
+
+# Crear datos de ejemplo
+np.random.seed(42)
+dates = pd.date_range('2023-01-01', periods=100)
+sales_data = pd.DataFrame({
+    'fecha': dates,
+    'producto': np.random.choice(['Producto A', 'Producto B', 'Producto C'], 100),
+    'ventas': np.random.randint(10, 100, 100),
+    'region': np.random.choice(['Norte', 'Sur', 'Este', 'Oeste'], 100)
+})
+```
+
+Ahora, supongamos que queremos mostrar esos datos en nuestra aplicación.
+
+Para ello simplemente tendremos que usar los comandos de Streamlit para mostrar datos.
+
+```python
+st.subheader("Datos de Ventas")
+st.dataframe(sales_data)
+
+st.subheader("Estadísticas Básicas")
+st.write(sales_data.describe())
+```
+
+Si llamamos a **st.dataframe** nos mostrará la tabla de datos, **st.write** nos mostrará las estadísticas.
+
+Ahora, todo esto que hemos hecho ha sido básico, supongamos que queremos que nuestra aplicación pueda filtrar datos y mostrar gráficos.
+
+Para ello, tendremos que añadir más widgets y comandos por cada acción que queramos.
+
+Por ejemplo, digamos que quiero un selector para filtrar por producto.
+
+```python
+st.sidebar.header("Filtros")
+
+# Selector de producto
+producto_seleccionado = st.sidebar.selectbox(
+    "Selecciona un producto:",
+    options=['Todos'] + list(sales_data['producto'].unique())
+)
+
+# Filtrar datos
+if producto_seleccionado != 'Todos':
+    datos_filtrados = sales_data[sales_data['producto'] == producto_seleccionado]
+else:
+    datos_filtrados = sales_data
+
+st.subheader(f"Ventas de {producto_seleccionado}")
+st.dataframe(datos_filtrados)
+```
+
+Otro ejemplo, supongamos que queremos añadir un gráfico de líneas, para ello podemos usar los comandos de gráficos de Streamlit.
+
+```python
+import matplotlib.pyplot as plt
+
+# Gráfico de líneas
+st.subheader("Evolución de Ventas")
+fig, ax = plt.subplots()
+for producto in datos_filtrados['producto'].unique():
+    datos_producto = datos_filtrados[datos_filtrados['producto'] == producto]
+    ax.plot(datos_producto['fecha'], datos_producto['ventas'], label=producto)
+
+ax.set_xlabel('Fecha')
+ax.set_ylabel('Ventas')
+ax.set_title('Evolución de Ventas por Producto')
+ax.legend()
+st.pyplot(fig)
+```
+
+## 4️⃣ CUARTO PASO 4️⃣ Añadir interactividad
+
+Ya estamos casi casi acabando, tenemos ya nuestra aplicación web básica, nuestros widgets, nuestros gráficos, todo.
+
+Pero claro, nuestra aplicación solo muestra datos, ni es completa ni tiene todas las funcionalidades de Streamlit. Lo correcto será que añadamos también más interactividad, que son como botones, sliders y otros elementos interactivos.
+
+Yo voy a crear un slider para filtrar por rango de ventas.
+
+```python
+st.sidebar.header("Controles Interactivos")
+
+# Slider para rango de ventas
+rango_ventas = st.sidebar.slider(
+    "Rango de ventas:",
+    min_value=int(sales_data['ventas'].min()),
+    max_value=int(sales_data['ventas'].max()),
+    value=(int(sales_data['ventas'].min()), int(sales_data['ventas'].max()))
+)
+
+# Filtrar por rango de ventas
+datos_filtrados_final = datos_filtrados[
+    (datos_filtrados['ventas'] >= rango_ventas[0]) & 
+    (datos_filtrados['ventas'] <= rango_ventas[1])
+]
+
+st.subheader(f"Datos filtrados ({len(datos_filtrados_final)} registros)")
+st.dataframe(datos_filtrados_final)
+```
+
+Una vez que tenemos el slider, podemos acceder a él desde cualquier parte de nuestra aplicación.
+
+También podemos añadir botones y checkboxes, que son elementos para controlar la visibilidad de componentes.
+
+```python
+# Checkbox para mostrar/ocultar gráficos
+mostrar_graficos = st.sidebar.checkbox("Mostrar gráficos")
+
+if mostrar_graficos:
+    st.subheader("Análisis Visual")
+    
+    # Gráfico de barras
+    st.bar_chart(datos_filtrados_final.groupby('producto')['ventas'].sum())
+    
+    # Gráfico de dispersión
+    st.scatter_chart(datos_filtrados_final, x='fecha', y='ventas', color='producto')
+```
+
+## 5️⃣ QUINTO PASO 5️⃣ Probar nuestra aplicación
+
+Toda aplicación web que se precie requiere una prueba para asegurarse de que funciona correctamente y en eso Streamlit también se lleva un muy buen punto a favor.
+
+Por defecto, esta librería facilita mucho la prueba de nuestra aplicación web.
+
+Podemos ejecutar nuestra aplicación con:
+
+```bash
+streamlit run nombre_del_archivo.py
+```
+
+Y para probarlo, Streamlit abrirá automáticamente una pestaña en tu navegador con la aplicación corriendo. Además, cada vez que guardes cambios en el archivo, la aplicación se recargará automáticamente.
+
+Esto nos da un ciclo de desarrollo muy rápido: escribes código, guardas, ves los resultados, modificas, guardas, ves los resultados, y así sucesivamente.
+
+## 🏁 FIN DEL POST 🏁
+
+Y esto ha sido todo por hoy. Gracias por llegar hasta el final, espero que os haya servido y gustado. Nos vemos pronto!
+
+Podéis contribuir económicamente mediante [Paypal](https://www.paypal.com/paypalme/fcoterroba). Toda cantidad es bien recibida! 🙂
+
+Espero también que tengáis una genial semana y nos vemos por aquí dentro de poquito! Un saludo y recuerda seguirme en las redes como [Twitter](https://twitter.com/fcoterroba), [Facebook](https://www.facebook.com/fcoterroba), [Instagram](https://www.instagram.com/fcoterroba/), [GitHub](https://www.github.com/fcoterroba), [LinkedIn](https://www.linkedin.com/in/fcoterroba/) y ahora también en [TikTok](https://us.tiktok.com/@fcoterroba). 🤟🏻
+
+*Fuentes: [Streamlit Documentation](https://docs.streamlit.io/), [Streamlit Official](https://streamlit.io/), [Pandas Documentation](https://pandas.pydata.org/), [Matplotlib Documentation](https://matplotlib.org/)*
