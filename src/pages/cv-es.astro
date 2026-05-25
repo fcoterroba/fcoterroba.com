@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CvViewer from '../components/CvViewer.astro';
+import { CV_FILES } from '../data/cv';
+
+const pdfPath = CV_FILES.es;
+---
+
+<BaseLayout
+  title="CV - fcoterroba"
+  description="Currículum vitae de Francisco Terroba (fcoterroba), software engineer."
+  lang="es"
+  canonical="https://fcoterroba.com/cv-es"
+>
+  <CvViewer lang="es" pdfPath={pdfPath} />
+</BaseLayout>

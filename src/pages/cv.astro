@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="CV - fcoterroba"
+  description="Currículum vitae de Francisco Terroba. Disponible en español e inglés."
+  lang="es"
+  canonical="https://fcoterroba.com/cv"
+>
+  <section class="pt-32 pb-20 theme-bg min-h-[50vh] flex items-center justify-center">
+    <div class="text-center theme-text-70">
+      <p class="mb-4" data-es="redirigiendo al currículum…" data-en="redirecting to resume…">
+        redirecting to resume…
+      </p>
+      <p class="text-sm">
+        <a href="/cv-es" class="text-brand-green underline" data-es="español" data-en="spanish">spanish</a>
+        <span class="mx-2">·</span>
+        <a href="/cv-en" class="text-brand-green underline" data-es="inglés" data-en="english">english</a>
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('fcoterroba-lang'); } catch (_) {}
+      var browser = (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+      var lang = stored === 'es' || stored === 'en' ? stored : browser;
+      window.location.replace(lang === 'es' ? '/cv-es' : '/cv-en');
+    })();
+  </script>
+</BaseLayout>

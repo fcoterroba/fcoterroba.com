@@ -1,0 +1,67 @@
+---
+import type { CvLang } from '../data/cv';
+
+export interface Props {
+  lang: CvLang;
+  pdfPath: string;
+}
+
+const { lang, pdfPath } = Astro.props;
+const otherPath = lang === 'es' ? '/cv-en' : '/cv-es';
+const downloadName = `fcoterroba-cv-${lang}.pdf`;
+---
+
+<section class="pt-28 pb-8 theme-bg min-h-[calc(100vh-4rem)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-bold theme-text mb-2" data-es="currículum" data-en="resume">
+          resume
+        </h1>
+        <p class="theme-text-70" data-es="versión en español" data-en="english version">
+          {lang === 'es' ? 'versión en español' : 'english version'}
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={otherPath}
+          class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 theme-text text-sm hover:border-brand-green hover:text-brand-green transition-colors"
+          data-es="ver en inglés"
+          data-en="view in spanish"
+        >
+          view in spanish
+        </a>
+        <a
+          href={pdfPath}
+          download={downloadName}
+          class="px-4 py-2 rounded-full bg-brand-green text-white text-sm hover:bg-brand-green/90 transition-colors"
+          data-es="descargar pdf"
+          data-en="download pdf"
+        >
+          download pdf
+        </a>
+      </div>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-100 dark:bg-gray-800">
+      <iframe
+        src={`${pdfPath}#view=FitH`}
+        title={lang === 'es' ? 'CV de Francisco Terroba' : 'Francisco Terroba resume'}
+        class="w-full h-[min(80vh,900px)] min-h-[480px] bg-white"
+      />
+    </div>
+
+    <p class="mt-4 text-sm theme-text-60 text-center">
+      <span data-es="si el visor no carga, " data-en="if the viewer does not load, ">if the viewer does not load, </span>
+      <a href={pdfPath} class="text-brand-green underline" data-es="abre el pdf directamente" data-en="open the pdf directly">open the pdf directly</a>
+    </p>
+  </div>
+</section>
+
+<script is:inline define:vars={{ pageLang: lang }}>
+  document.documentElement.lang = pageLang;
+  localStorage.setItem('fcoterroba-lang', pageLang);
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === pageLang);
+  });
+</script>

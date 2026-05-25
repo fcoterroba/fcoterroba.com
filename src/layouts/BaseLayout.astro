@@ -760,8 +760,12 @@ const siteName = 'fcoterroba';
 
         const currentPath = window.location.pathname;
         const isBlogPost = currentPath.startsWith('/blog/') && currentPath !== '/blog';
+        const isCvPage = currentPath === '/cv-es' || currentPath === '/cv-en';
         
-        if (!isBlogPost) {
+        if (isCvPage) {
+          const cvLang = currentPath.endsWith('-es') ? 'es' : 'en';
+          updateLanguageUI(cvLang);
+        } else if (!isBlogPost) {
           const storedLang = localStorage.getItem('fcoterroba-lang') || browserLang;
           applyLanguage(storedLang);
         } else {
@@ -801,6 +805,14 @@ const siteName = 'fcoterroba';
 
         const currentPath = window.location.pathname;
         const isBlogPost = currentPath.startsWith('/blog/') && currentPath !== '/blog';
+        if (currentPath === '/cv-es' && lang === 'en') {
+          window.location.href = '/cv-en';
+          return;
+        }
+        if (currentPath === '/cv-en' && lang === 'es') {
+          window.location.href = '/cv-es';
+          return;
+        }
         if (isBlogPost) {
           const currentSlug = currentPath.replace('/blog/', '');
           if (currentSlug && currentSlug.trim() !== '') {
